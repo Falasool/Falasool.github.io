@@ -1,1 +1,154 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tutorials on Rubber Duck's Bizarre Adventure</title><link>https://anodicseal.xyz/categories/tutorials/</link><description>Recent content in Tutorials on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 21 Oct 2022 23:29:38 +0800</lastBuildDate><atom:link href="https://anodicseal.xyz/categories/tutorials/index.xml" rel="self" type="application/rss+xml"/><item><title>Picture Bed</title><link>https://anodicseal.xyz/2022/10/21/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/21/picture-bed/</guid><description>Test 相关参考 感谢前人的耕耘和分享，希望本文也能给你带来一些帮助</description></item><item><title>Hugo｜Github Pages｜Stack主题｜搭建记录</title><link>https://anodicseal.xyz/2022/10/21/build-hugo-site-on-macos/</link><pubDate>Fri, 21 Oct 2022 21:28:27 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/21/build-hugo-site-on-macos/</guid><description>创建公开仓库（存放编译好的静态页面） 创建私密仓库 给两个仓库绑定 SSH keyssh-keygen -t rsa -b 4096 -C &amp;quot;amy.yating.zhang@gmail.com</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tutorials on Rubber Duck's Bizarre Adventure</title><link>https://anodicseal.xyz/categories/tutorials/</link><description>Recent content in Tutorials on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 21 Oct 2022 23:29:38 +0800</lastBuildDate><atom:link href="https://anodicseal.xyz/categories/tutorials/index.xml" rel="self" type="application/rss+xml"/><item><title>Picture Bed</title><link>https://anodicseal.xyz/2022/10/21/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/21/picture-bed/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=fa517d08" alt="Featured image of post Picture Bed" />&lt;!-- raw HTML omitted -->
+&lt;p>Test&lt;/p>
+&lt;h2 id="相关参考">相关参考&lt;/h2>
+&lt;p>&lt;!-- raw HTML omitted -->感谢前人的耕耘和分享，希望本文也能给你带来一些帮助&lt;!-- raw HTML omitted -->&lt;/p></description></item><item><title>Hugo｜Github Pages｜Stack主题｜搭建记录</title><link>https://anodicseal.xyz/2022/10/21/build-hugo-site-on-macos/</link><pubDate>Fri, 21 Oct 2022 21:28:27 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/21/build-hugo-site-on-macos/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=6e5ecc50" alt="Featured image of post Hugo｜Github Pages｜Stack主题｜搭建记录" />&lt;ul>
+&lt;li>
+&lt;p>创建公开仓库（存放编译好的静态页面）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>创建私密仓库&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>给两个仓库绑定 SSH key&lt;code>ssh-keygen -t rsa -b 4096 -C &amp;quot;amy.yating.zhang@gmail.com&amp;quot;&lt;/code>，![[绑定ssh 1]]&lt;/p>
+&lt;ul>
+&lt;li>把 public key &lt;code>id_rsa_hugo_deploy.pub&lt;/code> 添加到 .github.io 仓库:&lt;code>cd .ssh&lt;/code> &lt;code>cat id_rsa.pub&lt;/code>，![[绑定ssh 2]]&lt;/li>
+&lt;li>然后将 &lt;strong>Private Key&lt;/strong> 添加到 private仓库：
+这里 Secrets 变量名要一定是： ACTIONS_DEPLOY_KEY, 后面会用到。![[绑定ssh 3]]&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Token&lt;/p>
+&lt;ul>
+&lt;li>在account- settings- developer settings- Personal access tokens-Tokens(classic)里创建Token，记得勾选repo和workflow，并复制保存。我的Token:&lt;/li>
+&lt;/ul>
+&lt;!-- raw HTML omitted -->
+&lt;ul>
+&lt;li>在私有仓库hugo-scources-settings-secrets-Actions创建名为PERSONAL_TOKEN，值为刚才的Token的Secret，这样就完成了Token的设置&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>克隆私密仓库hugo-sources 到本地&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在本地 hugo-sources 文件夹中执行 &lt;code>hugo new site . --force&lt;/code>，在当前目录生成 Hugo 源码&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>fork 主题仓库，并把这个仓库克隆下来&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-v" data-lang="v">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">git&lt;/span> &lt;span class="nv">init&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">git&lt;/span> &lt;span class="nv">submodule&lt;/span> &lt;span class="nv">add&lt;/span> &lt;span class="nv">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">//github.com/Falasool/hugo-theme-stack themes/hugo-theme-stack
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>删除根目录下的config.toml 文件，把 &lt;code>./themes/hugo-theme-stack/exampleSite/&lt;/code> 里的 config.yaml 和 content 转移到根目录下，在 config.yaml 中进行站点细节配置&lt;/li>
+&lt;li>删掉 &lt;code>examplesite/content/post/rich-content/index.md&lt;/code>，因为Twitter 等等被墙应用的API 中国大陆无法访问 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/issues/191" target="_blank" rel="noopener"
+>Issus #191@CaiJimmy/hugo-theme-stack&lt;/a>&lt;/li>
+&lt;li>本地预览 &lt;code>hugo server -D&lt;/code>，在 localhost:1313 预览满意了 &lt;!-- raw HTML omitted -->Control&lt;!-- raw HTML omitted -->+&lt;!-- raw HTML omitted -->C&lt;!-- raw HTML omitted --> 终止预览&lt;/li>
+&lt;li>推送到GitHub&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git add .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &amp;#34;first commit&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push -u origin main
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>在 GitHub 配置 Actions，并 commit&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">name: Deploy Hugo Site to Github Pages on Main Branch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">on:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> push:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> branches:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - main
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> workflow_dispatch:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> schedule:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # Runs everyday at 8:00 AM
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - cron: &amp;#34;0 0 * * *&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">jobs:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> build-deploy:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> runs-on: ubuntu-22.04
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> steps:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - uses: actions/checkout@v1 # v2 does not have submodules option now
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # with:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # submodules: true
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - name: Setup Hugo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> uses: peaceiris/actions-hugo@v2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> with:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> hugo-version: &amp;#39;0.104.1&amp;#39; # 查看你的版本把它替换掉，防止兼容问题
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # extended: true
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - name: Build
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> run: hugo --minify
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - name: Deploy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> uses: peaceiris/actions-gh-pages@v3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> with:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> external_repository: Falasool/Falasool.github.io # Pages 远程仓库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> publish_dir: &amp;#34;./public&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> keep_files: false # remove existing files
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> publish_branch: main # deploying branch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> commit_message: ${{ github.event.head_commit.message }}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>在本地 hugo-sources 目录下执行 &lt;code>git pull origin main&lt;/code>，本地多出 &lt;code>.github/workflows/main.yml&lt;/code>&lt;/li>
+&lt;li>测试![[测试自动发布系统]]，假如不成功可以点进去看日志，看哪里错了&lt;/li>
+&lt;/ul></description></item></channel></rss>
