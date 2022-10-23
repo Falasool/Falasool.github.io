@@ -14,10 +14,7 @@
 &lt;ul>
 &lt;li>选择免费方案&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/cloudflare-free.png"
-loading="lazy"
-alt="cloudflare-free"
->&lt;/p>
+&lt;!-- raw HTML omitted -->
 &lt;ul>
 &lt;li>ping 一下目前的 &amp;lt;username&amp;gt;.github.io ，得到目标 IP 地址&lt;/li>
 &lt;/ul>
@@ -29,6 +26,14 @@ alt="cloudflare-free"
 loading="lazy"
 alt="check-ip"
 >&lt;/p>
+&lt;ul>
+&lt;li>配置页面规则&lt;/li>
+&lt;/ul>
+&lt;!-- raw HTML omitted -->
+&lt;ul>
+&lt;li>更改 SSL 设置&lt;/li>
+&lt;/ul>
+&lt;!-- raw HTML omitted -->
 &lt;ul>
 &lt;li>分到了两个姓名服务器，复制下来&lt;/li>
 &lt;/ul>
@@ -47,11 +52,15 @@ alt="check-ip"
 &lt;li>在 GitHub 的 xxx.github.io 仓库，Settings- Pages 里填上你的域名，勾选 Enforce HTTPS&lt;/li>
 &lt;/ul>
 &lt;!-- raw HTML omitted -->
+&lt;ul>
+&lt;li>把根目录下的 &lt;code>.yaml&lt;/code> 文件的 baseURL 改为个人域名&lt;/li>
+&lt;/ul>
 &lt;p>现在可以从域名访问博客了&lt;/p>
 &lt;h2 id="解决报错">解决报错&lt;/h2>
 &lt;p>从域名或 xxx.github.io 访问博客都会404&lt;/p>
 &lt;!-- raw HTML omitted -->
-&lt;p>在公开仓库的 Settings-Pages 里查看，发现设置的个人域名消失了，又变回了 falasool.github.io。搜索相关问题发现，有人反馈每次 push 之后都需要重新设置个人域名，我试了一下也是这样：设置域名后会自动创建 CNAME 文件，push 操作后这个文件又没了&lt;/p>
+&lt;p>在公开仓库的 Settings-Pages 里查看，发现设置的个人域名消失了，又变回了 falasool.github.io。搜索相关问题发现，有人反馈每次 push 之后都需要重新设置个人域名。&lt;/p>
+&lt;p>我试了一下也是这样：设置域名后会自动创建 CNAME 文件，此时从域名或 xxx.github.io 都能访问博客。push 操作后 CNAME 又没了，个人域名或 xxx.github.io 都返回404 😮‍💨&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://oldtang.com/2420.html" target="_blank" rel="noopener"
 >Dynadot 网站注册账户、购买域名、支付宝付款、解析域名教程&lt;/a>&lt;/p>
