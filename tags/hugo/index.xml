@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on Rubber Duck's Bizarre Adventure</title><link>https://anodicseal.xyz/tags/hugo/</link><description>Recent content in Hugo on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 22 Oct 2022 22:27:40 +0800</lastBuildDate><atom:link href="https://anodicseal.xyz/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>博客域名设置</title><link>https://anodicseal.xyz/2022/10/22/domain/</link><pubDate>Sat, 22 Oct 2022 22:27:40 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/22/domain/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=7bb02909" alt="Featured image of post 博客域名设置" />&lt;!-- raw HTML omitted -->
+&lt;h2 id="设置步骤">设置步骤&lt;/h2>
 &lt;ul>
 &lt;li>
 &lt;p>在 &lt;a class="link" href="https://www.dynadot.com/" target="_blank" rel="noopener"
@@ -47,6 +48,12 @@ alt="check-ip"
 &lt;/ul>
 &lt;!-- raw HTML omitted -->
 &lt;p>现在可以从域名访问博客了&lt;/p>
+&lt;h2 id="解决报错">解决报错&lt;/h2>
+&lt;p>从域名或 xxx.github.io 访问博客都会404&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>在公开仓库的 Settings-Pages 里查看，发现设置的个人域名消失了，又变回了 falasool.github.io。搜索相关问题发现，有人反馈每次 push 之后都需要重新设置个人域名&lt;/p>
+&lt;p>在 Pages 里重新添加域名，在 Cloudflare 添加一条 CNAME 记录之后暂时好了，下次 push 再试试&lt;/p>
+&lt;!-- raw HTML omitted -->
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://oldtang.com/2420.html" target="_blank" rel="noopener"
 >Dynadot 网站注册账户、购买域名、支付宝付款、解析域名教程&lt;/a>&lt;/p>
