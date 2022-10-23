@@ -6,6 +6,9 @@
 >Dynadot&lt;/a> 买个域名（NameSlio 和 namecheap 也很好）&lt;/p>
 &lt;/li>
 &lt;li>
+&lt;p>解析域名：&lt;/p>
+&lt;/li>
+&lt;li>
 &lt;p>注册 &lt;a class="link" href="https://dash.cloudflare.com/" target="_blank" rel="noopener"
 >Cloudflare&lt;/a> 账号，点 Add Site，输入你的域名&lt;/p>
 &lt;/li>
@@ -16,7 +19,7 @@
 &lt;/ul>
 &lt;!-- raw HTML omitted -->
 &lt;ul>
-&lt;li>ping 一下目前的 &amp;lt;username&amp;gt;.github.io ，得到目标 IP 地址&lt;/li>
+&lt;li>ping 一下目前的 &amp;lt;username&amp;gt;.github.io ，得到目标 IP 地址（Github 官方会提供 4 条 IPv4 地址）&lt;/li>
 &lt;/ul>
 &lt;!-- raw HTML omitted -->
 &lt;ul>
@@ -61,9 +64,19 @@ alt="check-ip"
 &lt;!-- raw HTML omitted -->
 &lt;p>在公开仓库的 Settings-Pages 里查看，发现设置的个人域名消失了，又变回了 falasool.github.io。搜索相关问题发现，有人反馈每次 push 之后都需要重新设置个人域名。&lt;/p>
 &lt;p>我试了一下也是这样：设置域名后会自动创建 CNAME 文件，此时从域名或 xxx.github.io 都能访问博客。push 操作后 CNAME 又没了，个人域名或 xxx.github.io 都返回404 😮‍💨&lt;/p>
-&lt;p>解决办法：在 Cloudflare 里把 DNS 类型改成 A 和 CNAME&lt;/p>
+&lt;p>尝试：在 Cloudflare 里把 DNS 类型改成 A 和 CNAME&lt;/p>
 &lt;!-- raw HTML omitted -->
-&lt;h2 id="相关参考">相关参考&lt;/h2>
+&lt;p>还是不行，一旦 push 就打回原形&lt;/p>
+&lt;p>解决方法：查阅资料发现问题在于 源码仓库 hugo-sources 的Actions 配置文件，deploy 时会自动覆盖CNAME 😭，所以在原配置文件添加：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cname: anodicseal.xyz
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://oldtang.com/2420.html" target="_blank" rel="noopener"
 >Dynadot 网站注册账户、购买域名、支付宝付款、解析域名教程&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.bandwagonhost.net/5986.html" target="_blank" rel="noopener"
@@ -454,6 +467,8 @@ alt="测试自动发布系统"
 >利用GitHub Action实现Hugo博客在GitHub Pages自动部署&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://juejin.cn/post/6872187669196046350" target="_blank" rel="noopener"
 >GitHubAction + Hugo 自动构建发布个人博客&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://h1z3y3.me/posts/hugo-auto-deploy-github-with-actions/" target="_blank" rel="noopener"
+>使用 Github Actions 自动发布 hugo 站点&lt;/a>&lt;/p>
 &lt;p>***&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.jianshu.com/p/5394cf204fad" target="_blank" rel="noopener"
 >折腾Hugo | GitHub Pages | Github Actions自动构建发布免费个人网站&lt;/a>&lt;/p>
