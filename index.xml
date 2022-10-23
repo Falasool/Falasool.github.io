@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rubber Duck's Bizarre Adventure</title><link>https://anodicseal.xyz/</link><description>Recent content on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 21 Oct 2022 23:29:38 +0800</lastBuildDate><atom:link href="https://anodicseal.xyz/index.xml" rel="self" type="application/rss+xml"/><item><title>借助 PicGo 和 GitHub 实现插入图片</title><link>https://anodicseal.xyz/2022/10/21/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/21/picture-bed/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=fa517d08" alt="Featured image of post 借助 PicGo 和 GitHub 实现插入图片" />&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rubber Duck's Bizarre Adventure</title><link>https://anodicseal.xyz/</link><description>Recent content on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 22 Oct 2022 22:27:40 +0800</lastBuildDate><atom:link href="https://anodicseal.xyz/index.xml" rel="self" type="application/rss+xml"/><item><title>博客域名设置</title><link>https://anodicseal.xyz/2022/10/22/domain/</link><pubDate>Sat, 22 Oct 2022 22:27:40 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/22/domain/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=7bb02909" alt="Featured image of post 博客域名设置" />&lt;!-- raw HTML omitted -->
+&lt;ul>
+&lt;li>
+&lt;p>在 &lt;a class="link" href="https://www.dynadot.com/" target="_blank" rel="noopener"
+>Dynadot&lt;/a> 买个域名（NameSlio 和 namecheap 也很好）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>注册 &lt;a class="link" href="https://dash.cloudflare.com/" target="_blank" rel="noopener"
+>Cloudflare&lt;/a> 账号，点 Add Site，输入你的域名&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;!-- raw HTML omitted -->
+&lt;ul>
+&lt;li>选择免费方案&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/cloudflare-free.png"
+loading="lazy"
+alt="cloudflare-free"
+>&lt;/p>
+&lt;ul>
+&lt;li>ping 一下目前的 &amp;lt;username&amp;gt;.github.io ，得到目标 IP 地址&lt;/li>
+&lt;/ul>
+&lt;!-- raw HTML omitted -->
+&lt;ul>
+&lt;li>检查 IP 是否和刚刚 ping 出来的一致（不一致的话改掉），然后点 Continue&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/check-ip.png"
+loading="lazy"
+alt="check-ip"
+>&lt;/p>
+&lt;ul>
+&lt;li>分到了两个姓名服务器，复制下来&lt;/li>
+&lt;/ul>
+&lt;!-- raw HTML omitted -->
+&lt;ul>
+&lt;li>回到 &lt;a class="link" href="https://www.dynadot.com/" target="_blank" rel="noopener"
+>Dynadot&lt;/a>， 点击：我的域名-管理域名-&amp;lt;域名&amp;gt;&lt;/li>
+&lt;/ul>
+&lt;!-- raw HTML omitted -->
+&lt;ul>
+&lt;li>点击：DNS设置&lt;/li>
+&lt;/ul>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;ul>
+&lt;li>在 GitHub 的 xxx.github.io 仓库，Settings- Pages 里填上你的域名，勾选 Enforce HTTPS&lt;/li>
+&lt;/ul>
+&lt;!-- raw HTML omitted -->
+&lt;p>现在可以从域名访问博客了&lt;/p>
+&lt;h2 id="相关参考">相关参考&lt;/h2>
+&lt;p>&lt;a class="link" href="https://oldtang.com/2420.html" target="_blank" rel="noopener"
+>Dynadot 网站注册账户、购买域名、支付宝付款、解析域名教程&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.bandwagonhost.net/5986.html" target="_blank" rel="noopener"
+>使用 Cloudflare 免费 DNS 服务器解析域名到搬瓦工 VPS 主机建站教程&lt;/a>&lt;/p></description></item><item><title>借助 PicGo 和 GitHub 实现插入图片</title><link>https://anodicseal.xyz/2022/10/21/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/21/picture-bed/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=fa517d08" alt="Featured image of post 借助 PicGo 和 GitHub 实现插入图片" />&lt;!-- raw HTML omitted -->
 &lt;h2 id="安装-picgo">安装 PicGo&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -391,7 +444,637 @@ alt="测试自动发布系统"
 &lt;p>&lt;a class="link" href="https://simumis.com/posts/deploy-to-github/" target="_blank" rel="noopener"
 >将Hugo静态网站部署到Github Pages&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.criwits.top/page/20220828132827-0gnvmfs" target="_blank" rel="noopener"
->用 Hugo 配合 GitHub Actions 和 GitHub Pages 搭建博客&lt;/a>&lt;/p></description></item><item><title>Archives</title><link>https://anodicseal.xyz/2019/05/28/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://anodicseal.xyz/2019/05/28/archives/</guid><description/></item><item><title>Markdown Syntax Guide</title><link>https://anodicseal.xyz/2019/03/11/markdown-syntax-guide/</link><pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate><guid>https://anodicseal.xyz/2019/03/11/markdown-syntax-guide/</guid><description>&lt;img src="https://anodicseal.xyz/2019/03/11/markdown-syntax-guide/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Markdown Syntax Guide" />&lt;p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p>
+>用 Hugo 配合 GitHub Actions 和 GitHub Pages 搭建博客&lt;/a>&lt;/p></description></item><item><title>给博客添加评论系统｜Disqus</title><link>https://anodicseal.xyz/2022/10/14/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/14/hugo-comment-system-disqusjs/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=275db47b" alt="Featured image of post 给博客添加评论系统｜Disqus " />&lt;!-- raw HTML omitted -->
+&lt;p>选择 Disqus 是因为 Hugo 内置了它的模板，同时它对迁移的支持较好，本身功能非常齐全，比较遗憾的是从 2015 年开始被墙了&lt;/p>
+&lt;p>参考&lt;a class="link" href="https://gohugo.io/content-management/comments/" target="_blank" rel="noopener"
+>官方文档&lt;/a>&lt;/p>
+&lt;h3 id="基础设置">基础设置&lt;/h3>
+&lt;p>在 &lt;a class="link" href="https://disqus.com/" target="_blank" rel="noopener"
+>Disqus&lt;/a> 注册并登录账号，添加站点（选择I want to install Disqus on my site）&lt;/p>
+&lt;p>输入你想要的 Website Name，用作插入 config 文件的名字，后期可以在 Disqus -&amp;gt; Setting -&amp;gt; General 下查看和修改&lt;/p>
+&lt;p>在 Configure Disqus for Your Site 页面输入 Website URL，要输入完整的地址，比如如果像我一样使用的是 GitHub Pages ，就要加上 &lt;code>https://&lt;/code> 的协议名；&lt;/p>
+&lt;p>选择 Category，点击 Create Site 完成注册&lt;/p>
+&lt;p>选择方案，我选 free&lt;/p>
+&lt;p>编辑博客的配置文件 config.yaml，添加 disqusShortname 设置&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 在第 23 行左右
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">disqusShortname: YOURSITENAME
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="可选项">可选项&lt;/h3>
+&lt;h4 id="添加可信域">添加可信域&lt;/h4>
+&lt;p>Disqus 的站点名称是公开的，如果要防止被别人滥用，可以进行域名绑定，只允许信任的域名使用你的评论&lt;/p>
+&lt;p>在 Disqus -&amp;gt; Site -&amp;gt; Advanced 添加 Trusted Domains&lt;/p>
+&lt;h4 id="特定博文开启关闭评论">特定博文开启/关闭评论&lt;/h4>
+&lt;p>&lt;a class="link" href="https://lvv.me/posts/2019/12/10_hugo_disqus/" target="_blank" rel="noopener"
+>https://lvv.me/posts/2019/12/10_hugo_disqus/&lt;/a>&lt;/p>
+&lt;h4 id="解决本地预览时无法测试评论的问题">解决本地预览时无法测试评论的问题&lt;/h4>
+&lt;p>待补充 &lt;a class="link" href="https://nekonull.me/share/hugo-disqus/" target="_blank" rel="noopener"
+>https://nekonull.me/share/hugo-disqus/&lt;/a>&lt;/p>
+&lt;h4 id="让-disqus-评论在大陆可用">让 Disqus 评论在大陆可用&lt;/h4>
+&lt;p>待补充&lt;/p>
+&lt;h4 id="改造-disqus-评论框">改造 Disqus 评论框&lt;/h4>
+&lt;p>待补充&lt;/p>
+&lt;h2 id="相关参考">相关参考&lt;/h2>
+&lt;p>&lt;!-- raw HTML omitted -->感谢前人的耕耘和分享，希望本文也能给你带来一些帮助 ❤️&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;p>[Hugo 加入 Disqus 整合性留言管理系統](Hugo 加入 Disqus 整合性留言管理系統)&lt;/p>
+&lt;p>&lt;a class="link" href="https://renzibei.com/2020/07/26/use-disqusjs/" target="_blank" rel="noopener"
+>使用Disqus JS让Disqus评论在国内可用&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.fooleap.org/use-disqus-correctly.html" target="_blank" rel="noopener"
+>科学使用 Disqus&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://juejin.cn/post/6844903905910849550" target="_blank" rel="noopener"
+>Disqus评论框改造工程-实现 Disqus 代理的 Serverless 服务&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.skk.moe/post/disqusjs/" target="_blank" rel="noopener"
+>DisqusJS - 一个超轻量级的 DISQUS「评论基础模式」的实现&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://lvv.me/posts/2019/12/10_hugo_disqus/" target="_blank" rel="noopener"
+>给 Hugo 开启 Disqus 评论系统&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://demonkoo.github.io/2016/09/22/Setting-Disqus-Post-New/" target="_blank" rel="noopener"
+>https://lvv.me/posts/2019/12/10_hugo_disqus/&lt;/a>&lt;/p></description></item><item><title>Hugo | Front Matter</title><link>https://anodicseal.xyz/2022/10/12/hugo-front-matter/</link><pubDate>Wed, 12 Oct 2022 20:08:18 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/12/hugo-front-matter/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=5fe4fd89" alt="Featured image of post Hugo | Front Matter" />&lt;h2 id="什么是-front-matter">什么是 Front Matter&lt;/h2>
+&lt;p>是指 .md 文件最上面的这一部分内容&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">title: xxxxxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">date: 2022-10-10 09:39:50
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">type: tags
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">layout: tags=
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">---
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>每次执行 &lt;code>hugo new&lt;/code> 命令新建文章时，Hugo 会从 &lt;code>./archetypes&lt;/code> 中寻找对应的 Front Matter 模板并自动添加到新建文件的最上方&lt;/p>
+&lt;p>Front Matter 里的参数定义了所在博文的外观、功能&lt;/p>
+&lt;h2 id="常用-front-matter-设置">常用 Front Matter 设置&lt;/h2>
+&lt;p>没有兴趣客制化可以复制以下代码，添加进 &lt;code>./archetypes/default.md&lt;/code> 文件&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 使用时需删除注释和空行
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建和文件名相同的文章标题
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">title: &amp;#34;{{ replace .Name &amp;#34;-&amp;#34; &amp;#34; &amp;#34; | title }}&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">description: &amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 优化 URL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">slug: &amp;#34;{{ replace .Name &amp;#34;-&amp;#34; &amp;#34; &amp;#34; | title }}&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">author: [&amp;#34;Rubberduck&amp;#34;]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">type: post/draft/page
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">date: {{ .Date }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">draft: false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 随机匹配一张图片
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">image: https://picsum.photos/800/600.webp?random={{ substr (md5 (.Date)) 4 8 }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">categories: [&amp;#34;Tutorials&amp;#34;]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tags: [&amp;#34;Hugo&amp;#34;,&amp;#34;tech&amp;#34;]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">keywords: [&amp;#34;tutorials&amp;#34;, &amp;#34;Hugo&amp;#34;, &amp;#34;mac&amp;#34;,&amp;#34;tech&amp;#34;]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">metaAlignment: center
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">coverMeta: in/out
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">coverSize: partial
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">coverCaption: &amp;#34;文章cover图片描述&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">isCJKLanguage: true
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">---
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>下面具体说明各项参数，&lt;/p>
+&lt;h2 id="front-matter-内容">Front Matter 内容&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>参数&lt;/th>
+&lt;th>描述&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>title&lt;/td>
+&lt;td>标题，默认与文件名一致&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>date&lt;/td>
+&lt;td>默认为文件创建日期&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>type&lt;/td>
+&lt;td>文章类别，可选post/page/draft等等&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>slug&lt;/td>
+&lt;td>指定文章网址&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>update&lt;/td>
+&lt;td>文件更新日期&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>lastmod&lt;/td>
+&lt;td>文章最后更新日期&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>description&lt;/td>
+&lt;td>文章描述，会被抓去做SEO放在HTML的header中&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>categories&lt;/td>
+&lt;td>分类（不适用于分页）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>tags&lt;/td>
+&lt;td>标签（不适用于分页）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>hidden&lt;/td>
+&lt;td>是否隐藏文章，值为 true 时输入正确网址就可以查看&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>draft&lt;/td>
+&lt;td>是否为草稿，值为 true 时 Hugo 不编译这个文件&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>layout&lt;/td>
+&lt;td>指定文章使用的模板，不指定的话会使用 根目录/_config.toml 中的默认配置 default_layout:post&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>comments&lt;/td>
+&lt;td>开启文章评论功能，默认为 true&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>permalink&lt;/td>
+&lt;td>覆盖文章网址&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>coverImage&lt;/td>
+&lt;td>设置文章封面图片&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>metaAlignment&lt;/td>
+&lt;td>设置文章title的位置&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>coverMeta&lt;/td>
+&lt;td>文章title放在封面图片中央还是外面&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>coverSize&lt;/td>
+&lt;td>封面图片大小&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>如果需要添加 Hugo 创建的 &lt;code>.md&lt;/code> 文件的 Front Matter 模板没有的参数，可以编辑 archetypes 文件夹下的 default.md 文件&lt;/p>
+&lt;p>更多请参考官方文档 &lt;a class="link" href="https://gohugo.io/content-management/front-matter/" target="_blank" rel="noopener"
+>Hugo｜Front Matter&lt;/a>&lt;/p>
+&lt;h2 id="相关参考">相关参考&lt;/h2>
+&lt;p>&lt;!-- raw HTML omitted -->感谢前人的耕耘和分享，希望本文也能给你带来一些帮助 ❤️&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.genesu.me/2020/09/hugo-front-matter/" target="_blank" rel="noopener"
+>貼身打造個人部落格 - 02. 文章 Front Matter&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.gezi.men/p/hugo-theme-stack-configuration/" target="_blank" rel="noopener"
+>Hugo之路 2 | hugo-theme-stack 配置&lt;/a> —— 参考了匹配随机图片的代码&lt;/p></description></item><item><title>Hugo | Github Pages ｜ cactus主题 | win10搭建记录</title><link>https://anodicseal.xyz/2022/10/12/build-blog-site-use-hugo-win/</link><pubDate>Wed, 12 Oct 2022 16:06:44 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/12/build-blog-site-use-hugo-win/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=1912f23e" alt="Featured image of post Hugo | Github Pages ｜ cactus主题 | win10搭建记录" />&lt;h2 id="前期准备">前期准备&lt;/h2>
+&lt;h3 id="安装-hugo">安装 Hugo&lt;/h3>
+&lt;ul>
+&lt;li>打开 Github 中的 &lt;a class="link" href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener"
+>Hugo&lt;/a> 库，下载最新的版本，本次下载：&lt;code>hugo_extended_0.99.1_Windows-64bit.zip&lt;/code>&lt;/li>
+&lt;li>因为一些主题需要进行 SCSS/SASS 构建，所以推荐下载 extended 版本，普通版本可能会报错：&lt;code>you need the extended version to build SCSS/SASS&lt;/code>&lt;/li>
+&lt;li>配置环境变量
+&lt;ul>
+&lt;li>在 控制面板 -&amp;gt; 系统 -&amp;gt; 高级系统设置 -&amp;gt; 高级 中找到&lt;strong>环境变量&lt;/strong>&lt;/li>
+&lt;li>在&lt;strong>用户变量&lt;/strong>中找到 Path 变量，点击编辑，在弹出的窗口中选择新建，输入 &lt;code>Hugo.exe&lt;/code> 文件的文件夹路径（不要包括 Hugo.exe 本身）&lt;/li>
+&lt;li>测试配置是否成功：在 &lt;code>E:\&lt;/code> 空白处右键，点击 &lt;code>Git Bash Here&lt;/code> ，在命令行中输入 &lt;code>hugo version&lt;/code> ，若返回 Hugo 版本号信息，说明配置成功&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="安装-git">安装 Git&lt;/h3>
+&lt;p>在 &lt;a class="link" href="https://git-scm.com/downloads" target="_blank" rel="noopener"
+>Git&lt;/a> 下载、安装程序，按默认选项安装即可&lt;/p>
+&lt;h4 id="设置">设置&lt;/h4>
+&lt;p>在开始菜单找到 Git Bash ，打开输入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git config --global user.name &amp;#34;Your Name&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global user.email &amp;#34;email@example.com&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="配置-ssh">配置 SSH&lt;/h4>
+&lt;p>SSH 密钥用来链接本地和 Git 服务器，它成对生成，分别是” 公钥 “和” 私钥 “，我们将其中的” 公钥 “保存到 Git 仓库后，就可以在电脑上向这个 Git 仓库提交代码。&lt;/p>
+&lt;h5 id="生成-ssh">生成 SSH&lt;/h5>
+&lt;p>在 Git Bash Here 里输入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ssh-keygen -t rsa -C&amp;#34;注册 github 账号时使用的邮箱&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>按照系统提示指定密钥位置、是否需要密码，懒得设置可以直接回车，显示如下结果说明 SSH 生成成功：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Your identification has veen saved in id_rsa
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Your public key has been saved in id_rsa.pub
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h5 id="连接-ssh">连接 SSH&lt;/h5>
+&lt;p>在 &lt;code>C:/Users/用户名/.ssh/&lt;/code> 路径找到公钥 id_rsa.pub ，右键用记事本打开，复制全部内容到 Github 账号 -&amp;gt; Settings -&amp;gt; SSH and GPG keys ，新建一个 SSH 密钥，把公钥粘贴保存
+测试 SSH 连接是否完成，在 Git Bash Here 输入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ssh -T git@github.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果返回：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Hi username!YOu&amp;#39;ve successfully authenticated,but GitHub does not provide shell access.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>说明 SSH 连接成功&lt;/p>
+&lt;h3 id="创建-github-仓库">创建 Github 仓库&lt;/h3>
+&lt;p>注意仓库名要和 GitHub 用户名一致，比如你是 xiaohong，那么你要输入 xiaohong.github.io ，最终仓库的完整名是 xiaohong/xiaohong.github.io&lt;/p>
+&lt;h3 id="安装-vscode">安装 VSCode&lt;/h3>
+&lt;p>Visual Studio Code (简称 VS Code / VSC) 是一款免费开源的现代化轻量级代码编辑器&lt;/p>
+&lt;p>在 &lt;a class="link" href="https://code.visualstudio.com/download" target="_blank" rel="noopener"
+>官方下载地址&lt;/a> 选择相应的版本下载，按照默认选项安装，安装汉化插件 Chinese (Simplified) Language Pack for Visual Studio Code&lt;/p>
+&lt;h3 id="安装-typora可选">安装 Typora（可选）&lt;/h3>
+&lt;p>&lt;a class="link" href="https://typora.io/" target="_blank" rel="noopener"
+>Typora&lt;/a> 是一款轻型 MarkDown 编辑器，其实 VSCode 安装 md 插件后也能胜任它的工作，但是我们就让专业的 Typora 做专业的事吧&lt;/p>
+&lt;p>在官网 releases 页面购买，或点击 Dev/Beta Released -&amp;gt; 下拉到底端 old macOS beta/old Windows/Linux beta 下载 beta 版&lt;/p>
+&lt;p>⚠️ 建议在偏好设置里，设置插入图片时复制到指定路径（./xx/），这样复制的图片就会自动保存在当前文件夹下的xx文件夹里，方便后续管理与转移。&lt;/p>
+&lt;h2 id="开始建站">开始建站&lt;/h2>
+&lt;h3 id="新建-hugo-网站">新建 Hugo 网站&lt;/h3>
+&lt;ul>
+&lt;li>新建一个文件夹用来存放 Hugo 网站的文件，例如：H:/HugoWebsite&lt;/li>
+&lt;li>在 HugoWebsite 文件夹内空白处点击右键，选择 Git Bush Here ，执行以下命令，新建一个 Hugo 网站&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">hugo new site blog # blog是网站文件夹名
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="选择-hugo-主题">选择 Hugo 主题&lt;/h3>
+&lt;p>在 github.com 搜索 hugo theme ，或在 &lt;a class="link" href="https://themes.gohugo.io/" target="_blank" rel="noopener"
+>Hugo Themes&lt;/a> 选择你喜欢的主题。此处以 &lt;a class="link" href="https://github.com/monkeyWzr/hugo-theme-cactus" target="_blank" rel="noopener"
+>cactus&lt;/a> 举例&lt;/p>
+&lt;p>⚠️ 推荐将主题仓库 fork 到自己的账号，使用 &lt;code>git submodule&lt;/code> 方式进行仓库连接，这样方便后续对主题的修改进行单独维护（否则&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-v" data-lang="v">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">cd&lt;/span> &lt;span class="nv">blog&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">git&lt;/span> &lt;span class="nv">init&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">git&lt;/span> &lt;span class="nv">submodule&lt;/span> &lt;span class="nv">add&lt;/span> &lt;span class="nv">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">//github.com/monkeyWzr/hugo-theme-cactus themes/hugo-theme-cactus
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>⚠️ &lt;code>git clone&lt;/code> 命令也可以，就是修改可能会和原主题冲突，不方便版本管理和后续更新，在文件夹 blog 空白处右键点击 Git Bush Here&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 进入 themes 目录，如果没有这个文件夹用 mkdir -p themes 自行创建
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd themes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 下载主题到 cactus 文件夹下
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone git@github.com:monkeyWzr/hugo-theme-cactus.git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="配置主题">配置主题&lt;/h3>
+&lt;p>备份 blog 文件夹里的 config.toml 文件，用 &lt;code>blog/themes/hugo-theme-cactus/exampleSite/&lt;/code> 下的 config.toml 覆盖 blog 文件夹下的 config.toml
+，然后打开 config.toml 修改配置&lt;/p>
+&lt;h4 id="必要的修改">必要的修改&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 修改 URL 为你的 GitHub 仓库名称
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">baseURL = &amp;#34;https://username.github.io&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 这里必须和 themes 文件夹里的主题文件夹名称一致，所以把主题文件名从 hugo-theme-cactus 修改为 cactus
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">theme = &amp;#34;cactus&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="本地预览">本地预览&lt;/h3>
+&lt;h4 id="新建文章">新建文章&lt;/h4>
+&lt;p>在网站文件根目录：E:\HugoWebsite\blog 下执行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">hugo new post/first_article.md
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>到 blog/content/post 里打开并编辑文章内容，保存&lt;/p>
+&lt;h4 id="启动-hugo-server">启动 Hugo server&lt;/h4>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">hugo server -D
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>打开网址 http://localhost:1313/ 进行预览，在 config.toml 里调整页面效果&lt;/p>
+&lt;h3 id="部署到-github">部署到 GitHub&lt;/h3>
+&lt;p>进入 E:\HugoWebsite\blog\public 目录，初始化 Git 库&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 进入 public 文件夹
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd public
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 初始化
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将 git 本地库关联至远程库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git remote add origin git@github.com:username/username.github.io.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 提交修改
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &amp;#34;firstarticle&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看当前修改状态
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git status
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 添加所有修改过的文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 提交到本地库，&amp;#34;add first-post&amp;#34;是本次提交内容的说明信息
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m&amp;#34;add first-post&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 提交到远程库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin main
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>✨ 曾经 github 的默认分支是 master，时间比较久的教程「提交到远程库」这一步都是&lt;code>git push origin master&lt;/code> ，这里要注意&lt;/p>
+&lt;h2 id="日常使用博客要知道的">日常使用博客要知道的&lt;/h2>
+&lt;h3 id="front-matter">Front Matter&lt;/h3>
+&lt;h4 id="什么是-front-matter">什么是 Front Matter&lt;/h4>
+&lt;p>是指 .md 文件最上面的这一部分内容&lt;/p>
+&lt;hr>
+&lt;p>title: tags&lt;/p>
+&lt;p>date: 2019-08-13 09:39:50&lt;/p>
+&lt;p>type: tags&lt;/p>
+&lt;p>layout: tag&lt;/p>
+&lt;hr>
+&lt;h4 id="front-matter-内容">Front Matter 内容&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>参数&lt;/th>
+&lt;th>描述&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>title&lt;/td>
+&lt;td>标题，默认与文件名一致&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>date&lt;/td>
+&lt;td>默认为文件创建日期&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>slug&lt;/td>
+&lt;td>指定文章网址&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>update&lt;/td>
+&lt;td>文件更新日期&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>lastmod&lt;/td>
+&lt;td>文章最后更新日期&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>description&lt;/td>
+&lt;td>文章描述，会被抓去做SEO放在HTML的header中&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>categories&lt;/td>
+&lt;td>分类（不适用于分页）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>tags&lt;/td>
+&lt;td>标签（不适用于分页）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>hidden&lt;/td>
+&lt;td>是否隐藏文章，值为 true 时输入正确网址就可以查看&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>draft&lt;/td>
+&lt;td>是否为草稿，值为 true 时 Hugo 不编译这个文件&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>layout&lt;/td>
+&lt;td>指定文章使用的模板，不指定的话会使用 根目录/_config.toml 中的默认配置 default_layout:post&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>comments&lt;/td>
+&lt;td>开启文章评论功能，默认为 true&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>permalink&lt;/td>
+&lt;td>覆盖文章网址&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>coverImage&lt;/td>
+&lt;td>设置文章封面图片&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>metaAlignment&lt;/td>
+&lt;td>设置文章title的位置&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>coverMeta&lt;/td>
+&lt;td>文章title放在封面图片中央还是外面&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>coverSize&lt;/td>
+&lt;td>封面图片大小&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>如果需要添加 Hugo 创建的 &lt;code>.md&lt;/code> 文件自带的 Front Matter 模板没有的参数，可以编辑 archetypes 文件夹下的 default.md 文件&lt;/p>
+&lt;p>更多请参考&lt;a class="link" href="https://gohugo.io/content-management/front-matter/" target="_blank" rel="noopener"
+>Hugo｜Front Matter&lt;/a>&lt;/p>
+&lt;h3 id="如何新建或修改博文">如何新建或修改博文&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 在根目录：E:/HugoWebsite/blog 下新建文章或编辑文章
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hugo new post/title.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 本地预览，http://localhost:1313/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hugo server -D
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 构建 Hugo 网站
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hugo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 切换到目录：E:/HugoWebsite/blog/public
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd public
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 提交修改到本地库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m&amp;#34;commit info&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 把内容拉下来以rebase方式合并
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git pull --rebase
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将修改推到远程库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push -u origin main
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="如何删除文章">如何删除文章&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 在目录 E:/HugoWebsite/blog/content/post 和 E:/HugoWebsite/blog/public 找到对应文章删除
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 其中public下文件不删除不会影响显示，只是文件就会一直存在，除.git删错了也不要紧，hugo命令会重建
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 本地预览，http://localhost:1313/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hugo server -D
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 构建 Hugo 网站
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hugo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 切换到目录：E:/HugoWebsite/blog/public
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 提交修改到本地库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m&amp;#34;commit info&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 把内容拉下来以rebase方式合并
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git pull --rebase
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将修改推到远程库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push -u origin main
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="装修没有止境">装修没有止境&lt;/h2>
+&lt;p>评论系统用 cactus，原装！可爱！&lt;/p>
+&lt;p>（202210:换了主题所以不再补充了）&lt;/p>
+&lt;h2 id="报错和解决方法">报错和解决方法&lt;/h2>
+&lt;h2 id="相关参考">相关参考&lt;/h2>
+&lt;p>&lt;!-- raw HTML omitted -->感谢前人的耕耘和分享，希望本文也能给你带来一些帮助 ❤️&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;p>&lt;a class="link" href="https://zz2summer.github.io/github-pages-hugo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#%E4%B8%89%E6%96%B0%E5%BB%BA-hugo-%E7%BD%91%E7%AB%99" target="_blank" rel="noopener"
+>Github Pages + Hugo 搭建个人博客&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://mantyke.icu/posts/2021/hugo-build-blog/" target="_blank" rel="noopener"
+>Hugo | 一起动手搭建个人博客吧&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.jianshu.com/p/76761a1c46d9" target="_blank" rel="noopener"
+>记录一下如何用 Hugo 和 Github Page 建立简单的博客 Blog&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://olowolo.com/post/hugo-quick-start/" target="_blank" rel="noopener"
+>Hugo 从入门到会用&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://zhuanlan.zhihu.com/p/100715311" target="_blank" rel="noopener"
+>小白如何低成本建立个人网站或作品集（详细教程）&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://zhuanlan.zhihu.com/p/150095964" target="_blank" rel="noopener"
+>使用 Hugo 和 GitHub 搭建博客&lt;/a>&lt;/p>
+&lt;p>***&lt;/p>
+&lt;p>&lt;a class="link" href="https://segmentfault.com/a/1190000020067490" target="_blank" rel="noopener"
+>front-matter 使用详解&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://billie52707.cn/posts/2020/8/hugo-my-first-web/" target="_blank" rel="noopener"
+>hugo 建站全指南 | 我的第一个博客网站&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://tie.pub/2021/12/comments-on-static-site/" target="_blank" rel="noopener"
+>在静态网站上包含评论的各种方法&lt;/a>&lt;/p>
+&lt;p>***&lt;/p>
+&lt;p>&lt;a class="link" href="https://gitbook.tw/chapters/github/fail-to-push" target="_blank" rel="noopener"
+>為你自己學Git｜怎麼有時候推不上去&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.csdn.net/guanmaoning/article/details/106474465" target="_blank" rel="noopener"
+>Git 把本地仓库与 GitHub 远程仓库关联进行同步&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://iitii.github.io/2020/12/06/1/" target="_blank" rel="noopener"
+>将 Git 默认分支从 master 修改为 main&lt;/a>&lt;/p></description></item><item><title>Archives</title><link>https://anodicseal.xyz/2019/05/28/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://anodicseal.xyz/2019/05/28/archives/</guid><description/></item><item><title>Markdown Syntax Guide</title><link>https://anodicseal.xyz/2019/03/11/markdown-syntax-guide/</link><pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate><guid>https://anodicseal.xyz/2019/03/11/markdown-syntax-guide/</guid><description>&lt;img src="https://anodicseal.xyz/2019/03/11/markdown-syntax-guide/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post Markdown Syntax Guide" />&lt;p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p>
 &lt;h2 id="headings">Headings&lt;/h2>
 &lt;p>The following HTML &lt;code>&amp;lt;h1&amp;gt;&lt;/code>—&lt;code>&amp;lt;h6&amp;gt;&lt;/code> elements represent six levels of section headings. &lt;code>&amp;lt;h1&amp;gt;&lt;/code> is the highest section level while &lt;code>&amp;lt;h6&amp;gt;&lt;/code> is the lowest.&lt;/p>
 &lt;h1 id="h1">H1&lt;/h1>

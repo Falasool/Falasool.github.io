@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>comment system on Rubber Duck's Bizarre Adventure</title><link>https://anodicseal.xyz/tags/comment-system/</link><description>Recent content in comment system on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 14 Oct 2022 19:12:42 +0800</lastBuildDate><atom:link href="https://anodicseal.xyz/tags/comment-system/index.xml" rel="self" type="application/rss+xml"/><item><title>给博客添加评论系统｜Disqus</title><link>https://anodicseal.xyz/2022/10/14/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/14/hugo-comment-system-disqusjs/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=275db47b" alt="Featured image of post 给博客添加评论系统｜Disqus " />&lt;!-- raw HTML omitted -->
+&lt;p>选择 Disqus 是因为 Hugo 内置了它的模板，同时它对迁移的支持较好，本身功能非常齐全，比较遗憾的是从 2015 年开始被墙了&lt;/p>
+&lt;p>参考&lt;a class="link" href="https://gohugo.io/content-management/comments/" target="_blank" rel="noopener"
+>官方文档&lt;/a>&lt;/p>
+&lt;h3 id="基础设置">基础设置&lt;/h3>
+&lt;p>在 &lt;a class="link" href="https://disqus.com/" target="_blank" rel="noopener"
+>Disqus&lt;/a> 注册并登录账号，添加站点（选择I want to install Disqus on my site）&lt;/p>
+&lt;p>输入你想要的 Website Name，用作插入 config 文件的名字，后期可以在 Disqus -&amp;gt; Setting -&amp;gt; General 下查看和修改&lt;/p>
+&lt;p>在 Configure Disqus for Your Site 页面输入 Website URL，要输入完整的地址，比如如果像我一样使用的是 GitHub Pages ，就要加上 &lt;code>https://&lt;/code> 的协议名；&lt;/p>
+&lt;p>选择 Category，点击 Create Site 完成注册&lt;/p>
+&lt;p>选择方案，我选 free&lt;/p>
+&lt;p>编辑博客的配置文件 config.yaml，添加 disqusShortname 设置&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 在第 23 行左右
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">disqusShortname: YOURSITENAME
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="可选项">可选项&lt;/h3>
+&lt;h4 id="添加可信域">添加可信域&lt;/h4>
+&lt;p>Disqus 的站点名称是公开的，如果要防止被别人滥用，可以进行域名绑定，只允许信任的域名使用你的评论&lt;/p>
+&lt;p>在 Disqus -&amp;gt; Site -&amp;gt; Advanced 添加 Trusted Domains&lt;/p>
+&lt;h4 id="特定博文开启关闭评论">特定博文开启/关闭评论&lt;/h4>
+&lt;p>&lt;a class="link" href="https://lvv.me/posts/2019/12/10_hugo_disqus/" target="_blank" rel="noopener"
+>https://lvv.me/posts/2019/12/10_hugo_disqus/&lt;/a>&lt;/p>
+&lt;h4 id="解决本地预览时无法测试评论的问题">解决本地预览时无法测试评论的问题&lt;/h4>
+&lt;p>待补充 &lt;a class="link" href="https://nekonull.me/share/hugo-disqus/" target="_blank" rel="noopener"
+>https://nekonull.me/share/hugo-disqus/&lt;/a>&lt;/p>
+&lt;h4 id="让-disqus-评论在大陆可用">让 Disqus 评论在大陆可用&lt;/h4>
+&lt;p>待补充&lt;/p>
+&lt;h4 id="改造-disqus-评论框">改造 Disqus 评论框&lt;/h4>
+&lt;p>待补充&lt;/p>
+&lt;h2 id="相关参考">相关参考&lt;/h2>
+&lt;p>&lt;!-- raw HTML omitted -->感谢前人的耕耘和分享，希望本文也能给你带来一些帮助 ❤️&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;p>[Hugo 加入 Disqus 整合性留言管理系統](Hugo 加入 Disqus 整合性留言管理系統)&lt;/p>
+&lt;p>&lt;a class="link" href="https://renzibei.com/2020/07/26/use-disqusjs/" target="_blank" rel="noopener"
+>使用Disqus JS让Disqus评论在国内可用&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.fooleap.org/use-disqus-correctly.html" target="_blank" rel="noopener"
+>科学使用 Disqus&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://juejin.cn/post/6844903905910849550" target="_blank" rel="noopener"
+>Disqus评论框改造工程-实现 Disqus 代理的 Serverless 服务&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.skk.moe/post/disqusjs/" target="_blank" rel="noopener"
+>DisqusJS - 一个超轻量级的 DISQUS「评论基础模式」的实现&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://lvv.me/posts/2019/12/10_hugo_disqus/" target="_blank" rel="noopener"
+>给 Hugo 开启 Disqus 评论系统&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://demonkoo.github.io/2016/09/22/Setting-Disqus-Post-New/" target="_blank" rel="noopener"
+>https://lvv.me/posts/2019/12/10_hugo_disqus/&lt;/a>&lt;/p></description></item></channel></rss>
