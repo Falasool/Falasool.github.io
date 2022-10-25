@@ -76,7 +76,8 @@ alt="check-ip"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cname: anodicseal.xyz
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="相关参考">相关参考&lt;/h2>
+&lt;/div>&lt;p>解决！🎉🎉🎉&lt;/p>
+&lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://oldtang.com/2420.html" target="_blank" rel="noopener"
 >Dynadot 网站注册账户、购买域名、支付宝付款、解析域名教程&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.bandwagonhost.net/5986.html" target="_blank" rel="noopener"
@@ -359,6 +360,7 @@ alt="配置yml"
 &lt;/span>&lt;span class="lnt">37
 &lt;/span>&lt;span class="lnt">38
 &lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Deploy Hugo Site to Github Pages on Main Branch&lt;/span>&lt;span class="w">
@@ -400,6 +402,7 @@ alt="配置yml"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">keep_files&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># remove existing files&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">publish_branch&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">main &lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># deploying branch&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">commit_message&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ github.event.head_commit.message }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">cname&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">anodicseal.xyz&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 这里要改成你的个人域名，没有就把这行注释掉&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
