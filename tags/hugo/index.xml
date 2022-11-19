@@ -81,7 +81,11 @@ alt="check-ip"
 &lt;p>&lt;a class="link" href="https://oldtang.com/2420.html" target="_blank" rel="noopener"
 >Dynadot 网站注册账户、购买域名、支付宝付款、解析域名教程&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.bandwagonhost.net/5986.html" target="_blank" rel="noopener"
->使用 Cloudflare 免费 DNS 服务器解析域名到搬瓦工 VPS 主机建站教程&lt;/a>&lt;/p></description></item><item><title>借助 PicGo 和 GitHub 实现插入图片</title><link>https://anodicseal.xyz/2022/10/21/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/21/picture-bed/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=fa517d08" alt="Featured image of post 借助 PicGo 和 GitHub 实现插入图片" />&lt;!-- raw HTML omitted -->
+>使用 Cloudflare 免费 DNS 服务器解析域名到搬瓦工 VPS 主机建站教程&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://ruanyifeng.com/blog/2016/06/dns.html" target="_blank" rel="noopener"
+> DNS 原理入门&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.ruanyifeng.com/blog/2022/08/dns-query.html" target="_blank" rel="noopener"
+>DNS 查询原理详解&lt;/a>&lt;/p></description></item><item><title>借助 PicGo 和 GitHub 实现插入图片</title><link>https://anodicseal.xyz/2022/10/21/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/21/picture-bed/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=fa517d08" alt="Featured image of post 借助 PicGo 和 GitHub 实现插入图片" />&lt;!-- raw HTML omitted -->
 &lt;h2 id="安装-picgo">安装 PicGo&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -111,6 +115,7 @@ alt="set-typora"
 &lt;p>&lt;a class="link" href="https://picgo.github.io/PicGo-Doc/" target="_blank" rel="noopener"
 >PicGo&lt;/a>&lt;/p></description></item><item><title>Hugo｜Github Pages｜Stack主题｜搭建记录</title><link>https://anodicseal.xyz/2022/10/21/build-hugo-site-on-macos/</link><pubDate>Fri, 21 Oct 2022 21:28:27 +0800</pubDate><guid>https://anodicseal.xyz/2022/10/21/build-hugo-site-on-macos/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=6e5ecc50" alt="Featured image of post Hugo｜Github Pages｜Stack主题｜搭建记录" />&lt;p>基于 macOS Monterey，Hugo 框架和 GitHub Pages 网页寄存服务，博客主题为 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
 >Stack&lt;/a>，搭建过程尽量简单，同时减少后续隐患&lt;/p>
+&lt;p>预警：非常啰嗦&lt;/p>
 &lt;h2 id="前期准备">前期准备&lt;/h2>
 &lt;h3 id="安装-hugo">安装 Hugo&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -169,7 +174,8 @@ alt="set-typora"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ssh-keygen -t rsa -b 4096 -C &amp;#34;user@example.com&amp;#34;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;!-- raw HTML omitted -->
+&lt;/div>&lt;p>这行命令 means：生成 SSH 密钥文件 - 密钥类型（rsa）- 密钥长度（4096） - 注释（user@example.com）&lt;/p>
+&lt;!-- raw HTML omitted -->
 &lt;p>在 &lt;code>.ssh&lt;/code> 文件夹里找到生成的 SSH&lt;/p>
 &lt;ul>
 &lt;li>添加公钥：把 public key &lt;code>id_rsa_hugo_deploy.pub&lt;/code> 添加到 .github.io 仓库:&lt;/li>
@@ -181,7 +187,7 @@ alt="set-typora"
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd .ssh
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat id_rsa_hugo_deploy.pub
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat id_rsa_hugo_deploy.pub # 显示文件内容
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;!-- raw HTML omitted -->

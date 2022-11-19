@@ -1,0 +1,625 @@
+<!doctype html><html lang dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><title>Misskey</title><link rel=canonical href=https://anodicseal.xyz/2022/11/19/misskey/><link rel=stylesheet href=/scss/style.min.18145888f21de6cb02d8cb0891be8240096206785da14eda35f6c23c239b966a.css><meta property="og:title" content="Misskey"><meta property="og:description" content><meta property="og:url" content="https://anodicseal.xyz/2022/11/19/misskey/"><meta property="og:site_name" content="Rubber Duck's Bizarre Adventure"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="tutorial"><meta property="article:tag" content="miskey"><meta property="article:published_time" content="2022-11-19T20:19:15+08:00"><meta property="article:modified_time" content="2022-11-19T20:19:15+08:00"><meta property="og:image" content="https://picsum.photos/800/600.webp?random=6ec56286"><meta name=twitter:title content="Misskey"><meta name=twitter:description content><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://picsum.photos/800/600.webp?random=6ec56286"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x0_resize_box_3.png width=300 height=300 class=site-logo loading=lazy alt=Avatar></a>
+<span class=emoji>🦷</span></figure><div class=site-meta><h1 class=site-name><a href=/>Rubber Duck's Bizarre Adventure</a></h1><h2 class=site-description>人間讃歌は「勇気」の讃歌ッ！！人間のすばらしさは勇気のすばらしさ！！</h2></div></header><ol class=social-menu><li><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://twitter.com target=_blank title=Twitter><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/2019/02/28/about/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><span>About</span></a></li><li><a href=/2019/05/28/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/1/01/01/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><li><a href=/1/01/01/links/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg><span>Links</span></a></li><div class=menu-bottom-section><li id=i18n-switch><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg><select name=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://anodicseal.xyz/ selected>English</option><option value=https://anodicseal.xyz/zh-cn/>中文</option></select></li><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>Dark Mode</span></li></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/2022/11/19/misskey/><img src="https://picsum.photos/800/600.webp?random=6ec56286" loading=lazy alt="Featured image of post Misskey"></a></div><div class=article-details><header class=article-category><a href=/categories/tutorials/>Tutorials</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/2022/11/19/misskey/>Misskey</a></h2></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Nov 19, 2022</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>10 minute read</time></div></footer></div></header><section class=article-content><p>不废话了，直接写步骤</p><h2 id=购买-vps>购买 VPS</h2><p>⚠️不要买机房在大陆的服务商 VPS ⚠️</p><p>在备案通过之前 80 和 443 端口是封禁的 -> 无法申请 SSL 证书 -> Misskey 需要 SSL 才能访问，GG</p><p>即使没有这个问题，买大陆节点的服务建站也是一种自杀行为</p><p>注册 Vultr 账号，充值</p><h3 id=创建-vps>创建 VPS</h3><p>机房位置选择日本、新加坡、美西都行，一般不推荐欧洲（对于中国国内）</p><p>选择操作系统：Ubuntu 22.10 x64</p><p>选择 Size：$5 的 1C1G1TB 套餐（记得勾选 No Thanks）</p><p>关闭自动备份，省 $1</p><p>Additional Features：勾选 Enable IPv6</p><p>这时底部付款栏应该显示 <code>$5.00/month</code> ，点击 <code>Deploy Now</code> 确认创建服务器，等待一会，等 Status 变成 Running 就好了</p><p>点击刚刚创建的 VPS，看到如下界面。</p><p>左下角的 IP Address、Username、Password 是待会连接服务器的时候，要用到的 SSH 连接信息</p><ol><li>登录 VNC：查看控制台，类似 Xshell 但是功能没那么丰富</li><li>关机：就和关电脑一样（关机的时候仍然在计费哦！）</li><li>重启：就和重启电脑一样</li><li>重装系统：把服务器重置成刚创建时的状态</li><li>销毁/删除：销毁了服务器就不计费了，数据丢失，无法找回</li></ol><p>Snapshots：快照，指将当前 VPS 的状态保存下来，对 VPS 进行完整备份</p><p>服务器创建完成</p><h3 id=检查-ip>检查 IP</h3><p>Ping 一下 IP</p><p>用检查工具比如 <a class=link href=https://ip112.cn/ target=_blank rel=noopener>https://ip112.cn/</a> 检查 IP，此 IP 可用</p><h2 id=域名>域名</h2><p>在域名商 <a class=link href=https://www.dynadot.com/zh/ target=_blank rel=noopener>Dynadot</a> 注册账号，买一个域名</p><h3 id=解析域名>解析域名</h3><p>依次点击</p><p>暂停⏸️</p><p>去 <a class=link href=https://dash.cloudflare.com/ target=_blank rel=noopener>CloudFlare</a> 注册登录账号，依次操作：</p><p>添加新站点</p><p>输入你的域名</p><p>选择免费方案</p><p>添加 DNS 解析记录</p><p>复制 CloudFlare 提供的两个名称服务器，填进 Dynadot 的 DNS 设置，保存</p><p>回到 CloudFlare 点击 <code>Done, check nameservers</code>，等一会</p><p>测试，ping 你的域名，返回服务器 IP 说明解析生效</p><p>✅域名解析完成</p><h2 id=配置-vps>配置 VPS</h2><p><strong>对哪一步不自信，可以在开始做之前先去服务器管理面板创建一个快照（snapshots），快照就是存档点</strong></p><h3 id=远程连接>远程连接</h3><p>Win 用户推荐用 Xshell，Mac 用自带的 Terminal 就可以</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>ssh root@207.143.88.12 # 换成你的ip地址，回车
+</span></span></code></pre></td></tr></table></div></div><p>然后把密码从 vultr 复制过来回车，连接成功则会看到类似这样的提示：</p><h3 id=安全设置>安全设置</h3><p>因为 root 权限太太太强大，为了避免婴儿（我）拿核武器发射按钮的情况出现，创建一个普通用户日常使用</p><h4 id=新建普通用户并设定密码>新建普通用户并设定密码</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>adduser vpsadmin
+</span></span></code></pre></td></tr></table></div></div><p>然后输入密码-确认密码（太简单会被拒绝==）</p><h4 id=赋予-vpsadmin-使用-sudo-指令的权限>赋予 「vpsadmin」 使用 sudo 指令的权限</h4><p>什么是 su 和 sudo 请看：<a class=link href=https://blog.gtwang.org/linux/sudo-su-command-tutorial-examples/ target=_blank rel=noopener>Linux 的 su 與 sudo 指令教學與範例</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo adduser vpsadmin sudo
+</span></span></code></pre></td></tr></table></div></div><p>另外开一个终端窗口，登录 vpsadmin 账号</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>ssh vpsadmin@185.202.62.49 # 换成你的IP，回车，然后输入密码
+</span></span></code></pre></td></tr></table></div></div><p>验证是否获得 sudo 权限</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo ls -al /root
+</span></span></code></pre></td></tr></table></div></div><p>返回类似内容（展示 <code>/root</code> 目录下的资料）就表示成功了</p><h4 id=禁止-root-登录>禁止 root 登录</h4><p>登录 root 账户，输入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>nano /etc/ssh/sshd_config
+</span></span></code></pre></td></tr></table></div></div><p>使用 <code>control + W</code> 进入搜索模式，输入 <code>PerimitRootLogin</code> 并回车，找到所在行，改成（记得要取掉注释 <code>#</code>！！）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>PermitRootLogin: no
+</span></span></code></pre></td></tr></table></div></div><p>*prohibit-password/without-password 意为禁止密码登录</p><p>使用 <code>control + O</code>，保存更改，<code>control + X</code> 退出</p><p>重新启动 SSH 服务</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo /etc/init.d/ssh restart
+</span></span></code></pre></td></tr></table></div></div><p><strong>打开一个新窗口</strong>，尝试用 root 登录</p><p>✅成功禁止 root 登录</p><p>从现在开始，用「vpsadmin」这个账户远程连接 VPS 吧</p><h3 id=搭建环境>搭建环境</h3><h4 id=修改服务器时间>修改服务器时间</h4><p>查看时间</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>timedatectl
+</span></span></code></pre></td></tr></table></div></div><p>列出所有时区</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>timedatectl list-timezones
+</span></span></code></pre></td></tr></table></div></div><p>改成香港🇭🇰</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo timedatectl set-timezone Asia/Hong_Kong
+</span></span></code></pre></td></tr></table></div></div><h4 id=安装常用命令>安装常用命令</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt-get install curl wget screen tree -y
+</span></span></code></pre></td></tr></table></div></div><p>*curl用于请求 Web 服务器</p><p>*wget用来下载软件包</p><p>*screen用于命令行终端的窗口切换</p><p>*tree用于显示当前文件夹的目录结构</p><p>（如果你有其它要用的也一起加进来，或者要用了再用这个命令单独安装也可以）</p><h4 id=添加-swap>添加 SWAP</h4><p>swap 是 Linux 中的虚拟内存，用于在物理内存不足的情况下储存临时数据，可以提升小内存 VPS 的运行效率</p><p>确认是否已存在 SWAP</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>free -m
+</span></span></code></pre></td></tr></table></div></div><p>有 Swap 项而且 total 列不为零，说明 Swap 已存在，可以自行修改分区容量，参考：为 <a class=link href=https://www.vvave.net/archives/add-swap-and-repartition-swap-for-linux.html target=_blank rel=noopener>Linux 添加 swap 分区或修改 swap 分区容量</a></p><h4 id=配置防火墙>配置防火墙</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo ufw allow OpenSSH
+</span></span><span class=line><span class=cl>sudo ufw enable
+</span></span></code></pre></td></tr></table></div></div><p>打开防火墙</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo ufw allow http
+</span></span><span class=line><span class=cl>sudo ufw allow https
+</span></span></code></pre></td></tr></table></div></div><p>打开 80、443 的端口</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo ufw allow 80/tcp
+</span></span><span class=line><span class=cl>sudo ufw allow 443/tcp
+</span></span></code></pre></td></tr></table></div></div><p>（其它服务需要的端口也用 <code>sudo ufw allow xx/tcp</code> 开启）</p><p>验证防火墙是否打开，端口是否开启</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo ufw status
+</span></span></code></pre></td></tr></table></div></div><p>和其它服务商不同，Vultr 没有默认防火墙设置，所以要自己开启</p><p>在 Vultr 添加防火墙规则</p><h4 id=安装-docker-和-docker-compose>安装 Docker 和 Docker Compose</h4><p>*Compose 是 Docker 的一个命令行工具，通过 yml 文件定义、创建、管理多容器的 Docker 应用</p><p>跟着 <a class=link href=https://www.51cto.com/article/715086.html target=_blank rel=noopener>如何在 Ubuntu 22.04 LTS 中安装 Docker 和 Docker Compose</a> 丝滑完成安装</p><p>推荐：<a class=link href=https://ostechnix.com/getting-started-with-docker/ target=_blank rel=noopener>Docker Commands Tutorial | Getting Started With Docker In Linux</a></p><h5 id=修改-docker-配置>修改 Docker 配置</h5><p>Docker 的配置文件路径是 <code>/etc/docker/daemon.json</code>，需要手动创建：</p><p>进入 <code>/etc</code> 目录</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cd /etc
+</span></span></code></pre></td></tr></table></div></div><p>进入 <code>docker</code> 目录</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cd docker
+</span></span></code></pre></td></tr></table></div></div><p>用 vim 编辑 <code>daemon.json</code> 文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo vim daemon.json
+</span></span></code></pre></td></tr></table></div></div><p>进入 vim 后输入如下内容，这段代码会增加一段自定义内网 IPv6 地址，开启容器的 IPv6 功能，限制日志文件的大小（20M），限制日志文件数量，防止 Docker 日志过多占用硬盘</p><p>（代码来自<a class=link href=https://u.sb/debian-install-docker/ target=_blank rel=noopener>烧饼博客</a>）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;log-driver&#34;</span><span class=p>:</span> <span class=s2>&#34;json-file&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;log-opts&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;max-size&#34;</span><span class=p>:</span> <span class=s2>&#34;20m&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;max-file&#34;</span><span class=p>:</span> <span class=s2>&#34;3&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;ipv6&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;fixed-cidr-v6&#34;</span><span class=p>:</span> <span class=s2>&#34;fd00:dead:beef:c0::/80&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;experimental&#34;</span><span class=p>:</span><span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;ip6tables&#34;</span><span class=p>:</span><span class=kc>true</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>⚠️ vim 和普通键入略有不用</p><ul><li><p>首先 <code>I</code> 进入编辑模式，输入内容（注意格式：大括号 <code>{}</code> 里的内容除了最后一行，都必须用英文逗号 <code>,</code> 结尾）</p></li><li><p>完成输入后，按 <code>esc</code> 回到一般模式</p></li><li><p>输入 <code>:wq</code> ，回车（意为保存-离开）</p></li><li><p>不放心可以再次进入 daemon.json 检查是否成功写入，效果类似：</p></li></ul><p>了解：<a class=link href=https://www.runoob.com/linux/linux-vim.html target=_blank rel=noopener>Linux vi/vim 是什么，怎么使用</a></p><p>重启 Docker 服务</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo systemctl daemon-reload
+</span></span><span class=line><span class=cl>sudo systemctl restart docker
+</span></span></code></pre></td></tr></table></div></div><h5 id=检查-docker-是否正在运行>检查 Docker 是否正在运行</h5><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo systemctl status docker
+</span></span></code></pre></td></tr></table></div></div><p>换个方式，再测试一下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo docker run hello-world
+</span></span></code></pre></td></tr></table></div></div><p>终于成功了 😭</p><h5 id=文件管理>文件管理</h5><p>给 Docker 的数据和配置文件新建一个文件夹</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>mkdir -p data/docker_data
+</span></span></code></pre></td></tr></table></div></div><h2 id=misskey>Misskey</h2><h3 id=创建安装目录>创建安装目录</h3><p>之前给 Docker 的数据和配置文件新建一个目录 <code>docker_data</code>，这个文件夹就是包住整个 Misskey 的盒子</p><p>进入目录</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cd data/docker_data
+</span></span></code></pre></td></tr></table></div></div><p>创建 misskey 文件夹</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo mkdir misskey
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置安装文件>配置安装文件</h3><p>进入 misskey 文件夹</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cd misskey
+</span></span></code></pre></td></tr></table></div></div><p>创建并编辑 yml 文件，让它去部署</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo vim docker-compose.yml
+</span></span></code></pre></td></tr></table></div></div><p>把以下内容粘贴进去</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=line><span class=cl><span class=c># Misskey minimal deploy config</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;3&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>web</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>unless-stopped</span><span class=w> </span><span class=c># always意味着自动重启，请注意如果您对您的配置没有信心，请不要开启这个选项，以避免进程崩溃反复重启耗费大量资源！</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>misskey/misskey:latest</span><span class=w> </span><span class=c># 这里使用了官方镜像，以避免本地构建时资源不足的问题</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>misskey_web</span><span class=w> </span><span class=c># 容器名，方便管理，您可以自行修改为您觉得合适的内容</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>links</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>db</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>redis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=s2>&#34;3001:3001&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>networks</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>internal_network</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>external_network</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./config:/misskey/.config:ro</span><span class=w> </span><span class=c># 用于映射配置文件，请根据您的实际配置来决定文件夹名称，设定为只读即可；</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./files:/misskey/files</span><span class=w> </span><span class=c># 用户上传到本地的文件，如果您一开始就接入外部存储（如wasabi或是AWS S3）您可以忽略这块配置</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>redis</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>unless-stopped</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>redis:latest</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>misskey_redis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>networks</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>internal_network</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./redis:/data</span><span class=w> </span><span class=c># redis数据库的数据文件夹映射，创建后默认在 ./redis 文件夹中</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>db</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>unless-stopped</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>postgres:12.2-alpine</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>misskey_db</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>networks</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>internal_network</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>env_file</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./config/docker.env</span><span class=w> </span><span class=c># 需要使用配置文件中设置的 Docker 环境变量</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./db:/var/lib/postgresql/data</span><span class=w> </span><span class=c># 主数据库的数据文件夹映射，创建后默认在 ./db 文件夹中</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>networks</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>internal_network</span><span class=p>:</span><span class=w> </span><span class=c># 内部网络</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>internal</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>external_network</span><span class=p>:</span><span class=w> </span><span class=c># 外部网</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>按 <code>esc</code> ，按 <code>:wq</code> ，回车（保存-退出）</p><p>创建 <code>config/default.yml</code> 目录并进入 yml 文件中</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo mkdir config
+</span></span><span class=line><span class=cl>cd config
+</span></span><span class=line><span class=cl>sudo vim default.yml
+</span></span></code></pre></td></tr></table></div></div><p>填入以下内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=line><span class=cl><span class=c>#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Misskey configuration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   ┌─────┐</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#───┘ URL └─────────────────────────────────────────────────────</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Final accessible URL seen by a user.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>url</span><span class=p>:</span><span class=w> </span><span class=l>https://ponderduck.cc/      </span><span class=w> </span><span class=c># 注意改成自己最后反向代理想要的网址</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ONCE YOU HAVE STARTED THE INSTANCE, DO NOT CHANGE THE</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># URL SETTINGS AFTER THAT!</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   ┌───────────────────────┐</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#───┘ Port and TLS settings └───────────────────────────────────</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Misskey requires a reverse proxy to support HTTPS connections.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                 +----- https://example.tld/ ------------+</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   +------+      |+-------------+      +----------------+|</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   | User | ---&gt; || Proxy (443) | ---&gt; | Misskey (3000) ||</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   +------+      |+-------------+      +----------------+|</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#                 +---------------------------------------+</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   You need to set up a reverse proxy. (e.g. nginx)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   An encrypted connection with HTTPS is highly recommended</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   because tokens may be transferred in GET requests.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># The port that your Misskey server should listen on.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>port</span><span class=p>:</span><span class=w> </span><span class=m>3001</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   ┌──────────────────────────┐</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#───┘ PostgreSQL configuration └────────────────────────────────</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>db</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>host</span><span class=p>:</span><span class=w> </span><span class=l>db</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>port</span><span class=p>:</span><span class=w> </span><span class=m>5432</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Database name</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>db</span><span class=p>:</span><span class=w> </span><span class=l>misskey</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Auth</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>user</span><span class=p>:</span><span class=w> </span><span class=l>example-misskey-user</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pass</span><span class=p>:</span><span class=w> </span><span class=l>example-misskey-pass</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Whether disable Caching queries</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#disableCache: true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Extra Connection options</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#extra:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#  ssl: true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   ┌─────────────────────┐</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#───┘ Redis configuration └─────────────────────────────────────</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>redis</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>host</span><span class=p>:</span><span class=w> </span><span class=l>redis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>port</span><span class=p>:</span><span class=w> </span><span class=m>6379</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#family: 0  # 0=Both, 4=IPv4, 6=IPv6</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#pass: example-pass</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#prefix: example-prefix</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#db: 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   ┌─────────────────────────────┐</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#───┘ Elasticsearch configuration └─────────────────────────────</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#elasticsearch:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#  host: localhost</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#  port: 9200</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#  ssl: false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#  user: </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#  pass: </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   ┌───────────────┐</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#───┘ ID generation └───────────────────────────────────────────</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># You can select the ID generation method.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># You don&#39;t usually need to change this setting, but you can</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># change it according to your preferences.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Available methods:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># aid ... Short, Millisecond accuracy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># meid ... Similar to ObjectID, Millisecond accuracy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ulid ... Millisecond accuracy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># objectid ... This is left for backward compatibility</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ONCE YOU HAVE STARTED THE INSTANCE, DO NOT CHANGE THE</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ID SETTINGS AFTER THAT!</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;aid&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#   ┌─────────────────────┐</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#───┘ Other configuration └─────────────────────────────────────</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Whether disable HSTS</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#disableHsts: true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Number of worker processes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#clusterLimit: 1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Job concurrency per worker</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># deliverJobConcurrency: 128</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># inboxJobConcurrency: 16</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Job rate limiter</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># deliverJobPerSec: 128</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># inboxJobPerSec: 16</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Job attempts</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># deliverJobMaxAttempts: 12</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># inboxJobMaxAttempts: 8</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># IP address family used for outgoing request (ipv4, ipv6 or dual)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#outgoingAddressFamily: ipv4</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Syslog option</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#syslog:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#  host: localhost</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#  port: 514</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Proxy for HTTP/HTTPS</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#proxy: http://127.0.0.1:3128</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#proxyBypassHosts: [</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#  &#39;example.com&#39;,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#  &#39;192.0.2.8&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Proxy for SMTP/SMTPS</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#proxySmtp: http://127.0.0.1:3128   # use HTTP/1.1 CONNECT</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#proxySmtp: socks4://127.0.0.1:1080 # use SOCKS4</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#proxySmtp: socks5://127.0.0.1:1080 # use SOCKS5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Media Proxy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#mediaProxy: https://example.com/proxy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Proxy remote files (default: false)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#proxyRemoteFiles: true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Sign to ActivityPub GET request (default: false)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#signToActivityPubGet: true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#allowedPrivateNetworks: [</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#  &#39;127.0.0.1/32&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Upload or download file size limits (bytes)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#maxFileSize: 262144000</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>按 <code>esc</code> ，按 <code>:wq</code> ，回车（保存-退出）</p><p>进入 env 文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo vim docker.env
+</span></span></code></pre></td></tr></table></div></div><p>填写如下内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># db settings</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>POSTGRES_PASSWORD=example-misskey-pass</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>POSTGRES_USER=example-misskey-user</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=l>POSTGRES_DB=misskey</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=部署>部署</h3><p>还记得我说「创建并编辑 yml 文件，让它去部署」吗？</p><p>现在文件已经配置完毕了，是时候让它跑起来了！</p><p>双手合十🙏</p><p>切换到上一级目录</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cd ..
+</span></span></code></pre></td></tr></table></div></div><p>屏住呼吸</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo docker-compose run --rm web yarn run init # 初始化数据库
+</span></span><span class=line><span class=cl>sudo docker-compose up -d # 后台启动项目容器
+</span></span></code></pre></td></tr></table></div></div><p>跑了跑了，好了好了</p><h3 id=访问站点>访问站点</h3><p>查看端口状态</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo lsof -i:&lt;port&gt;
+</span></span></code></pre></td></tr></table></div></div><p>假如这个端口不能用，那就换一个。</p><p>新端口要在服务商防火墙、ufw 命令、<code>default.yml</code> 和 <code>docker-compose.yml</code> 里都开启、改过来</p><p>然后重启 Docker</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo docker-compose restart [指定服务的容器]
+</span></span></code></pre></td></tr></table></div></div><p>完成这一步之后，尝试用 IP 访问站点吧</p><p>在浏览器输入 <code>http://&lt;ip>:&lt;port></code>（IP 可以用 <code>curl ip.sb</code> 返回）</p><p><img src=https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221118220253976.png loading=lazy alt=image-20221118220253976></p><p>成功了口牙！</p><p>流出大河泪</p><p>Misskey 要求 SSL 访问，另外站点还需要设置反向代理，这两件事让⬇️ NPM 一起干了</p><h3 id=nginxproxymanagernpm>NginxProxyManager（NPM）</h3><p>是一个带前端管理界面的 Nginx 服务器，通过Let’s encrypt 来自动申请 SSL 证书并自动部署，反向代理你所需要的容器</p><p>可以拿来实现二级域名分别访问指定端口的容器 + 一键部署 SSL</p><h4 id=创建并配置-docker-composeyml-文件>创建并配置 docker-compose.yml 文件</h4><p>创建并进入 yml 文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cd /home
+</span></span><span class=line><span class=cl>sudo mkdir myapp
+</span></span><span class=line><span class=cl>cd myapp
+</span></span><span class=line><span class=cl>sudo vim docker-compose.yml
+</span></span></code></pre></td></tr></table></div></div><p>把以下配置粘贴进去，保存退出</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=line><span class=cl><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;3&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>app</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;jc21/nginx-proxy-manager:latest&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>unless-stopped</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># These ports are in format &lt;host-port&gt;:&lt;container-port&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=s1>&#39;80:80&#39;</span><span class=w> </span><span class=c># Public HTTP Port</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=s1>&#39;443:443&#39;</span><span class=w> </span><span class=c># Public HTTPS Port</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=s1>&#39;81:81&#39;</span><span class=w> </span><span class=c># Admin Web Port</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Add any other Stream port you want to expose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># - &#39;21:21&#39; # FTP</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>DB_MYSQL_HOST</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;db&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>DB_MYSQL_PORT</span><span class=p>:</span><span class=w> </span><span class=m>3306</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>DB_MYSQL_USER</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;npm&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>DB_MYSQL_PASSWORD</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;npm&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>DB_MYSQL_NAME</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;npm&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Uncomment this if IPv6 is not enabled on your host</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># DISABLE_IPV6: &#39;true&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./data:/data</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./letsencrypt:/etc/letsencrypt</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>depends_on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>db</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>db</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;jc21/mariadb-aria:latest&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>unless-stopped</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>MYSQL_ROOT_PASSWORD</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;npm&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>MYSQL_DATABASE</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;npm&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>MYSQL_USER</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;npm&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>MYSQL_PASSWORD</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;npm&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./data/mysql:/var/lib/mysql</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>后台启动项目容器</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo docker-compose up -d
+</span></span></code></pre></td></tr></table></div></div><p>遇到报错：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Error starting userland proxy: listen tcp 0.0.0.0:80: bind: address already in use
+</span></span></code></pre></td></tr></table></div></div><p>执行 <code>netstat -pna | grep 80</code> （查询端口 80 是否开放/被占用），返回：</p><p><img src=https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221118003045589.png loading=lazy alt=image-20221118003045589></p><p>Listen 表示被占用，80 端口被 nginx 占用</p><p>*netstat：控制台命令，用于监控 TCP/IP 网络</p><p>*grep：查找文件内容</p><p>🔪杀掉这个进程</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo kill 19306
+</span></span></code></pre></td></tr></table></div></div><p>再次部署，查看容器的运行情况</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>docker container ls
+</span></span></code></pre></td></tr></table></div></div><p>🎆解决报错</p><p>✅完成 yml 文件的配置</p><h4 id=设置反代>设置反代</h4><p>打开服务器的 <code>81</code> 端口</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo ufw allow 81/tcp
+</span></span></code></pre></td></tr></table></div></div><p>在浏览器输入 <code>&lt;ip>:81</code> ，用默认账号密码登录 NPM</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>admin@example.com
+</span></span><span class=line><span class=cl>changeme
+</span></span></code></pre></td></tr></table></div></div><p>修改账号密码，NPM 初始化完成，开始配置</p><p>Forward Hostname / IP 填的是容器所在 Docker 网桥的虚拟 IP，通过命令查到</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo docker network inspect bridge
+</span></span></code></pre></td></tr></table></div></div><p>找到 <code>IPAM - Config - Gateway</code> 节点，后面的 IP 就是我们需要的</p><p>*如果你在 docker-compose.yml 中自定义了网桥，那么自定义网桥名称替换掉上面的 <code>bridge</code> 参数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>[
+</span></span><span class=line><span class=cl>    {
+</span></span><span class=line><span class=cl>        &#34;IPAM&#34;: {
+</span></span><span class=line><span class=cl>            &#34;Config&#34;: [
+</span></span><span class=line><span class=cl>                {
+</span></span><span class=line><span class=cl>                    &#34;Gateway&#34;: &#34;xxxx:xxxx:xxxx:xx::x&#34;
+</span></span><span class=line><span class=cl>                }
+</span></span><span class=line><span class=cl>            ]
+</span></span><span class=line><span class=cl>        },
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>]
+</span></span></code></pre></td></tr></table></div></div><h4 id=申请-ssl-证书>申请 SSL 证书</h4><p>去 CloudFlare</p><p><img src=https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221118224811252.png loading=lazy alt=image-20221118224811252></p><p><img src=https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221118225559842.png loading=lazy alt=image-20221118225559842></p><p>设置管理员</p><h2 id=其它参考>其它参考</h2><p><a class=link href=https://weirenxue.github.io/2021/06/17/user_linux_sudo/ target=_blank rel=noopener>[User] Linux 新增使用者並賦予其使用 sudo 的權限</a></p><p><a class=link href=https://blog.laoda.de/archives/how-to-secure-a-linux-server target=_blank rel=noopener>保护好你的小鸡！保姆级服务器安全教程！</a></p><p><a class=link href=https://blog.laoda.de/archives/getting-started-with-linux target=_blank rel=noopener>mjj版的linux入门教程</a></p><p><a class=link href=https://blog.wardzhou.art/2021/02/27/NginXProxyManager target=_blank rel=noopener>Nginx Proxy Manager——小而美的多容器转发方案</a></p></section><footer class=article-footer><section class=article-tags><a href=/tags/tutorial/>tutorial</a>
+<a href=/tags/miskey/>miskey</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/2022/10/22/domain/><div class=article-image><img src="https://picsum.photos/800/600.webp?random=7bb02909" loading=lazy data-key=Domain data-hash="https://picsum.photos/800/600.webp?random=7bb02909"></div><div class=article-details><h2 class=article-title>博客域名设置</h2></div></a></article><article class=has-image><a href=/2022/10/21/picture-bed/><div class=article-image><img src="https://picsum.photos/800/600.webp?random=fa517d08" loading=lazy data-key="Picture Bed" data-hash="https://picsum.photos/800/600.webp?random=fa517d08"></div><div class=article-details><h2 class=article-title>借助 PicGo 和 GitHub 实现插入图片</h2></div></a></article><article class=has-image><a href=/2022/10/21/build-hugo-site-on-macos/><div class=article-image><img src="https://picsum.photos/800/600.webp?random=6e5ecc50" loading=lazy data-key="Build Hugo Site on macOS" data-hash="https://picsum.photos/800/600.webp?random=6e5ecc50"></div><div class=article-details><h2 class=article-title>Hugo｜Github Pages｜Stack主题｜搭建记录</h2></div></a></article><article class=has-image><a href=/2022/10/14/hugo-comment-system-disqusjs/><div class=article-image><img src="https://picsum.photos/800/600.webp?random=275db47b" loading=lazy data-key="Hugo Comment System Disqusjs" data-hash="https://picsum.photos/800/600.webp?random=275db47b"></div><div class=article-details><h2 class=article-title>给博客添加评论系统｜Disqus</h2></div></a></article><article class=has-image><a href=/2022/10/12/hugo-front-matter/><div class=article-image><img src="https://picsum.photos/800/600.webp?random=5fe4fd89" loading=lazy data-key="Hugo Front Matter" data-hash="https://picsum.photos/800/600.webp?random=5fe4fd89"></div><div class=article-details><h2 class=article-title>Hugo | Front Matter</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//bizarreadventure.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2021 -
+2022 Rubber Duck's Bizarre Adventure</section><section class=powerby>未经允许不得随意转载<br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.14.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#购买-vps>购买 VPS</a><ol><li><a href=#创建-vps>创建 VPS</a></li><li><a href=#检查-ip>检查 IP</a></li></ol></li><li><a href=#域名>域名</a><ol><li><a href=#解析域名>解析域名</a></li></ol></li><li><a href=#配置-vps>配置 VPS</a><ol><li><a href=#远程连接>远程连接</a></li><li><a href=#安全设置>安全设置</a><ol><li><a href=#新建普通用户并设定密码>新建普通用户并设定密码</a></li><li><a href=#赋予-vpsadmin-使用-sudo-指令的权限>赋予 「vpsadmin」 使用 sudo 指令的权限</a></li><li><a href=#禁止-root-登录>禁止 root 登录</a></li></ol></li><li><a href=#搭建环境>搭建环境</a><ol><li><a href=#修改服务器时间>修改服务器时间</a></li><li><a href=#安装常用命令>安装常用命令</a></li><li><a href=#添加-swap>添加 SWAP</a></li><li><a href=#配置防火墙>配置防火墙</a></li><li><a href=#安装-docker-和-docker-compose>安装 Docker 和 Docker Compose</a></li></ol></li></ol></li><li><a href=#misskey>Misskey</a><ol><li><a href=#创建安装目录>创建安装目录</a></li><li><a href=#配置安装文件>配置安装文件</a></li><li><a href=#部署>部署</a></li><li><a href=#访问站点>访问站点</a></li><li><a href=#nginxproxymanagernpm>NginxProxyManager（NPM）</a><ol><li><a href=#创建并配置-docker-composeyml-文件>创建并配置 docker-compose.yml 文件</a></li><li><a href=#设置反代>设置反代</a></li><li><a href=#申请-ssl-证书>申请 SSL 证书</a></li></ol></li></ol></li><li><a href=#其它参考>其它参考</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
