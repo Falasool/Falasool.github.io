@@ -1,22 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rubber Duck's Bizarre Adventure</title><link>https://anodicseal.xyz/</link><description>Recent content on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 19 Nov 2022 20:19:15 +0800</lastBuildDate><atom:link href="https://anodicseal.xyz/index.xml" rel="self" type="application/rss+xml"/><item><title>Misskey</title><link>https://anodicseal.xyz/2022/11/19/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://anodicseal.xyz/2022/11/19/misskey/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=6ec56286" alt="Featured image of post Misskey" />&lt;p>不废话了，直接写步骤&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rubber Duck's Bizarre Adventure</title><link>https://anodicseal.xyz/</link><description>Recent content on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 19 Nov 2022 20:19:15 +0800</lastBuildDate><atom:link href="https://anodicseal.xyz/index.xml" rel="self" type="application/rss+xml"/><item><title>Misskey</title><link>https://anodicseal.xyz/2022/11/19/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://anodicseal.xyz/2022/11/19/misskey/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=6ec56286" alt="Featured image of post Misskey" />&lt;p>啰嗦预警&lt;/p>
+&lt;p>多图预警&lt;/p>
 &lt;h2 id="购买-vps">购买 VPS&lt;/h2>
 &lt;p>⚠️不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
 &lt;p>在备案通过之前 80 和 443 端口是封禁的 -&amp;gt; 无法申请 SSL 证书 -&amp;gt; Misskey 需要 SSL 才能访问，GG&lt;/p>
-&lt;p>即使没有这个问题，买大陆节点的服务建站也是一种自杀行为&lt;/p>
+&lt;p>（即使没有这个问题，买大陆节点的服务建站也是一种自杀行为）&lt;/p>
 &lt;p>注册 Vultr 账号，充值&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey1.png"
+loading="lazy"
+alt="image-20221120012614543"
+>&lt;/p>
 &lt;h3 id="创建-vps">创建 VPS&lt;/h3>
-&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221120012203832.png"
+loading="lazy"
+alt="image-20221120012203832"
+>&lt;/p>
+&lt;p>选 Cloud Computer&lt;/p>
+&lt;p>CPU 选 AMD 和 Intel 都行&lt;/p>
 &lt;p>机房位置选择日本、新加坡、美西都行，一般不推荐欧洲（对于中国国内）&lt;/p>
 &lt;p>选择操作系统：Ubuntu 22.10 x64&lt;/p>
 &lt;p>选择 Size：$5 的 1C1G1TB 套餐（记得勾选 No Thanks）&lt;/p>
 &lt;p>关闭自动备份，省 $1&lt;/p>
 &lt;p>Additional Features：勾选 Enable IPv6&lt;/p>
 &lt;p>这时底部付款栏应该显示 &lt;code>$5.00/month&lt;/code> ，点击 &lt;code>Deploy Now&lt;/code> 确认创建服务器，等待一会，等 Status 变成 Running 就好了&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey2-1.png"
+loading="lazy"
+alt="image-20221120012909994"
+>&lt;/p>
 &lt;p>点击刚刚创建的 VPS，看到如下界面。&lt;/p>
 &lt;p>左下角的 IP Address、Username、Password 是待会连接服务器的时候，要用到的 SSH 连接信息&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey3.png"
+loading="lazy"
+alt="image-20221120013010174"
+>&lt;/p>
 &lt;ol>
 &lt;li>登录 VNC：查看控制台，类似 Xshell 但是功能没那么丰富&lt;/li>
 &lt;li>关机：就和关电脑一样（关机的时候仍然在计费哦！）&lt;/li>
@@ -28,29 +43,45 @@
 &lt;p>服务器创建完成&lt;/p>
 &lt;h3 id="检查-ip">检查 IP&lt;/h3>
 &lt;p>Ping 一下 IP&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey4.png"
+loading="lazy"
+alt="image-20221120013147886"
+>&lt;/p>
 &lt;p>用检查工具比如 &lt;a class="link" href="https://ip112.cn/" target="_blank" rel="noopener"
 >https://ip112.cn/&lt;/a> 检查 IP，此 IP 可用&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey5.png"
+loading="lazy"
+alt="image-20221120013305544"
+>&lt;/p>
 &lt;h2 id="域名">域名&lt;/h2>
 &lt;p>在域名商 &lt;a class="link" href="https://www.dynadot.com/zh/" target="_blank" rel="noopener"
 >Dynadot&lt;/a> 注册账号，买一个域名&lt;/p>
 &lt;h3 id="解析域名">解析域名&lt;/h3>
 &lt;p>依次点击&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey6.png"
+loading="lazy"
+alt="image-20221120013439245"
+>&lt;/p>
 &lt;p>暂停⏸️&lt;/p>
 &lt;p>去 &lt;a class="link" href="https://dash.cloudflare.com/" target="_blank" rel="noopener"
 >CloudFlare&lt;/a> 注册登录账号，依次操作：&lt;/p>
 &lt;p>添加新站点&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey7.png"
+loading="lazy"
+alt="image-20221120013614146"
+>&lt;/p>
 &lt;p>输入你的域名&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey8.png"
+loading="lazy"
+alt="image-20221120013635155"
+>&lt;/p>
 &lt;p>选择免费方案&lt;/p>
-&lt;!-- raw HTML omitted -->
 &lt;p>添加 DNS 解析记录&lt;/p>
 &lt;!-- raw HTML omitted -->
+&lt;p>&lt;code>*&lt;/code> 是通配符，意思是我的二级域名，xxx.ponderduck.cc 的 DNS 解析也一起被接管了。不用我一个一个设置&lt;/p>
+&lt;p>第二行是域名本体&lt;/p>
+&lt;p>&lt;code>www&lt;/code> 让输入 &lt;a class="link" href="https://www.ponderduck.cc" target="_blank" rel="noopener"
+>www.ponderduck.cc&lt;/a> 也能访问&lt;/p>
 &lt;p>复制 CloudFlare 提供的两个名称服务器，填进 Dynadot 的 DNS 设置，保存&lt;/p>
 &lt;!-- raw HTML omitted -->
 &lt;p>回到 CloudFlare 点击 &lt;code>Done, check nameservers&lt;/code>，等一会&lt;/p>
@@ -911,10 +942,7 @@
 &lt;/div>
 &lt;/div>&lt;p>完成这一步之后，尝试用 IP 访问站点吧&lt;/p>
 &lt;p>在浏览器输入 &lt;code>http://&amp;lt;ip&amp;gt;:&amp;lt;port&amp;gt;&lt;/code>（IP 可以用 &lt;code>curl ip.sb&lt;/code> 返回）&lt;/p>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221118220253976.png"
-loading="lazy"
-alt="image-20221118220253976"
->&lt;/p>
+&lt;!-- raw HTML omitted -->
 &lt;p>成功了口牙！&lt;/p>
 &lt;p>流出大河泪&lt;/p>
 &lt;p>Misskey 要求 SSL 访问，另外站点还需要设置反向代理，这两件事让⬇️ NPM 一起干了&lt;/p>
@@ -1061,6 +1089,16 @@ alt="image-20221118003045589"
 &lt;/div>&lt;!-- raw HTML omitted -->
 &lt;p>🎆解决报错&lt;/p>
 &lt;p>✅完成 yml 文件的配置&lt;/p>
+&lt;h4 id="申请-ssl-证书">申请 SSL 证书&lt;/h4>
+&lt;p>去 CloudFlare&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
 &lt;h4 id="设置反代">设置反代&lt;/h4>
 &lt;p>打开服务器的 &lt;code>81&lt;/code> 端口&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -1084,8 +1122,7 @@ alt="image-20221118003045589"
 &lt;/div>
 &lt;/div>&lt;p>修改账号密码，NPM 初始化完成，开始配置&lt;/p>
 &lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;p>Forward Hostname / IP 填的是容器所在 Docker 网桥的虚拟 IP，通过命令查到&lt;/p>
+&lt;p>&lt;del>Forward Hostname / IP 填的是容器所在 Docker 网桥的虚拟 IP，通过命令查到&lt;/del>&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1125,25 +1162,8 @@ alt="image-20221118003045589"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;h4 id="申请-ssl-证书">申请 SSL 证书&lt;/h4>
-&lt;p>去 CloudFlare&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221118224811252.png"
-loading="lazy"
-alt="image-20221118224811252"
->&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221118225559842.png"
-loading="lazy"
-alt="image-20221118225559842"
->&lt;/p>
 &lt;p>设置管理员&lt;/p>
+&lt;p>图片到37th&lt;/p>
 &lt;h2 id="其它参考">其它参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://weirenxue.github.io/2021/06/17/user_linux_sudo/" target="_blank" rel="noopener"
 >[User] Linux 新增使用者並賦予其使用 sudo 的權限&lt;/a>&lt;/p>
@@ -1309,6 +1329,10 @@ alt="set-typora"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="github">GitHub&lt;/h3>
+&lt;p>&lt;a class="link" href="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/new-public-repo-1.png" target="_blank" rel="noopener"
+>https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/new-public-repo-1.png&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221115113949496.png" target="_blank" rel="noopener"
+>https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221115113949496.png&lt;/a>&lt;/p>
 &lt;h4 id="创建公开仓库">创建公开仓库&lt;/h4>
 &lt;p>存放编译好的静态页面&lt;/p>
 &lt;!-- raw HTML omitted -->
