@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/hugo/</link><description>Recent content in Hugo on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 11 May 2023 21:28:27 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo｜自定义Stack主题</title><link>https://falasool.github.io/2023/05/11/custom-hugo-theme-stack/</link><pubDate>Thu, 11 May 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/05/11/custom-hugo-theme-stack/</guid><description>&lt;p>调整友情链接页面的布局，代码来自&lt;a class="link" href="https://mantyke.icu/posts/2022/stack-theme-furnish03/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/hugo/</link><description>Recent content in Hugo on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 11 May 2023 21:28:27 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo｜自定义Stack主题</title><link>https://falasool.github.io/2023/05/11/custom-hugo-theme-stack/</link><pubDate>Thu, 11 May 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/05/11/custom-hugo-theme-stack/</guid><description>&lt;h2 id="调整友情链接页面布局">调整友情链接页面布局&lt;/h2>
+&lt;p>代码来自&lt;a class="link" href="https://mantyke.icu/posts/2022/stack-theme-furnish03/" target="_blank" rel="noopener"
 >Hugo | 第三篇 Stack 主题装修记录，堂堂再临！&lt;/a>&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -48,7 +49,10 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>博客域名设置</title><link>https://falasool.github.io/2022/10/22/domain/</link><pubDate>Sat, 22 Oct 2022 22:27:40 +0800</pubDate><guid>https://falasool.github.io/2022/10/22/domain/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/div>&lt;h2 id="新增菜单选项">新增菜单选项&lt;/h2>
+&lt;p>按照 &lt;a class="link" href="https://stack.jimmycai.com/config/menu" target="_blank" rel="noopener"
+>Custom Menu&lt;/a> 添加 Projects 选项，并在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
+>Tabler Icons&lt;/a> 下载对应的 icon&lt;/p></description></item><item><title>博客域名设置</title><link>https://falasool.github.io/2022/10/22/domain/</link><pubDate>Sat, 22 Oct 2022 22:27:40 +0800</pubDate><guid>https://falasool.github.io/2022/10/22/domain/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="设置步骤">设置步骤&lt;/h2>
 &lt;ul>
 &lt;li>

@@ -305,7 +305,8 @@ alt=":ablobsweats:"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>&lt;a class="link" href="https://www.onitroad.com/jc/linux/how-to-install-htop-on-debian-linux-using-apt-get.html" target="_blank" rel="noopener"
->如何在Debian Linux上安装htop&lt;/a>&lt;/p></description></item><item><title>Hugo｜自定义Stack主题</title><link>https://falasool.github.io/2023/05/11/custom-hugo-theme-stack/</link><pubDate>Thu, 11 May 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/05/11/custom-hugo-theme-stack/</guid><description>&lt;p>调整友情链接页面的布局，代码来自&lt;a class="link" href="https://mantyke.icu/posts/2022/stack-theme-furnish03/" target="_blank" rel="noopener"
+>如何在Debian Linux上安装htop&lt;/a>&lt;/p></description></item><item><title>Hugo｜自定义Stack主题</title><link>https://falasool.github.io/2023/05/11/custom-hugo-theme-stack/</link><pubDate>Thu, 11 May 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/05/11/custom-hugo-theme-stack/</guid><description>&lt;h2 id="调整友情链接页面布局">调整友情链接页面布局&lt;/h2>
+&lt;p>代码来自&lt;a class="link" href="https://mantyke.icu/posts/2022/stack-theme-furnish03/" target="_blank" rel="noopener"
 >Hugo | 第三篇 Stack 主题装修记录，堂堂再临！&lt;/a>&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -355,7 +356,10 @@ alt=":ablobsweats:"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>Misskey</title><link>https://falasool.github.io/2022/11/19/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/11/19/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
+&lt;/div>&lt;h2 id="新增菜单选项">新增菜单选项&lt;/h2>
+&lt;p>按照 &lt;a class="link" href="https://stack.jimmycai.com/config/menu" target="_blank" rel="noopener"
+>Custom Menu&lt;/a> 添加 Projects 选项，并在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
+>Tabler Icons&lt;/a> 下载对应的 icon&lt;/p></description></item><item><title>Misskey</title><link>https://falasool.github.io/2022/11/19/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/11/19/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
 &lt;p>超级啰嗦预警&lt;/p>
 &lt;h2 id="购买-vps">购买 VPS&lt;/h2>
 &lt;p>⚠️不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
@@ -3157,7 +3161,7 @@ alt="测试自动发布系统"
 &lt;p>&lt;a class="link" href="https://blog.csdn.net/guanmaoning/article/details/106474465" target="_blank" rel="noopener"
 >Git 把本地仓库与 GitHub 远程仓库关联进行同步&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://iitii.github.io/2020/12/06/1/" target="_blank" rel="noopener"
->将 Git 默认分支从 master 修改为 main&lt;/a>&lt;/p></description></item><item><title>Archives</title><link>https://falasool.github.io/2019/05/28/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://falasool.github.io/2019/05/28/archives/</guid><description/></item><item><title>About</title><link>https://falasool.github.io/2019/02/28/about/</link><pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate><guid>https://falasool.github.io/2019/02/28/about/</guid><description>&lt;p>Written in Go, Hugo is an open source static site generator available under the &lt;a class="link" href="https://github.com/gohugoio/hugo/blob/master/LICENSE" target="_blank" rel="noopener"
+>将 Git 默认分支从 master 修改为 main&lt;/a>&lt;/p></description></item><item><title>Archives</title><link>https://falasool.github.io/2019/05/28/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://falasool.github.io/2019/05/28/archives/</guid><description/></item><item><title>Projects</title><link>https://falasool.github.io/2019/05/28/projects/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://falasool.github.io/2019/05/28/projects/</guid><description/></item><item><title>About</title><link>https://falasool.github.io/2019/02/28/about/</link><pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate><guid>https://falasool.github.io/2019/02/28/about/</guid><description>&lt;p>Written in Go, Hugo is an open source static site generator available under the &lt;a class="link" href="https://github.com/gohugoio/hugo/blob/master/LICENSE" target="_blank" rel="noopener"
 >Apache Licence 2.0.&lt;/a> Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.&lt;/p>
 &lt;p>Hugo makes use of a variety of open source projects including:&lt;/p>
 &lt;ul>
