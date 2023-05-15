@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/post/</link><description>Recent content in Posts on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 19 Nov 2022 20:19:15 +0800</lastBuildDate><atom:link href="https://falasool.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Misskey</title><link>https://falasool.github.io/2022/11/19/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/11/19/misskey/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=6ec56286" alt="Featured image of post Misskey" />&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Rubber Duck's Bizarre Adventure</title><link>https://ponder.lol/post/</link><description>Recent content in Posts on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 19 Nov 2022 20:19:15 +0800</lastBuildDate><atom:link href="https://ponder.lol/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Misskey</title><link>https://ponder.lol/2022/11/19/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://ponder.lol/2022/11/19/misskey/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=6ec56286" alt="Featured image of post Misskey" />&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
 &lt;p>超级啰嗦预警&lt;/p>
 &lt;h2 id="购买-vps">购买 VPS&lt;/h2>
 &lt;p>⚠️不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
@@ -173,7 +173,7 @@ alt="image-20221120013635155"
 &lt;p>&lt;del>测试，ping 你的域名，返回服务器 IP 说明解析生效&lt;/del>&lt;/p>
 &lt;!-- raw HTML omitted -->
 &lt;p>开启完全 SSL，否则访问站点会报「重定向次数过多」的错误&lt;/p>
-&lt;p>&lt;img src="https://falasool.github.io/Library/Application%20Support/typora-user-images/image-20221121185003309.png"
+&lt;p>&lt;img src="https://ponder.lol/Library/Application%20Support/typora-user-images/image-20221121185003309.png"
 loading="lazy"
 alt="image-20221121185003309"
 >&lt;/p>
@@ -1680,7 +1680,7 @@ alt="image-20221121185003309"
 &lt;p>&lt;a class="link" href="https://zxuqian.cn/install-nginx-on-ubuntu-20-04/" target="_blank" rel="noopener"
 >Nginx 教程：如何在 Ubuntu 20.04 下安装并配置 Nginx&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.myfreax.com/secure-nginx-with-let-s-encrypt-on-ubuntu-20-04/" target="_blank" rel="noopener"
->如何在Ubuntu 20.04 Nginx配置Let&amp;rsquo;s Encrypt SSL证书&lt;/a>&lt;/p></description></item><item><title>博客域名设置</title><link>https://falasool.github.io/2022/10/22/domain/</link><pubDate>Sat, 22 Oct 2022 22:27:40 +0800</pubDate><guid>https://falasool.github.io/2022/10/22/domain/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=7bb02909" alt="Featured image of post 博客域名设置" />&lt;!-- raw HTML omitted -->
+>如何在Ubuntu 20.04 Nginx配置Let&amp;rsquo;s Encrypt SSL证书&lt;/a>&lt;/p></description></item><item><title>博客域名设置</title><link>https://ponder.lol/2022/10/22/domain/</link><pubDate>Sat, 22 Oct 2022 22:27:40 +0800</pubDate><guid>https://ponder.lol/2022/10/22/domain/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=7bb02909" alt="Featured image of post 博客域名设置" />&lt;!-- raw HTML omitted -->
 &lt;h2 id="设置步骤">设置步骤&lt;/h2>
 &lt;ul>
 &lt;li>
@@ -1767,7 +1767,7 @@ alt="check-ip"
 &lt;p>&lt;a class="link" href="https://ruanyifeng.com/blog/2016/06/dns.html" target="_blank" rel="noopener"
 > DNS 原理入门&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.ruanyifeng.com/blog/2022/08/dns-query.html" target="_blank" rel="noopener"
->DNS 查询原理详解&lt;/a>&lt;/p></description></item><item><title>借助 PicGo 和 GitHub 实现插入图片</title><link>https://falasool.github.io/2022/10/21/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2022/10/21/picture-bed/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=fa517d08" alt="Featured image of post 借助 PicGo 和 GitHub 实现插入图片" />&lt;!-- raw HTML omitted -->
+>DNS 查询原理详解&lt;/a>&lt;/p></description></item><item><title>借助 PicGo 和 GitHub 实现插入图片</title><link>https://ponder.lol/2022/10/21/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://ponder.lol/2022/10/21/picture-bed/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=fa517d08" alt="Featured image of post 借助 PicGo 和 GitHub 实现插入图片" />&lt;!-- raw HTML omitted -->
 &lt;h2 id="安装-picgo">安装 PicGo&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -1795,7 +1795,7 @@ alt="set-typora"
 &lt;p>设置成功后直接把图片粘贴进文档就OK&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://picgo.github.io/PicGo-Doc/" target="_blank" rel="noopener"
->PicGo&lt;/a>&lt;/p></description></item><item><title>Hugo｜Github Pages｜Stack主题｜搭建记录</title><link>https://falasool.github.io/2022/10/21/build-hugo-site-on-macos/</link><pubDate>Fri, 21 Oct 2022 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2022/10/21/build-hugo-site-on-macos/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=6e5ecc50" alt="Featured image of post Hugo｜Github Pages｜Stack主题｜搭建记录" />&lt;p>基于 macOS Monterey，Hugo 框架和 GitHub Pages 网页寄存服务，博客主题为 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+>PicGo&lt;/a>&lt;/p></description></item><item><title>Hugo｜Github Pages｜Stack主题｜搭建记录</title><link>https://ponder.lol/2022/10/21/build-hugo-site-on-macos/</link><pubDate>Fri, 21 Oct 2022 21:28:27 +0800</pubDate><guid>https://ponder.lol/2022/10/21/build-hugo-site-on-macos/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=6e5ecc50" alt="Featured image of post Hugo｜Github Pages｜Stack主题｜搭建记录" />&lt;p>基于 macOS Monterey，Hugo 框架和 GitHub Pages 网页寄存服务，博客主题为 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
 >Stack&lt;/a>，搭建过程尽量简单，同时减少后续隐患&lt;/p>
 &lt;p>预警：非常啰嗦&lt;/p>
 &lt;h2 id="前期准备">前期准备&lt;/h2>
@@ -2170,7 +2170,7 @@ alt="测试自动发布系统"
 &lt;p>&lt;a class="link" href="https://simumis.com/posts/deploy-to-github/" target="_blank" rel="noopener"
 >将Hugo静态网站部署到Github Pages&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.criwits.top/page/20220828132827-0gnvmfs" target="_blank" rel="noopener"
->用 Hugo 配合 GitHub Actions 和 GitHub Pages 搭建博客&lt;/a>&lt;/p></description></item><item><title>给博客添加评论系统｜Disqus</title><link>https://falasool.github.io/2022/10/14/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://falasool.github.io/2022/10/14/hugo-comment-system-disqusjs/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=275db47b" alt="Featured image of post 给博客添加评论系统｜Disqus " />&lt;!-- raw HTML omitted -->
+>用 Hugo 配合 GitHub Actions 和 GitHub Pages 搭建博客&lt;/a>&lt;/p></description></item><item><title>给博客添加评论系统｜Disqus</title><link>https://ponder.lol/2022/10/14/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://ponder.lol/2022/10/14/hugo-comment-system-disqusjs/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=275db47b" alt="Featured image of post 给博客添加评论系统｜Disqus " />&lt;!-- raw HTML omitted -->
 &lt;p>选择 Disqus 是因为 Hugo 内置了它的模板，同时它对迁移的支持较好，本身功能非常齐全，比较遗憾的是从 2015 年开始被墙了&lt;/p>
 &lt;p>参考&lt;a class="link" href="https://gohugo.io/content-management/comments/" target="_blank" rel="noopener"
 >官方文档&lt;/a>&lt;/p>
@@ -2220,7 +2220,7 @@ alt="测试自动发布系统"
 &lt;p>&lt;a class="link" href="https://lvv.me/posts/2019/12/10_hugo_disqus/" target="_blank" rel="noopener"
 >给 Hugo 开启 Disqus 评论系统&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://demonkoo.github.io/2016/09/22/Setting-Disqus-Post-New/" target="_blank" rel="noopener"
->https://lvv.me/posts/2019/12/10_hugo_disqus/&lt;/a>&lt;/p></description></item><item><title>Hugo | Front Matter</title><link>https://falasool.github.io/2022/10/12/hugo-front-matter/</link><pubDate>Wed, 12 Oct 2022 20:08:18 +0800</pubDate><guid>https://falasool.github.io/2022/10/12/hugo-front-matter/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=5fe4fd89" alt="Featured image of post Hugo | Front Matter" />&lt;h2 id="什么是-front-matter">什么是 Front Matter&lt;/h2>
+>https://lvv.me/posts/2019/12/10_hugo_disqus/&lt;/a>&lt;/p></description></item><item><title>Hugo | Front Matter</title><link>https://ponder.lol/2022/10/12/hugo-front-matter/</link><pubDate>Wed, 12 Oct 2022 20:08:18 +0800</pubDate><guid>https://ponder.lol/2022/10/12/hugo-front-matter/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=5fe4fd89" alt="Featured image of post Hugo | Front Matter" />&lt;h2 id="什么是-front-matter">什么是 Front Matter&lt;/h2>
 &lt;p>是指 .md 文件最上面的这一部分内容&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -2388,7 +2388,7 @@ alt="测试自动发布系统"
 &lt;p>&lt;a class="link" href="https://blog.genesu.me/2020/09/hugo-front-matter/" target="_blank" rel="noopener"
 >貼身打造個人部落格 - 02. 文章 Front Matter&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://blog.gezi.men/p/hugo-theme-stack-configuration/" target="_blank" rel="noopener"
->Hugo之路 2 | hugo-theme-stack 配置&lt;/a> —— 参考了匹配随机图片的代码&lt;/p></description></item><item><title>Hugo | Github Pages ｜ cactus主题 | win10搭建记录</title><link>https://falasool.github.io/2022/10/12/build-blog-site-use-hugo-win/</link><pubDate>Wed, 12 Oct 2022 16:06:44 +0800</pubDate><guid>https://falasool.github.io/2022/10/12/build-blog-site-use-hugo-win/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=1912f23e" alt="Featured image of post Hugo | Github Pages ｜ cactus主题 | win10搭建记录" />&lt;h2 id="前期准备">前期准备&lt;/h2>
+>Hugo之路 2 | hugo-theme-stack 配置&lt;/a> —— 参考了匹配随机图片的代码&lt;/p></description></item><item><title>Hugo | Github Pages ｜ cactus主题 | win10搭建记录</title><link>https://ponder.lol/2022/10/12/build-blog-site-use-hugo-win/</link><pubDate>Wed, 12 Oct 2022 16:06:44 +0800</pubDate><guid>https://ponder.lol/2022/10/12/build-blog-site-use-hugo-win/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=1912f23e" alt="Featured image of post Hugo | Github Pages ｜ cactus主题 | win10搭建记录" />&lt;h2 id="前期准备">前期准备&lt;/h2>
 &lt;h3 id="安装-hugo">安装 Hugo&lt;/h3>
 &lt;ul>
 &lt;li>打开 Github 中的 &lt;a class="link" href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener"
@@ -2800,7 +2800,7 @@ alt="测试自动发布系统"
 &lt;p>&lt;a class="link" href="https://blog.csdn.net/guanmaoning/article/details/106474465" target="_blank" rel="noopener"
 >Git 把本地仓库与 GitHub 远程仓库关联进行同步&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://iitii.github.io/2020/12/06/1/" target="_blank" rel="noopener"
->将 Git 默认分支从 master 修改为 main&lt;/a>&lt;/p></description></item><item><title>Nginx</title><link>https://falasool.github.io/1/01/01/nginx/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/1/01/01/nginx/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=6ec56286" alt="Featured image of post Nginx" />&lt;h2 id="nginx">Nginx&lt;/h2>
+>将 Git 默认分支从 master 修改为 main&lt;/a>&lt;/p></description></item><item><title>Nginx</title><link>https://ponder.lol/1/01/01/nginx/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ponder.lol/1/01/01/nginx/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=6ec56286" alt="Featured image of post Nginx" />&lt;h2 id="nginx">Nginx&lt;/h2>
 &lt;h3 id="几个重要的nginx文件和目录">几个重要的Nginx文件和目录&lt;/h3>
 &lt;h4 id="网站内容">网站内容&lt;/h4>
 &lt;ul>
