@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nginx on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/nginx/</link><description>Recent content in Nginx on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://falasool.github.io/categories/nginx/index.xml" rel="self" type="application/rss+xml"/><item><title>Nginx</title><link>https://falasool.github.io/1/01/01/nginx/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/1/01/01/nginx/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
+&lt;h3 id="几个重要的nginx文件和目录">几个重要的Nginx文件和目录&lt;/h3>
+&lt;h4 id="网站内容">网站内容&lt;/h4>
+&lt;ul>
+&lt;li>&lt;code>/var/www/html&lt;/code>：默认的网站内容存放目录，Nginx 默认的欢迎界面就存放在这。可以通过修改Nginx配置文件更改。&lt;/li>
+&lt;/ul>
+&lt;h4 id="服务器配置">服务器配置&lt;/h4>
+&lt;ul>
+&lt;li>&lt;code>/etc/nginx&lt;/code>：Nginx配置文件，修改它配置Nginx全局设置。&lt;/li>
+&lt;li>&lt;code>/etc/nginx/sites-available/&lt;/code>：虚拟主机的目录，可在此创建多个虚拟主机。&lt;/li>
+&lt;li>&lt;code>/etc/nginx/sites-enabled/&lt;/code>：Nginx默认站点目录，nginc.conf 默认包含的文件夹。在此文件夹建立的站点，需要建立软连接到目录/etc/nginx/sites-enabled/里。&lt;/li>
+&lt;/ul>
+&lt;h4 id="服务日志">服务日志&lt;/h4>
+&lt;ul>
+&lt;li>&lt;code>/var/log/nginx/access.log&lt;/code>：如无其他设置，此文件记录了每一次的网页服务请求。&lt;/li>
+&lt;li>&lt;code>/var/log/nginx/error.log&lt;/code>：Nginx错误请求记录文件。&lt;/li>
+&lt;/ul></description></item></channel></rss>
