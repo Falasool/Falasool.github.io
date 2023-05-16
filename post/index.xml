@@ -3166,7 +3166,7 @@ alt="测试自动发布系统"
 &lt;p>&lt;a class="link" href="https://blog.csdn.net/guanmaoning/article/details/106474465" target="_blank" rel="noopener"
 >Git 把本地仓库与 GitHub 远程仓库关联进行同步&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://iitii.github.io/2020/12/06/1/" target="_blank" rel="noopener"
->将 Git 默认分支从 master 修改为 main&lt;/a>&lt;/p></description></item><item><title>Nginx</title><link>https://falasool.github.io/1/nginx/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/1/nginx/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
+>将 Git 默认分支从 master 修改为 main&lt;/a>&lt;/p></description></item><item><title>Nginx使用备忘</title><link>https://falasool.github.io/1/nginx-memos/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/1/nginx-memos/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
 &lt;h3 id="几个重要的nginx文件和目录">几个重要的Nginx文件和目录&lt;/h3>
 &lt;h4 id="网站内容">网站内容&lt;/h4>
 &lt;ul>
