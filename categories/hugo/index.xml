@@ -86,6 +86,7 @@
 &lt;/div>
 &lt;/div>&lt;p>默认逻辑是 &lt;code>if or&lt;/code> ，改成 &lt;code>if and&lt;/code> 之后只有 Front Matter 里 date 参数为 true 的页面会显示阅读时长&lt;/p>
 &lt;h2 id="暂时禁用翻译按钮">暂时禁用翻译按钮&lt;/h2>
+&lt;h3 id="页面">页面&lt;/h3>
 &lt;p>如果有对应的页面，比如 &lt;code>/page/about&lt;/code> 下有：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
