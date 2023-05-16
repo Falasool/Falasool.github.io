@@ -363,8 +363,7 @@ alt=":ablobsweats:"
 >Custom Menu&lt;/a> 在 &lt;code>config.yaml&lt;/code> 添加新菜单选项，并在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
 >Tabler Icons&lt;/a> 下载 icon&lt;/li>
 &lt;li>找到主题自带菜单选项（Home、About、Archive&amp;hellip;）所在目录，照猫画虎，举例：在 &lt;code>/content/page&lt;/code> 目录下新建&amp;lt;选项名&amp;gt;文件夹，照着默认文件创建 &lt;code>index.md&lt;/code>&lt;/li>
-&lt;/ol>
-&lt;p>我用的方法2&lt;/p></description></item><item><title>Misskey</title><link>https://falasool.github.io/2022/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
+&lt;/ol></description></item><item><title>Misskey</title><link>https://falasool.github.io/2022/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
 &lt;p>超级啰嗦预警&lt;/p>
 &lt;h2 id="购买-vps">购买 VPS&lt;/h2>
 &lt;p>⚠️不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
