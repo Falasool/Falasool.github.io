@@ -50,9 +50,14 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h2 id="新增菜单选项">新增菜单选项&lt;/h2>
-&lt;p>按照 &lt;a class="link" href="https://stack.jimmycai.com/config/menu" target="_blank" rel="noopener"
->Custom Menu&lt;/a> 添加 Projects 选项，并在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
->Tabler Icons&lt;/a> 下载对应的 icon&lt;/p></description></item><item><title>博客域名设置</title><link>https://falasool.github.io/2022/10/22/domain/</link><pubDate>Sat, 22 Oct 2022 22:27:40 +0800</pubDate><guid>https://falasool.github.io/2022/10/22/domain/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;p>有两种办法：&lt;/p>
+&lt;ol>
+&lt;li>按照文档 &lt;a class="link" href="https://stack.jimmycai.com/config/menu" target="_blank" rel="noopener"
+>Custom Menu&lt;/a> 在 &lt;code>config.yaml&lt;/code> 添加新菜单选项，并在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
+>Tabler Icons&lt;/a> 下载 icon&lt;/li>
+&lt;li>找到主题自带菜单选项（Home、About、Archive&amp;hellip;）所在目录，照猫画虎，举例：在 &lt;code>/content/page&lt;/code> 目录下新建&amp;lt;选项名&amp;gt;文件夹，照着默认文件创建 &lt;code>index.md&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>我用的方法2&lt;/p></description></item><item><title>博客域名设置</title><link>https://falasool.github.io/2022/10/22/domain/</link><pubDate>Sat, 22 Oct 2022 22:27:40 +0800</pubDate><guid>https://falasool.github.io/2022/10/22/domain/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="设置步骤">设置步骤&lt;/h2>
 &lt;ul>
 &lt;li>

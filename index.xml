@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/</link><description>Recent content on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 15 May 2023 18:52:31 +0800</lastBuildDate><atom:link href="https://falasool.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Pleroma|维护日志</title><link>https://falasool.github.io/2023/05/15/operation-and-maintenance-pleroma/</link><pubDate>Mon, 15 May 2023 18:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/05/15/operation-and-maintenance-pleroma/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/</link><description>Recent content on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 15 May 2023 18:52:31 +0800</lastBuildDate><atom:link href="https://falasool.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Pleroma | 维护日志</title><link>https://falasool.github.io/2023/05/15/operation-and-maintenance-pleroma/</link><pubDate>Mon, 15 May 2023 18:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/05/15/operation-and-maintenance-pleroma/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
 >在 Debian 10 / Ubuntu 20.04 上安装 Pleroma&lt;/a>，感谢 Suica！&lt;/p>
 &lt;h2 id="关闭开启注册">关闭/开启注册&lt;/h2>
 &lt;p>Settings &amp;gt; Instance &amp;gt; Registrations open&lt;/p>
@@ -357,9 +357,14 @@ alt=":ablobsweats:"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h2 id="新增菜单选项">新增菜单选项&lt;/h2>
-&lt;p>按照 &lt;a class="link" href="https://stack.jimmycai.com/config/menu" target="_blank" rel="noopener"
->Custom Menu&lt;/a> 添加 Projects 选项，并在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
->Tabler Icons&lt;/a> 下载对应的 icon&lt;/p></description></item><item><title>Misskey</title><link>https://falasool.github.io/2022/11/19/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/11/19/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
+&lt;p>有两种办法：&lt;/p>
+&lt;ol>
+&lt;li>按照文档 &lt;a class="link" href="https://stack.jimmycai.com/config/menu" target="_blank" rel="noopener"
+>Custom Menu&lt;/a> 在 &lt;code>config.yaml&lt;/code> 添加新菜单选项，并在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
+>Tabler Icons&lt;/a> 下载 icon&lt;/li>
+&lt;li>找到主题自带菜单选项（Home、About、Archive&amp;hellip;）所在目录，照猫画虎，举例：在 &lt;code>/content/page&lt;/code> 目录下新建&amp;lt;选项名&amp;gt;文件夹，照着默认文件创建 &lt;code>index.md&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>我用的方法2&lt;/p></description></item><item><title>Misskey</title><link>https://falasool.github.io/2022/11/19/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/11/19/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
 &lt;p>超级啰嗦预警&lt;/p>
 &lt;h2 id="购买-vps">购买 VPS&lt;/h2>
 &lt;p>⚠️不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
@@ -3161,7 +3166,7 @@ alt="测试自动发布系统"
 &lt;p>&lt;a class="link" href="https://blog.csdn.net/guanmaoning/article/details/106474465" target="_blank" rel="noopener"
 >Git 把本地仓库与 GitHub 远程仓库关联进行同步&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://iitii.github.io/2020/12/06/1/" target="_blank" rel="noopener"
->将 Git 默认分支从 master 修改为 main&lt;/a>&lt;/p></description></item><item><title>Archives</title><link>https://falasool.github.io/2019/05/28/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://falasool.github.io/2019/05/28/archives/</guid><description/></item><item><title>Projects</title><link>https://falasool.github.io/2019/05/28/projects/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://falasool.github.io/2019/05/28/projects/</guid><description/></item><item><title>About</title><link>https://falasool.github.io/2019/02/28/about/</link><pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate><guid>https://falasool.github.io/2019/02/28/about/</guid><description>&lt;p>Written in Go, Hugo is an open source static site generator available under the &lt;a class="link" href="https://github.com/gohugoio/hugo/blob/master/LICENSE" target="_blank" rel="noopener"
+>将 Git 默认分支从 master 修改为 main&lt;/a>&lt;/p></description></item><item><title>Archives</title><link>https://falasool.github.io/2019/05/28/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://falasool.github.io/2019/05/28/archives/</guid><description/></item><item><title>About</title><link>https://falasool.github.io/2019/02/28/about/</link><pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate><guid>https://falasool.github.io/2019/02/28/about/</guid><description>&lt;p>Written in Go, Hugo is an open source static site generator available under the &lt;a class="link" href="https://github.com/gohugoio/hugo/blob/master/LICENSE" target="_blank" rel="noopener"
 >Apache Licence 2.0.&lt;/a> Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.&lt;/p>
 &lt;p>Hugo makes use of a variety of open source projects including:&lt;/p>
 &lt;ul>
@@ -3180,7 +3185,7 @@ alt="测试自动发布系统"
 &lt;p>Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.&lt;/p>
 &lt;p>Websites built with Hugo are extremelly fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.&lt;/p>
 &lt;p>Learn more and contribute on &lt;a class="link" href="https://github.com/gohugoio" target="_blank" rel="noopener"
->GitHub&lt;/a>.&lt;/p></description></item><item><title>Links</title><link>https://falasool.github.io/1/01/01/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/1/01/01/links/</guid><description>&lt;p>To use this feature, add &lt;code>links&lt;/code> section to frontmatter.&lt;/p>
+>GitHub&lt;/a>.&lt;/p></description></item><item><title>Friends</title><link>https://falasool.github.io/1/01/01/friends/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/1/01/01/friends/</guid><description>&lt;p>To use this feature, add &lt;code>links&lt;/code> section to frontmatter.&lt;/p>
 &lt;p>This page&amp;rsquo;s frontmatter:&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -3222,4 +3227,4 @@ alt="测试自动发布系统"
 &lt;ul>
 &lt;li>&lt;code>/var/log/nginx/access.log&lt;/code>：如无其他设置，此文件记录了每一次的网页服务请求。&lt;/li>
 &lt;li>&lt;code>/var/log/nginx/error.log&lt;/code>：Nginx错误请求记录文件。&lt;/li>
-&lt;/ul></description></item><item><title>Search</title><link>https://falasool.github.io/1/01/01/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/1/01/01/search/</guid><description/></item></channel></rss>
+&lt;/ul></description></item><item><title>Projects</title><link>https://falasool.github.io/1/01/01/projects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/1/01/01/projects/</guid><description/></item><item><title>Search</title><link>https://falasool.github.io/1/01/01/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/1/01/01/search/</guid><description/></item></channel></rss>
