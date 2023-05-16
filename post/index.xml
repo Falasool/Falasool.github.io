@@ -363,7 +363,23 @@ alt=":ablobsweats:"
 >Custom Menu&lt;/a> 在 &lt;code>config.yaml&lt;/code> 添加新菜单选项，并在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
 >Tabler Icons&lt;/a> 下载 icon&lt;/li>
 &lt;li>找到主题自带菜单选项（Home、About、Archive&amp;hellip;）所在目录，照猫画虎，举例：在 &lt;code>/content/page&lt;/code> 目录下新建&amp;lt;选项名&amp;gt;文件夹，照着默认文件创建 &lt;code>index.md&lt;/code>&lt;/li>
-&lt;/ol></description></item><item><title>Misskey</title><link>https://falasool.github.io/2022/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
+&lt;/ol></description></item><item><title>Nginx</title><link>https://falasool.github.io/2023/nginx-memos/</link><pubDate>Tue, 11 Apr 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/nginx-memos/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
+&lt;h3 id="几个重要的nginx文件和目录">几个重要的Nginx文件和目录&lt;/h3>
+&lt;h4 id="网站内容">网站内容&lt;/h4>
+&lt;ul>
+&lt;li>&lt;code>/var/www/html&lt;/code>：默认的网站内容存放目录，Nginx 默认的欢迎界面就存放在这。可以通过修改Nginx配置文件更改。&lt;/li>
+&lt;/ul>
+&lt;h4 id="服务器配置">服务器配置&lt;/h4>
+&lt;ul>
+&lt;li>&lt;code>/etc/nginx&lt;/code>：Nginx配置文件，修改它配置Nginx全局设置。&lt;/li>
+&lt;li>&lt;code>/etc/nginx/sites-available/&lt;/code>：虚拟主机的目录，可在此创建多个虚拟主机。&lt;/li>
+&lt;li>&lt;code>/etc/nginx/sites-enabled/&lt;/code>：Nginx默认站点目录，nginc.conf 默认包含的文件夹。在此文件夹建立的站点，需要建立软连接到目录/etc/nginx/sites-enabled/里。&lt;/li>
+&lt;/ul>
+&lt;h4 id="服务日志">服务日志&lt;/h4>
+&lt;ul>
+&lt;li>&lt;code>/var/log/nginx/access.log&lt;/code>：如无其他设置，此文件记录了每一次的网页服务请求。&lt;/li>
+&lt;li>&lt;code>/var/log/nginx/error.log&lt;/code>：Nginx错误请求记录文件。&lt;/li>
+&lt;/ul></description></item><item><title>Misskey</title><link>https://falasool.github.io/2022/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
 &lt;p>超级啰嗦预警&lt;/p>
 &lt;h2 id="购买-vps">购买 VPS&lt;/h2>
 &lt;p>⚠️不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
@@ -3165,20 +3181,4 @@ alt="测试自动发布系统"
 &lt;p>&lt;a class="link" href="https://blog.csdn.net/guanmaoning/article/details/106474465" target="_blank" rel="noopener"
 >Git 把本地仓库与 GitHub 远程仓库关联进行同步&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://iitii.github.io/2020/12/06/1/" target="_blank" rel="noopener"
->将 Git 默认分支从 master 修改为 main&lt;/a>&lt;/p></description></item><item><title>Nginx使用备忘</title><link>https://falasool.github.io/1/nginx-memos/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/1/nginx-memos/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
-&lt;h3 id="几个重要的nginx文件和目录">几个重要的Nginx文件和目录&lt;/h3>
-&lt;h4 id="网站内容">网站内容&lt;/h4>
-&lt;ul>
-&lt;li>&lt;code>/var/www/html&lt;/code>：默认的网站内容存放目录，Nginx 默认的欢迎界面就存放在这。可以通过修改Nginx配置文件更改。&lt;/li>
-&lt;/ul>
-&lt;h4 id="服务器配置">服务器配置&lt;/h4>
-&lt;ul>
-&lt;li>&lt;code>/etc/nginx&lt;/code>：Nginx配置文件，修改它配置Nginx全局设置。&lt;/li>
-&lt;li>&lt;code>/etc/nginx/sites-available/&lt;/code>：虚拟主机的目录，可在此创建多个虚拟主机。&lt;/li>
-&lt;li>&lt;code>/etc/nginx/sites-enabled/&lt;/code>：Nginx默认站点目录，nginc.conf 默认包含的文件夹。在此文件夹建立的站点，需要建立软连接到目录/etc/nginx/sites-enabled/里。&lt;/li>
-&lt;/ul>
-&lt;h4 id="服务日志">服务日志&lt;/h4>
-&lt;ul>
-&lt;li>&lt;code>/var/log/nginx/access.log&lt;/code>：如无其他设置，此文件记录了每一次的网页服务请求。&lt;/li>
-&lt;li>&lt;code>/var/log/nginx/error.log&lt;/code>：Nginx错误请求记录文件。&lt;/li>
-&lt;/ul></description></item></channel></rss>
+>将 Git 默认分支从 master 修改为 main&lt;/a>&lt;/p></description></item></channel></rss>
