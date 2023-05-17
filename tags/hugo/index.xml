@@ -589,9 +589,9 @@ alt="测试自动发布系统"
 &lt;p>&lt;a class="link" href="https://simumis.com/posts/deploy-to-github/" target="_blank" rel="noopener"
 >将Hugo静态网站部署到Github Pages&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.criwits.top/page/20220828132827-0gnvmfs" target="_blank" rel="noopener"
->用 Hugo 配合 GitHub Actions 和 GitHub Pages 搭建博客&lt;/a>&lt;/p></description></item><item><title>给博客添加评论系统｜Disqus</title><link>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</guid><description>&lt;!-- raw HTML omitted -->
+>用 Hugo 配合 GitHub Actions 和 GitHub Pages 搭建博客&lt;/a>&lt;/p></description></item><item><title>Hugo | 添加评论系统 Disqus</title><link>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;p>选择 Disqus 是因为 Hugo 内置了它的模板，同时它对迁移的支持较好，本身功能非常齐全，比较遗憾的是从 2015 年开始被墙了&lt;/p>
-&lt;p>参考&lt;a class="link" href="https://gohugo.io/content-management/comments/" target="_blank" rel="noopener"
+&lt;p>参考 &lt;a class="link" href="https://gohugo.io/content-management/comments/" target="_blank" rel="noopener"
 >官方文档&lt;/a>&lt;/p>
 &lt;h3 id="基础设置">基础设置&lt;/h3>
 &lt;p>在 &lt;a class="link" href="https://disqus.com/" target="_blank" rel="noopener"
