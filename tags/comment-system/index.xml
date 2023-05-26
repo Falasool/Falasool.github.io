@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>comment system on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/comment-system/</link><description>Recent content in comment system on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 14 Oct 2022 19:12:42 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/comment-system/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo | 添加评论系统 Disqus</title><link>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>comment system on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/comment-system/</link><description>Recent content in comment system on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 14 Oct 2022 19:12:42 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/comment-system/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo | 添加评论系统</title><link>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;p>Update：用过 Cataus、Disqus，cataus 和同名主题配合起来很可爱，用了一段时间Disqus后对它的UI不太满意，再加上强制登录比较恼人，就换成象友推荐的Twikoo试试&lt;/p>
 &lt;h2 id="twikoo">Twikoo&lt;/h2>
 &lt;h3 id="设置数据库mongodb">设置数据库MongoDB&lt;/h3>
 &lt;p>按照 &lt;a class="link" href="https://twikoo.js.org/quick-start.html#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%83%A8%E7%BD%B2" target="_blank" rel="noopener"
@@ -38,7 +39,12 @@
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">envId&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://twikoo.vercel.app/&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="disqus">Disqus&lt;/h2>
+&lt;/div>&lt;p>部署成功后点右下角↘️的齿轮⚙️图标，设置管理密码&lt;/p>
+&lt;h3 id="更新">更新&lt;/h3>
+&lt;p>管理页面提示：Client version: 1.5.11， Server version: 1.6.16， 请参考 &lt;a class="link" href="https://twikoo.js.org/quick-start.html#%e7%89%88%e6%9c%ac%e6%9b%b4%e6%96%b0" target="_blank" rel="noopener"
+>版本更新&lt;/a> 进行升级&lt;/p>
+&lt;p>在 twikoo.html 里把引入的js文件版本修改到1.6.16&lt;/p>
+&lt;h2 id="disqus">Disqus&lt;/h2>
 &lt;p>选择 Disqus 是因为 Hugo 内置了它的模板，同时它对迁移的支持较好，本身功能非常齐全，比较遗憾的是从 2015 年开始被墙了&lt;/p>
 &lt;p>参考 &lt;a class="link" href="https://gohugo.io/content-management/comments/" target="_blank" rel="noopener"
 >官方文档&lt;/a>&lt;/p>
@@ -67,18 +73,10 @@
 &lt;h4 id="特定博文开启关闭评论">特定博文开启/关闭评论&lt;/h4>
 &lt;p>&lt;a class="link" href="https://lvv.me/posts/2019/12/10_hugo_disqus/" target="_blank" rel="noopener"
 >https://lvv.me/posts/2019/12/10_hugo_disqus/&lt;/a>&lt;/p>
-&lt;h4 id="解决本地预览时无法测试评论的问题">解决本地预览时无法测试评论的问题&lt;/h4>
-&lt;p>待补充 &lt;a class="link" href="https://nekonull.me/share/hugo-disqus/" target="_blank" rel="noopener"
->https://nekonull.me/share/hugo-disqus/&lt;/a>&lt;/p>
-&lt;h4 id="让-disqus-评论在大陆可用">让 Disqus 评论在大陆可用&lt;/h4>
-&lt;p>待补充&lt;/p>
-&lt;h4 id="改造-disqus-评论框">改造 Disqus 评论框&lt;/h4>
-&lt;p>待补充&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;!-- raw HTML omitted -->感谢前人的耕耘和分享，希望本文也能给你带来一些帮助 ❤️&lt;!-- raw HTML omitted -->&lt;/p>
-&lt;p>[Hugo 加入 Disqus 整合性留言管理系統](Hugo 加入 Disqus 整合性留言管理系統)&lt;/p>
-&lt;p>&lt;a class="link" href="https://renzibei.com/2020/07/26/use-disqusjs/" target="_blank" rel="noopener"
->使用Disqus JS让Disqus评论在国内可用&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://thirdshire.com/post/twikoo-tutorial/" target="_blank" rel="noopener"
+>在静态博客里添加Twikoo评论系统，并配置邮箱和TG通知&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://blog.fooleap.org/use-disqus-correctly.html" target="_blank" rel="noopener"
 >科学使用 Disqus&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://juejin.cn/post/6844903905910849550" target="_blank" rel="noopener"
@@ -86,6 +84,4 @@
 &lt;p>&lt;a class="link" href="https://blog.skk.moe/post/disqusjs/" target="_blank" rel="noopener"
 >DisqusJS - 一个超轻量级的 DISQUS「评论基础模式」的实现&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://lvv.me/posts/2019/12/10_hugo_disqus/" target="_blank" rel="noopener"
->给 Hugo 开启 Disqus 评论系统&lt;/a>&lt;/p>
-&lt;p>&lt;a class="link" href="https://demonkoo.github.io/2016/09/22/Setting-Disqus-Post-New/" target="_blank" rel="noopener"
->https://lvv.me/posts/2019/12/10_hugo_disqus/&lt;/a>&lt;/p></description></item></channel></rss>
+>给 Hugo 开启 Disqus 评论系统&lt;/a>&lt;/p></description></item></channel></rss>
