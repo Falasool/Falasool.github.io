@@ -130,6 +130,46 @@ alt="set-typora"
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://picgo.github.io/PicGo-Doc/" target="_blank" rel="noopener"
 >PicGo&lt;/a>&lt;/p></description></item><item><title>Hugo | 添加评论系统 Disqus</title><link>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;h2 id="twikoo">Twikoo&lt;/h2>
+&lt;h3 id="设置数据库mongodb">设置数据库MongoDB&lt;/h3>
+&lt;p>按照 &lt;a class="link" href="https://twikoo.js.org/quick-start.html#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%83%A8%E7%BD%B2" target="_blank" rel="noopener"
+>官方文档&lt;/a> ，我用的 Vercel 部署&lt;/p>
+&lt;p>创建数据库，选 Free 方案，区域选择 &lt;code>AWS / N. Virginia (us-east-1)&lt;/code>，设置并保存好用户名和密码&lt;/p>
+&lt;p>在 &lt;code>Where would you like to connect from?&lt;/code> 这一步填 0.0.0.0，然后点 &lt;code>Add Entry&lt;/code>，最后确认创建数据库&lt;/p>
+&lt;p>进入数据库，connect - Drivers - Node.js，把实例的用户名和密码改成自己的，例如：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">mongodb+srv://twikoo:fhahflanclal3o2u0@cluster0.tke1htc.mongodb.net/?retryWrites=true&amp;amp;w=majority
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="vercel-部署">Vercel 部署&lt;/h3>
+&lt;p>按照文档的一键部署，等待&amp;hellip;&lt;/p>
+&lt;p>在控制台 - settings - Environment Variables，添加环境变量 &lt;code>MONGODB_URI&lt;/code>，值为之前的数据库连接字符串&lt;/p>
+&lt;p>进入 Deployments , 然后在任意一项后面点击更多（三个点） , 然后点击Redeploy , 最后点击下面的Redeploy&lt;/p>
+&lt;p>访问 Vercel 分配的域名，如果环境配置正确，可以看到 “Twikoo 云函数运行正常” 的提示&lt;/p>
+&lt;h3 id="配置到博客">配置到博客&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">comments&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">enabled&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">provider&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">twikoo&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">twikoo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">envId&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://twikoo.vercel.app/&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="disqus">Disqus&lt;/h2>
 &lt;p>选择 Disqus 是因为 Hugo 内置了它的模板，同时它对迁移的支持较好，本身功能非常齐全，比较遗憾的是从 2015 年开始被墙了&lt;/p>
 &lt;p>参考 &lt;a class="link" href="https://gohugo.io/content-management/comments/" target="_blank" rel="noopener"
 >官方文档&lt;/a>&lt;/p>
