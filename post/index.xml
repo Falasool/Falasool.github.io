@@ -305,7 +305,7 @@ alt=":ablobsweats:"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>&lt;a class="link" href="https://www.onitroad.com/jc/linux/how-to-install-htop-on-debian-linux-using-apt-get.html" target="_blank" rel="noopener"
->如何在Debian Linux上安装htop&lt;/a>&lt;/p></description></item><item><title>Hugo｜自定义Stack主题</title><link>https://falasool.github.io/2023/custom-hugo-theme-stack/</link><pubDate>Thu, 11 May 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/custom-hugo-theme-stack/</guid><description>&lt;h2 id="调整友情链接页面布局">调整友情链接页面布局&lt;/h2>
+>如何在Debian Linux上安装htop&lt;/a>&lt;/p></description></item><item><title>Hugo｜自定义 hugo-theme-Stack</title><link>https://falasool.github.io/2023/custom-hugo-theme-stack/</link><pubDate>Thu, 11 May 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/custom-hugo-theme-stack/</guid><description>&lt;h2 id="调整友情链接页面布局">调整友情链接页面布局&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -520,11 +520,11 @@ commit
 &lt;/div>
 &lt;/details>
 &lt;/code>&lt;/p>
+&lt;h2 id="修改字体">修改字体&lt;/h2>
+&lt;p>对字体和样式不满意、就从控制台找到对应的类名，在 custom.scss 里修改就好了&lt;/p>
+&lt;h2 id="跟随系统-dark-mode">跟随系统 Dark Mode&lt;/h2>
 &lt;h2 id="seo">SEO&lt;/h2>
 &lt;p>这么好的博客被地球人错过太可惜了&lt;/p>
-&lt;h2 id="修改字体">修改字体&lt;/h2>
-&lt;p>修改一个美丽的字体&lt;/p>
-&lt;h2 id="跟随系统-dark-mode">跟随系统 Dark Mode&lt;/h2>
 &lt;h2 id="heading">&lt;/h2></description></item><item><title>Nginx</title><link>https://falasool.github.io/2023/nginx-memos/</link><pubDate>Tue, 11 Apr 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/nginx-memos/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
 &lt;h3 id="几个重要的nginx文件和目录">几个重要的Nginx文件和目录&lt;/h3>
 &lt;h4 id="网站内容">网站内容&lt;/h4>
@@ -541,8 +541,7 @@ commit
 &lt;ul>
 &lt;li>&lt;code>/var/log/nginx/access.log&lt;/code>：如无其他设置，此文件记录了每一次的网页服务请求。&lt;/li>
 &lt;li>&lt;code>/var/log/nginx/error.log&lt;/code>：Nginx错误请求记录文件。&lt;/li>
-&lt;/ul></description></item><item><title>Misskey</title><link>https://falasool.github.io/2022/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
-&lt;p>超级啰嗦预警&lt;/p>
+&lt;/ul></description></item><item><title>Misskey实例搭建教程</title><link>https://falasool.github.io/2022/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
 &lt;h2 id="购买-vps">购买 VPS&lt;/h2>
 &lt;p>⚠️不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
 &lt;p>在备案通过之前 80 和 443 端口是封禁的 -&amp;gt; 无法申请 SSL 证书 -&amp;gt; Misskey 需要 SSL 才能访问，GG&lt;/p>
