@@ -407,13 +407,24 @@ alt=":ablobsweats:"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>就会显示翻译按钮，暂时用不到的话在 md 文件里写&lt;code> draft: true&lt;/code>即可&lt;/p>
-&lt;h2 id="seo">SEO&lt;/h2>
-&lt;p>这么好的博客被地球人错过太可惜了&lt;/p>
-&lt;h2 id="修改字体">修改字体&lt;/h2>
-&lt;p>修改一个美丽的字体&lt;/p>
-&lt;h2 id="跟随系统-dark-mode">跟随系统 Dark Mode&lt;/h2>
 &lt;h2 id="支持-mermaid">支持 mermaid&lt;/h2>
-&lt;p>在 &lt;code>layouts/partials/article/components/content.html&lt;/code> 添加：&lt;/p>
+&lt;p>按照 &lt;a class="link" href="https://gohugo.io/content-management/diagrams/" target="_blank" rel="noopener"
+>官方文档&lt;/a> 新建文件 &lt;code>layouts/_default/_markup/render-codeblock-mermaid.html&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;mermaid&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{- .Inner | safeHTML }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{ .Page.Store.Set &amp;#34;hasMermaid&amp;#34; true }}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在 &lt;code>layouts/partials/article/components/content.html&lt;/code> 添加：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -434,7 +445,8 @@ alt=":ablobsweats:"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{ end }}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>效果：时序图/饼图/&lt;/p>
+&lt;/div>&lt;p>演示效果：时序图/饼图/甘特图/Git图，更多请看 &lt;a class="link" href="https://mermaid.js.org/syntax/gantt.html" target="_blank" rel="noopener"
+>官方文档&lt;/a>&lt;/p>
 &lt;div class="mermaid">sequenceDiagram
 participant Alice
 participant Bob
@@ -448,11 +460,39 @@ John->>Bob: How about you?
 Bob-->>John: Jolly good!
 &lt;/div>
 &lt;div class="mermaid">pie
-title 为什么总是宅在家里？
-"喜欢宅" : 15
-"天气太热或太冷" : 20
-"穷" : 500
-&lt;/div></description></item><item><title>Nginx</title><link>https://falasool.github.io/2023/nginx-memos/</link><pubDate>Tue, 11 Apr 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/nginx-memos/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
+title Pets adopted by volunteers
+"Dogs" : 386
+"Cats" : 85
+"Rats" : 15
+&lt;/div>
+&lt;div class="mermaid">gantt
+title A Gantt Diagram
+dateFormat YYYY-MM-DD
+section Section
+A task :a1, 2014-01-01, 30d
+Another task :after a1 , 20d
+section Another
+Task in sec :2014-01-12 , 12d
+another task : 24d
+&lt;/div>
+&lt;div class="mermaid">gitGraph
+commit
+commit
+branch develop
+checkout develop
+commit
+commit
+checkout main
+merge develop
+commit
+commit
+&lt;/div>
+&lt;h2 id="seo">SEO&lt;/h2>
+&lt;p>这么好的博客被地球人错过太可惜了&lt;/p>
+&lt;h2 id="修改字体">修改字体&lt;/h2>
+&lt;p>修改一个美丽的字体&lt;/p>
+&lt;h2 id="跟随系统-dark-mode">跟随系统 Dark Mode&lt;/h2>
+&lt;h2 id="heading">&lt;/h2></description></item><item><title>Nginx</title><link>https://falasool.github.io/2023/nginx-memos/</link><pubDate>Tue, 11 Apr 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/nginx-memos/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
 &lt;h3 id="几个重要的nginx文件和目录">几个重要的Nginx文件和目录&lt;/h3>
 &lt;h4 id="网站内容">网站内容&lt;/h4>
 &lt;ul>
