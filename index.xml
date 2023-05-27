@@ -572,7 +572,9 @@ commit
 &lt;/div>&lt;h2 id="跟随系统-dark-mode">跟随系统 Dark Mode&lt;/h2>
 &lt;h2 id="seo">SEO&lt;/h2>
 &lt;p>这么好的博客被地球人错过太可惜了&lt;/p>
-&lt;h2 id="heading">&lt;/h2></description></item><item><title>Nginx</title><link>https://falasool.github.io/2023/nginx-memos/</link><pubDate>Tue, 11 Apr 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/nginx-memos/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
+&lt;h2 id="相关参考">相关参考&lt;/h2>
+&lt;p>&lt;a class="link" href="https://mantyke.icu/posts/2021/f9f0ec87/" target="_blank" rel="noopener"
+>Hugo | 看中 Stack 主题的归档功能，搬家并做修改&lt;/a>&lt;/p></description></item><item><title>Nginx</title><link>https://falasool.github.io/2023/nginx-memos/</link><pubDate>Tue, 11 Apr 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/nginx-memos/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
 &lt;h3 id="几个重要的nginx文件和目录">几个重要的Nginx文件和目录&lt;/h3>
 &lt;h4 id="网站内容">网站内容&lt;/h4>
 &lt;ul>
