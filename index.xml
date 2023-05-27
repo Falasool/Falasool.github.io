@@ -3430,7 +3430,7 @@ alt="测试自动发布系统"
 >将 Git 默认分支从 master 修改为 main&lt;/a>&lt;/p></description></item><item><title/><link>https://falasool.github.io/1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/1/</guid><description/></item><item><title>About</title><link>https://falasool.github.io/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/about/</guid><description>&lt;p>一只橡皮鸭，因人类提出的 Rubber Duck debug 大法而踏上了奇妙的冒险旅途&lt;/p>
 &lt;h2 id="关于屏幕后的人">关于屏幕后的人&lt;/h2>
 &lt;h3 id="学习">学习&lt;/h3>
-&lt;p>正在学习前端，越写越有意思
+&lt;p>正在学习前端，越写越有意思&lt;!-- raw HTML omitted -->
 正在学习外语，不同的语言带来不同的思维————希望能借此塑造另一个自己&lt;/p>
 &lt;h3 id="娱乐">娱乐&lt;/h3>
 &lt;ul>
@@ -3442,5 +3442,5 @@ alt="测试自动发布系统"
 &lt;li>运动（好久没动啦 XD&lt;/li>
 &lt;/ul>
 &lt;h2 id="联系我">联系我&lt;/h2>
-&lt;p>在博客留言，或者通过邮件联系 &lt;code>cyouike@duck.com&lt;/code> 我
+&lt;p>在博客留言，或者通过邮件 &lt;code>cyouike@duck.com&lt;/code> 联系我&lt;!-- raw HTML omitted -->
 也可能在 Fediverse 偶遇&lt;/p></description></item><item><title>Archives</title><link>https://falasool.github.io/archives/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/archives/</guid><description/></item><item><title>Friends</title><link>https://falasool.github.io/friends/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/friends/</guid><description>&lt;p>请来玩 (〃`𓎟´〃)&lt;/p></description></item><item><title>Projects</title><link>https://falasool.github.io/projects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/projects/</guid><description/></item><item><title>Search</title><link>https://falasool.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/search/</guid><description/></item></channel></rss>
