@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>pleroma on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/pleroma/</link><description>Recent content in pleroma on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 15 May 2023 18:52:31 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/pleroma/index.xml" rel="self" type="application/rss+xml"/><item><title>Pleroma | 维护日志</title><link>https://falasool.github.io/2023/operation-and-maintenance-pleroma/</link><pubDate>Mon, 15 May 2023 18:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/operation-and-maintenance-pleroma/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>pleroma on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/pleroma/</link><description>Recent content in pleroma on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 15 May 2023 18:52:31 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/pleroma/index.xml" rel="self" type="application/rss+xml"/><item><title>Pleroma | 维护日志</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</link><pubDate>Mon, 15 May 2023 18:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
 >在 Debian 10 / Ubuntu 20.04 上安装 Pleroma&lt;/a>，感谢 Suica！&lt;/p>
 &lt;h2 id="关闭开启注册">关闭/开启注册&lt;/h2>
 &lt;p>Settings &amp;gt; Instance &amp;gt; Registrations open&lt;/p>
@@ -206,6 +206,36 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>（？有点困惑，上面折腾了一大堆，最后简简单单敲个 &lt;code>certbot&lt;/code> 然后跟着选就好了）&lt;/p>
+&lt;h2 id="常用命令">常用命令&lt;/h2>
+&lt;p>查看服务状态&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl status &lt;span class="o">[&lt;/span>options&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看内存&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">top
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看负载&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">htop
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;a class="link" href="https://www.onitroad.com/jc/linux/how-to-install-htop-on-debian-linux-using-apt-get.html" target="_blank" rel="noopener"
+>如何在Debian Linux上安装htop&lt;/a>&lt;/p>
 &lt;h2 id="502-bad-gateway">502 Bad Gateway&lt;/h2>
 &lt;p>查看 Nginx 错误日志&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -276,33 +306,160 @@ alt=":ablobsweats:"
 &lt;/div>&lt;p>于是去 &lt;code>/var/log/syslog&lt;/code> 看日志，都是info，好像也没什么问题&lt;/p>
 &lt;p>重启之后莫名其妙好了&lt;/p>
 &lt;p>过了4天，又502了……&lt;/p>
-&lt;h2 id="常用命令">常用命令&lt;/h2>
-&lt;p>查看服务状态&lt;/p>
+&lt;p>Update: 20230528再次 502&lt;/p>
+&lt;p>检查应用是否存在，存在&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl status &lt;span class="o">[&lt;/span>options&lt;span class="o">]&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ps aux &lt;span class="p">|&lt;/span> grep pleroma
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>查看内存&lt;/p>
+&lt;/div>&lt;p>查看日志&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">top
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">journalctl -u pleroma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pleroma: cat: write error: No space left on device
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pleroma: ERROR: Cannot start release because it could not write /opt/pleroma/tmp/pleroma-2.4.5-2-gd8e32646-2
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>查看负载&lt;/p>
+&lt;/div>&lt;p>没有足够空间写入运行时配置文件&lt;/p>
+&lt;p>查看内存使用情况&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">htop
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">free -m
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> total used free shared buff/cache available
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Mem: 987 144 117 30 724 634
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Swap: 2399 3 2396
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;a class="link" href="https://www.onitroad.com/jc/linux/how-to-install-htop-on-debian-linux-using-apt-get.html" target="_blank" rel="noopener"
->如何在Debian Linux上安装htop&lt;/a>&lt;/p></description></item></channel></rss>
+&lt;/div>&lt;p>查看磁盘使用情况（满了耶&amp;hellip;&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">df -h
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Filesystem Size Used Avail Use% Mounted on
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/vda1 24G 24G 0 100% /
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看各个文件占用大小&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">du -sh *
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2.4G swapfile
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2.7G usr
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">19G var
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 清空日志，稍微腾出一点空间了&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat /dev/null &amp;gt; filename
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>/usr/lib/postgresql/11/bin/pg_ctl&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">/etc/postgresql/11/main#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── conf.d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── environment
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── pg_ctl.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── pg_hba.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── pg_ident.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── postgresql.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└── start.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>数据库常用命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 登录 PG 数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">psql -U postgres
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看所有数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">\l&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 进入某数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">\c&lt;/span> pg-name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看某数据库中的所有表名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">select&lt;/span> tablename from pg_tables&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 退出数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ctrl + z
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看数据库大小，是小服务器不能承受之重&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">postgres=# SELECT pg_size_pretty( pg_database_size(&amp;#39;pleroma&amp;#39;) );
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pg_size_pretty
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">----------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 14 GB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(1 row)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
