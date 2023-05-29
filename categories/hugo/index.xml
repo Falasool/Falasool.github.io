@@ -203,17 +203,6 @@ commit
 &lt;summary>生效了&lt;/summary>
 (〃`𓎟´〃) 天才ですから！
 &lt;/details>
-&lt;p>使用：&lt;code>&lt;details>
-&lt;summary>summary&lt;/summary>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>
-&lt;/details>
-&lt;/code>&lt;/p>
 &lt;h3 id="代码块-macos-样式">代码块 macOS 样式&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
