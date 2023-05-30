@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PicGo on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/picgo/</link><description>Recent content in PicGo on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 21 Oct 2022 23:29:38 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/picgo/index.xml" rel="self" type="application/rss+xml"/><item><title>借助 PicGo 和 GitHub 实现插入图片</title><link>https://falasool.github.io/2022/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2022/picture-bed/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PicGo on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/picgo/</link><description>Recent content in PicGo on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 21 Oct 2022 23:29:38 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/picgo/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo | 给博客配置图床</title><link>https://falasool.github.io/2022/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2022/picture-bed/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="安装-picgo">安装 PicGo&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -11,17 +11,18 @@
 &lt;/div>&lt;h2 id="创建-github-图床仓库">创建 GitHub 图床仓库&lt;/h2>
 &lt;p>名称无所谓，记得勾选 README&lt;/p>
 &lt;h2 id="生成令牌token">生成令牌（Token）&lt;/h2>
-&lt;p>在 Account-Settings-Developer Settings-Personal Access Tokens 下生成（勾选 repo）并保存，我的Token：（隐藏）&lt;/p>
+&lt;p>在 Account-Settings-Developer Settings-Personal Access Tokens 下生成（勾选 repo）并保存，我的Token：&lt;/p>
 &lt;!-- raw HTML omitted -->
 &lt;h2 id="配置-picgo">配置 PicGo&lt;/h2>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/config-picgo.png"
+&lt;p>自定义域名是：&lt;code>https://cdn.jsdelivr.net/gh/&amp;lt;github用户名&amp;gt;/&amp;lt;图床仓库名&amp;gt;@&amp;lt;仓库版本号&amp;gt;/&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogimage-20230530234507042.png"
 loading="lazy"
-alt="config-picgo"
+alt="image-20230530234507042"
 >&lt;/p>
 &lt;h2 id="测试图床">测试图床&lt;/h2>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/set-typora.png"
+&lt;p>&lt;img src="https://falasool.github.io/Library/Application%20Support/typora-user-images/image-20230530234712256.png"
 loading="lazy"
-alt="set-typora"
+alt="image-20230530234712256"
 >&lt;/p>
 &lt;p>设置成功后直接把图片粘贴进文档就OK&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
