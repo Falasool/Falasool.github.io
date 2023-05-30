@@ -313,8 +313,6 @@ commit
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h2 id="返回顶部按钮">返回顶部按钮&lt;/h2>
-&lt;p>代码参考：&lt;a class="link" href="https://siae.me/p/stack/" target="_blank" rel="noopener"
->Hugo Stack 主题折腾笔记&lt;/a>&lt;/p>
 &lt;details>
 &lt;summary>展开代码块&lt;/summary>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -540,9 +538,13 @@ commit
 &lt;h2 id="跟随系统-dark-mode">跟随系统 Dark Mode&lt;/h2>
 &lt;h2 id="seo">SEO&lt;/h2>
 &lt;p>这么好的博客被地球人错过太可惜了&lt;/p>
-&lt;h2 id="相关参考">相关参考&lt;/h2>
+&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://mantyke.icu/posts/2021/f9f0ec87/" target="_blank" rel="noopener"
->Hugo | 看中 Stack 主题的归档功能，搬家并做修改&lt;/a>&lt;/p></description></item><item><title>博客域名设置</title><link>https://falasool.github.io/2022/domain/</link><pubDate>Sat, 22 Oct 2022 22:27:40 +0800</pubDate><guid>https://falasool.github.io/2022/domain/</guid><description>&lt;!-- raw HTML omitted -->
+>Hugo | 看中 Stack 主题的归档功能，搬家并做修改&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://siae.me/p/stack/" target="_blank" rel="noopener"
+>Hugo Stack 主题折腾笔记&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.linsnow.cn/p/join-hugo-and-stack/" target="_blank" rel="noopener"
+>拥抱最好用的hugo之stack&lt;/a>&lt;/p></description></item><item><title>博客域名设置</title><link>https://falasool.github.io/2022/domain/</link><pubDate>Sat, 22 Oct 2022 22:27:40 +0800</pubDate><guid>https://falasool.github.io/2022/domain/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="设置步骤">设置步骤&lt;/h2>
 &lt;ul>
 &lt;li>

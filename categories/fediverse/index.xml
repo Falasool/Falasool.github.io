@@ -527,6 +527,49 @@ alt=":ablobsweats:"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">su pleroma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;./bin/pleroma_ctl database vacuum full&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
+&lt;/div>&lt;p>0530执行记录&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 重新生成数据库配置文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">su pleroma -s $SHELL -lc &amp;#34;./bin/pleroma_ctl instance gen --output /tmp/config.exs --output-psql /tmp/setup_db.psql&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 清空数据库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -Hu postgres psql -c &amp;#39;DROP DATABASE pleroma;&amp;#39;;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">DROP DATABASE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -Hu postgres psql -c &amp;#39;DROP USER pleroma;&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">DROP ROLE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 接下来该重建数据库了
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -Hu postgres psql -f /tmp/setup_db.psql
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 重建后的数据库size
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">postgres=# SELECT pg_size_pretty( pg_database_size(&amp;#39;pleroma&amp;#39;) );
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pg_size_pretty
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">----------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 8045 kB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(1 row)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 恢复数据16:17-
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -u postgres psql pleroma &amp;lt; /pleromabackup/pleroma.pgdump
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
 &lt;/div></description></item><item><title>Misskey实例搭建教程</title><link>https://falasool.github.io/2022/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
 &lt;h2 id="购买-vps">购买 VPS&lt;/h2>
 &lt;p>⚠️不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
