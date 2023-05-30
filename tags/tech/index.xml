@@ -127,10 +127,18 @@ alt="image-20230530234507042"
 loading="lazy"
 alt="image-20230530234712256"
 >&lt;/p>
-&lt;p>设置成功后直接把图片粘贴进文档就OK&lt;/p>
+&lt;p>[可选] 用 &lt;a class="link" href="https://squoosh.app/" target="_blank" rel="noopener"
+>Squoosh&lt;/a> 把图片转格式（webp）并压缩&lt;/p>
+&lt;p>设置成功后直接把图片放进 Typora 就OK&lt;/p>
+&lt;p>锵锵～请看！！&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogimage.webp"
+loading="lazy"
+alt="image"
+>&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://picgo.github.io/PicGo-Doc/" target="_blank" rel="noopener"
->PicGo&lt;/a>&lt;/p></description></item><item><title>Hugo | 添加评论系统</title><link>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</guid><description>&lt;!-- raw HTML omitted -->
+>PicGo&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://irithys.com/p/blog-write/" target="_blank" rel="noopener"
+>我写博客都用了哪些工具？&lt;/a>&lt;/p></description></item><item><title>Hugo | 添加评论系统</title><link>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;p>Update：用过 Cataus、Disqus，cataus 和同名主题配合起来很可爱，用了一段时间Disqus后对它的UI不太满意，再加上强制登录比较恼人，就换成象友推荐的Twikoo试试&lt;/p>
 &lt;h2 id="twikoo">Twikoo&lt;/h2>
 &lt;h3 id="设置数据库mongodb">设置数据库MongoDB&lt;/h3>

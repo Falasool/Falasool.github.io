@@ -659,10 +659,18 @@ alt="image-20230530234507042"
 loading="lazy"
 alt="image-20230530234712256"
 >&lt;/p>
-&lt;p>设置成功后直接把图片粘贴进文档就OK&lt;/p>
+&lt;p>[可选] 用 &lt;a class="link" href="https://squoosh.app/" target="_blank" rel="noopener"
+>Squoosh&lt;/a> 把图片转格式（webp）并压缩&lt;/p>
+&lt;p>设置成功后直接把图片放进 Typora 就OK&lt;/p>
+&lt;p>锵锵～请看！！&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogimage.webp"
+loading="lazy"
+alt="image"
+>&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://picgo.github.io/PicGo-Doc/" target="_blank" rel="noopener"
->PicGo&lt;/a>&lt;/p></description></item><item><title>Hugo｜Github Pages｜Stack主题｜搭建记录</title><link>https://falasool.github.io/2022/build-hugo-site-on-macos/</link><pubDate>Fri, 21 Oct 2022 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2022/build-hugo-site-on-macos/</guid><description>&lt;p>基于 macOS Monterey，Hugo 框架和 GitHub Pages 网页寄存服务，博客主题为 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+>PicGo&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://irithys.com/p/blog-write/" target="_blank" rel="noopener"
+>我写博客都用了哪些工具？&lt;/a>&lt;/p></description></item><item><title>Hugo｜Github Pages｜Stack主题｜搭建记录</title><link>https://falasool.github.io/2022/build-hugo-site-on-macos/</link><pubDate>Fri, 21 Oct 2022 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2022/build-hugo-site-on-macos/</guid><description>&lt;p>基于 macOS Monterey，Hugo 框架和 GitHub Pages 网页寄存服务，博客主题为 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
 >Stack&lt;/a>，搭建过程尽量简单，同时减少后续隐患&lt;/p>
 &lt;p>预警：非常啰嗦&lt;/p>
 &lt;h2 id="前期准备">前期准备&lt;/h2>

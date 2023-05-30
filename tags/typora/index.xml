@@ -24,7 +24,15 @@ alt="image-20230530234507042"
 loading="lazy"
 alt="image-20230530234712256"
 >&lt;/p>
-&lt;p>设置成功后直接把图片粘贴进文档就OK&lt;/p>
+&lt;p>[可选] 用 &lt;a class="link" href="https://squoosh.app/" target="_blank" rel="noopener"
+>Squoosh&lt;/a> 把图片转格式（webp）并压缩&lt;/p>
+&lt;p>设置成功后直接把图片放进 Typora 就OK&lt;/p>
+&lt;p>锵锵～请看！！&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogimage.webp"
+loading="lazy"
+alt="image"
+>&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://picgo.github.io/PicGo-Doc/" target="_blank" rel="noopener"
->PicGo&lt;/a>&lt;/p></description></item></channel></rss>
+>PicGo&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://irithys.com/p/blog-write/" target="_blank" rel="noopener"
+>我写博客都用了哪些工具？&lt;/a>&lt;/p></description></item></channel></rss>
