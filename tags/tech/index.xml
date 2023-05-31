@@ -138,10 +138,10 @@ alt="image"
 &lt;p>&lt;a class="link" href="https://picgo.github.io/PicGo-Doc/" target="_blank" rel="noopener"
 >PicGo&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://irithys.com/p/blog-write/" target="_blank" rel="noopener"
->我写博客都用了哪些工具？&lt;/a>&lt;/p></description></item><item><title>Hugo | 添加评论系统</title><link>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;p>Update：用过 Cataus、Disqus，cataus 和同名主题配合起来很可爱，用了一段时间Disqus后对它的UI不太满意，再加上强制登录比较恼人，就换成象友推荐的Twikoo试试&lt;/p>
+>我写博客都用了哪些工具？&lt;/a>&lt;/p></description></item><item><title>Hugo | 给博客添加评论系统</title><link>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</link><pubDate>Fri, 14 Oct 2022 19:12:42 +0800</pubDate><guid>https://falasool.github.io/2022/hugo-comment-system-disqusjs/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;p>Update：用过 Cataus、Disqus，Cataus 和同名主题配合起来很可爱，用了一段时间 Disqus 后对它的 UI 不太满意，再加上强制登录比较恼人，就换成象友推荐的 Twikoo 试试&lt;/p>
 &lt;h2 id="twikoo">Twikoo&lt;/h2>
-&lt;h3 id="设置数据库mongodb">设置数据库MongoDB&lt;/h3>
+&lt;h3 id="设置数据库-mongodb">设置数据库 MongoDB&lt;/h3>
 &lt;p>按照 &lt;a class="link" href="https://twikoo.js.org/quick-start.html#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%83%A8%E7%BD%B2" target="_blank" rel="noopener"
 >官方文档&lt;/a> ，我用的 Vercel 部署&lt;/p>
 &lt;p>创建数据库，选 Free 方案，区域选择 &lt;code>AWS / N. Virginia (us-east-1)&lt;/code>，设置并保存好用户名和密码&lt;/p>
