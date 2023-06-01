@@ -307,7 +307,7 @@ alt=":ablobsweats:"
 &lt;p>重启之后莫名其妙好了&lt;/p>
 &lt;p>过了4天，又502了……&lt;/p>
 &lt;p>Update: 20230528再次 502&lt;/p>
-&lt;p>检查应用是否存在，存在&lt;/p>
+&lt;p>检查进程是否存在，存在&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -316,7 +316,7 @@ alt=":ablobsweats:"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ps aux &lt;span class="p">|&lt;/span> grep pleroma
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>查看日志&lt;/p>
+&lt;/div>&lt;p>查看 pleroma 日志&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -475,6 +475,15 @@ alt=":ablobsweats:"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/vda1 52G 23G 27G 46% /
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
+&lt;/div>&lt;p>查看 postgresql 日志&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">vim /var/log/postgresql/postgresql.log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
 &lt;/div>&lt;p>创建数据库文件的备份目录并赋权&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -484,6 +493,19 @@ alt=":ablobsweats:"
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">mkdir -p /pleromabackup
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod 777 /pleromabackup
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>允许 pleroma 用户免密登录数据库&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">vim /etc/postgresql/11/main/pg_hba.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">host replication repl 127.0.0.1/32 md5
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>备份数据库&lt;/p>
@@ -518,7 +540,9 @@ alt=":ablobsweats:"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11:32:27.912 &lt;span class="o">[&lt;/span>info&lt;span class="o">]&lt;/span> Pruning objects older than &lt;span class="m">15&lt;/span> days
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>整理数据库&lt;/p>
+&lt;/div>&lt;p>如果报错：&lt;code>–rpc-eval : RPC failed with reason :nodedown&lt;/code>，可能是因为没启动 Pleroma。感谢 &lt;a class="link" href="https://seviche.cc/" target="_blank" rel="noopener"
+>Seviche&lt;/a> !!&lt;/p>
+&lt;p>整理数据库&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -527,11 +551,7 @@ alt=":ablobsweats:"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">su pleroma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;./bin/pleroma_ctl database vacuum full&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://falasool.github.io/"
-loading="lazy"
-alt="image (1)"
->&lt;/p>
-&lt;p>0530执行记录&lt;/p>
+&lt;/div>&lt;p>0530执行记录&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -578,4 +598,23 @@ alt="image (1)"
 &lt;p>&lt;a class="link" href="https://dasgelobteland.github.io/posts/23pleroma/" target="_blank" rel="noopener"
 >https://dasgelobteland.github.io/posts/23pleroma/&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://blog.debula.ml/index.php/archives/5/#1.%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%EF%BC%9APleroma" target="_blank" rel="noopener"
->社交网络：Pleroma&lt;/a>&lt;/p></description></item></channel></rss>
+>社交网络：Pleroma&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://bigshans.github.io/post/troubleshoot-pleroma/" target="_blank" rel="noopener"
+>https://bigshans.github.io/post/troubleshoot-pleroma/&lt;/a>&lt;/p></description></item><item><title>Pleroma | 开启邮件服务（ZOHO）</title><link>https://falasool.github.io/2022/zoho-mail-services/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2022/zoho-mail-services/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;p>在 zoho.com 注册账号，选择 Free Plan，Add an existing domain，接着去验证域名&lt;/p>
+&lt;p>在域名托管商（比如 Cloudflare）添加一条 TXT 记录然后验证&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306020051407.png"
+loading="lazy"
+alt="image-20230602005133357"
+>&lt;/p>
+&lt;p>接着填写任意域名前缀，比如 admin，完成创建。跳过设置 Groups，来到 DNS Mapping，同样填写&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306020104815.png"
+loading="lazy"
+alt="image-20230602010444789"
+>&lt;/p>
+&lt;p>注意 DKIM&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogzmail_domain.webp"
+loading="lazy"
+alt="image"
+>&lt;/p>
+&lt;p>验证后完成，到 mail.zoho.com 测试收发邮件功能&lt;/p></description></item></channel></rss>
