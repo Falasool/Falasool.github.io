@@ -183,7 +183,601 @@
 &lt;p>&lt;a class="link" href="https://einverne.github.io/post/2015/12/things-to-do-after-buying-vps.html#change-default-shell" target="_blank" rel="noopener"
 >购买 VPS 之后需要做的事情&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://einverne.github.io/post/2021/07/vps-benchmark.html" target="_blank" rel="noopener"
->VPS 性能测试&lt;/a>&lt;/p></description></item><item><title>Pleroma | 维护日志(一)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</link><pubDate>Mon, 15 May 2023 12:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
+>VPS 性能测试&lt;/a>&lt;/p></description></item><item><title>Pleroma | 维护日志(二)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</link><pubDate>Mon, 15 May 2023 18:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</guid><description>&lt;h2 id="关闭开启注册">关闭/开启注册&lt;/h2>
+&lt;p>Settings &amp;gt; Instance &amp;gt; Registrations open&lt;/p>
+&lt;p>（站点名称、字数上限、投票选项上限、封禁其它实例等等都在 &lt;code>instance&lt;/code>）&lt;/p>
+&lt;h2 id="更换实例图标">更换实例图标&lt;/h2>
+&lt;p>分为三步：&lt;/p>
+&lt;ul>
+&lt;li>准备好 LOGO 文件&lt;/li>
+&lt;li>找到放 favicon 的位置&lt;/li>
+&lt;li>上传&lt;/li>
+&lt;/ul>
+&lt;p>具体来说：&lt;/p>
+&lt;p>找到本地要上传的图片的绝对路径，例如：&lt;code>/Users/user/Pictures/favicon.png&lt;/code>&lt;/p>
+&lt;p>定位服务器中 favicon 位置&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">find / -type f -iname favicon.png
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>参数说明：&lt;/p>
+&lt;p>&lt;code>find&lt;/code> 命令：根据用户指定的表达式在目录层次结构中搜索文件和目录&lt;/p>
+&lt;p>&lt;code>/&lt;/code>：在根目录范围内搜索&lt;/p>
+&lt;p>&lt;code>-type f&lt;/code>：指定文件类型 常规文件&lt;/p>
+&lt;p>&lt;code>-iname&lt;/code>：目标文件名（不区分大小写）&lt;/p>
+&lt;/blockquote>
+&lt;p>得到 favcion 的路径&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">/opt/pleroma/lib/pleroma-2.4.5-2-gd8e32646/priv/static/favicon.png
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>上传图标：另开一个终端窗口（因为当前终端已经登录了服务器，在服务器里查找还未上传的文件是找不到的），执行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">scp /Users/userName/Pictures/Pleroma/favicon.png root@11.11.11.11://opt/pleroma/lib/pleroma-2.5.2-13-g2d193861/priv/static/favicon.png
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>参数说明：&lt;/p>
+&lt;p>scp &amp;lt;本地文件路径&amp;gt;&amp;lt; vps用户名@服务器IP&amp;gt;:&amp;lt;目标路径&amp;gt;&lt;/p>
+&lt;/blockquote>
+&lt;p>以及，网页 logo 在 Settings &amp;gt; Frontend ，记得取消 Settings &amp;gt; Frontend &amp;gt; Logo mask&lt;/p>
+&lt;p>刷新网页，图标更改完毕 🎉&lt;/p>
+&lt;h2 id="怎么换一个前端">怎么换一个前端&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 下载到 /tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd /tmp &amp;amp;&amp;amp; curl -L https://gitlab.com/soapbox-pub/soapbox-fe/-/jobs/artifacts/v3.0.0-beta.1/download?job=build-production -o soapbox-fe.zip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 解压到 /var/lib/pleroma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">busybox unzip soapbox-fe.zip -o -d /var/lib/pleroma
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>刷新网页&lt;/p>
+&lt;h2 id="自定义表情">自定义表情&lt;/h2>
+&lt;p>表情来源：&lt;/p>
+&lt;p>&lt;a class="link" href="https://emojos.in/" target="_blank" rel="noopener"
+>https://emojos.in/&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://slackmojis.com/" target="_blank" rel="noopener"
+>https://slackmojis.com/&lt;/a>&lt;/p>
+&lt;p>或者 &lt;a class="link" href="https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/11/26/mastodon-manage.html" target="_blank" rel="noopener"
+>如何装饰你的站点：自定义CSS、中继站和自定义表情&lt;/a> 里提到的「偷表情神器」&lt;/p>
+&lt;p>把偷来的表情（&amp;hellip;）通过 SSH 客户端的 SFTP 功能上传到服务器的 &lt;code>/var/lib/pleroma/static/emoji&lt;/code> 目录下（或者你的自定义路径）&lt;/p>
+&lt;p>在 Admin FE 的 Settings &amp;gt; Emoji &amp;gt; Settings &amp;gt; Shortcode globs 里添加表情包目录的路径，比如：&lt;code>/emoji/**/*.png&lt;/code>、&lt;code>/emoji/**/*.gif&lt;/code> ，意味着 emoji 及其子目录下所有 png/gif 格式的文件都会被视作自定义表情包&lt;/p>
+&lt;p>点击 Reload emoji，OK&lt;/p>
+&lt;h2 id="放大-emoji">放大 Emoji&lt;/h2>
+&lt;p>&lt;a class="link" href="https://kyo.iroiro.party/posts/pleroma-largemoji/" target="_blank" rel="noopener"
+>Pleroma-fe 的 emoji 放大配置（？）&lt;/a>&lt;/p>
+&lt;h2 id="实例展示页面">实例展示页面&lt;/h2>
+&lt;p>在 Settings &amp;gt; Frontend &amp;gt; Redirect root no login 里改成 &lt;code>/about&lt;/code>&lt;/p>
+&lt;p>在 Admin FE &amp;gt; Settings &amp;gt; Others 改站点规则&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Hello!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ponderduck is a private instance and registration is by invitation only. If you wish to join, please contact the admin with your fediverse account information. 
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Special thanks to those who have helped me build this instance. Sending lots of love and respect your way!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Check out the Pleroma documentation to learn more.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>禁止未验证用户浏览时间线：Settings &amp;gt; Instance &amp;gt; Restrict Unauthenticated &amp;gt; Timelines/Profiles/Activites 根据需要更改&lt;/p>
+&lt;h2 id="自定义主题">自定义主题&lt;/h2>
+&lt;p>获取主题 or 自制：&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://fediverse.eu.org/discussion/27/%E4%BA%94%E5%88%86%E9%92%9F%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%BC%82%E4%BA%AE%E7%9A%84pleroma%E4%B8%BB%E9%A2%98" target="_blank" rel="noopener"
+>五分钟设计一个漂亮的pleroma主题&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://mikan.bangdream.moe/2022/11/21/recommend-settings-for-pleroma/" target="_blank" rel="noopener"
+>关于 Docker 下 Pleroma 实例部署的一些推荐设置&lt;/a>&lt;/p>
+&lt;p>或者 Google 「Pleroma FE theme json」&lt;/p>
+&lt;/blockquote>
+&lt;p>一些漂亮主题展示：&lt;/p>
+&lt;p>&lt;a class="link" href="https://mindpalace.michaelis.website/tech/pleroma-theme.html" target="_blank" rel="noopener"
+>https://mindpalace.michaelis.website/tech/pleroma-theme.html&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://plthemes.vulpes.one/" target="_blank" rel="noopener"
+>https://plthemes.vulpes.one/&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/themes-gallery/" target="_blank" rel="noopener"
+>https://suicablog.cobaltkiss.blue/posts/themes-gallery/&lt;/a>&lt;/p>
+&lt;p>添加主题的步骤：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>找到 themes 文件夹 &lt;code>find / -type d -iname themes&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>把下载的 &lt;code>.json&lt;/code> 文件添加到目标目录，比如我添加到了 &lt;code>/var/lib/pleroma/static/static/themes&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>然后在 &lt;code>/var/lib/pleroma/static/static/styles.json&lt;/code> 把刚刚的自定义主题添加进去，按如下格式&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;takeabreak&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;/static/themes/takeabreak.json&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;break&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;/static/themes/break.json&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>刷新网页，在设置里找到自定义主题，可以用了&lt;/p>
+&lt;p>本站默认主题在 Admin FE/Pleroma FE 里改，路径：Settings &amp;gt; Frontend &amp;gt; Themes&lt;/p>
+&lt;h2 id="连接中继">连接中继&lt;/h2>
+&lt;blockquote>
+&lt;p>中继的简介、重要性和中文中继推荐：https://mstdn.one/@list/106729842177738917&lt;/p>
+&lt;p>加不上某些中继，但是又想tl上出现更多嘟文怎么办？&lt;/p>
+&lt;ul>
+&lt;li>Kana告诉我一个办法：对于 Pleroma 实例而言，把 https://Pleroma实例域名/relay 当作中继连接来输入是可以关注这个实例的。&lt;/li>
+&lt;li>所以，我们可以访问 （https://the-federation.info/pleroma ）和（https://fedidb.org/network ）这两个fediverse黄页，手动添加自己心仪的pleroma实例。可以一口气关注所有的中文pleroma（因为太少），还可以关注几个头部外文实例（bae.st的人发黄图不选NFSW！）&lt;/li>
+&lt;/ul>
+&lt;p>——来自 &lt;a class="link" href="https://dasgelobteland.github.io/posts/22pleroma/" target="_blank" rel="noopener"
+>我的pleroma搭建笔记&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>几个中文中继：https://mstdn.one/@list/106729842177738917&lt;/p>
+&lt;h2 id="备份">备份&lt;/h2>
+&lt;p>Pleroma 需要备份的地方有三个：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>/etc/pleroma&lt;/code>：存储启动时的配置文件。如果你开启了数据库存储配置，也可以不用备份；&lt;/li>
+&lt;li>&lt;code>/var/lib/pleroma&lt;/code>：存储用户创建的静态文件（自定义表情、头像、上传的文件、前端、……），如果不是经常上传文件，可以按月备份；&lt;/li>
+&lt;li>PostgreSQL 中的 pleroma 数据库，可以通过 &lt;code>pg_dump&lt;/code> 备份：&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo -Hu postgres pg_dump -d pleroma --format=custom -f /var/lib/postgresql/pleroma.pgdump
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="续期ssl证书">续期SSL证书&lt;/h2>
+&lt;p>根据 &lt;a class="link" href="[https://eff-certbot.readthedocs.io/en/stable/using.html#renewing-certificates]%28https://blog.csdn.net/wanghao_sh/article/details/124977429%29" >官方文档&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">apt-get update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install snapd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">snap install core
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">snap install hello-world
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hello-world
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">snap install --classic certbot
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">snap set certbot trust-plugin-with-root=ok
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">snap install certbot-dns-cloudflare
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>（？有点困惑，上面折腾了一大堆，最后简简单单敲个 &lt;code>certbot&lt;/code> 然后跟着选就好了）&lt;/p>
+&lt;h2 id="常用命令">常用命令&lt;/h2>
+&lt;p>查看服务状态&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl status &lt;span class="o">[&lt;/span>options&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看内存&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">top
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看负载&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">htop
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;a class="link" href="https://www.onitroad.com/jc/linux/how-to-install-htop-on-debian-linux-using-apt-get.html" target="_blank" rel="noopener"
+>如何在Debian Linux上安装htop&lt;/a>&lt;/p>
+&lt;h2 id="502-bad-gateway">502 Bad Gateway&lt;/h2>
+&lt;p>查看 Nginx 错误日志&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">vim /var/log/nginx/error.log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[error] 825#825 :*8459 connect() failed (111: Connection refused)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">while connecting to upstream, client: x.x.x.x, server: ponderduck.cc,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">request: &amp;#34;POST /inbox HTTP/2.0&amp;#34;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">upstream: &amp;#34;http:127.0.0.1:4000/inbox&amp;#34;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">host: &amp;#34;ponderduck.cc&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>分析：client请求资源时，转发到127.0.0.1:4000去了&lt;/p>
+&lt;/blockquote>
+&lt;p>检查4000端口，返回为空&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">telnet &amp;lt;ip&amp;gt; &lt;span class="m">4000&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>netstat没有发现占用端口4000的程序&lt;/p>
+&lt;p>附上 Debula 原话：&lt;/p>
+&lt;blockquote>
+&lt;p>OTP安装的Pleroma默认监听的是本机的127.0.0.1:4000
+也就是说，在VPS上你可以直接通过 &lt;a class="link" href="http://127.0.0.1:4000/" target="_blank" rel="noopener"
+>http://127.0.0.1:4000&lt;/a> 访问 Pleroma，比如
+curl -v http://127.0.0.1:4000/api/v1/instance&lt;/p>
+&lt;p>NginX负责把外部的连接请求转发到 127.0.0.1:4000，得到响应后转发回去 &lt;img src="https://bucket.alive.bar/cache/custom_emojis/images/000/163/820/original/7ffe1103db94842e.png"
+loading="lazy"
+alt=":ablobpanic:"
+>&lt;/p>
+&lt;p>如果你用 netstat 没发现 4000 端口的程序，说明 Pleroma 挂了，该去检查 Pleroma 的错误日志 &lt;img src="https://bucket.alive.bar/cache/custom_emojis/images/000/047/971/original/c7b0bea715cd48c1.png"
+loading="lazy"
+alt=":ablobsweats:"
+>&lt;/p>
+&lt;p>（不过确实很奇怪，OTP版本应该会自动重启的……）&lt;/p>
+&lt;/blockquote>
+&lt;p>pleroma位置 /opt/pleroma&lt;/p>
+&lt;p>查看pleroma日志&lt;code>journalctl -u pleroma&lt;/code>,为空&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">-- Logs begin at Wed 2023-03-08 16:18:56 HKT, end at Wed 2023-03-08 19:38:34 HKT. --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-- No entries --
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>于是去 &lt;code>/var/log/syslog&lt;/code> 看日志，都是info，好像也没什么问题&lt;/p>
+&lt;p>重启之后莫名其妙好了&lt;/p>
+&lt;p>过了4天，又502了……&lt;/p>
+&lt;p>Update: 20230528再次 502&lt;/p>
+&lt;p>检查进程是否存在，存在&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ps aux &lt;span class="p">|&lt;/span> grep pleroma
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看 pleroma 日志&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">journalctl -u pleroma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pleroma: cat: write error: No space left on device
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pleroma: ERROR: Cannot start release because it could not write /opt/pleroma/tmp/pleroma-2.4.5-2-gd8e32646-2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>没有足够空间写入运行时配置文件&lt;/p>
+&lt;p>查看内存使用情况&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">free -m
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> total used free shared buff/cache available
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Mem: 987 144 117 30 724 634
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Swap: 2399 3 2396
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看磁盘使用情况（满了耶&amp;hellip;&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">df -h
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Filesystem Size Used Avail Use% Mounted on
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/vda1 24G 24G 0 100% /
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看各个文件占用大小&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">du -sh *
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2.4G swapfile
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2.7G usr
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">19G var
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 清空日志，稍微腾出一点空间了&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat /dev/null &amp;gt; filename
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>/usr/lib/postgresql/11/bin/pg_ctl&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">/etc/postgresql/11/main#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── conf.d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── environment
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── pg_ctl.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── pg_hba.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── pg_ident.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── postgresql.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└── start.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>数据库常用命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 登录 PG 数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">psql -U postgres
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看所有数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">\l&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 进入某数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">\c&lt;/span> pg-name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看某数据库中的所有表名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">select&lt;/span> tablename from pg_tables&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 退出数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ctrl + z
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看数据库大小，是小服务器不能承受之重&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">postgres=# SELECT pg_size_pretty( pg_database_size(&amp;#39;pleroma&amp;#39;) );
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pg_size_pretty
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">----------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 14 GB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(1 row)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>升级服务器，然后查看磁盘占用情况&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">df -h
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Filesystem Size Used Avail Use% Mounted on
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/vda1 52G 23G 27G 46% /
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看 postgresql 日志&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">vim /var/log/postgresql/postgresql.log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>创建数据库文件的备份目录并赋权&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">mkdir -p /pleromabackup
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod 777 /pleromabackup
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>允许 pleroma 用户免密登录数据库&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">vim /etc/postgresql/11/main/pg_hba.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">host replication repl 127.0.0.1/32 md5
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>备份数据库&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 切换用户为 postgres&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">su - postgres
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 登录数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">psql -U postgres
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 备份&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">postgres&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="c1"># \! pg_dump pleroma -f /pleromabackup/pleroma.pgdump&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>删除 15 天前的外站缓存（这个 n 天是在 Admin FE - settings - instance - Remote post retention days 里修改的）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">su pleroma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;./bin/pleroma_ctl database prune_objects&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11:32:27.912 &lt;span class="o">[&lt;/span>info&lt;span class="o">]&lt;/span> Pruning objects older than &lt;span class="m">15&lt;/span> days
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果报错：&lt;code>–rpc-eval : RPC failed with reason :nodedown&lt;/code>，可能是因为没启动 Pleroma。感谢 &lt;a class="link" href="https://seviche.cc/" target="_blank" rel="noopener"
+>Seviche&lt;/a> !!&lt;/p>
+&lt;p>整理数据库&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">su pleroma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;./bin/pleroma_ctl database vacuum full&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>0530执行记录&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 重新生成数据库配置文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">su pleroma -s $SHELL -lc &amp;#34;./bin/pleroma_ctl instance gen --output /tmp/config.exs --output-psql /tmp/setup_db.psql&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 清空数据库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -Hu postgres psql -c &amp;#39;DROP DATABASE pleroma;&amp;#39;;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">DROP DATABASE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -Hu postgres psql -c &amp;#39;DROP USER pleroma;&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">DROP ROLE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 接下来该重建数据库了
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -Hu postgres psql -f /tmp/setup_db.psql
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 重建后的数据库size
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">postgres=# SELECT pg_size_pretty( pg_database_size(&amp;#39;pleroma&amp;#39;) );
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pg_size_pretty
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">----------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 8045 kB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(1 row)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 恢复数据16:17-
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -u postgres psql pleroma &amp;lt; /pleromabackup/pleroma.pgdump
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Pleroma | 维护日志(一)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</link><pubDate>Mon, 15 May 2023 12:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
 >在 Debian 10 / Ubuntu 20.04 上安装 Pleroma&lt;/a>，感谢 Suica！&lt;/p>
 &lt;h2 id="关闭开启注册">关闭/开启注册&lt;/h2>
 &lt;p>Settings &amp;gt; Instance &amp;gt; Registrations open&lt;/p>
