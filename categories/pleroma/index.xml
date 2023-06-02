@@ -1,4 +1,189 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pleroma on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/pleroma/</link><description>Recent content in Pleroma on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 15 May 2023 18:52:31 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/pleroma/index.xml" rel="self" type="application/rss+xml"/><item><title>Pleroma | 维护日志</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</link><pubDate>Mon, 15 May 2023 18:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pleroma on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/pleroma/</link><description>Recent content in Pleroma on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 01 Jun 2023 23:29:38 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/pleroma/index.xml" rel="self" type="application/rss+xml"/><item><title>Pleroma | 购买服务器及之后要做什么</title><link>https://falasool.github.io/2023/buy-and-set-ups/</link><pubDate>Thu, 01 Jun 2023 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2023/buy-and-set-ups/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;h2 id="购买服务器">购买服务器&lt;/h2>
+&lt;p>选 intel - 美西机房 - Debian11 - 1C1G 25G SSD 1TB&lt;/p>
+&lt;p>添加 SSH，生成密钥&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ssh-keygen -t rsa -b 4096 -C &amp;#34;example comment&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>打印出公钥内容，粘贴进 VPS 服务商的界面去&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> cat /Users/userName/.ssh/id_rsa.pub
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>用 SSH 终端远程登录，测试 IP 中国大陆是否可用&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="http://ping.pe/" target="_blank" rel="noopener"
+>http://ping.pe/&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://ping.chinaz.com/" target="_blank" rel="noopener"
+>https://ping.chinaz.com/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="修改服务器时区">修改服务器时区&lt;/h2>
+&lt;p>查看当前时区&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">admin@xxx:~# date
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Fri 02 Jun 2023 01:25:08 PM UTC
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改时区，然后再次检查当前时区&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 删除默认时区
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# rm -rf /etc/localtime
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 修改为上海
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 检查
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# date
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Fri 02 Jun 2023 01:27:14 PM CST
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="安装常用工具">安装常用工具&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">apt-get install curl wget screen tree git htop bash-completion fail2ban -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>
+&lt;p>curl：请求 web 服务器&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>wget：下载软件包&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>screen：终端管理工具，随手 &lt;code>screen -S name&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>tree：显示目录结构&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>htop：监控进程&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>bash-completion：命令自动补全工具，按 [Tab][Tab]&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 定位 bash-completion 配置文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# find / -name &amp;#34;bash_completion.d&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/bash_completion.d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 添加 docker 的自动补全，重启 bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# cd /etc/bash_completion.d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# curl -L -O https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>fail2ban：防止暴力破解攻击，在 &lt;code>/etc/fail2ban/jail.conf&lt;/code> 修改配置，然后激活&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 检验有没有正确启动
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client ping
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看目前启用的规则
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client status
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看某个规则下被封禁的次数、ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client status sshd
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="更改终端颜色">更改终端颜色&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 进入 /etc/profile 文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/profile
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 增加这一行
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PS1=&amp;#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 更新文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">source /etc/profile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="添加-swap">添加 SWAP&lt;/h2>
+&lt;p>确认是否已存在 SWAP&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">free -m
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>有 Swap 项而且 total 列不为零，说明 Swap 已存在，可以自行修改分区容量，参考：为 &lt;a class="link" href="https://www.vvave.net/archives/add-swap-and-repartition-swap-for-linux.html" target="_blank" rel="noopener"
+>Linux 添加 swap 分区或修改 swap 分区容量&lt;/a>&lt;/p>
+&lt;h2 id="防火墙">防火墙&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ufw allow OpenSSH
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow http
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow https
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 80/tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 443/tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw status
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://einverne.github.io/post/2015/12/things-to-do-after-buying-vps.html#change-default-shell" target="_blank" rel="noopener"
+>购买 VPS 之后需要做的事情&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://einverne.github.io/post/2021/07/vps-benchmark.html" target="_blank" rel="noopener"
+>VPS 性能测试&lt;/a>&lt;/p></description></item><item><title>Pleroma | 维护日志</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</link><pubDate>Mon, 15 May 2023 18:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
 >在 Debian 10 / Ubuntu 20.04 上安装 Pleroma&lt;/a>，感谢 Suica！&lt;/p>
 &lt;h2 id="关闭开启注册">关闭/开启注册&lt;/h2>
 &lt;p>Settings &amp;gt; Instance &amp;gt; Registrations open&lt;/p>

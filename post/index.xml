@@ -1,4 +1,189 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/post/</link><description>Recent content in Posts on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 29 May 2023 00:48:16 +0800</lastBuildDate><atom:link href="https://falasool.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Weekly | 一直在下雨，我沉浸在SD的世界里</title><link>https://falasool.github.io/2023/weekly-may22-may28/</link><pubDate>Mon, 29 May 2023 00:48:16 +0800</pubDate><guid>https://falasool.github.io/2023/weekly-may22-may28/</guid><description>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogimage.webp" alt="Featured image of post Weekly | 一直在下雨，我沉浸在SD的世界里" />&lt;p>这周开始每天做一两个动词变形的练习，找到了一个很好的动词变形的网站 &lt;a class="link" href="https://conjugator.reverso.net/conjugation-japanese.html" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/post/</link><description>Recent content in Posts on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 03 Jun 2023 01:09:16 +0800</lastBuildDate><atom:link href="https://falasool.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Dgsdg</title><link>https://falasool.github.io/2023/dgsdg/</link><pubDate>Sat, 03 Jun 2023 01:09:16 +0800</pubDate><guid>https://falasool.github.io/2023/dgsdg/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=713ff497" alt="Featured image of post Dgsdg" /></description></item><item><title>Pleroma | 购买服务器及之后要做什么</title><link>https://falasool.github.io/2023/buy-and-set-ups/</link><pubDate>Thu, 01 Jun 2023 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2023/buy-and-set-ups/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;h2 id="购买服务器">购买服务器&lt;/h2>
+&lt;p>选 intel - 美西机房 - Debian11 - 1C1G 25G SSD 1TB&lt;/p>
+&lt;p>添加 SSH，生成密钥&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ssh-keygen -t rsa -b 4096 -C &amp;#34;example comment&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>打印出公钥内容，粘贴进 VPS 服务商的界面去&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> cat /Users/userName/.ssh/id_rsa.pub
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>用 SSH 终端远程登录，测试 IP 中国大陆是否可用&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="http://ping.pe/" target="_blank" rel="noopener"
+>http://ping.pe/&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://ping.chinaz.com/" target="_blank" rel="noopener"
+>https://ping.chinaz.com/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="修改服务器时区">修改服务器时区&lt;/h2>
+&lt;p>查看当前时区&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">admin@xxx:~# date
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Fri 02 Jun 2023 01:25:08 PM UTC
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改时区，然后再次检查当前时区&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 删除默认时区
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# rm -rf /etc/localtime
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 修改为上海
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 检查
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# date
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Fri 02 Jun 2023 01:27:14 PM CST
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="安装常用工具">安装常用工具&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">apt-get install curl wget screen tree git htop bash-completion fail2ban -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>
+&lt;p>curl：请求 web 服务器&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>wget：下载软件包&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>screen：终端管理工具，随手 &lt;code>screen -S name&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>tree：显示目录结构&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>htop：监控进程&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>bash-completion：命令自动补全工具，按 [Tab][Tab]&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 定位 bash-completion 配置文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# find / -name &amp;#34;bash_completion.d&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/bash_completion.d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 添加 docker 的自动补全，重启 bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# cd /etc/bash_completion.d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# curl -L -O https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>fail2ban：防止暴力破解攻击，在 &lt;code>/etc/fail2ban/jail.conf&lt;/code> 修改配置，然后激活&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 检验有没有正确启动
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client ping
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看目前启用的规则
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client status
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看某个规则下被封禁的次数、ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client status sshd
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="更改终端颜色">更改终端颜色&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 进入 /etc/profile 文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/profile
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 增加这一行
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PS1=&amp;#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 更新文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">source /etc/profile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="添加-swap">添加 SWAP&lt;/h2>
+&lt;p>确认是否已存在 SWAP&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">free -m
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>有 Swap 项而且 total 列不为零，说明 Swap 已存在，可以自行修改分区容量，参考：为 &lt;a class="link" href="https://www.vvave.net/archives/add-swap-and-repartition-swap-for-linux.html" target="_blank" rel="noopener"
+>Linux 添加 swap 分区或修改 swap 分区容量&lt;/a>&lt;/p>
+&lt;h2 id="防火墙">防火墙&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ufw allow OpenSSH
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow http
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow https
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 80/tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 443/tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw status
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://einverne.github.io/post/2015/12/things-to-do-after-buying-vps.html#change-default-shell" target="_blank" rel="noopener"
+>购买 VPS 之后需要做的事情&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://einverne.github.io/post/2021/07/vps-benchmark.html" target="_blank" rel="noopener"
+>VPS 性能测试&lt;/a>&lt;/p></description></item><item><title>Weekly | 一直在下雨，我沉浸在SD的世界里</title><link>https://falasool.github.io/2023/weekly-may22-may28/</link><pubDate>Mon, 29 May 2023 00:48:16 +0800</pubDate><guid>https://falasool.github.io/2023/weekly-may22-may28/</guid><description>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogimage.webp" alt="Featured image of post Weekly | 一直在下雨，我沉浸在SD的世界里" />&lt;p>这周开始每天做一两个动词变形的练习，找到了一个很好的动词变形的网站 &lt;a class="link" href="https://conjugator.reverso.net/conjugation-japanese.html" target="_blank" rel="noopener"
 >Reverso-Japanese verb conjugation&lt;/a> ，输入动词的任意形式就可以看到它的全部变形。&lt;/p>
 &lt;p>真正的互联网越用越觉得好用呢，这个月从五一假期去看了 The First Slum Dunk 开始就反复去看灌篮高手的电影、漫画、看 TV 动画，晚上躺在床上了还想回味回味井上完美的分镜和故事，就会摸出手机随便找个网站看一会，有一天翻到一个英文站 &lt;a class="link" href="mangareader.to" >mangareader&lt;/a>，它怎么能做的这么好，可以选择按单行本/话阅读，可以选择语言：日语/英语/法语，可以选垂直滑动和水平翻页，没有刺眼闪烁的广告……真好。这样简洁优美，大部分功能免费的英文在线服务有很多，图片编辑、压缩解压文件、对比代码，还有开头说的日语学习网站，我每天都在用，并且发自内心的感谢ta们。&lt;/p>
 &lt;p>我会好奇，这些网站里和页面保持和谐的不多的广告能不能覆盖运营费用，能不能盈利，应该是可以的？毕竟长年为爱发电太违反人性了，那为什么同样是挣钱，中国运营者的网站做得像一根贴满牛皮癣广告的电线杆呢。&lt;/p>
