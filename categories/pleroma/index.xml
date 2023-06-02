@@ -1,4 +1,393 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pleroma on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/pleroma/</link><description>Recent content in Pleroma on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 01 Jun 2023 23:29:38 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/pleroma/index.xml" rel="self" type="application/rss+xml"/><item><title>Pleroma | 购买服务器及之后要做什么</title><link>https://falasool.github.io/2023/buy-and-set-ups/</link><pubDate>Thu, 01 Jun 2023 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2023/buy-and-set-ups/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pleroma on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/pleroma/</link><description>Recent content in Pleroma on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 03 Jun 2023 01:29:15 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/pleroma/index.xml" rel="self" type="application/rss+xml"/><item><title>Pleroma | 在 Debian 上搭建 pleroma 实例</title><link>https://falasool.github.io/2023/new-pleroma-isntance-on-debian11/</link><pubDate>Sat, 03 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/new-pleroma-isntance-on-debian11/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;h2 id="前置步骤">前置步骤&lt;/h2>
+&lt;h3 id="安装依赖">安装依赖&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt-get update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 安装依赖&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install unzip libncurses5 postgresql postgresql-contrib nginx snapd libmagic-dev
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install imagemagick ffmpeg libimage-exiftool-perl
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="postgresql-性能调优">&lt;del>PostgreSQL 性能调优&lt;/del>&lt;/h3>
+&lt;p>&lt;del>根据 pgTune 修改配置文件&lt;/del>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">vim /etc/postgresql/13/main/postgresql.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我把 .conf 改得出错了，所以这一步没做&lt;/p>
+&lt;p>重启 PostgreSQL&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">systemctl restart postgresql
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="安装-pleroma">安装 Pleroma&lt;/h2>
+&lt;ol>
+&lt;li>创建 Pleroma 用户&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">adduser --system --shell /bin/false --home /opt/pleroma pleroma
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>创建 pleroma 用户，指定家目录为 &lt;code>/opt/pleroma&lt;/code>，用于配置 pleroma 的环境和文件，并禁止登录&lt;/p>
+&lt;ol start="2">
+&lt;li>检测系统架构与 libc 版本，并根据结果设置环境变量 FLAVOUR&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">arch&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="k">$(&lt;/span>uname -m&lt;span class="k">)&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">if&lt;/span> &lt;span class="o">[&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$arch&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;x86_64&amp;#34;&lt;/span> &lt;span class="o">]&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">then&lt;/span> &lt;span class="nv">arch&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;amd64&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">elif&lt;/span> &lt;span class="o">[&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$arch&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;armv7l&amp;#34;&lt;/span> &lt;span class="o">]&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">then&lt;/span> &lt;span class="nv">arch&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;arm&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">elif&lt;/span> &lt;span class="o">[&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$arch&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;aarch64&amp;#34;&lt;/span> &lt;span class="o">]&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">then&lt;/span> &lt;span class="nv">arch&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;arm64&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">else&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Unsupported arch: &lt;/span>&lt;span class="nv">$arch&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&amp;gt;&lt;span class="p">&amp;amp;&lt;/span>2&lt;span class="p">;&lt;/span>&lt;span class="k">fi&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">if&lt;/span> getconf GNU_LIBC_VERSION&amp;gt;/dev/null&lt;span class="p">;&lt;/span>&lt;span class="k">then&lt;/span> &lt;span class="nv">libc_postfix&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">elif&lt;/span> &lt;span class="o">[&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="k">$(&lt;/span>ldd 2&amp;gt;&lt;span class="p">&amp;amp;&lt;/span>1&lt;span class="p">|&lt;/span>head -c 9&lt;span class="k">)&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;musl libc&amp;#34;&lt;/span> &lt;span class="o">]&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">then&lt;/span> &lt;span class="nv">libc_postfix&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;-musl&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">elif&lt;/span> &lt;span class="o">[&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="k">$(&lt;/span>find /lib/libc.musl*&lt;span class="p">|&lt;/span>wc -l&lt;span class="k">)&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">]&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">then&lt;/span> &lt;span class="nv">libc_postfix&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;-musl&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">else&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Unsupported libc&amp;#34;&lt;/span>&amp;gt;&lt;span class="p">&amp;amp;&lt;/span>2&lt;span class="p">;&lt;/span>&lt;span class="k">fi&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$arch$libc_postfix&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 输出&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">amd64
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>所以设置环境变量为&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">FLAVOUR&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;amd64&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>下载 pleroma 文件到 /tmp 目录并解压&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">su pleroma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">curl &amp;#39;https://git.pleroma.social/api/v4/projects/2/jobs/artifacts/stable/download?job=&lt;/span>&lt;span class="nv">$FLAVOUR&lt;/span>&lt;span class="s2">&amp;#39; -o /tmp/pleroma.zip
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">unzip /tmp/pleroma.zip -d /tmp/
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>移动文件到 /opt/pleroma 并删除 /tmp&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">su pleroma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">mv /tmp/release/* /opt/pleroma
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">rmdir /tmp/release
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">rm /tmp/pleroma.zip
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="5">
+&lt;li>创建各种目录及赋权操作 uploads 目录并赋权&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># uploads 目录 &amp;amp; 赋权&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /var/lib/pleroma/uploads
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R pleroma /var/lib/pleroma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># static 目录 &amp;amp; 设置所有者为 pleroma&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /var/lib/pleroma/static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R pleroma /var/lib/pleroma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 配置文件目录 &amp;amp; 设置所有者为 pleroma&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /etc/pleroma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R pleroma /etc/pleroma
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="6">
+&lt;li>生成配置文件&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">su pleroma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;./bin/pleroma_ctl instance gen --output /etc/pleroma/config.exs --output-psql /tmp/setup_db.psql&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>回答若干问题&lt;/p>
+&lt;ol start="7">
+&lt;li>创建 postgres 数据库&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> su postgres -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;psql -f /tmp/setup_db.psql&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="8">
+&lt;li>更新数据库 schema&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">su pleroma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;./bin/pleroma_ctl migrate&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="9">
+&lt;li>启动实例&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">su pleroma -s $SHELL -lc &amp;#34;./bin/pleroma daemon&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="10">
+&lt;li>等待一会检测实例运行情况&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">curl http://localhost:4000/api/v1/instance
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="10">
+&lt;li>暂停实例运行&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">su pleroma -s $SHELL -lc &amp;#34;./bin/pleroma stop&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="通配符-ssl-证书自动续期">通配符 SSL 证书自动续期&lt;/h2>
+&lt;p>安装 certbot&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">snap install core
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">snap refresh core
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">snap install --classic certbot
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s /snap/bin/certbot /usr/bin/certbot
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">snap &lt;span class="nb">set&lt;/span> certbot trust-plugin-with-root&lt;span class="o">=&lt;/span>ok
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">snap install certbot-dns-cloudflare
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>放置凭据&lt;/p>
+&lt;p>Token 在 &lt;a class="link" href="https://dash.cloudflare.com/profile/api-tokens" target="_blank" rel="noopener"
+>https://dash.cloudflare.com/profile/api-tokens&lt;/a> 生成&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo mkdir -p /root/.secrets/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo touch /root/.secrets/cloudflare.ini
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加/.secrets目录与cloudflare.ini文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo chmod &lt;span class="m">0700&lt;/span> /root/.secrets/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo chmod &lt;span class="m">0400&lt;/span> /root/.secrets/cloudflare.ini
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 指定权限&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /root/.secrets/cloudflare.ini
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Cloudflare API token used by Certbot&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">dns_cloudflare_api_token&lt;/span> &lt;span class="o">=&lt;/span> 0123456789abcdef0123456789abcdef01234567
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>申请证书&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">certbot certonly &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> --dns-cloudflare &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> --dns-cloudflare-credentials ~/.secrets/cloudflare.ini &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> -d example.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -d *.example.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-stylus" data-lang="stylus">&lt;span class="line">&lt;span class="cl">&lt;span class="err">certbot&lt;/span> &lt;span class="err">certonly&lt;/span> &lt;span class="err">\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="err">dns&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="err">cloudflare&lt;/span> &lt;span class="err">\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="err">dns&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="err">cloudflare&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="err">credentials&lt;/span> &lt;span class="o">~/&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">secrets&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="err">cloudflare&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">ini&lt;/span> &lt;span class="err">\&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span>&lt;span class="err">d&lt;/span> &lt;span class="err">ponderduck&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">cc&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span>&lt;span class="err">d&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">ponderduck&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">cc&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>测试自动延期&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">certbot renew --dry-run
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="nginx">Nginx&lt;/h2>
+&lt;p>复制 Pleroma 的 nginx 配置到 nginx 目录&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cp /opt/pleroma/installation/pleroma.nginx /etc/nginx/sites-available/pleroma.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s /etc/nginx/sites-available/pleroma.conf /etc/nginx/sites-enabled/pleroma.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>编辑 Pleroma 的 nginx 配置文件，改成自己的域名&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">vim /etc/nginx/sites-available/pleroma.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里改成&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">location / &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="m">301&lt;/span> https://&amp;lt;domain&amp;gt;&lt;span class="nv">$request_uri&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重启 nginx&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">nginx -t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start nginx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx -s reload
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="设置系统服务">设置系统服务&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cp /opt/pleroma/installation/pleroma.service /etc/systemd/system/pleroma.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start pleroma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> pleroma
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以访问啦&lt;/p>
+&lt;h2 id="创建管理员账户">创建管理员账户&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-perl" data-lang="perl">&lt;span class="line">&lt;span class="cl">&lt;span class="n">cd&lt;/span> &lt;span class="sr">/opt/&lt;/span>&lt;span class="n">pleroma&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">bin&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">su&lt;/span> &lt;span class="n">pleroma&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">s&lt;/span> &lt;span class="nv">$SHELL&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="nb">lc&lt;/span> &lt;span class="s">&amp;#34;./bin/pleroma_ctl user new &amp;lt;joeuser&amp;gt; &amp;lt;joeuser@sld.tld&amp;gt; --admin&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-perl" data-lang="perl">&lt;span class="line">&lt;span class="cl">&lt;span class="n">cd&lt;/span> &lt;span class="sr">/opt/&lt;/span>&lt;span class="n">pleroma&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">bin&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">su&lt;/span> &lt;span class="n">pleroma&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">s&lt;/span> &lt;span class="nv">$SHELL&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="nb">lc&lt;/span> &lt;span class="s">&amp;#34;./bin/pleroma_ctl user new admin admin@ponderduck.cc --admin&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
+>在 Debian 10 / Ubuntu 20.04 上安装 Pleroma &lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/wildcard-with-cloudflare-using-certbot/" target="_blank" rel="noopener"
+>通配符域名证书申请与自动续费（Nginx，Debian 10）&lt;/a>&lt;/p></description></item><item><title>Pleroma | 购买服务器及之后要做什么</title><link>https://falasool.github.io/2023/buy-and-set-ups/</link><pubDate>Thu, 01 Jun 2023 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2023/buy-and-set-ups/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="购买服务器">购买服务器&lt;/h2>
 &lt;p>选 intel - 美西机房 - Debian11 - 1C1G 25G SSD 1TB&lt;/p>
 &lt;p>添加 SSH，生成密钥&lt;/p>
