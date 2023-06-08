@@ -387,7 +387,9 @@
 &lt;p>&lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
 >在 Debian 10 / Ubuntu 20.04 上安装 Pleroma &lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/wildcard-with-cloudflare-using-certbot/" target="_blank" rel="noopener"
->通配符域名证书申请与自动续费（Nginx，Debian 10）&lt;/a>&lt;/p></description></item><item><title>Pleroma | 购买服务器及之后要做什么</title><link>https://falasool.github.io/2023/buy-and-set-ups/</link><pubDate>Thu, 01 Jun 2023 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2023/buy-and-set-ups/</guid><description>&lt;!-- raw HTML omitted -->
+>通配符域名证书申请与自动续费（Nginx，Debian 10）&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://lily-is.land/infra/pleroma/-/blob/servant/docs/configuration/cheatsheet.md" target="_blank" rel="noopener"
+>Configuration Cheat Sheet&lt;/a>&lt;/p></description></item><item><title>Pleroma | 购买服务器及之后要做什么</title><link>https://falasool.github.io/2023/buy-and-set-ups/</link><pubDate>Thu, 01 Jun 2023 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2023/buy-and-set-ups/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="购买服务器">购买服务器&lt;/h2>
 &lt;p>选 intel - 美西机房 - Debian11 - 1C1G 25G SSD 1TB&lt;/p>
 &lt;p>添加 SSH，生成密钥&lt;/p>
