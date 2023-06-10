@@ -667,6 +667,22 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(1 row)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
+&lt;/div>&lt;h2 id="磁盘">磁盘&lt;/h2>
+&lt;h3 id="自动清理-tmp-目录">自动清理 tmp 目录&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 打开系统级别的 crontab
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">crontab -e
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在文件末尾粘贴保存以下命令（每天 00:00 删除 最近三天未使用并不属于 root 用户的文件）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0 0 * * * sudo find /tmp -type f ! -user root -atime +3 -delete
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
 &lt;/div></description></item><item><title>Pleroma | 维护日志(一)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</link><pubDate>Mon, 15 May 2023 12:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
 >在 Debian 10 / Ubuntu 20.04 上安装 Pleroma&lt;/a>，感谢 Suica！&lt;/p>
 &lt;h2 id="关闭开启注册">关闭/开启注册&lt;/h2>
