@@ -583,7 +583,10 @@
 >@RMBMADE&lt;/a> 把自己的 SD 相关同人制品的源文件公开了，我拿去下单了定制短袖，希望会好看，然后给太太 repo。&lt;/p>
 &lt;p>这两天忙活着装修博客，昨天下雨，今天教练不在，也没练车。今天（周日）更是因为鸭站下线什么事都没干。还好已经发现是磁盘撑满的问题，下周解决。&lt;/p>
 &lt;p>还剪了头发，我自己看像个香菇，希望洗了之后不要这么蓬了。另外阿达帕林涂在泛红有点痛的地方真有用，记得过十分钟去洗掉。最后，不运动肚子真的会痛给我看，呀今天忙着捣鼓赛博炼金炉又没运动，忏悔，下周一定。&lt;/p>
-&lt;p>晚安。&lt;/p></description></item><item><title>Pleroma | 维护日志(二)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</link><pubDate>Mon, 15 May 2023 18:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</guid><description>&lt;h2 id="数据库相关">数据库相关&lt;/h2>
+&lt;p>晚安。&lt;/p></description></item><item><title>Pleroma | 维护日志(二)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</link><pubDate>Mon, 15 May 2023 18:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</guid><description>&lt;p>前情：postgreSQL 数据库达到了惊人的 15G，把硬盘撑爆了且抢修无果。这是炸站重来后的运维日志。&lt;a class="link" href="https://ponder.lol/2023/pleroma-operation-and-maintenance2/" target="_blank" rel="noopener"
+>Pleroma | 维护日志(一)&lt;/a> 已记录的内容不再重复&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;h2 id="数据库相关">数据库相关&lt;/h2>
 &lt;ol>
 &lt;li>登录数据库，报错：psql: error: FATAL: Peer authentication failed for user &amp;ldquo;postgres&amp;rdquo;&lt;/li>
 &lt;/ol>
@@ -606,8 +609,9 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ol start="2">
-&lt;li>来自 &lt;a class="link" href="https://blog.debula.ml/" target="_blank" rel="noopener"
->@debula&lt;/a> 的 psql 援手！&lt;/li>
+&lt;li>&lt;a class="link" href="https://blog.debula.ml/" target="_blank" rel="noopener"
+>@debula&lt;/a> 和 &lt;a class="link" href="https://seviche.cc/about" target="_blank" rel="noopener"
+>@Seviche&lt;/a> 帮忙提取了我的远程缓存 orz，记录一下：&lt;/li>
 &lt;/ol>
 &lt;p>今天尝试了一下 ，在 JSON 中可以使用 &lt;code>-&amp;gt;&amp;gt;&lt;/code> 来提取 jsonb 的 key 对应的 value，比如：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -667,7 +671,12 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(1 row)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="磁盘">磁盘&lt;/h2>
+&lt;/div>&lt;p>也可以看这篇超棒的博客：&lt;a class="link" href="https://blog.debula.ml/index.php/archives/5/#1.%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%EF%BC%9APleroma" target="_blank" rel="noopener"
+>社交网络：Pleroma&lt;/a>&lt;/p>
+&lt;ol start="3">
+&lt;li>定期清理数据库的 objects&lt;/li>
+&lt;/ol>
+&lt;h2 id="磁盘">磁盘&lt;/h2>
 &lt;h3 id="自动清理-tmp-目录">自动清理 tmp 目录&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -683,7 +692,9 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0 0 * * * sudo find /tmp -type f ! -user root -atime +3 -delete
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>Pleroma | 维护日志(一)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</link><pubDate>Mon, 15 May 2023 12:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
+&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://www.myfreax.com/tmp-directory-in-linux/" target="_blank" rel="noopener"
+>Linux 临时目录 /tmp 与 /var/tmp&lt;/a>&lt;/p></description></item><item><title>Pleroma | 维护日志(一)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</link><pubDate>Mon, 15 May 2023 12:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
 >在 Debian 10 / Ubuntu 20.04 上安装 Pleroma&lt;/a>，感谢 Suica！&lt;/p>
 &lt;h2 id="关闭开启注册">关闭/开启注册&lt;/h2>
 &lt;p>Settings &amp;gt; Instance &amp;gt; Registrations open&lt;/p>
