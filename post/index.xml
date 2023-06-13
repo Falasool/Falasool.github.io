@@ -1436,7 +1436,15 @@ alt=":ablobsweats:"
 >Tabler Icons&lt;/a> 下载 icon&lt;/li>
 &lt;li>找到主题自带菜单选项（Home、About、Archive&amp;hellip;）所在目录，照猫画虎，举例：在 &lt;code>/content/page&lt;/code> 目录下新建&amp;lt;选项名&amp;gt;文件夹，照着默认文件创建 &lt;code>index.md&lt;/code>&lt;/li>
 &lt;/ol>
-&lt;h2 id="修改背景色">修改背景色&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">.Params.categories
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="修改背景色">修改背景色&lt;/h2>
 &lt;p>在 &lt;a class="link" href="https://byeun.github.io/open-color/" target="_blank" rel="noopener"
 >Open Color&lt;/a> 选个喜欢的颜色&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -1986,9 +1994,6 @@ height="80px"
 frameborder="0"
 allowtransparency="true"
 allow="encrypted-media">&lt;/iframe>
-&lt;h2 id="跟随系统-dark-mode">跟随系统 Dark Mode&lt;/h2>
-&lt;h2 id="seo">SEO&lt;/h2>
-&lt;p>这么好的博客被地球人错过太可惜了&lt;/p>
 &lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://mantyke.icu/posts/2021/f9f0ec87/" target="_blank" rel="noopener"
 >Hugo | 看中 Stack 主题的归档功能，搬家并做修改&lt;/a>&lt;/p>
