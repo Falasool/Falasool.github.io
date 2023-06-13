@@ -667,7 +667,15 @@
 &lt;ol start="3">
 &lt;li>定期清理数据库的 objects&lt;/li>
 &lt;/ol>
-&lt;h2 id="磁盘">磁盘&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">rsync -r root@45.77.100.253:/var/lib/pleroma/static/emoji/iba /Users/pika/Desktop
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="磁盘">磁盘&lt;/h2>
 &lt;h3 id="自动清理-tmp-目录">自动清理 tmp 目录&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -730,7 +738,7 @@
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">scp /Users/pika/Pictures/favicon.png root@149.248.0.119:/opt/pleroma/lib/pleroma-2.4.5-2-gd8e32646/priv/static/favicon.png
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">rsync /Users/user/Pictures/favicon.png admin@149.248.0.119:/opt/pleroma/lib/pleroma-2.4.5-2-gd8e32646/priv/static/favicon.png
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;blockquote>
@@ -761,11 +769,18 @@
 >https://emojos.in/&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://slackmojis.com/" target="_blank" rel="noopener"
 >https://slackmojis.com/&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://fedi.absturztau.be/emoji-packs/" target="_blank" rel="noopener"
+>https://fedi.absturztau.be/emoji-packs/&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://stickersurge.com/sticker-packs" target="_blank" rel="noopener"
+>https://stickersurge.com/sticker-packs&lt;/a>&lt;/p>
 &lt;p>或者 &lt;a class="link" href="https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/11/26/mastodon-manage.html" target="_blank" rel="noopener"
 >如何装饰你的站点：自定义CSS、中继站和自定义表情&lt;/a> 里提到的「偷表情神器」&lt;/p>
 &lt;p>把偷来的表情（&amp;hellip;）通过 SSH 客户端的 SFTP 功能上传到服务器的 &lt;code>/var/lib/pleroma/static/emoji&lt;/code> 目录下（或者你的自定义路径）&lt;/p>
 &lt;p>在 Admin FE 的 Settings &amp;gt; Emoji &amp;gt; Settings &amp;gt; Shortcode globs 里添加表情包目录的路径，比如：&lt;code>/emoji/**/*.png&lt;/code>、&lt;code>/emoji/**/*.gif&lt;/code> ，意味着 emoji 及其子目录下所有 png/gif 格式的文件都会被视作自定义表情包&lt;/p>
 &lt;p>点击 Reload emoji，OK&lt;/p>
+&lt;p>&lt;a class="link" href="https://stickersurge.com/pack/8bit" target="_blank" rel="noopener"
+>https://stickersurge.com/pack/8bit&lt;/a>&lt;/p>
+&lt;p>我觉得这组表情包好好笑🤭&lt;/p>
 &lt;h2 id="放大-emoji">放大 Emoji&lt;/h2>
 &lt;p>&lt;a class="link" href="https://kyo.iroiro.party/posts/pleroma-largemoji/" target="_blank" rel="noopener"
 >Pleroma-fe 的 emoji 放大配置（？）&lt;/a>&lt;/p>
@@ -1282,6 +1297,8 @@ alt=":ablobsweats:"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://im.happytoo.cyou/posts/2302%E7%BB%99%E6%88%91%E7%9A%84pleroma%E6%B7%BB%E5%8A%A0%E8%A1%A8%E6%83%85%E5%8C%85/" target="_blank" rel="noopener"
+>pleroma中添加自定义表情包&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://dasgelobteland.github.io/posts/23pleroma/" target="_blank" rel="noopener"
 >https://dasgelobteland.github.io/posts/23pleroma/&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://blog.debula.ml/index.php/archives/5/#1.%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%EF%BC%9APleroma" target="_blank" rel="noopener"
