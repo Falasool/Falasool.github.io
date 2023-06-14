@@ -70,8 +70,8 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="新增菜单选项">新增菜单选项&lt;/h3>
-&lt;p>在 &lt;code>/content/page&lt;/code> 目录下新建&amp;lt;tab名称&amp;gt;文件夹，创建 &lt;code>index.md&lt;/code>，在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
->Tabler Icons&lt;/a> 下载 icon并替换&lt;/p>
+&lt;p>在 &lt;code>/content/page&lt;/code> 目录下新建 dairy 文件夹，把 .md 放进来（这些文章不会在 homepage 显示）创建 &lt;code>index.md&lt;/code>，在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
+>Tabler Icons&lt;/a> 下载 icon并替换，修改对应的 layout&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -94,7 +94,12 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;/section&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="修改背景色">修改背景色&lt;/h2>
+&lt;/div>&lt;p>效果：&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306142247243.png"
+loading="lazy"
+alt="image-20230614224734155"
+>&lt;/p>
+&lt;h2 id="修改背景色">修改背景色&lt;/h2>
 &lt;p>在 &lt;a class="link" href="https://byeun.github.io/open-color/" target="_blank" rel="noopener"
 >Open Color&lt;/a> 选个喜欢的颜色&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">

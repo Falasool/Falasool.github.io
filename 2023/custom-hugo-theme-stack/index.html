@@ -56,7 +56,7 @@
 </span></span><span class=line><span class=cl>    <span class=na>display</span><span class=o>:</span> <span class=ni>none</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span></code></pre></td></tr></table></div></div><h3 id=新增菜单选项>新增菜单选项</h3><p>在 <code>/content/page</code> 目录下新建&lt;tab名称>文件夹，创建 <code>index.md</code>，在 <a class=link href=https://tablericons.com/ target=_blank rel=noopener>Tabler Icons</a> 下载 icon并替换</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span></code></pre></td></tr></table></div></div><h3 id=新增菜单选项>新增菜单选项</h3><p>在 <code>/content/page</code> 目录下新建 dairy 文件夹，把 .md 放进来（这些文章不会在 homepage 显示）创建 <code>index.md</code>，在 <a class=link href=https://tablericons.com/ target=_blank rel=noopener>Tabler Icons</a> 下载 icon并替换，修改对应的 layout</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -72,7 +72,7 @@
 </span></span><span class=line><span class=cl><span class=gi>+            {{ partial &#34;article-list/default&#34; . }}
 </span></span></span><span class=line><span class=cl><span class=gi></span>        {{ end }}
 </span></span><span class=line><span class=cl>    &lt;/section&gt;
-</span></span></code></pre></td></tr></table></div></div><h2 id=修改背景色>修改背景色</h2><p>在 <a class=link href=https://byeun.github.io/open-color/ target=_blank rel=noopener>Open Color</a> 选个喜欢的颜色</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span></code></pre></td></tr></table></div></div><p>效果：</p><p><img src=https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306142247243.png loading=lazy alt=image-20230614224734155></p><h2 id=修改背景色>修改背景色</h2><p>在 <a class=link href=https://byeun.github.io/open-color/ target=_blank rel=noopener>Open Color</a> 选个喜欢的颜色</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-scss data-lang=scss><span class=line><span class=cl><span class=nn>#</span> <span class=nt>assets</span><span class=err>\</span><span class=nt>scss</span><span class=err>\</span><span class=nt>variables</span><span class=nc>.scss</span>
 </span></span><span class=line><span class=cl><span class=o>--</span><span class=nt>body-background</span><span class=nd>:</span> <span class=nn>#f5f5f5</span><span class=p>;</span>
