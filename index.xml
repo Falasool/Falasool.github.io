@@ -1432,14 +1432,28 @@ alt=":ablobsweats:"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="新增菜单选项">新增菜单选项&lt;/h3>
-&lt;p>在 &lt;code>/content/page&lt;/code> 目录下新建&amp;lt;tab名称&amp;gt;文件夹，照着默认文件创建 &lt;code>index.md&lt;/code>，在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
+&lt;p>在 &lt;code>/content/page&lt;/code> 目录下新建&amp;lt;tab名称&amp;gt;文件夹，创建 &lt;code>index.md&lt;/code>，在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
 >Tabler Icons&lt;/a> 下载 icon并替换&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">.Params.categories
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl"># layouts/_defualt/list.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gd">- &amp;lt;div class=&amp;#34;section-card&amp;#34;&amp;gt;...&amp;lt;/div&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gd">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ &amp;lt;section class=&amp;#34;article-list&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span> {{ range $paginator.Pages }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ {{ partial &amp;#34;article-list/default&amp;#34; . }}
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span> {{ end }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;/section&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h2 id="修改背景色">修改背景色&lt;/h2>

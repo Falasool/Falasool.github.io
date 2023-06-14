@@ -56,8 +56,22 @@
 </span></span><span class=line><span class=cl>    <span class=na>display</span><span class=o>:</span> <span class=ni>none</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span></code></pre></td></tr></table></div></div><h3 id=新增菜单选项>新增菜单选项</h3><p>在 <code>/content/page</code> 目录下新建&lt;tab名称>文件夹，照着默认文件创建 <code>index.md</code>，在 <a class=link href=https://tablericons.com/ target=_blank rel=noopener>Tabler Icons</a> 下载 icon并替换</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>.Params.categories
+</span></span></code></pre></td></tr></table></div></div><h3 id=新增菜单选项>新增菜单选项</h3><p>在 <code>/content/page</code> 目录下新建&lt;tab名称>文件夹，创建 <code>index.md</code>，在 <a class=link href=https://tablericons.com/ target=_blank rel=noopener>Tabler Icons</a> 下载 icon并替换</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl># layouts/_defualt/list.html
+</span></span><span class=line><span class=cl><span class=gd>- &lt;div class=&#34;section-card&#34;&gt;...&lt;/div&gt;
+</span></span></span><span class=line><span class=cl><span class=gd></span>
+</span></span><span class=line><span class=cl><span class=gi>+  &lt;section class=&#34;article-list&#34;&gt;
+</span></span></span><span class=line><span class=cl><span class=gi></span>        {{ range $paginator.Pages }}
+</span></span><span class=line><span class=cl><span class=gi>+            {{ partial &#34;article-list/default&#34; . }}
+</span></span></span><span class=line><span class=cl><span class=gi></span>        {{ end }}
+</span></span><span class=line><span class=cl>    &lt;/section&gt;
 </span></span></code></pre></td></tr></table></div></div><h2 id=修改背景色>修改背景色</h2><p>在 <a class=link href=https://byeun.github.io/open-color/ target=_blank rel=noopener>Open Color</a> 选个喜欢的颜色</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-scss data-lang=scss><span class=line><span class=cl><span class=nn>#</span> <span class=nt>assets</span><span class=err>\</span><span class=nt>scss</span><span class=err>\</span><span class=nt>variables</span><span class=nc>.scss</span>
