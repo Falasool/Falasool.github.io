@@ -46,7 +46,59 @@
 </span></span></span><span class=line><span class=cl><span class=gi>+        }
 </span></span></span><span class=line><span class=cl><span class=gi>+    }
 </span></span></span><span class=line><span class=cl><span class=gi>+}
-</span></span></span></code></pre></td></tr></table></div></div><p>代码来自<a class=link href=https://mantyke.icu/posts/2022/stack-theme-furnish03/ target=_blank rel=noopener>Hugo | 第三篇 Stack 主题装修记录，堂堂再临！</a></p><h2 id=修改标题样式>修改标题样式</h2><p>H2 和 H3 区分度不大</p><p><img src=https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306221803644.webp loading=lazy alt=image></p><p>遂改</p><h2 id=导航栏>导航栏</h2><h3 id=隐藏某个选项>隐藏某个选项</h3><p>隐藏了 Home，和点击 avatar 的效果重复了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span></span></code></pre></td></tr></table></div></div><p>代码来自<a class=link href=https://mantyke.icu/posts/2022/stack-theme-furnish03/ target=_blank rel=noopener>Hugo | 第三篇 Stack 主题装修记录，堂堂再临！</a></p><h2 id=修改标题样式>修改标题样式</h2><p>H2 和 H3 区分度不大</p><p><img src=https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306221803644.webp loading=lazy alt=image></p><p>遂改</p><p><img src=https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306221824638.webp loading=lazy alt="image (1)"></p><details><summary>展开代码块</summary><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-scss data-lang=scss><span class=line><span class=cl><span class=nn>#</span> <span class=o>/</span><span class=nt>assets</span><span class=o>/</span><span class=nt>scss</span><span class=o>/</span><span class=nt>partials</span><span class=o>/</span><span class=nt>layout</span><span class=o>/</span><span class=nt>article</span><span class=nc>.scss</span>
+</span></span><span class=line><span class=cl><span class=nc>.article-content</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>h1</span><span class=o>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>h2</span><span class=o>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>h3</span><span class=o>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>h4</span><span class=o>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>h5</span><span class=o>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>h6</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=na>margin-inline-start</span><span class=o>:</span> <span class=nf>calc</span><span class=p>((</span><span class=nf>var</span><span class=p>(</span><span class=o>--</span><span class=n>card-padding</span><span class=p>))</span> <span class=o>*</span> <span class=o>-</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=na>padding-inline-start</span><span class=o>:</span> <span class=nf>calc</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>      <span class=nf>var</span><span class=p>(</span><span class=o>--</span><span class=n>card-padding</span><span class=p>)</span> <span class=o>-</span> <span class=nf>var</span><span class=p>(</span><span class=o>--</span><span class=n>heading-border-size</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nt>h1</span><span class=o>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>h2</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=na>border-inline-start</span><span class=o>:</span> <span class=nf>var</span><span class=p>(</span><span class=o>--</span><span class=n>heading-border-size</span><span class=p>)</span> <span class=ni>solid</span> <span class=nf>var</span><span class=p>(</span><span class=o>--</span><span class=n>accent-color</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nt>h3</span><span class=o>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>h4</span><span class=o>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>h5</span><span class=o>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>h6</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=na>border-inline-start</span><span class=o>:</span> <span class=nf>var</span><span class=p>(</span><span class=o>--</span><span class=n>heading-border-size</span><span class=p>)</span> <span class=ni>solid</span> <span class=mh>#f5f5fa</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div></details><h2 id=导航栏>导航栏</h2><h3 id=隐藏某个选项>隐藏某个选项</h3><p>隐藏了 Home，和点击 avatar 的效果重复了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
