@@ -10,7 +10,7 @@
 &lt;li>Vue3
 &lt;ul>
 &lt;li>&lt;a class="link" href="https://cn.vuejs.org/api/sfc-script-setup.html" target="_blank" rel="noopener"
->&lt;!-- raw HTML omitted -->&lt;/a>
+>&amp;lt;script setup&amp;gt;&lt;/a>
 &lt;ul>
 &lt;li>顶层绑定会被暴露给模版（e.g. 组件不用 components 注册，import 后就可以用）&lt;/li>
 &lt;/ul>
