@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vue on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/vue/</link><description>Recent content in Vue on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://falasool.github.io/categories/vue/index.xml" rel="self" type="application/rss+xml"/><item><title>Vue3 | ToDoList</title><link>https://falasool.github.io/vue3-todolist/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/vue3-todolist/</guid><description>&lt;h2 id="实现功能">实现功能&lt;/h2>
 &lt;ul>
-&lt;li>新增 todo&lt;/li>
-&lt;li>删除 todo&lt;/li>
-&lt;li>全选/取消全选&lt;/li>
-&lt;li>清理已完成 todo&lt;/li>
+&lt;li>
+&lt;p>展示任务的列表&lt;/p>
+&lt;ul>
+&lt;li>使用 &lt;code>v-for&lt;/code> 在模板中循环渲染任务项组件，并根据任务的状态（完成或未完成）进行不同的展示样式&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>新增 todo&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>v-model&lt;/code> 实现输入框和数据的双向绑定&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>删除 todo&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>全选/取消全选&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>清理已完成 todo&lt;/p>
+&lt;/li>
 &lt;/ul>
 &lt;h2 id="涉及知识">涉及知识&lt;/h2>
-&lt;ul>
-&lt;li>Vue3
+&lt;h3 id="vue3">Vue3&lt;/h3>
 &lt;ul>
 &lt;li>&lt;a class="link" href="https://cn.vuejs.org/api/sfc-script-setup.html" target="_blank" rel="noopener"
 >&amp;lt;script setup&amp;gt;&lt;/a>
@@ -16,9 +32,7 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;/li>
-&lt;li>TS&lt;/li>
-&lt;/ul>
+&lt;h3 id="ts">TS&lt;/h3>
 &lt;h2 id="项目安装">项目安装&lt;/h2>
 &lt;p>用 npm 和 vite 新建项目&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
