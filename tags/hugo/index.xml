@@ -50,6 +50,13 @@
 &lt;/div>
 &lt;/div>&lt;p>代码来自&lt;a class="link" href="https://mantyke.icu/posts/2022/stack-theme-furnish03/" target="_blank" rel="noopener"
 >Hugo | 第三篇 Stack 主题装修记录，堂堂再临！&lt;/a>&lt;/p>
+&lt;h2 id="修改标题样式">修改标题样式&lt;/h2>
+&lt;p>H2 和 H3 区分度不大&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306221803644.webp"
+loading="lazy"
+alt="image"
+>&lt;/p>
+&lt;p>遂改&lt;/p>
 &lt;h2 id="导航栏">导航栏&lt;/h2>
 &lt;h3 id="隐藏某个选项">隐藏某个选项&lt;/h3>
 &lt;p>隐藏了 Home，和点击 avatar 的效果重复了&lt;/p>
