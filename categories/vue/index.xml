@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vue on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/vue/</link><description>Recent content in Vue on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 21 Jun 2023 01:29:15 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/vue/index.xml" rel="self" type="application/rss+xml"/><item><title>Vue3 | ToDoList</title><link>https://falasool.github.io/2023/vue3-todolist/</link><pubDate>Wed, 21 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/vue3-todolist/</guid><description>&lt;h2 id="实现功能">实现功能&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vue on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/vue/</link><description>Recent content in Vue on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 21 Jun 2023 01:29:15 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/vue/index.xml" rel="self" type="application/rss+xml"/><item><title>Vue3 | ToDoList</title><link>https://falasool.github.io/2023/vue3-todolist/</link><pubDate>Wed, 21 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/vue3-todolist/</guid><description>&lt;h2 id="实现功能和涉及知识">实现功能和涉及知识&lt;/h2>
 &lt;ul>
 &lt;li>
 &lt;p>展示任务的列表&lt;/p>
@@ -13,6 +13,9 @@
 &lt;/ul>
 &lt;/li>
 &lt;li>
+&lt;p>修改 todo&lt;/p>
+&lt;/li>
+&lt;li>
 &lt;p>删除 todo&lt;/p>
 &lt;/li>
 &lt;li>
@@ -21,7 +24,17 @@
 &lt;li>
 &lt;p>清理已完成 todo&lt;/p>
 &lt;/li>
+&lt;li>
+&lt;p>本地储存&lt;/p>
+&lt;/li>
 &lt;/ul>
+&lt;p>进阶&lt;/p>
+&lt;ol>
+&lt;li>編輯 List 順序&lt;/li>
+&lt;li>將完成的項目移至Finish區域，並且將字體改成刪除線效果&lt;/li>
+&lt;li>增加 Icon 以及開場動畫&lt;/li>
+&lt;li>設定日期與時間推播&lt;/li>
+&lt;/ol>
 &lt;h2 id="涉及知识">涉及知识&lt;/h2>
 &lt;h3 id="vue3">Vue3&lt;/h3>
 &lt;ul>
@@ -31,6 +44,7 @@
 &lt;li>顶层绑定会被暴露给模版（e.g. 组件不用 components 注册，import 后就可以用）&lt;/li>
 &lt;/ul>
 &lt;/li>
+&lt;li>&lt;code>v-model&lt;/code> 数据双向绑定&lt;/li>
 &lt;/ul>
 &lt;h3 id="ts">TS&lt;/h3>
 &lt;h2 id="项目安装">项目安装&lt;/h2>
@@ -91,4 +105,9 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> └── main.js &lt;span class="c1"># 入口文件，用于初始化vue实例&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item></channel></rss>
+&lt;/div>&lt;h2 id="代码实现">代码实现&lt;/h2>
+&lt;p>HTML 结构&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306241131266.webp"
+loading="lazy"
+alt="image (2)"
+>&lt;/p></description></item></channel></rss>

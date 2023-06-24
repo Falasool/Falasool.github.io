@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/</link><description>Recent content on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 21 Jun 2023 01:29:15 +0800</lastBuildDate><atom:link href="https://falasool.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Vue3 | ToDoList</title><link>https://falasool.github.io/2023/vue3-todolist/</link><pubDate>Wed, 21 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/vue3-todolist/</guid><description>&lt;h2 id="实现功能">实现功能&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/</link><description>Recent content on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 21 Jun 2023 01:29:15 +0800</lastBuildDate><atom:link href="https://falasool.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Vue3 | ToDoList</title><link>https://falasool.github.io/2023/vue3-todolist/</link><pubDate>Wed, 21 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/vue3-todolist/</guid><description>&lt;h2 id="实现功能和涉及知识">实现功能和涉及知识&lt;/h2>
 &lt;ul>
 &lt;li>
 &lt;p>展示任务的列表&lt;/p>
@@ -13,6 +13,9 @@
 &lt;/ul>
 &lt;/li>
 &lt;li>
+&lt;p>修改 todo&lt;/p>
+&lt;/li>
+&lt;li>
 &lt;p>删除 todo&lt;/p>
 &lt;/li>
 &lt;li>
@@ -21,7 +24,17 @@
 &lt;li>
 &lt;p>清理已完成 todo&lt;/p>
 &lt;/li>
+&lt;li>
+&lt;p>本地储存&lt;/p>
+&lt;/li>
 &lt;/ul>
+&lt;p>进阶&lt;/p>
+&lt;ol>
+&lt;li>編輯 List 順序&lt;/li>
+&lt;li>將完成的項目移至Finish區域，並且將字體改成刪除線效果&lt;/li>
+&lt;li>增加 Icon 以及開場動畫&lt;/li>
+&lt;li>設定日期與時間推播&lt;/li>
+&lt;/ol>
 &lt;h2 id="涉及知识">涉及知识&lt;/h2>
 &lt;h3 id="vue3">Vue3&lt;/h3>
 &lt;ul>
@@ -31,6 +44,7 @@
 &lt;li>顶层绑定会被暴露给模版（e.g. 组件不用 components 注册，import 后就可以用）&lt;/li>
 &lt;/ul>
 &lt;/li>
+&lt;li>&lt;code>v-model&lt;/code> 数据双向绑定&lt;/li>
 &lt;/ul>
 &lt;h3 id="ts">TS&lt;/h3>
 &lt;h2 id="项目安装">项目安装&lt;/h2>
@@ -91,7 +105,12 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> └── main.js &lt;span class="c1"># 入口文件，用于初始化vue实例&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>Weekly June12 June24</title><link>https://falasool.github.io/weekly-june12-june24/</link><pubDate>Sun, 18 Jun 2023 21:14:48 +0800</pubDate><guid>https://falasool.github.io/weekly-june12-june24/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=a5725706" alt="Featured image of post Weekly June12 June24" />&lt;p>这周（～ 6/18）周五去〇〇复诊 ADHD、开药，接着去看灌篮高手（嘿！），这一遍我觉得网上看到的小细节我都有留意到，但是像什么三井投空心球的时候球框有一声很轻的「みつい」这种就算了吧太为难人了哈哈，总的来说也算心满意足。另外这周看到应援场的 repo 才开始羡慕，刚开始的无料和应援对我完全没吸引力啦，现在她们越办越专业，有的礼包我也会眼馋，比如今天看到了山王毕业证书，天啊好棒。周五早上七点出门晚上八点进门，躺在床上三秒昏迷&lt;/p>
+&lt;/div>&lt;h2 id="代码实现">代码实现&lt;/h2>
+&lt;p>HTML 结构&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306241131266.webp"
+loading="lazy"
+alt="image (2)"
+>&lt;/p></description></item><item><title>Weekly June12 June24</title><link>https://falasool.github.io/weekly-june12-june24/</link><pubDate>Sun, 18 Jun 2023 21:14:48 +0800</pubDate><guid>https://falasool.github.io/weekly-june12-june24/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=a5725706" alt="Featured image of post Weekly June12 June24" />&lt;p>这周（～ 6/18）周五去〇〇复诊 ADHD、开药，接着去看灌篮高手（嘿！），这一遍我觉得网上看到的小细节我都有留意到，但是像什么三井投空心球的时候球框有一声很轻的「みつい」这种就算了吧太为难人了哈哈，总的来说也算心满意足。另外这周看到应援场的 repo 才开始羡慕，刚开始的无料和应援对我完全没吸引力啦，现在她们越办越专业，有的礼包我也会眼馋，比如今天看到了山王毕业证书，天啊好棒。周五早上七点出门晚上八点进门，躺在床上三秒昏迷&lt;/p>
 &lt;p>周六早上去驾校，教练开车送我们去科目二考场，晚上班车拉回来放在另一个区，我又坐公交回家，八点进门，躺在床上三秒昏迷；周日中午去驾校晚上回来，在这里敲键盘所以还没昏迷（……）&lt;/p>
 &lt;p>早睡早起的诀窍之一：白天很累、精神或者肉体都行&lt;/p>
 &lt;p>明天（ 6/19）去考科目二，六点出门，天啊、天啊！！&lt;/p>
