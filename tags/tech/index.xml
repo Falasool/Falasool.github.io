@@ -1,4 +1,193 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tech on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/tech/</link><description>Recent content in tech on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 11 Apr 2023 21:28:27 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>Nginx</title><link>https://falasool.github.io/2023/nginx-memos/</link><pubDate>Tue, 11 Apr 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/nginx-memos/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tech on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/tech/</link><description>Recent content in tech on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 26 Jun 2023 11:21:32 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>Postgresql</title><link>https://falasool.github.io/2023/postgresql/</link><pubDate>Mon, 26 Jun 2023 11:21:32 +0800</pubDate><guid>https://falasool.github.io/2023/postgresql/</guid><description>&lt;p>学习 postgreSQL&lt;/p>
+&lt;h2 id="准备">准备&lt;/h2>
+&lt;p>用 Homebrew 安装&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew install postgresql@13
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>添加环境变量&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl"># ~/.zshrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ # PostgreSQL
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ export PATH=&amp;#34;/opt/homebrew/Cellar/postgresql@13/13.11_1/bin:$PATH&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ export PGDATA=&amp;#34;/opt/homebrew/var/postgresql@13&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>让修改生效 &amp;amp; 测试&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> ~/.zshrc &lt;span class="c1"># 对配置文件的修改生效&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pg_ctl -V &lt;span class="c1"># 查看版本，return `pg_ctl (PostgreSQL) 13.1` &lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Nginx</title><link>https://falasool.github.io/2023/nginx-memos/</link><pubDate>Tue, 11 Apr 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/nginx-memos/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
 &lt;h3 id="几个重要的nginx文件和目录">几个重要的Nginx文件和目录&lt;/h3>
 &lt;h4 id="网站内容">网站内容&lt;/h4>
 &lt;ul>
