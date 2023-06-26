@@ -1,5 +1,5 @@
 <!doctype html><html lang dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="支持 mermaid，新增导航栏，添加一些小功能，微调样式
-"><title>Hugo｜自定义 hugo-theme-Stack</title><link rel=canonical href=https://falasool.github.io/2023/custom-hugo-theme-stack/><link rel=stylesheet href=/scss/style.min.83c43dc09c6ba956b05103f2c706e5a3855e48faa2cc020b62ca1ca080eac51d.css><meta property="og:title" content="Hugo｜自定义 hugo-theme-Stack"><meta property="og:description" content="支持 mermaid，新增导航栏，添加一些小功能，微调样式
+"><title>Hugo｜自定义 hugo-theme-Stack</title><link rel=canonical href=https://falasool.github.io/2023/custom-hugo-theme-stack/><link rel=stylesheet href=/scss/style.min.3c3b00b8a59cf06fee5c0b9d7a242cb55cb4bb45e0541845ef29b99ef9bd957a.css><meta property="og:title" content="Hugo｜自定义 hugo-theme-Stack"><meta property="og:description" content="支持 mermaid，新增导航栏，添加一些小功能，微调样式
 "><meta property="og:url" content="https://falasool.github.io/2023/custom-hugo-theme-stack/"><meta property="og:site_name" content="Rubber Duck's Bizarre Adventure"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="Hugo"><meta property="article:published_time" content="2023-05-11T21:28:27+08:00"><meta property="article:modified_time" content="2023-05-11T21:28:27+08:00"><meta name=twitter:title content="Hugo｜自定义 hugo-theme-Stack"><meta name=twitter:description content="支持 mermaid，新增导航栏，添加一些小功能，微调样式
 "><link rel="shortcut icon" href=/img/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-SSG1Q6LM3K"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-SSG1Q6LM3K",{anonymize_ip:!1})}</script><style>:root{--article-font-family:'Noto Serif HK', var(--base-font-family)}</style><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@300;400;500;600;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
@@ -115,7 +115,7 @@ commit
 checkout main
 merge develop
 commit
-commit</div><h2 id=markdown-块>MarkDown 块</h2><h3 id=固定块的高度>固定块的高度</h3><p>过长的内容影响观感，所以把 block 的高度限制在 20em</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl># partials/layout/article.scss
+commit</div><h2 id=markdown-块>MarkDown 块</h2><h3 id=固定块的高度>固定块的高度</h3><p>过长的内容影响观感，所以把 block 的高度限制在 20em，并隐藏滚动条</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl># partials/layout/article.scss
 </span></span><span class=line><span class=cl>.article-content {
 </span></span><span class=line><span class=cl>   .highlight {
 </span></span><span class=line><span class=cl><span class=gd>-     padding: var(--card-padding);
@@ -125,7 +125,9 @@ commit</div><h2 id=markdown-块>MarkDown 块</h2><h3 id=固定块的高度>固�
 </span></span></span><span class=line><span class=cl><span class=gi></span>        margin: 0;
 </span></span><span class=line><span class=cl>        width: auto;
 </span></span><span class=line><span class=cl><span class=gi>+       max-height: 20em;
-</span></span></span><span class=line><span class=cl><span class=gi></span>      }
+</span></span></span><span class=line><span class=cl><span class=gi>+ 			scrollbar-width: none;
+</span></span></span><span class=line><span class=cl><span class=gi></span>
+</span></span><span class=line><span class=cl>      }
 </span></span><span class=line><span class=cl>  }
 </span></span><span class=line><span class=cl>}
 </span></span></code></pre></div><h3 id=代码块-macos-样式>代码块 macOS 样式</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=err>#</span> <span class=nt>custom</span><span class=p>.</span><span class=nc>scss</span>

@@ -159,7 +159,7 @@ commit
 &lt;/div>
 &lt;h2 id="markdown-块">MarkDown 块&lt;/h2>
 &lt;h3 id="固定块的高度">固定块的高度&lt;/h3>
-&lt;p>过长的内容影响观感，所以把 block 的高度限制在 20em&lt;/p>
+&lt;p>过长的内容影响观感，所以把 block 的高度限制在 20em，并隐藏滚动条&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl"># partials/layout/article.scss
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">.article-content {
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .highlight {
@@ -170,7 +170,9 @@ commit
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span> margin: 0;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> width: auto;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ max-height: 20em;
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ scrollbar-width: none;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="代码块-macos-样式">代码块 macOS 样式&lt;/h3>
