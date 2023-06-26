@@ -796,8 +796,6 @@ alt="image"
 loading="lazy"
 alt="image (1)"
 >&lt;/p>
-&lt;details>
-&lt;summary>展开代码块&lt;/summary>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-scss" data-lang="scss">&lt;span class="line">&lt;span class="cl">&lt;span class="nn">#&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="nt">assets&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nt">scss&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nt">partials&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nt">layout&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nt">article&lt;/span>&lt;span class="nc">.scss&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nc">.article-content&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">h1&lt;/span>&lt;span class="o">,&lt;/span>
@@ -824,9 +822,7 @@ alt="image (1)"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">border-inline-start&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nf">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="n">heading-border-size&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ni">solid&lt;/span> &lt;span class="mh">#f5f5fa&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/details>
-&lt;h2 id="导航栏">导航栏&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="导航栏">导航栏&lt;/h2>
 &lt;h3 id="隐藏某个选项">隐藏某个选项&lt;/h3>
 &lt;p>隐藏了 Home，和点击 avatar 的效果重复了&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-scss" data-lang="scss">&lt;span class="line">&lt;span class="cl">&lt;span class="nc">.menu&lt;/span> &lt;span class="p">{&lt;/span>
@@ -857,17 +853,16 @@ alt="image-20230614224734155"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">--&lt;/span>&lt;span class="nt">body-background&lt;/span>&lt;span class="nd">:&lt;/span> &lt;span class="nn">#f5f5f5&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="禁止部分页面显示-readingtime">禁止部分页面显示 ReadingTime&lt;/h2>
 &lt;p>比如 &lt;code>/friends&lt;/code> ，不是文章，不需要显示阅读时间&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl"># /blog/layouts/partials/article/components/details.html
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl"># /blog/layouts/partials/article/components/details.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{ if and (not .Date.IsZero) (.Site.Params.article.readingTime) }}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>默认逻辑是 &lt;code>if or&lt;/code> ，改成 &lt;code>if and&lt;/code> 之后只有 Front Matter 里 date 参数为 true 的页面会显示阅读时长&lt;/p>
-&lt;h2 id="暂时禁用翻译按钮">暂时禁用翻译按钮&lt;/h2>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ {{ if and (not .Date.IsZero) (.Site.Params.article.readingTime) }}
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="暂时禁用翻译按钮">暂时禁用翻译按钮&lt;/h2>
 &lt;p>如果有对应的页面，比如 &lt;code>/page/about&lt;/code> 下有：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">.
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── index.md
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└── index.zh-cn.md
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>就会显示翻译按钮，暂时用不到的话在 md 文件里写&lt;code> draft: true&lt;/code>即可&lt;/p>
-&lt;h2 id="支持-mermaid">支持 mermaid&lt;/h2>
+&lt;h2 id="添加-mermaid-支持">添加 mermaid 支持&lt;/h2>
 &lt;p>按照 &lt;a class="link" href="https://gohugo.io/content-management/diagrams/" target="_blank" rel="noopener"
 >官方文档&lt;/a> 新建文件 &lt;code>layouts/_default/_markup/render-codeblock-mermaid.html&lt;/code>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;mermaid&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
@@ -924,19 +919,23 @@ merge develop
 commit
 commit
 &lt;/div>
-&lt;h2 id="代码块">代码块&lt;/h2>
-&lt;h3 id="折叠代码块">折叠代码块&lt;/h3>
-&lt;p>通过 details 标签实现&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl"># layouts/shortcodes/detail.html
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">details&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">summary&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>{{ (.Get 0) }}&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">summary&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ .Inner | markdownify }}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">details&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;details>
-&lt;summary>生效了&lt;/summary>
-(〃`𓎟´〃) 天才ですから！
-&lt;/details>
-&lt;h3 id="代码块-macos-样式">代码块 macOS 样式&lt;/h3>
+&lt;h2 id="markdown-块">MarkDown 块&lt;/h2>
+&lt;h3 id="固定块的高度">固定块的高度&lt;/h3>
+&lt;p>过长的内容影响观感，所以把 block 的高度限制在 20em&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl"># partials/layout/article.scss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">.article-content {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .highlight {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gd">- padding: var(--card-padding);
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gd">&lt;/span> pre {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> margin: initial;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ padding: var(--card-padding);
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span> margin: 0;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> width: auto;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ max-height: 20em;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="代码块-macos-样式">代码块 macOS 样式&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="line">&lt;span class="cl">&lt;span class="err">#&lt;/span> &lt;span class="nt">custom&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">scss&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">highlight&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nd">before&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">content&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
@@ -1097,6 +1096,21 @@ commit
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/details>
 &lt;h2 id="shortcodes">ShortCodes&lt;/h2>
+&lt;h3 id="折叠内容">折叠内容&lt;/h3>
+&lt;p>通过 details 标签实现：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl"># layouts/shortcodes/detail.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">details&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">summary&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>{{ (.Get 0) }}&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">summary&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ .Inner | markdownify }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">details&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{{/*&amp;lt; detail &amp;#34;生效了&amp;#34; &amp;gt;*/}}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(〃`𓎟´〃) 天才ですから！
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{/*&amp;lt;/detail&amp;gt;*/}}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;details>
+&lt;summary>生效了&lt;/summary>
+(〃`𓎟´〃) 天才ですから！
+&lt;/details>
 &lt;h3 id="spotify">Spotify&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">// layouts/shortcodes/spotify.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&amp;lt;!--
