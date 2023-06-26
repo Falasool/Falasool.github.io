@@ -10,84 +10,6 @@
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>让修改生效 &amp;amp; 测试&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> ~/.zshrc &lt;span class="c1"># 对配置文件的修改生效&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pg_ctl -V &lt;span class="c1"># 查看版本，return `pg_ctl (PostgreSQL) 13.1` &lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">.highlight &amp;gt; .chroma{
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> padding: var(--card-padding);
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">超长块测试
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Vue3 | ToDoList</title><link>https://falasool.github.io/2023/vue3-todolist/</link><pubDate>Wed, 21 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/vue3-todolist/</guid><description>&lt;h2 id="实现功能和涉及知识">实现功能和涉及知识&lt;/h2>
 &lt;ul>
 &lt;li>
@@ -761,30 +683,6 @@ alt=":ablobsweats:"
 &lt;p>Psql 占满磁盘怎么办：&lt;/p>
 &lt;p>&lt;a class="link" href="https://dba.stackexchange.com/questions/17057/i-need-to-run-vacuum-full-with-no-available-disk-space" target="_blank" rel="noopener"
 >https://dba.stackexchange.com/questions/17057/i-need-to-run-vacuum-full-with-no-available-disk-space&lt;/a>&lt;/p></description></item><item><title>Hugo｜自定义 hugo-theme-Stack</title><link>https://falasool.github.io/2023/custom-hugo-theme-stack/</link><pubDate>Thu, 11 May 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/custom-hugo-theme-stack/</guid><description>&lt;p>支持 mermaid，新增导航栏，添加一些小功能，微调样式&lt;/p>
-&lt;h2 id="调整友情链接页面布局">调整友情链接页面布局&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl">///assets/scss/custom.scss
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">//友情链接双栏
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ @media (min-width: 1024px) {
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ .article-list--compact.links {
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ display: grid;
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ grid-template-columns: 1fr 1fr;
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ background: none;
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ box-shadow: none;
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ article {
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ background: var(--card-background);
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ border: none;
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ box-shadow: var(--shadow-l2);
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ margin-bottom: 8px;
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ border-radius: 10px;
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ &amp;amp;:nth-child(odd) {
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ margin-right: 8px;
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ }
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ }
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ }
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+}
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>代码来自&lt;a class="link" href="https://mantyke.icu/posts/2022/stack-theme-furnish03/" target="_blank" rel="noopener"
->Hugo | 第三篇 Stack 主题装修记录，堂堂再临！&lt;/a>&lt;/p>
 &lt;h2 id="修改标题样式">修改标题样式&lt;/h2>
 &lt;p>H2 和 H3 区分度不大&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306221803644.webp"
@@ -822,7 +720,31 @@ alt="image (1)"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">border-inline-start&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nf">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="n">heading-border-size&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ni">solid&lt;/span> &lt;span class="mh">#f5f5fa&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="导航栏">导航栏&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="调整友情链接页面布局">调整友情链接页面布局&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl">///assets/scss/custom.scss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">//友情链接双栏
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ @media (min-width: 1024px) {
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ .article-list--compact.links {
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ display: grid;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ grid-template-columns: 1fr 1fr;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ background: none;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ box-shadow: none;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ article {
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ background: var(--card-background);
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ border: none;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ box-shadow: var(--shadow-l2);
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ margin-bottom: 8px;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ border-radius: 10px;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ &amp;amp;:nth-child(odd) {
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ margin-right: 8px;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+}
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>代码来自&lt;a class="link" href="https://mantyke.icu/posts/2022/stack-theme-furnish03/" target="_blank" rel="noopener"
+>Hugo | 第三篇 Stack 主题装修记录，堂堂再临！&lt;/a>&lt;/p>
+&lt;h2 id="导航栏">导航栏&lt;/h2>
 &lt;h3 id="隐藏某个选项">隐藏某个选项&lt;/h3>
 &lt;p>隐藏了 Home，和点击 avatar 的效果重复了&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-scss" data-lang="scss">&lt;span class="line">&lt;span class="cl">&lt;span class="nc">.menu&lt;/span> &lt;span class="p">{&lt;/span>
@@ -830,7 +752,7 @@ alt="image (1)"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">display&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="ni">none&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="新增菜单选项">新增菜单选项&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="新增-menu-选项">新增 menu 选项&lt;/h3>
 &lt;p>在 &lt;code>/content/page&lt;/code> 目录下新建 dairy 文件夹，把 .md 放进来（这些文章不会在 homepage 显示）创建 &lt;code>index.md&lt;/code>，在 &lt;a class="link" href="https://tablericons.com/" target="_blank" rel="noopener"
 >Tabler Icons&lt;/a> 下载 icon并替换，修改对应的 layout&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl"># layouts/_defualt/list.html
@@ -933,8 +855,7 @@ commit
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> width: auto;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ max-height: 20em;
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ scrollbar-width: none; /* Firefox */
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ -ms-overflow-style: none; /* IE 10+ */
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ ::-webkit-scrollbar {
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ &amp;amp;::-webkit-scrollbar {
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ display: none; /* Chrome Safari */
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ }
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span> }
@@ -942,7 +863,7 @@ commit
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="代码块-macos-样式">代码块 macOS 样式&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="line">&lt;span class="cl">&lt;span class="err">#&lt;/span> &lt;span class="nt">custom&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">scss&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">highlight&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nd">before&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">highlight&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="nd">before&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">content&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">display&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">block&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">background&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">url&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sx">/code-header.svg&lt;/span>&lt;span class="p">);&lt;/span>
@@ -990,117 +911,113 @@ commit
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">--base-font-family&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;Noto Serif HK&amp;#39;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="nf">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="n">sys-font-family&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="返回顶部按钮">返回顶部按钮&lt;/h2>
-&lt;details>
-&lt;summary>展开代码块&lt;/summary>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># /layouts/partials/footer/custom.html
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl"># /layouts/partials/footer/custom.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;!--返回顶部按钮 --&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;a href=&amp;#34;#&amp;#34; id=&amp;#34;back-to-top&amp;#34; title=&amp;#34;返回顶部&amp;#34;&amp;gt;&amp;lt;/a&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&amp;lt;!--返回顶部按钮 --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">a&lt;/span> &lt;span class="na">href&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;#&amp;#34;&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;back-to-top&amp;#34;&lt;/span> &lt;span class="na">title&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;返回顶部&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">a&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;!--返回顶部CSS --&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;style&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #back-to-top {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> display: none;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> position: fixed;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bottom: 20px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> right: 55px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> width: 55px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> height: 55px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> border-radius: 7px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> background-color: rgba(64, 158, 255, 0.5);
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> box-shadow: var(--shadow-l2);
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> font-size: 30px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> text-align: center;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> line-height: 50px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> cursor: pointer;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&amp;lt;!--返回顶部CSS --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">style&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">#&lt;/span>&lt;span class="nn">back-to-top&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">display&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">none&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">position&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">fixed&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">bottom&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">right&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">55&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">55&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">height&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">55&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">border-radius&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">7&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">background-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">rgba&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">158&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">255&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">0.5&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">box-shadow&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nf">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="n">shadow&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">l2&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">font-size&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">30&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">text-align&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">center&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">line-height&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">50&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">cursor&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">pointer&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #back-to-top:before {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> content: &amp;#39; &amp;#39;;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> display: inline-block;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> position: relative;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> top: 0;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> transform: rotate(135deg);
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> height: 10px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> width: 10px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> border-width: 0 0 2px 2px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> border-color: var(--back-to-top-color);
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> border-style: solid;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">#&lt;/span>&lt;span class="nn">back-to-top&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nd">before&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">content&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39; &amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">display&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">inline-block&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">position&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">relative&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">top&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">transform&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">rotate&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">135&lt;/span>&lt;span class="kt">deg&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">height&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">border-width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="kt">px&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">border-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nf">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="n">back&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="kc">to&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="kc">top&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="kc">color&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">border-style&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">solid&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #back-to-top:hover:before {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> border-color: #2674e0;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">#&lt;/span>&lt;span class="nn">back-to-top&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nd">hover&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nd">before&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">border-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#2674e0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> /* 在屏幕宽度小于 768 像素时，钮位置调整 */
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> @media screen and (max-width: 768px) {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #back-to-top {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bottom: 20px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> right: 20px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> width: 40px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> height: 40px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> font-size: 10px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">/* 在屏幕宽度小于 768 像素时，钮位置调整 */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">@&lt;/span>&lt;span class="k">media&lt;/span> &lt;span class="nt">screen&lt;/span> &lt;span class="nt">and&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="nt">max-width&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nt">768px&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">#&lt;/span>&lt;span class="nn">back-to-top&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">bottom&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">right&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">40&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">height&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">40&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">font-size&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> /* 在屏幕宽度大于等于 1024 像素时，按钮位置调整 */
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> @media screen and (min-width: 1024px) {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #back-to-top {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bottom: 20px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> right: 40px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">/* 在屏幕宽度大于等于 1024 像素时，按钮位置调整 */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">@&lt;/span>&lt;span class="k">media&lt;/span> &lt;span class="nt">screen&lt;/span> &lt;span class="nt">and&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="nt">min-width&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nt">1024px&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">#&lt;/span>&lt;span class="nn">back-to-top&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">bottom&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">right&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">40&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> /* 在屏幕宽度大于等于 1280 像素时，按钮位置调整 */
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> @media screen and (min-width: 1280px) {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #back-to-top {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bottom: 20px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> right: 55px;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">/* 在屏幕宽度大于等于 1280 像素时，按钮位置调整 */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">@&lt;/span>&lt;span class="k">media&lt;/span> &lt;span class="nt">screen&lt;/span> &lt;span class="nt">and&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="nt">min-width&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nt">1280px&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">#&lt;/span>&lt;span class="nn">back-to-top&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">bottom&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">right&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">55&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> /* 目录显示时，隐藏按钮 */
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> @media screen and (min-width: 1536px) {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #back-to-top {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> visibility: hidden;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;/style&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">/* 目录显示时，隐藏按钮 */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">@&lt;/span>&lt;span class="k">media&lt;/span> &lt;span class="nt">screen&lt;/span> &lt;span class="nt">and&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="nt">min-width&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nt">1536px&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">#&lt;/span>&lt;span class="nn">back-to-top&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">visibility&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">hidden&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">style&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;!--返回顶部JS --&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;script&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> function backToTop() {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> document.documentElement.scrollIntoView({
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> behavior: &amp;#39;smooth&amp;#39;,
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> })
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&amp;lt;!--返回顶部JS --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">function&lt;/span> &lt;span class="nx">backToTop&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">documentElement&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">scrollIntoView&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">behavior&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;smooth&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> window.onload = function () {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> let scrollTop =
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> this.document.documentElement.scrollTop || this.document.body.scrollTop
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> let totopBtn = this.document.getElementById(&amp;#39;back-to-top&amp;#39;)
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if (scrollTop &amp;gt; 0) {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> totopBtn.style.display = &amp;#39;inline&amp;#39;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> } else {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> totopBtn.style.display = &amp;#39;none&amp;#39;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">onload&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">scrollTop&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">documentElement&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">scrollTop&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">scrollTop&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">totopBtn&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getElementById&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;back-to-top&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">scrollTop&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">totopBtn&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">display&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;inline&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">totopBtn&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">display&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;none&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> window.onscroll = function () {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> let scrollTop =
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> this.document.documentElement.scrollTop || this.document.body.scrollTop
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> let totopBtn = this.document.getElementById(&amp;#39;back-to-top&amp;#39;)
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if (scrollTop &amp;lt; 200) {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> totopBtn.style.display = &amp;#39;none&amp;#39;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> } else {
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> totopBtn.style.display = &amp;#39;inline&amp;#39;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> totopBtn.addEventListener(&amp;#39;click&amp;#39;, backToTop, false)
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;/script&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/details>
-&lt;h2 id="shortcodes">ShortCodes&lt;/h2>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">onscroll&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">scrollTop&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">documentElement&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">scrollTop&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">scrollTop&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">totopBtn&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getElementById&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;back-to-top&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">scrollTop&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">200&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">totopBtn&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">display&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;none&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">totopBtn&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">display&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;inline&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">totopBtn&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;click&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">backToTop&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="shortcodes">ShortCodes&lt;/h2>
 &lt;h3 id="折叠内容">折叠内容&lt;/h3>
 &lt;p>通过 details 标签实现：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl"># layouts/shortcodes/detail.html
