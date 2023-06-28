@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tech on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/tech/</link><description>Recent content in tech on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 26 Jun 2023 11:21:32 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>Postgresql</title><link>https://falasool.github.io/2023/postgresql/</link><pubDate>Mon, 26 Jun 2023 11:21:32 +0800</pubDate><guid>https://falasool.github.io/2023/postgresql/</guid><description>&lt;p>学习 postgreSQL&lt;/p>
-&lt;h2 id="准备">准备&lt;/h2>
-&lt;p>用 Homebrew 安装&lt;/p>
+&lt;h2 id="安装">安装&lt;/h2>
+&lt;h3 id="用-homebrew-安装">用 Homebrew 安装&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew install postgresql@13
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>添加环境变量&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl"># ~/.zshrc
@@ -10,6 +10,13 @@
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>让修改生效 &amp;amp; 测试&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> ~/.zshrc &lt;span class="c1"># 对配置文件的修改生效&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pg_ctl -V &lt;span class="c1"># 查看版本，return `pg_ctl (PostgreSQL) 13.1` &lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="dmg-安装">dmg 安装&lt;/h3>
+&lt;p>&lt;a class="link" href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads" target="_blank" rel="noopener"
+>下载&lt;/a>&lt;/p>
+&lt;p>修改环境变量&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># PostgreSQL&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;export PATH=&amp;#34;/Library/PostgreSQL/13/bin:$PATH&amp;#34;&amp;#39;&lt;/span> &amp;gt;&amp;gt; ~/.zshrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> ~/.zshrc
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Nginx</title><link>https://falasool.github.io/2023/nginx-memos/</link><pubDate>Tue, 11 Apr 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/nginx-memos/</guid><description>&lt;h2 id="nginx">Nginx&lt;/h2>
 &lt;h3 id="几个重要的nginx文件和目录">几个重要的Nginx文件和目录&lt;/h3>
 &lt;h4 id="网站内容">网站内容&lt;/h4>
