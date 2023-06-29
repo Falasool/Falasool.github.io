@@ -1,5 +1,136 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DataBase on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/database/</link><description>Recent content in DataBase on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 26 Jun 2023 11:21:32 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/database/index.xml" rel="self" type="application/rss+xml"/><item><title>Postgresql</title><link>https://falasool.github.io/2023/postgresql/</link><pubDate>Mon, 26 Jun 2023 11:21:32 +0800</pubDate><guid>https://falasool.github.io/2023/postgresql/</guid><description>&lt;p>学习 postgreSQL&lt;/p>
-&lt;h2 id="安装">安装&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DataBase on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/database/</link><description>Recent content in DataBase on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 29 Jun 2023 19:13:22 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/database/index.xml" rel="self" type="application/rss+xml"/><item><title>Sql</title><link>https://falasool.github.io/2023/sql/</link><pubDate>Thu, 29 Jun 2023 19:13:22 +0800</pubDate><guid>https://falasool.github.io/2023/sql/</guid><description>&lt;h2 id="常用命令">常用命令&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">CREATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DATABASE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">创建数据库&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">CREATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">TABLE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">t1&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">body&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">创建表&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">记得使用\&lt;/span>&lt;span class="n">c命令切换数据库&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">CREATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">USER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">WITH&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">PASSWORD&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;Test#1357&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">创建用户&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">ALTER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">USER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">WITH&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">PASSWORD&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;Test#2468&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">修改密码&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">ALTER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">USER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">createdb&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">指定用户添加指定角色&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">GRANT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">ALL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">PRIVILEGES&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">ON&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DATABASE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">TO&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">赋予指定账户指定数据库所有权限&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">REVOKE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">ALL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">PRIVILEGES&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">ON&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DATABASE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">TO&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">移除指定账户指定数据库所有权限&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">INSERT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">INTO&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">table_name&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">[(&lt;/span>&lt;span class="n">column1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">c2&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">...)]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">VALUES&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">v1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">v2&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">...);&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">在表中插入新数据（在列&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">列&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="err">插入&lt;/span>&lt;span class="n">v1&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="n">v2&lt;/span>&lt;span class="err">）&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">SELECT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*/&lt;/span>&lt;span class="k">column_name&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">table_name&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">查询数据&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">SELECT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DISTINCT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">column_name&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">table_name&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">显示结果时去除重复值&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">SELECT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">列名称&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">标名称&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">WHERE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">列&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">运算符&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">值&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">条件过滤&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>操作符&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align:center">操作符&lt;/th>
+&lt;th style="text-align:center">描述&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align:center">=&lt;/td>
+&lt;td style="text-align:center">&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">&amp;lt;&amp;gt;/!=&lt;/td>
+&lt;td style="text-align:center">不等于&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">&amp;gt;&lt;/td>
+&lt;td style="text-align:center">&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">&amp;lt;&lt;/td>
+&lt;td style="text-align:center">&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">&amp;gt;=&lt;/td>
+&lt;td style="text-align:center">&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">&amp;lt;=&lt;/td>
+&lt;td style="text-align:center">&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">IN&lt;/td>
+&lt;td style="text-align:center">多选&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">NOT BEWTEEN&amp;hellip; AND&lt;/td>
+&lt;td style="text-align:center">( , )/[ , ]/[ , )&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">LIKE/NOT LIKE&lt;/td>
+&lt;td style="text-align:center">某种搜索模式&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">AND&lt;/td>
+&lt;td style="text-align:center">&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">OR&lt;/td>
+&lt;td style="text-align:center">&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">AS&lt;/td>
+&lt;td style="text-align:center">指定表别名&amp;rsquo;&amp;rsquo;/列别名&amp;quot;&amp;quot;&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">JOIN&lt;/td>
+&lt;td style="text-align:center">多表关联（匹配）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">UNION/UNION ALL&lt;/td>
+&lt;td style="text-align:center">合并 select 结果集&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">NOT NULL&lt;/td>
+&lt;td style="text-align:center">非空&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">VIEW&lt;/td>
+&lt;td style="text-align:center">是结果集的可视化的表&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">&lt;/td>
+&lt;td style="text-align:center">&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">&lt;/td>
+&lt;td style="text-align:center">&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">&lt;/td>
+&lt;td style="text-align:center">&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">SELECT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">table_name&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">ORDER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">BY&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">c1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">c2&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DESC&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">LASTNAME&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">ID_P&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">结果按&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">降序&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="err">字母顺序&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="err">数字顺序&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">排列&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">UPDATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">表名称&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">SET&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">列名称&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">新&lt;/span>&lt;span class="n">value&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">WHERE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">列名称&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">sth&lt;/span>&lt;span class="p">.;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">更新数据&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">DELETE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">表名称&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">WHERE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">列名称&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">sth&lt;/span>&lt;span class="p">.;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">删除某行数据&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">DELETE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">table_name&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">删除所有行（表的结构属性索引完整）&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">TRUNCATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">TABLE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">表名称&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">删除表内数据&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">DROP&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">TABLE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">表名称&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">删除表&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="常用函数">常用函数&lt;/h2>
+&lt;p>语法：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">SELECT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">列&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">表&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="avg">AVG&lt;/h3>
+&lt;p>返回字段的平均值，不包括 null&lt;/p>
+&lt;h3 id="count">COUNT&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">COUNT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">返回表的记录数&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">COUNT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">DISTINCT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">列名&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">返回列的总数（除去重复的）&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">COUNT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">列名&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">返回列的值的总数&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="sum">SUM&lt;/h3>
+&lt;p>求和&lt;/p>
+&lt;h3 id="group-by">GROUP BY&lt;/h3>
+&lt;p>结合统计函数 COUNT，根据某些列对结果集进行分组&lt;/p>
+&lt;h3 id="having">HAVING&lt;/h3>
+&lt;p>WHERE 不能和 COUNT 一起使用，所以在统计函数前加上 HAVING&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">lastname&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="k">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">city&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">persons&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">city&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;xx&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">group&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">lastname&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">having&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">city&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="ucaseupper--lcaselower">UCASE/UPPER &amp;amp; LCASE/LOWER&lt;/h3>
+&lt;p>把字段的值转换为大写/小写&lt;/p>
+&lt;h3 id="lenlength">LEN/LENGTH&lt;/h3>
+&lt;p>返回字段的值的长度&lt;/p>
+&lt;h3 id="round列名-精度">ROUND(列名, 精度)&lt;/h3>
+&lt;p>字段舍入为指定的小树位数&lt;/p>
+&lt;h3 id="nowsysdate">NOW/SYSDATE&lt;/h3>
+&lt;p>获取当前日期时间&lt;/p></description></item><item><title>Postgresql</title><link>https://falasool.github.io/2023/postgresql/</link><pubDate>Mon, 26 Jun 2023 11:21:32 +0800</pubDate><guid>https://falasool.github.io/2023/postgresql/</guid><description>&lt;p>学习 postgreSQL&lt;/p>
+&lt;h2 id="本地安装-pg">本地安装 PG&lt;/h2>
 &lt;h3 id="用-homebrew-安装">用 Homebrew 安装&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew install postgresql@13
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>添加环境变量&lt;/p>
@@ -15,6 +146,33 @@
 >下载&lt;/a>&lt;/p>
 &lt;p>修改环境变量&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># PostgreSQL&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;export PATH=&amp;#34;/Library/PostgreSQL/13/bin:$PATH&amp;#34;&amp;#39;&lt;/span> &amp;gt;&amp;gt; ~/.zshrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/Library/PostgreSQL/13/bin:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> ~/.zshrc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="远程操作-pg">远程操作 PG&lt;/h2>
+&lt;p>允许远程登录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">locate postgresql.conf &lt;span class="c1"># 定位文件位置&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># /etc/postgresql/13/main/postgresql.conf &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">listen_addresses&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;*&amp;#39;&lt;/span> &lt;span class="c1"># 修改内容&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>添加客户端鉴定条目&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># /etc/postgresql/13/main/pg_hba.conf&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 允许用户在提供有效口令（md5）后从某个 IP 地址登录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">host all all 0.0.0.0/0 md5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">host all all ::0/0 md5
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>[可选]修改密码&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">postgres&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="c1"># alter user postgres with password &amp;#39;xxxxxxxx&amp;#39;;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ALTER ROLE
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>最后重启 pg&lt;/p>
+&lt;h2 id="基础使用">基础使用&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-postgresql" data-lang="postgresql">&lt;span class="line">&lt;span class="cl">&lt;span class="n">psql&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">U&lt;/span> &lt;span class="n">postgres&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">指定用户连接&lt;/span>&lt;span class="n">PostgreSQL&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">psql&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="n">postgres&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">指定数据库连接&lt;/span>&lt;span class="n">PostgreSQL&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">psql&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">h&lt;/span> &lt;span class="mf">127.0.0.1&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">p&lt;/span> &lt;span class="mf">5432&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">U&lt;/span> &lt;span class="n">pg&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="n">postgres&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">连接到本地主机（&lt;/span>&lt;span class="mf">127.0.0.1&lt;/span>&lt;span class="err">）的&lt;/span> &lt;span class="n">PostgreSQL&lt;/span> &lt;span class="err">数据库服务器，使用用户名&lt;/span> &lt;span class="n">pg&lt;/span> &lt;span class="err">连接到名为&lt;/span> &lt;span class="n">postgres&lt;/span> &lt;span class="err">的数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="常用-psql-命令">常用 psql 命令&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-postgresql" data-lang="postgresql">&lt;span class="line">&lt;span class="cl">&lt;span class="err">\&lt;/span>&lt;span class="n">du&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">查看所有用户&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">\&lt;/span>&lt;span class="n">l&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">查看所有数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">\&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="n">dbname&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">切换到数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">\&lt;/span>&lt;span class="n">dt&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">查看当前数据库的所有表&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">d&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="n">tablename&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">查看指定表&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">SHOW&lt;/span> &lt;span class="n">data_directory&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">查看数据目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">\&lt;/span>&lt;span class="n">q&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">退出&lt;/span>&lt;span class="n">psql&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
