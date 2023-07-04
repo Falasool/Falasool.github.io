@@ -105,14 +105,6 @@
 &lt;td style="text-align:center">&lt;/td>
 &lt;td style="text-align:center">&lt;/td>
 &lt;/tr>
-&lt;tr>
-&lt;td style="text-align:center">&lt;/td>
-&lt;td style="text-align:center">&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td style="text-align:center">&lt;/td>
-&lt;td style="text-align:center">&lt;/td>
-&lt;/tr>
 &lt;/tbody>
 &lt;/table>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">SELECT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">table_name&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">ORDER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">BY&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">c1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">c2&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DESC&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">LASTNAME&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">ID_P&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">结果按&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">降序&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="err">字母顺序&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="err">数字顺序&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">排列&lt;/span>&lt;span class="w">
@@ -147,7 +139,7 @@
 &lt;h3 id="round列名-精度">ROUND(列名, 精度)&lt;/h3>
 &lt;p>字段舍入为指定的小树位数&lt;/p>
 &lt;h3 id="nowsysdate">NOW/SYSDATE&lt;/h3>
-&lt;p>获取当前日期时间&lt;/p></description></item><item><title>PostgreSQL 入门</title><link>https://falasool.github.io/2023/postgresql/</link><pubDate>Mon, 26 Jun 2023 11:21:32 +0800</pubDate><guid>https://falasool.github.io/2023/postgresql/</guid><description>&lt;p>学习 postgreSQL&lt;/p>
+&lt;p>获取当前日期时间&lt;/p></description></item><item><title>PostgreSQL 入门</title><link>https://falasool.github.io/2023/postgresql/</link><pubDate>Mon, 26 Jun 2023 11:21:32 +0800</pubDate><guid>https://falasool.github.io/2023/postgresql/</guid><description>&lt;p>以现有数据库 pleroma 为基础学习 postgreSQL&lt;/p>
 &lt;h2 id="本地安装-pg">本地安装 PG&lt;/h2>
 &lt;h3 id="用-homebrew-安装">用 Homebrew 安装&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew install postgresql@13
@@ -167,6 +159,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/Library/PostgreSQL/13/bin:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> ~/.zshrc
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="远程操作-pg">远程操作 PG&lt;/h2>
+&lt;h3 id="登录">登录&lt;/h3>
 &lt;p>允许远程登录&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">locate postgresql.conf &lt;span class="c1"># 定位文件位置&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
@@ -183,7 +176,8 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>最后重启 pg&lt;/p>
 &lt;p>但是不知道为啥（也许以后就知道了）我开启 5432 端口无效：ufw 命令返回结果显示已开启，防火墙规则添加了，ip 检查工具还是显示端口未开放。然后黛黛教了我端口转发&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">ssh -L 127.0.0.1:5432:127.0.0.1:5432 username@hostname
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>连上之后保持打开这个窗口，我用 Navicat 连上了数据库，第一次见到了数据库到底是啥结构……&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>连上之后保持打开这个窗口，我用 Navicat 连上了数据库，第一次见到了数据库到底是啥结构……（Navicat 是什么请看 &lt;a class="link" href="https://www.navicat.com.cn/manual/online_manual/cn/navicat_16/win_manual/#/main_window" target="_blank" rel="noopener"
+>用户手册&lt;/a>）&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307032252841.webp"
 loading="lazy"
 alt="image"
@@ -196,6 +190,144 @@ alt="image"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ├── Functions &lt;span class="c1"># 函数是一段封装了特定功能的可重用代码块。在数据库中，函数用于执行特定的计算、处理数据或返回结果&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ├── Queries
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">   └── Backups
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="命令">命令&lt;/h3>
+&lt;p>🌟 查询所有表的行数：创建一个 &lt;code>count_em_all&lt;/code> 函数，然后调用它获得准确的统计信息&lt;/p>
+&lt;ol>
+&lt;li>创建：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-postgresql" data-lang="postgresql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TYPE&lt;/span> &lt;span class="n">table_count&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">table_name&lt;/span> &lt;span class="nb">TEXT&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">num_rows&lt;/span> &lt;span class="nb">INTEGER&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">OR&lt;/span> &lt;span class="k">REPLACE&lt;/span> &lt;span class="k">FUNCTION&lt;/span> &lt;span class="n">count_em_all&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="k">RETURNS&lt;/span> &lt;span class="k">SETOF&lt;/span> &lt;span class="n">table_count&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="s1">&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">DECLARE
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> the_count RECORD;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> t_name RECORD;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> r table_count%ROWTYPE;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">BEGIN
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> FOR t_name IN
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> SELECT
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> c.relname
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> FROM
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> pg_catalog.pg_class c LEFT JOIN pg_namespace n ON n.oid = c.relnamespace
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> WHERE
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> c.relkind = &amp;#39;&amp;#39;r&amp;#39;&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> AND n.nspname = &amp;#39;&amp;#39;public&amp;#39;&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> ORDER BY 1
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> LOOP
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> FOR the_count IN EXECUTE &amp;#39;&amp;#39;SELECT COUNT(*) AS &amp;#34;count&amp;#34; FROM &amp;#39;&amp;#39; || t_name.relname
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> LOOP
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> END LOOP;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> r.table_name := t_name.relname;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> r.num_rows := the_count.count;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> RETURN NEXT r;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> END LOOP;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> RETURN;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">END;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">&amp;#39;&lt;/span> &lt;span class="k">LANGUAGE&lt;/span> &lt;span class="n">plpgsql&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>调用&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-postgresql" data-lang="postgresql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">SELECT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">*&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">FROM&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">count_em_all&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="p">)&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">r&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">ORDER&lt;/span> &lt;span class="k">BY&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">r&lt;/span>&lt;span class="mf">.&lt;/span>&lt;span class="n">num_rows&lt;/span> &lt;span class="k">DESC&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>结果：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-postgresql" data-lang="postgresql">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">table_name&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">num_rows&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">--------------------------------------------+----------
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">activities&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">171772&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">objects&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">120664&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hashtags_objects&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">38433&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">users&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">22054&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hashtags&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">7719&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">deliveries&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">5420&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">counter_cache&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">876&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">notifications&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">570&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">oauth_authorizations&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">479&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">oauth_tokens&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">474&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">following_relationships&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">472&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">schema_migrations&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">302&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">apps&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">83&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">user_relationships&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">53&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">conversation_participation_recipient_ships&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">36&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">instances&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">34&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">oban_jobs&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">32&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">conversation_participations&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">18&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">conversations&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">config&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">bookmarks&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">markers&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">user_notes&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">data_migrations&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">backups&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">moderation_log&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">password_reset_tokens&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">lists&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">oban_peers&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">announcements&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">filters&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">announcement_read_relationships&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">data_migration_failed_ids&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mfa_tokens&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">chats&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">chat_message_references&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">push_subscriptions&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">registrations&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">report_notes&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">scheduled_activities&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">thread_mutes&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">user_invite_tokens&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="mf">42&lt;/span> &lt;span class="k">rows&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>🌟 查询所有表的大小&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-postgresql" data-lang="postgresql">&lt;span class="line">&lt;span class="cl">&lt;span class="n">pleroma&lt;/span>&lt;span class="o">=#&lt;/span> &lt;span class="k">select&lt;/span> &lt;span class="n">relname&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">pg_size_pretty&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pg_relation_size&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">relid&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">size&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">pg_stat_user_tables&lt;/span> &lt;span class="k">ORDER&lt;/span> &lt;span class="k">BY&lt;/span> &lt;span class="n">size&lt;/span> &lt;span class="k">DESC&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">relname&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">size&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">--------------------------------------------+------------
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">markers&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">oban_peers&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">config&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">lists&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">conversations&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">password_reset_tokens&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">bookmarks&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">instances&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">user_notes&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">moderation_log&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">user_relationships&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">backups&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">conversation_participations&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">conversation_participation_recipient_ships&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">data_migrations&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">8192&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">counter_cache&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">80&lt;/span> &lt;span class="n">kB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">oban_jobs&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">72&lt;/span> &lt;span class="n">kB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hashtags&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">720&lt;/span> &lt;span class="n">kB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">apps&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">64&lt;/span> &lt;span class="n">kB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">notifications&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">64&lt;/span> &lt;span class="n">kB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">following_relationships&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">48&lt;/span> &lt;span class="n">kB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">deliveries&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">432&lt;/span> &lt;span class="n">kB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">oauth_tokens&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">384&lt;/span> &lt;span class="n">kB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">users&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">35&lt;/span> &lt;span class="n">MB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">oauth_authorizations&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">280&lt;/span> &lt;span class="n">kB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">schema_migrations&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">24&lt;/span> &lt;span class="n">kB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hashtags_objects&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">1928&lt;/span> &lt;span class="n">kB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">objects&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">153&lt;/span> &lt;span class="n">MB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">activities&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">124&lt;/span> &lt;span class="n">MB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">push_subscriptions&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">thread_mutes&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">chat_message_references&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">announcement_read_relationships&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">user_invite_tokens&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mfa_tokens&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">registrations&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">announcements&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">report_notes&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">filters&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">scheduled_activities&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">chats&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">data_migration_failed_ids&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="mf">0&lt;/span> &lt;span class="n">bytes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="mf">42&lt;/span> &lt;span class="k">rows&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="基础使用">基础使用&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-postgresql" data-lang="postgresql">&lt;span class="line">&lt;span class="cl">&lt;span class="n">psql&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">U&lt;/span> &lt;span class="n">postgres&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">指定用户连接&lt;/span>&lt;span class="n">PostgreSQL&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">psql&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">d&lt;/span> &lt;span class="n">postgres&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">指定数据库连接&lt;/span>&lt;span class="n">PostgreSQL&lt;/span>
@@ -207,7 +339,7 @@ alt="image"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">\&lt;/span>&lt;span class="n">dt&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">查看当前数据库的所有表&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">d&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="n">tablename&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">查看指定表&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">SHOW&lt;/span> &lt;span class="n">data_directory&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">查看数据目录&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">\&lt;/span>&lt;span class="n">q&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">退出&lt;/span>&lt;span class="n">psql&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">\&lt;/span>&lt;span class="n">q&lt;/span> &lt;span class="o">#&lt;/span> &lt;span class="err">退出交互查询模式&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Vue3 | ToDoList</title><link>https://falasool.github.io/2023/vue3-todolist/</link><pubDate>Wed, 21 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/vue3-todolist/</guid><description>&lt;h2 id="实现功能和涉及知识">实现功能和涉及知识&lt;/h2>
 &lt;ul>
 &lt;li>
