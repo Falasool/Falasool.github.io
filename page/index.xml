@@ -17,26 +17,87 @@
 &lt;h2 id="使用服务">使用服务&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a class="link" href="https://gohugo.io/" target="_blank" rel="noopener"
->Hugo&lt;/a>: 世界上最快的静态网站生成器 (Golang)&lt;/li>
+>Hugo&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+: 世界上最快的静态网站生成器 (Golang)&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
->Stack&lt;/a>: 一款简洁的 Hugo 主题&lt;/li>
+>Stack&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+: 一款简洁的 Hugo 主题&lt;/li>
 &lt;li>&lt;a class="link" href="https://github.com/" target="_blank" rel="noopener"
->GitHub&lt;/a>: 博客源码托管和版本控制&lt;/li>
+>GitHub&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+: 博客源码托管和版本控制&lt;/li>
 &lt;li>&lt;a class="link" href="https://cloudflare.com/" target="_blank" rel="noopener"
->Cloudflare&lt;/a>: 域名 DNS 解析、全球 CDN 加速&lt;/li>
+>Cloudflare&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+: 域名 DNS 解析、全球 CDN 加速&lt;/li>
 &lt;li>&lt;a class="link" href="https://pages.cloudflare.com/" target="_blank" rel="noopener"
->Cloudflare Pages&lt;/a>: 博客自动集成部署和托管&lt;/li>
+>Cloudflare Pages&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+: 博客自动集成部署和托管&lt;/li>
 &lt;li>&lt;a class="link" href="https://twikoo.js.org/" target="_blank" rel="noopener"
->Twikoo&lt;/a>: 轻量、安全、易上手的评论系统&lt;/li>
+>Twikoo&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+: 轻量、安全、易上手的评论系统&lt;/li>
 &lt;/ul>
 &lt;h2 id="博客日志">博客日志&lt;/h2>
 &lt;p>2023-05-14: 更换域名为 &lt;a class="link" href="https://ponder.lol/" target="_blank" rel="noopener"
 >ponder.lol&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
 2022-12-14: 更换主题为 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
 >hugo-themes-stack&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
 2022-10-13: 更换域名为 anodicseal.xyz
 2022-09-10: 博客使用 &lt;a class="link" href="https://github.com/monkeyWzr/hugo-theme-cactus" target="_blank" rel="noopener"
->Cactus&lt;/a> 主题及同名评论系统&lt;/p></description></item><item><title>Archives</title><link>https://falasool.github.io/archives/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/archives/</guid><description/></item><item><title>Friends</title><link>https://falasool.github.io/friends/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/friends/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-md" data-lang="md">&lt;span class="line">&lt;span class="cl">友链：
+>Cactus&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+主题及同名评论系统&lt;/p></description></item><item><title>Archives</title><link>https://falasool.github.io/archives/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/archives/</guid><description/></item><item><title>Friends</title><link>https://falasool.github.io/friends/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/friends/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-md" data-lang="md">&lt;span class="line">&lt;span class="cl">友链：
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">title: Rubber Duck&amp;#39;s Bizarre Adventure
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">description: &amp;#39;人間讃歌は「勇気」の讃歌ッ！！人間のすばらしさは勇気のすばらしさ！！&amp;#39;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">website: https://falasool.github.io/

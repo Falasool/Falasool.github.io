@@ -119,10 +119,31 @@
 &lt;/table>
 &lt;p>如果需要添加 Hugo 创建的 &lt;code>.md&lt;/code> 文件的 Front Matter 模板没有的参数，可以编辑 archetypes 文件夹下的 default.md 文件&lt;/p>
 &lt;p>更多请参考官方文档 &lt;a class="link" href="https://gohugo.io/content-management/front-matter/" target="_blank" rel="noopener"
->Hugo｜Front Matter&lt;/a>&lt;/p>
+>Hugo｜Front Matter&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;!-- raw HTML omitted -->感谢前人的耕耘和分享，希望本文也能给你带来一些帮助 ❤️&lt;!-- raw HTML omitted -->&lt;/p>
 &lt;p>&lt;a class="link" href="https://blog.genesu.me/2020/09/hugo-front-matter/" target="_blank" rel="noopener"
->貼身打造個人部落格 - 02. 文章 Front Matter&lt;/a>&lt;/p>
+>貼身打造個人部落格 - 02. 文章 Front Matter&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://blog.gezi.men/p/hugo-theme-stack-configuration/" target="_blank" rel="noopener"
->Hugo之路 2 | hugo-theme-stack 配置&lt;/a> —— 参考了匹配随机图片的代码&lt;/p></description></item></channel></rss>
+>Hugo之路 2 | hugo-theme-stack 配置&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+—— 参考了匹配随机图片的代码&lt;/p></description></item></channel></rss>

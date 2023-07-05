@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fediverse on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/fediverse/</link><description>Recent content in Fediverse on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 26 Jun 2023 11:21:32 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/fediverse/index.xml" rel="self" type="application/rss+xml"/><item><title>PostgreSQL 入门</title><link>https://falasool.github.io/2023/postgresql/</link><pubDate>Mon, 26 Jun 2023 11:21:32 +0800</pubDate><guid>https://falasool.github.io/2023/postgresql/</guid><description>&lt;p>以现有数据库 pleroma 为基础学习 postgreSQL&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fediverse on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/fediverse/</link><description>Recent content in Fediverse on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 26 Jun 2023 11:21:32 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/fediverse/index.xml" rel="self" type="application/rss+xml"/><item><title>PostgreSQL 入门</title><link>https://falasool.github.io/2023/postgresql/</link><pubDate>Mon, 26 Jun 2023 11:21:32 +0800</pubDate><guid>https://falasool.github.io/2023/postgresql/</guid><description>&lt;p>以现有 Pleroma 数据库为基础学习 postgreSQL&lt;/p>
 &lt;h2 id="本地安装-pg">本地安装 PG&lt;/h2>
 &lt;h3 id="用-homebrew-安装">用 Homebrew 安装&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew install postgresql@13
@@ -12,7 +12,14 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pg_ctl -V &lt;span class="c1"># 查看版本，return `pg_ctl (PostgreSQL) 13.1` &lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="dmg-安装">dmg 安装&lt;/h3>
 &lt;p>&lt;a class="link" href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads" target="_blank" rel="noopener"
->下载&lt;/a>&lt;/p>
+>下载&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>修改环境变量&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># PostgreSQL&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/Library/PostgreSQL/13/bin:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
@@ -36,7 +43,14 @@
 &lt;p>但是不知道为啥（也许以后就知道了）我开启 5432 端口无效：ufw 命令返回结果显示已开启，防火墙规则添加了，ip 检查工具还是显示端口未开放。然后黛黛教了我端口转发&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">ssh -L 127.0.0.1:5432:127.0.0.1:5432 username@hostname
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>连上之后保持打开这个窗口，我用 Navicat 连上了数据库，第一次见到了数据库到底是啥结构……（Navicat 是什么请看 &lt;a class="link" href="https://www.navicat.com.cn/manual/online_manual/cn/navicat_16/win_manual/#/main_window" target="_blank" rel="noopener"
->用户手册&lt;/a>）&lt;/p>
+>用户手册&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+）&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307032252841.webp"
 loading="lazy"
 alt="image"
@@ -291,7 +305,14 @@ alt="image"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">snap install certbot-dns-cloudflare
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>放置凭据&lt;/p>
 &lt;p>Token 在 &lt;a class="link" href="https://dash.cloudflare.com/profile/api-tokens" target="_blank" rel="noopener"
->https://dash.cloudflare.com/profile/api-tokens&lt;/a> 生成&lt;/p>
+>https://dash.cloudflare.com/profile/api-tokens&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+生成&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo mkdir -p /root/.secrets/
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo touch /root/.secrets/cloudflare.ini
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加/.secrets目录与cloudflare.ini文件&lt;/span>
@@ -344,11 +365,32 @@ alt="image"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">su&lt;/span> &lt;span class="n">pleroma&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">s&lt;/span> &lt;span class="nv">$SHELL&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="nb">lc&lt;/span> &lt;span class="s">&amp;#34;./bin/pleroma_ctl user new admin admin@ponderduck.cc --admin&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
->在 Debian 10 / Ubuntu 20.04 上安装 Pleroma &lt;/a>&lt;/p>
+>在 Debian 10 / Ubuntu 20.04 上安装 Pleroma &lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/wildcard-with-cloudflare-using-certbot/" target="_blank" rel="noopener"
->通配符域名证书申请与自动续费（Nginx，Debian 10）&lt;/a>&lt;/p>
+>通配符域名证书申请与自动续费（Nginx，Debian 10）&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://lily-is.land/infra/pleroma/-/blob/servant/docs/configuration/cheatsheet.md" target="_blank" rel="noopener"
->Configuration Cheat Sheet&lt;/a>&lt;/p></description></item><item><title>Pleroma | 购买服务器及之后要做什么</title><link>https://falasool.github.io/2023/buy-and-set-ups/</link><pubDate>Thu, 01 Jun 2023 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2023/buy-and-set-ups/</guid><description>&lt;!-- raw HTML omitted -->
+>Configuration Cheat Sheet&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p></description></item><item><title>Pleroma | 购买服务器及之后要做什么</title><link>https://falasool.github.io/2023/buy-and-set-ups/</link><pubDate>Thu, 01 Jun 2023 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2023/buy-and-set-ups/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="购买服务器">购买服务器&lt;/h2>
 &lt;p>选 intel - 美西机房 - Debian11 - 1C1G 25G SSD 1TB&lt;/p>
 &lt;p>添加 SSH，生成密钥&lt;/p>
@@ -358,9 +400,23 @@ alt="image"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>用 SSH 终端远程登录，测试 IP 中国大陆是否可用&lt;/p>
 &lt;ul>
 &lt;li>&lt;a class="link" href="http://ping.pe/" target="_blank" rel="noopener"
->http://ping.pe/&lt;/a>&lt;/li>
+>http://ping.pe/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/li>
 &lt;li>&lt;a class="link" href="https://ping.chinaz.com/" target="_blank" rel="noopener"
->https://ping.chinaz.com/&lt;/a>&lt;/li>
+>https://ping.chinaz.com/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/li>
 &lt;/ul>
 &lt;h2 id="修改服务器时区">修改服务器时区&lt;/h2>
 &lt;p>查看当前时区&lt;/p>
@@ -422,7 +478,14 @@ alt="image"
 &lt;p>确认是否已存在 SWAP&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">free -m
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>有 Swap 项而且 total 列不为零，说明 Swap 已存在，可以自行修改分区容量，参考：为 &lt;a class="link" href="https://www.vvave.net/archives/add-swap-and-repartition-swap-for-linux.html" target="_blank" rel="noopener"
->Linux 添加 swap 分区或修改 swap 分区容量&lt;/a>&lt;/p>
+>Linux 添加 swap 分区或修改 swap 分区容量&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;h2 id="防火墙">防火墙&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ufw allow OpenSSH
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw enable
@@ -433,17 +496,45 @@ alt="image"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw status
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://einverne.github.io/post/2015/12/things-to-do-after-buying-vps.html#change-default-shell" target="_blank" rel="noopener"
->购买 VPS 之后需要做的事情&lt;/a>&lt;/p>
+>购买 VPS 之后需要做的事情&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://einverne.github.io/post/2021/07/vps-benchmark.html" target="_blank" rel="noopener"
->VPS 性能测试&lt;/a>&lt;/p></description></item><item><title>Pleroma | 维护日志(二)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</link><pubDate>Mon, 15 May 2023 18:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</guid><description>&lt;p>前情：postgreSQL 数据库达到了惊人的 15G，把硬盘撑爆了且抢修无果。这是炸站重来后的运维日志。&lt;a class="link" href="https://ponder.lol/2023/pleroma-operation-and-maintenance2/" target="_blank" rel="noopener"
->Pleroma | 维护日志(一)&lt;/a> 已记录的内容不再重复&lt;/p>
+>VPS 性能测试&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p></description></item><item><title>Pleroma | 维护日志(二)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</link><pubDate>Mon, 15 May 2023 18:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance/</guid><description>&lt;p>前情：postgreSQL 数据库达到了惊人的 15G，把硬盘撑爆了且抢修无果。这是炸站重来后的运维日志。&lt;a class="link" href="https://ponder.lol/2023/pleroma-operation-and-maintenance2/" target="_blank" rel="noopener"
+>Pleroma | 维护日志(一)&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+已记录的内容不再重复&lt;/p>
 &lt;!-- raw HTML omitted -->
 &lt;h2 id="数据库相关">数据库相关&lt;/h2>
 &lt;ol>
 &lt;li>登录数据库，报错：psql: error: FATAL: Peer authentication failed for user &amp;ldquo;postgres&amp;rdquo;&lt;/li>
 &lt;/ol>
 &lt;p>按照 &lt;a class="link" href="https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge" target="_blank" rel="noopener"
->https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge&lt;/a>&lt;/p>
+>https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl"># 修改配置文件（改成 md5 也可以，但是 trust 能免密登录）
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/postgresql/13/main/pg_hba.conf
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ local all postgres trust
@@ -451,8 +542,22 @@ alt="image"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">service postgresql restart
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
 &lt;li>&lt;a class="link" href="https://blog.debula.ml/" target="_blank" rel="noopener"
->@debula&lt;/a> 和 &lt;a class="link" href="https://seviche.cc/about" target="_blank" rel="noopener"
->@Seviche&lt;/a> 帮忙提取了我的远程缓存 orz，记录一下：&lt;/li>
+>@debula&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+和 &lt;a class="link" href="https://seviche.cc/about" target="_blank" rel="noopener"
+>@Seviche&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+帮忙提取了我的远程缓存 orz，记录一下：&lt;/li>
 &lt;/ol>
 &lt;p>今天尝试了一下 ，在 JSON 中可以使用 &lt;code>-&amp;gt;&amp;gt;&lt;/code> 来提取 jsonb 的 key 对应的 value，比如：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">select data from activities where data-&amp;gt;&amp;gt;&amp;#39;actor&amp;#39; = &amp;#39;https://ponderduck.cc/users/yaya&amp;#39; order by data-&amp;gt;&amp;gt;&amp;#39;published&amp;#39;
@@ -474,7 +579,14 @@ alt="image"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1624
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(1 row)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>也可以看这篇超棒的博客：&lt;a class="link" href="https://blog.debula.ml/index.php/archives/5/#1.%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%EF%BC%9APleroma" target="_blank" rel="noopener"
->社交网络：Pleroma&lt;/a>&lt;/p>
+>社交网络：Pleroma&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;ol start="3">
 &lt;li>定期清理数据库的 objects&lt;/li>
 &lt;/ol>
@@ -497,8 +609,22 @@ alt="image"
 &lt;p>settings/Logger：把日志级别改为 &lt;code>:warn&lt;/code>&lt;/p>
 &lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://www.myfreax.com/tmp-directory-in-linux/" target="_blank" rel="noopener"
->Linux 临时目录 /tmp 与 /var/tmp&lt;/a>&lt;/p></description></item><item><title>Pleroma | 维护日志(一)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</link><pubDate>Mon, 15 May 2023 12:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
->在 Debian 10 / Ubuntu 20.04 上安装 Pleroma&lt;/a>，感谢 Suica！&lt;/p>
+>Linux 临时目录 /tmp 与 /var/tmp&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p></description></item><item><title>Pleroma | 维护日志(一)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</link><pubDate>Mon, 15 May 2023 12:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
+>在 Debian 10 / Ubuntu 20.04 上安装 Pleroma&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+，感谢 Suica！&lt;/p>
 &lt;h2 id="关闭开启注册">关闭/开启注册&lt;/h2>
 &lt;p>Settings &amp;gt; Instance &amp;gt; Registrations open&lt;/p>
 &lt;p>（站点名称、字数上限、投票选项上限、封禁其它实例等等都在 &lt;code>instance&lt;/code>）&lt;/p>
@@ -539,24 +665,73 @@ alt="image"
 &lt;h2 id="自定义表情">自定义表情&lt;/h2>
 &lt;p>表情来源：&lt;/p>
 &lt;p>&lt;a class="link" href="https://emojos.in/" target="_blank" rel="noopener"
->https://emojos.in/&lt;/a>&lt;/p>
+>https://emojos.in/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://slackmojis.com/" target="_blank" rel="noopener"
->https://slackmojis.com/&lt;/a>&lt;/p>
+>https://slackmojis.com/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://fedi.absturztau.be/emoji-packs/" target="_blank" rel="noopener"
->https://fedi.absturztau.be/emoji-packs/&lt;/a>&lt;/p>
+>https://fedi.absturztau.be/emoji-packs/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://stickersurge.com/sticker-packs" target="_blank" rel="noopener"
->https://stickersurge.com/sticker-packs&lt;/a>&lt;/p>
+>https://stickersurge.com/sticker-packs&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>或者 &lt;a class="link" href="https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/11/26/mastodon-manage.html" target="_blank" rel="noopener"
->如何装饰你的站点：自定义CSS、中继站和自定义表情&lt;/a> 里提到的「偷表情神器」&lt;/p>
+>如何装饰你的站点：自定义CSS、中继站和自定义表情&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+里提到的「偷表情神器」&lt;/p>
 &lt;p>把偷来的表情（&amp;hellip;）通过 SSH 客户端的 SFTP 功能上传到服务器的 &lt;code>/var/lib/pleroma/static/emoji&lt;/code> 目录下（或者你的自定义路径）&lt;/p>
 &lt;p>在 Admin FE 的 Settings &amp;gt; Emoji &amp;gt; Settings &amp;gt; Shortcode globs 里添加表情包目录的路径，比如：&lt;code>/emoji/**/*.png&lt;/code>、&lt;code>/emoji/**/*.gif&lt;/code> ，意味着 emoji 及其子目录下所有 png/gif 格式的文件都会被视作自定义表情包&lt;/p>
 &lt;p>点击 Reload emoji，OK&lt;/p>
 &lt;p>&lt;a class="link" href="https://stickersurge.com/pack/8bit" target="_blank" rel="noopener"
->https://stickersurge.com/pack/8bit&lt;/a>&lt;/p>
+>https://stickersurge.com/pack/8bit&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>我觉得这组表情包好好笑🤭&lt;/p>
 &lt;h2 id="放大-emoji">放大 Emoji&lt;/h2>
 &lt;p>&lt;a class="link" href="https://kyo.iroiro.party/posts/pleroma-largemoji/" target="_blank" rel="noopener"
->Pleroma-fe 的 emoji 放大配置（？）&lt;/a>&lt;/p>
+>Pleroma-fe 的 emoji 放大配置（？）&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;h2 id="实例展示页面">实例展示页面&lt;/h2>
 &lt;p>在 Settings &amp;gt; Frontend &amp;gt; Redirect root no login 里改成 &lt;code>/about&lt;/code>&lt;/p>
 &lt;p>在 Admin FE &amp;gt; Settings &amp;gt; Others 改站点规则&lt;/p>
@@ -572,18 +747,53 @@ alt="image"
 &lt;p>获取主题 or 自制：&lt;/p>
 &lt;blockquote>
 &lt;p>&lt;a class="link" href="https://fediverse.eu.org/discussion/27/%E4%BA%94%E5%88%86%E9%92%9F%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%BC%82%E4%BA%AE%E7%9A%84pleroma%E4%B8%BB%E9%A2%98" target="_blank" rel="noopener"
->五分钟设计一个漂亮的pleroma主题&lt;/a>&lt;/p>
+>五分钟设计一个漂亮的pleroma主题&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://mikan.bangdream.moe/2022/11/21/recommend-settings-for-pleroma/" target="_blank" rel="noopener"
->关于 Docker 下 Pleroma 实例部署的一些推荐设置&lt;/a>&lt;/p>
+>关于 Docker 下 Pleroma 实例部署的一些推荐设置&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>或者 Google 「Pleroma FE theme json」&lt;/p>
 &lt;/blockquote>
 &lt;p>一些漂亮主题展示：&lt;/p>
 &lt;p>&lt;a class="link" href="https://mindpalace.michaelis.website/tech/pleroma-theme.html" target="_blank" rel="noopener"
->https://mindpalace.michaelis.website/tech/pleroma-theme.html&lt;/a>&lt;/p>
+>https://mindpalace.michaelis.website/tech/pleroma-theme.html&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://plthemes.vulpes.one/" target="_blank" rel="noopener"
->https://plthemes.vulpes.one/&lt;/a>&lt;/p>
+>https://plthemes.vulpes.one/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/themes-gallery/" target="_blank" rel="noopener"
->https://suicablog.cobaltkiss.blue/posts/themes-gallery/&lt;/a>&lt;/p>
+>https://suicablog.cobaltkiss.blue/posts/themes-gallery/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>添加主题的步骤：&lt;/p>
 &lt;ul>
 &lt;li>
@@ -611,7 +821,14 @@ alt="image"
 &lt;li>所以，我们可以访问 （https://the-federation.info/pleroma ）和（https://fedidb.org/network ）这两个fediverse黄页，手动添加自己心仪的pleroma实例。可以一口气关注所有的中文pleroma（因为太少），还可以关注几个头部外文实例（bae.st的人发黄图不选NFSW！）&lt;/li>
 &lt;/ul>
 &lt;p>——来自 &lt;a class="link" href="https://dasgelobteland.github.io/posts/22pleroma/" target="_blank" rel="noopener"
->我的pleroma搭建笔记&lt;/a>&lt;/p>
+>我的pleroma搭建笔记&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;/blockquote>
 &lt;p>几个中文中继：https://mstdn.one/@list/106729842177738917&lt;/p>
 &lt;h2 id="备份">备份&lt;/h2>
@@ -623,7 +840,8 @@ alt="image"
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo -Hu postgres pg_dump -d pleroma --format=custom -f /var/lib/postgresql/pleroma.pgdump
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="续期ssl证书">续期SSL证书&lt;/h2>
-&lt;p>根据 &lt;a class="link" href="[https://eff-certbot.readthedocs.io/en/stable/using.html#renewing-certificates]%28https://blog.csdn.net/wanghao_sh/article/details/124977429%29" >官方文档&lt;/a>&lt;/p>
+&lt;p>根据 &lt;a class="link" href="[https://eff-certbot.readthedocs.io/en/stable/using.html#renewing-certificates]%28https://blog.csdn.net/wanghao_sh/article/details/124977429%29" >官方文档&lt;/a>
+&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">apt-get update
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install snapd
@@ -643,7 +861,14 @@ alt="image"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>查看负载&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">htop
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;a class="link" href="https://www.onitroad.com/jc/linux/how-to-install-htop-on-debian-linux-using-apt-get.html" target="_blank" rel="noopener"
->如何在Debian Linux上安装htop&lt;/a>&lt;/p>
+>如何在Debian Linux上安装htop&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;h2 id="502-bad-gateway">502 Bad Gateway&lt;/h2>
 &lt;p>查看 Nginx 错误日志&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">vim /var/log/nginx/error.log
@@ -662,7 +887,14 @@ alt="image"
 &lt;blockquote>
 &lt;p>OTP安装的Pleroma默认监听的是本机的127.0.0.1:4000
 也就是说，在VPS上你可以直接通过 &lt;a class="link" href="http://127.0.0.1:4000/" target="_blank" rel="noopener"
->http://127.0.0.1:4000&lt;/a> 访问 Pleroma，比如
+>http://127.0.0.1:4000&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+访问 Pleroma，比如
 curl -v http://127.0.0.1:4000/api/v1/instance&lt;/p>
 &lt;p>NginX负责把外部的连接请求转发到 127.0.0.1:4000，得到响应后转发回去 &lt;img src="https://bucket.alive.bar/cache/custom_emojis/images/000/163/820/original/7ffe1103db94842e.png"
 loading="lazy"
@@ -762,7 +994,14 @@ alt=":ablobsweats:"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11:32:27.912 &lt;span class="o">[&lt;/span>info&lt;span class="o">]&lt;/span> Pruning objects older than &lt;span class="m">15&lt;/span> days
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果报错：&lt;code>–rpc-eval : RPC failed with reason :nodedown&lt;/code>，可能是因为没启动 Pleroma。感谢 &lt;a class="link" href="https://seviche.cc/" target="_blank" rel="noopener"
->Seviche&lt;/a> !!&lt;/p>
+>Seviche&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+!!&lt;/p>
 &lt;p>整理数据库&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">su pleroma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;./bin/pleroma_ctl database vacuum full&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>0530执行记录&lt;/p>
@@ -786,18 +1025,60 @@ alt=":ablobsweats:"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -u postgres psql pleroma &amp;lt; /pleromabackup/pleroma.pgdump
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://im.happytoo.cyou/posts/2302%E7%BB%99%E6%88%91%E7%9A%84pleroma%E6%B7%BB%E5%8A%A0%E8%A1%A8%E6%83%85%E5%8C%85/" target="_blank" rel="noopener"
->pleroma中添加自定义表情包&lt;/a>&lt;/p>
+>pleroma中添加自定义表情包&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://dasgelobteland.github.io/posts/23pleroma/" target="_blank" rel="noopener"
->https://dasgelobteland.github.io/posts/23pleroma/&lt;/a>&lt;/p>
+>https://dasgelobteland.github.io/posts/23pleroma/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://blog.debula.ml/index.php/archives/5/#1.%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%EF%BC%9APleroma" target="_blank" rel="noopener"
->社交网络：Pleroma&lt;/a>&lt;/p>
+>社交网络：Pleroma&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://bigshans.github.io/post/troubleshoot-pleroma/" target="_blank" rel="noopener"
->https://bigshans.github.io/post/troubleshoot-pleroma/&lt;/a>&lt;/p>
+>https://bigshans.github.io/post/troubleshoot-pleroma/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://wiki.iroiro.party/doku.php?id=start&amp;amp;do=index" target="_blank" rel="noopener"
->https://wiki.iroiro.party/doku.php?id=start&amp;do=index&lt;/a>&lt;/p>
+>https://wiki.iroiro.party/doku.php?id=start&amp;do=index&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>Psql 占满磁盘怎么办：&lt;/p>
 &lt;p>&lt;a class="link" href="https://dba.stackexchange.com/questions/17057/i-need-to-run-vacuum-full-with-no-available-disk-space" target="_blank" rel="noopener"
->https://dba.stackexchange.com/questions/17057/i-need-to-run-vacuum-full-with-no-available-disk-space&lt;/a>&lt;/p></description></item><item><title>Misskey 实例搭建教程</title><link>https://falasool.github.io/2022/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
+>https://dba.stackexchange.com/questions/17057/i-need-to-run-vacuum-full-with-no-available-disk-space&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p></description></item><item><title>Misskey 实例搭建教程</title><link>https://falasool.github.io/2022/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
 &lt;h2 id="购买-vps">购买 VPS&lt;/h2>
 &lt;p>⚠️不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
 &lt;p>在备案通过之前 80 和 443 端口是封禁的 -&amp;gt; 无法申请 SSL 证书 -&amp;gt; Misskey 需要 SSL 才能访问，GG&lt;/p>
@@ -883,7 +1164,14 @@ loading="lazy"
 alt="image-20221120013147886"
 >&lt;/p>
 &lt;p>用检查工具比如 &lt;a class="link" href="https://ip112.cn/" target="_blank" rel="noopener"
->https://ip112.cn/&lt;/a> 检查 IP，此 IP 可用&lt;/p>
+>https://ip112.cn/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+检查 IP，此 IP 可用&lt;/p>
 &lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey5.png"
 loading="lazy"
 alt="image-20221120013305544"
@@ -891,13 +1179,34 @@ alt="image-20221120013305544"
 &lt;p>其它测试工具&lt;/p>
 &lt;ul>
 &lt;li>&lt;a class="link" href="http://ping.pe/" target="_blank" rel="noopener"
->http://ping.pe/&lt;/a> — 全球节点 Ping，包括中国的三大运营商&lt;/li>
+>http://ping.pe/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+— 全球节点 Ping，包括中国的三大运营商&lt;/li>
 &lt;li>&lt;a class="link" href="http://ping.chinaz.com/" target="_blank" rel="noopener"
->http://ping.chinaz.com/&lt;/a> — Ping 检测中国大陆的访问情况&lt;/li>
+>http://ping.chinaz.com/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+— Ping 检测中国大陆的访问情况&lt;/li>
 &lt;/ul>
 &lt;h2 id="域名">域名&lt;/h2>
 &lt;p>在域名商 &lt;a class="link" href="https://www.dynadot.com/zh/" target="_blank" rel="noopener"
->Dynadot&lt;/a> 注册账号，买一个域名&lt;/p>
+>Dynadot&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+注册账号，买一个域名&lt;/p>
 &lt;h3 id="解析域名">解析域名&lt;/h3>
 &lt;p>依次点击&lt;/p>
 &lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey6.png"
@@ -906,7 +1215,14 @@ alt="image-20221120013439245"
 >&lt;/p>
 &lt;p>暂停⏸️&lt;/p>
 &lt;p>去 &lt;a class="link" href="https://dash.cloudflare.com/" target="_blank" rel="noopener"
->CloudFlare&lt;/a> 注册登录账号，依次操作：&lt;/p>
+>CloudFlare&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+注册登录账号，依次操作：&lt;/p>
 &lt;p>添加新站点&lt;/p>
 &lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey7.png"
 loading="lazy"
@@ -929,7 +1245,14 @@ alt="image-20221120013635155"
 &lt;/li>
 &lt;li>
 &lt;p>&lt;code>www&lt;/code> 让输入 &lt;a class="link" href="https://www.ponderduck.cc" target="_blank" rel="noopener"
->www.ponderduck.cc&lt;/a> 也能访问&lt;/p>
+>www.ponderduck.cc&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+也能访问&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;p>复制 CloudFlare 提供的两个名称服务器，填进 Dynadot 的 DNS 设置，保存&lt;/p>
@@ -964,7 +1287,14 @@ alt="image-20221121185003309"
 &lt;!-- raw HTML omitted -->
 &lt;h4 id="赋予-vpsadmin-使用-sudo-指令的权限">赋予 「vpsadmin」 使用 sudo 指令的权限&lt;/h4>
 &lt;p>什么是 su 和 sudo 请看：&lt;a class="link" href="https://blog.gtwang.org/linux/sudo-su-command-tutorial-examples/" target="_blank" rel="noopener"
->Linux 的 su 與 sudo 指令教學與範例&lt;/a>&lt;/p>
+>Linux 的 su 與 sudo 指令教學與範例&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo adduser vpsadmin sudo
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>另外开一个终端窗口，登录 vpsadmin 账号&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ssh vpsadmin@185.202.62.49 &lt;span class="c1"># 换成你的IP，回车，然后输入密码&lt;/span>
@@ -1013,7 +1343,14 @@ alt="image-20221121185003309"
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">free -m
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;!-- raw HTML omitted -->
 &lt;p>有 Swap 项而且 total 列不为零，说明 Swap 已存在，可以自行修改分区容量，参考：为 &lt;a class="link" href="https://www.vvave.net/archives/add-swap-and-repartition-swap-for-linux.html" target="_blank" rel="noopener"
->Linux 添加 swap 分区或修改 swap 分区容量&lt;/a>&lt;/p>
+>Linux 添加 swap 分区或修改 swap 分区容量&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;h4 id="配置防火墙">配置防火墙&lt;/h4>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo ufw allow OpenSSH
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo ufw &lt;span class="nb">enable&lt;/span>
@@ -1035,9 +1372,23 @@ alt="image-20221121185003309"
 &lt;h4 id="安装-docker-和-docker-compose">安装 Docker 和 Docker Compose&lt;/h4>
 &lt;p>*Compose 是 Docker 的一个命令行工具，通过 yml 文件定义、创建、管理多容器的 Docker 应用&lt;/p>
 &lt;p>跟着 &lt;a class="link" href="https://www.51cto.com/article/715086.html" target="_blank" rel="noopener"
->如何在 Ubuntu 22.04 LTS 中安装 Docker 和 Docker Compose&lt;/a> 丝滑完成安装&lt;/p>
+>如何在 Ubuntu 22.04 LTS 中安装 Docker 和 Docker Compose&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+丝滑完成安装&lt;/p>
 &lt;p>推荐：&lt;a class="link" href="https://ostechnix.com/getting-started-with-docker/" target="_blank" rel="noopener"
->Docker Commands Tutorial | Getting Started With Docker In Linux&lt;/a>&lt;/p>
+>Docker Commands Tutorial | Getting Started With Docker In Linux&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;h5 id="修改-docker-配置">修改 Docker 配置&lt;/h5>
 &lt;p>Docker 的配置文件路径是 &lt;code>/etc/docker/daemon.json&lt;/code>，需要手动创建：&lt;/p>
 &lt;p>进入 &lt;code>/etc/docker&lt;/code> 目录&lt;/p>
@@ -1046,7 +1397,14 @@ alt="image-20221121185003309"
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo vim daemon.json
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>进入 vim 后输入如下内容，这段代码会增加一段自定义内网 IPv6 地址，开启容器的 IPv6 功能，限制日志文件的大小（20M），限制日志文件数量，防止 Docker 日志过多占用硬盘&lt;/p>
 &lt;p>（代码来自&lt;a class="link" href="https://u.sb/debian-install-docker/" target="_blank" rel="noopener"
->烧饼博客&lt;/a>）&lt;/p>
+>烧饼博客&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+）&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;log-driver&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;json-file&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;log-opts&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
@@ -1075,7 +1433,14 @@ alt="image-20221121185003309"
 &lt;/ul>
 &lt;!-- raw HTML omitted -->
 &lt;p>了解：&lt;a class="link" href="https://www.runoob.com/linux/linux-vim.html" target="_blank" rel="noopener"
->Linux vi/vim 是什么，怎么使用&lt;/a>&lt;/p>
+>Linux vi/vim 是什么，怎么使用&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>重启 Docker 服务&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo systemctl daemon-reload
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo systemctl restart docker
@@ -1397,14 +1762,28 @@ alt="image-20221121185003309"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果没有任何问题，请重新启动 Nginx：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo systemctl restart nginx
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>现在通过 &lt;a class="link" href="http://ponderduck.cc" target="_blank" rel="noopener"
->http://ponderduck.cc&lt;/a> 访问服务器的时候，Nginx 会指向我们刚刚添加的那个 HTML 页面&lt;/p>
+>http://ponderduck.cc&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+访问服务器的时候，Nginx 会指向我们刚刚添加的那个 HTML 页面&lt;/p>
 &lt;h4 id="ssl">SSL&lt;/h4>
 &lt;h5 id="安装-certbot">安装 Certbot&lt;/h5>
 &lt;p>我们需要获得被信任的证书授权中心（ CA ）签发的安全证书。Let’s Encrypt 是 ISRG （ Internet Security Research Group ，互联网安全研究小组）的组织推出的免费安全证书计划。&lt;/p>
 &lt;p>ISRG 的发起者 EFF （电子前哨基金会）为 Let’s Encrypt 项目发布了一个官方的客户端 Certbot ，利用它可以完全自动化的获取、部署和更新安全证书&lt;/p>
 &lt;p>安装 Certbot&lt;/p>
 &lt;p>去 &lt;a class="link" href="https://certbot.eff.org/" target="_blank" rel="noopener"
->官网&lt;/a> 选择我正在使用的 Web 服务器（Nginx）和操作系统（Ubuntu 20），操作对应的安装步骤&lt;/p>
+>官网&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+选择我正在使用的 Web 服务器（Nginx）和操作系统（Ubuntu 20），操作对应的安装步骤&lt;/p>
 &lt;p>Ubuntu 自带 Snap，用 Snap 安装 Certbot&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo snap install --classic certbot
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>用 ln 命令创建符号连接，将 Certbot 加入 PATH 环境变量中&lt;/p>
@@ -1436,7 +1815,14 @@ alt="image-20221121185003309"
 &lt;h4 id="反向代理">反向代理&lt;/h4>
 &lt;p>修改网站配置文件&lt;/p>
 &lt;p>参考 &lt;a class="link" href="https://misskey-hub.net/en/docs/admin/nginx.html" target="_blank" rel="noopener"
->官网文档&lt;/a>，以下是我的完整文件内容&lt;/p>
+>官网文档&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+，以下是我的完整文件内容&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># For WebSocket
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">map $http_upgrade $connection_upgrade {
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> default upgrade;
@@ -1564,9 +1950,23 @@ alt="image-20221121185003309"
 &lt;p>慎用&lt;/p>
 &lt;p>以下待做：&lt;/p>
 &lt;p>&lt;a class="link" href="https://fediverse.eu.org/discussion/15/%E7%BB%99%E6%96%B0%E7%AB%99%E9%95%BF-%E5%BB%BA%E7%AB%99%E5%90%8E%E5%8F%AF%E5%8F%82%E8%80%83%E7%9A%84%E8%BF%90%E7%BB%B4%E5%8F%8A%E8%A3%85%E4%BF%AE%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C#latest" target="_blank" rel="noopener"
->https://fediverse.eu.org/discussion/15/%E7%BB%99%E6%96%B0%E7%AB%99%E9%95%BF-%E5%BB%BA%E7%AB%99%E5%90%8E%E5%8F%AF%E5%8F%82%E8%80%83%E7%9A%84%E8%BF%90%E7%BB%B4%E5%8F%8A%E8%A3%85%E4%BF%AE%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C#latest&lt;/a>&lt;/p>
+>https://fediverse.eu.org/discussion/15/%E7%BB%99%E6%96%B0%E7%AB%99%E9%95%BF-%E5%BB%BA%E7%AB%99%E5%90%8E%E5%8F%AF%E5%8F%82%E8%80%83%E7%9A%84%E8%BF%90%E7%BB%B4%E5%8F%8A%E8%A3%85%E4%BF%AE%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C#latest&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://pullopen.github.io/tags/#Mastodon" target="_blank" rel="noopener"
->https://pullopen.github.io/tags/#Mastodon&lt;/a>&lt;/p>
+>https://pullopen.github.io/tags/#Mastodon&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;ul>
 &lt;li>扫描出不属于任何媒体附件的文件并移除他们&lt;/li>
 &lt;li>清除缓存存储&lt;/li>
@@ -1577,23 +1977,86 @@ alt="image-20221121185003309"
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo docker container stats
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="其它参考">其它参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://blog.laoda.de/archives/getting-started-with-linux" target="_blank" rel="noopener"
->mjj版的linux入门教程&lt;/a>&lt;/p>
+>mjj版的linux入门教程&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://weirenxue.github.io/2021/06/17/user_linux_sudo/" target="_blank" rel="noopener"
->[User] Linux 新增使用者並賦予其使用 sudo 的權限&lt;/a>&lt;/p>
+>[User] Linux 新增使用者並賦予其使用 sudo 的權限&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://blog.laoda.de/archives/how-to-secure-a-linux-server" target="_blank" rel="noopener"
->保护好你的小鸡！保姆级服务器安全教程！&lt;/a>&lt;/p>
+>保护好你的小鸡！保姆级服务器安全教程！&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://blog.laoda.de/archives/docker-compose-install-misskey#5.3-%E5%AE%89%E8%A3%85nginxproxymanager" target="_blank" rel="noopener"
->【好玩儿的Docker项目】10分钟搭建一个去中心化微博平台——Misskey ｜二次元风格、联邦宇宙&lt;/a>&lt;/p>
+>【好玩儿的Docker项目】10分钟搭建一个去中心化微博平台——Misskey ｜二次元风格、联邦宇宙&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://candinya.com/posts/minimal-misskey-docker-deploy/" target="_blank" rel="noopener"
->使用Docker最小化部署Misskey&lt;/a>&lt;/p>
+>使用Docker最小化部署Misskey&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://eri.cx/build-your-own-decentralized-social-platform-misskey/" target="_blank" rel="noopener"
->搭建属于自己的去中心化社交平台 Misskey&lt;/a>&lt;/p>
+>搭建属于自己的去中心化社交平台 Misskey&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://kalacloud.com/blog/how-to-install-nginx-on-ubuntu-20-04/#%E7%AC%AC5%E6%AD%A5%E8%AE%BE%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9D%97server-block" target="_blank" rel="noopener"
->如何在 Ubuntu 20.04 中安装和配置 Nginx&lt;/a>&lt;/p>
+>如何在 Ubuntu 20.04 中安装和配置 Nginx&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://zxuqian.cn/install-nginx-on-ubuntu-20-04/" target="_blank" rel="noopener"
->Nginx 教程：如何在 Ubuntu 20.04 下安装并配置 Nginx&lt;/a>&lt;/p>
+>Nginx 教程：如何在 Ubuntu 20.04 下安装并配置 Nginx&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.myfreax.com/secure-nginx-with-let-s-encrypt-on-ubuntu-20-04/" target="_blank" rel="noopener"
->如何在Ubuntu 20.04 Nginx配置Let&amp;rsquo;s Encrypt SSL证书&lt;/a>&lt;/p></description></item><item><title>Pleroma | 开启邮件服务（ZOHO）</title><link>https://falasool.github.io/2022/zoho-mail-services/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2022/zoho-mail-services/</guid><description>&lt;!-- raw HTML omitted -->
+>如何在Ubuntu 20.04 Nginx配置Let&amp;rsquo;s Encrypt SSL证书&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p></description></item><item><title>Pleroma | 开启邮件服务（ZOHO）</title><link>https://falasool.github.io/2022/zoho-mail-services/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2022/zoho-mail-services/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;p>在 zoho.com 注册账号，选择 Free Plan，Add an existing domain，接着去验证域名&lt;/p>
 &lt;p>在域名托管商（比如 Cloudflare）添加一条 TXT 记录然后验证&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306020051407.png"
