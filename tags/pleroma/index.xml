@@ -399,6 +399,15 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>&lt;a class="link" href="https://navicat.com/en/company/aboutus/blog/673-design-select-queries-using-navicat-s-query-builder" target="_blank" rel="noopener"
+>https://navicat.com/en/company/aboutus/blog/673-design-select-queries-using-navicat-s-query-builder&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
 &lt;/p></description></item><item><title>Pleroma | 维护日志(一)</title><link>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</link><pubDate>Mon, 15 May 2023 12:52:31 +0800</pubDate><guid>https://falasool.github.io/2023/pleroma-operation-and-maintenance2/</guid><description>&lt;p>搭建步骤完全参考 &lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
 >在 Debian 10 / Ubuntu 20.04 上安装 Pleroma&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
