@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/page/</link><description>Recent content in Pages on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 03 Jul 2023 00:18:07 +0800</lastBuildDate><atom:link href="https://falasool.github.io/page/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://falasool.github.io/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/about/</guid><description>&lt;h2 id="关于我">关于我&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/page/</link><description>Recent content in Pages on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 12 Jul 2023 10:48:00 +0800</lastBuildDate><atom:link href="https://falasool.github.io/page/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://falasool.github.io/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://falasool.github.io/about/</guid><description>&lt;h2 id="关于我">关于我&lt;/h2>
 &lt;h3 id="学习">学习&lt;/h3>
 &lt;p>正在学习前端，越写越有意思&lt;/p>
 &lt;p>正在学习外语，不同的语言带来不同的思维————希望能借此塑造另一个自己&lt;/p>
@@ -80,7 +80,8 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
-2022-12-14: 更换主题为 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+&lt;/p>
+&lt;p>2022-12-14: 更换主题为 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
 >hugo-themes-stack&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
@@ -88,8 +89,9 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
-2022-10-13: 更换域名为 anodicseal.xyz
-2022-09-10: 博客使用 &lt;a class="link" href="https://github.com/monkeyWzr/hugo-theme-cactus" target="_blank" rel="noopener"
+&lt;/p>
+&lt;p>2022-10-13: 更换域名为 anodicseal.xyz&lt;/p>
+&lt;p>2022-09-10: 博客使用 &lt;a class="link" href="https://github.com/monkeyWzr/hugo-theme-cactus" target="_blank" rel="noopener"
 >Cactus&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
