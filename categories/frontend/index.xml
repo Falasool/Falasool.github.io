@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Frontend on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/frontend/</link><description>Recent content in Frontend on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 21 Jun 2023 01:29:15 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/frontend/index.xml" rel="self" type="application/rss+xml"/><item><title>Vue3 | ToDoList</title><link>https://falasool.github.io/2023/vue3-todolist/</link><pubDate>Wed, 21 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/vue3-todolist/</guid><description>&lt;h2 id="实现功能和涉及知识">实现功能和涉及知识&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Frontend on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/frontend/</link><description>Recent content in Frontend on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 21 Jun 2023 01:29:15 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/frontend/index.xml" rel="self" type="application/rss+xml"/><item><title>Vue3 | ToDoList</title><link>https://falasool.github.io/2023/vue3-todolist/</link><pubDate>Wed, 21 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/vue3-todolist/</guid><description>&lt;h2 id="实现功能">实现功能&lt;/h2>
 &lt;ul>
 &lt;li>
 &lt;p>展示任务的列表&lt;/p>
@@ -22,7 +22,10 @@
 &lt;p>全选/取消全选&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>清理已完成 todo&lt;/p>
+&lt;p>统计任务&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>隐藏已完成 todo&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>本地储存&lt;/p>
@@ -35,24 +38,6 @@
 &lt;li>增加 Icon 以及開場動畫&lt;/li>
 &lt;li>設定日期與時間推播&lt;/li>
 &lt;/ol>
-&lt;h2 id="涉及知识">涉及知识&lt;/h2>
-&lt;h3 id="vue3">Vue3&lt;/h3>
-&lt;ul>
-&lt;li>&lt;a class="link" href="https://cn.vuejs.org/api/sfc-script-setup.html" target="_blank" rel="noopener"
->&amp;lt;script setup&amp;gt;&lt;/a>
-&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
-xmlns="http://www.w3.org/2000/svg">
-&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
-&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
-fill="currentColor">
-&lt;/svg>&lt;/span>
-&lt;ul>
-&lt;li>顶层绑定会被暴露给模版（e.g. 组件不用 components 注册，import 后就可以用）&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;code>v-model&lt;/code> 数据双向绑定&lt;/li>
-&lt;/ul>
-&lt;h3 id="ts">TS&lt;/h3>
 &lt;h2 id="项目安装">项目安装&lt;/h2>
 &lt;p>用 npm 和 vite 新建项目&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">npm init vite-app ToDoList
@@ -75,9 +60,55 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> │   └── Helloworld.vue
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ├── index.css
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> └── main.js &lt;span class="c1"># 入口文件，用于初始化vue实例&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="代码实现">代码实现&lt;/h2>
-&lt;p>HTML 结构&lt;/p>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306241131266.webp"
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="思路">思路&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>先搭建好框架：写死数据看页面效果并调整&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>然后把代码拆分进三个组件：Header、List、Footer（标题和任务输入框、任务列表项、按钮选择项和计数）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>写JS，并更换模板页面中的数据，用动态的数据代替。在setup()入口函数中写数据源和要实现功能的函数&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="实现步骤">实现步骤&lt;/h2>
+&lt;h3 id="html">HTML&lt;/h3>
+&lt;p>这不是最终结构，后面有修改&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307121504274.webp"
 loading="lazy"
-alt="image (2)"
->&lt;/p></description></item></channel></rss>
+alt="image"
+>&lt;/p>
+&lt;h3 id="css">CSS&lt;/h3>
+&lt;details>
+&lt;summary>安装和配置 TailwindCSS&lt;/summary>
+&lt;p>在vue的根目录下，安装 Tailwind 及其依赖项（PostCSS &amp;amp; auto-prefixer）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">npm install -D tailwindcss postcss autoprefixer
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>生成配置文件并添加所有模板文件的路径&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">npx tailwindcss init -p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">//tailwind.config.js
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">module.exports &lt;span class="o">=&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> content: &lt;span class="o">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;./index.html&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;./src/**/*.{vue,js,ts,jsx,tsx}&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">]&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> theme: &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> extend: &lt;span class="o">{}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> plugins: &lt;span class="o">[]&lt;/span>,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建一个&lt;code>tailwindcss.css&lt;/code>样式文件，用于初始化并引入&lt;code>tailwindcss&lt;/code>的基础样式&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">复制代码&lt;/span>&lt;span class="c">/* /src/tailwindcss.css*/&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">tailwind&lt;/span> &lt;span class="nt">base&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">tailwind&lt;/span> &lt;span class="nt">components&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">tailwind&lt;/span> &lt;span class="nt">utilities&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>导入&lt;code>css/tailwindcss.css&lt;/code>到&lt;code>main.js&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl">// src/main.js
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">import { createApp } from &amp;#39;vue&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">import App from &amp;#39;./App.vue&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ import &amp;#34;./tailwindcss.css&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">createApp(App).mount(&amp;#39;#app&amp;#39;)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/details></description></item></channel></rss>
