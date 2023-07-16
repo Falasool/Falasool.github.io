@@ -602,13 +602,22 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;h2 id="防火墙">防火墙&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ufw allow OpenSSH
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw enable
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">ufw allow OpenSSH
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw &lt;span class="nb">enable&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow http
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow https
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 80/tcp
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 443/tcp
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw status
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw default deny incoming
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw default allow outgoing
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow ssh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow http
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow https
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw &lt;span class="nb">enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw status numbered
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw reload
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://einverne.github.io/post/2015/12/things-to-do-after-buying-vps.html#change-default-shell" target="_blank" rel="noopener"
 >购买 VPS 之后需要做的事情&lt;/a>
@@ -1020,10 +1029,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 访问 Pleroma，比如
 curl -v http://127.0.0.1:4000/api/v1/instance&lt;/p>
-&lt;p>NginX负责把外部的连接请求转发到 127.0.0.1:4000，得到响应后转发回去 &lt;img src="https://bucket.alive.bar/cache/custom_emojis/images/000/163/820/original/7ffe1103db94842e.png"
-loading="lazy"
-alt=":ablobpanic:"
->&lt;/p>
+&lt;p>NginX负责把外部的连接请求转发到 127.0.0.1:4000，得到响应后转发回去 &lt;!-- raw HTML omitted -->&lt;/p>
 &lt;p>如果你用 netstat 没发现 4000 端口的程序，说明 Pleroma 挂了，该去检查 Pleroma 的错误日志 &lt;img src="https://bucket.alive.bar/cache/custom_emojis/images/000/047/971/original/c7b0bea715cd48c1.png"
 loading="lazy"
 alt=":ablobsweats:"

@@ -1,10 +1,264 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/</link><description>Recent content on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 12 Jul 2023 10:48:00 +0800</lastBuildDate><atom:link href="https://falasool.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Weekly June3 July16</title><link>https://falasool.github.io/weekly-june3-july16/</link><pubDate>Wed, 12 Jul 2023 10:48:00 +0800</pubDate><guid>https://falasool.github.io/weekly-june3-july16/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=d30dcaa3" alt="Featured image of post Weekly June3 July16" />&lt;h2 id="my-monthly-must-sees">My Monthly Must-Sees&lt;/h2>
-&lt;p>Media&lt;/p>
-&lt;p>末路狂花&lt;/p>
-&lt;p>绝望的主妇&lt;/p>
-&lt;p>神探夏洛克&lt;/p>
-&lt;p>Books&lt;/p>
-&lt;p>BLogs&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/</link><description>Recent content on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 16 Jul 2023 21:31:10 +0800</lastBuildDate><atom:link href="https://falasool.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>About Dns Principle and Vpn</title><link>https://falasool.github.io/2023/about-dns-principle-and-vpn/</link><pubDate>Sun, 16 Jul 2023 21:31:10 +0800</pubDate><guid>https://falasool.github.io/2023/about-dns-principle-and-vpn/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=20bc46c6" alt="Featured image of post About Dns Principle and Vpn" />&lt;h2 id="网络通信的基本过程">网络通信的基本过程&lt;/h2>
+&lt;blockquote>
+&lt;p>设计出层级结构。出去时不断加码，加信息，加标签，到达时，不断解码，减信息，解包&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="dns-解析">DNS 解析&lt;/h3>
+&lt;p>输入域名/ip &amp;ndash; 检查浏览器/本地缓存，hosts文件 &amp;ndash; 发请求到电脑的DNS服务器（OSI 七层/五层模型） &amp;ndash; DNS 是应用层的协议，用于请求域名/ip，请求一层一层下传，到物理层（网卡接口）&amp;ndash; 请求到的数据给传输层 &amp;ndash; 传输层封装应用层的数据（源端口、目标端口）为数据包 &amp;ndash; 下传 &amp;ndash; 网络层、同样封装（源ip、目标ip）&amp;ndash; 当电脑找不到这个ip（不在范围内）会发请求给网关（路由器）&lt;/p>
+&lt;p>数据顺着物理层到网卡接口 - 网线发出到交换机（二层设备） &amp;ndash; 转发到路由器（三层设备），接收数据包，传到网络层 &amp;ndash; 因为目标ip不在局域网内，所以会转发出去（公网的其他路由器）&amp;ndash; 把内网网段NAT映射为能在公网传输的ip - 发送数据包到DNS服务器（默认端口53），DNS服务器根据OSI层层解析直到应用层，拿到请求的数据（ip），开始回传&lt;/p>
+&lt;p>传输层（+端口） &amp;ndash; 网络层（+ip） &amp;ndash; 数据链路层（+MAC地址）&amp;ndash; 从物理网口出去 &amp;ndash;互联网 &amp;ndash; 到正确的路由器，路由器转换IP、MAC、添加头部 &amp;ndash; 反向重复一遍发出请求的步骤，让电脑收到目标网站的ip&lt;/p>
+&lt;p>OSI 七层模型&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>层&lt;/th>
+&lt;th>层&lt;/th>
+&lt;th>detail&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>应用层&lt;/td>
+&lt;td>应用层&lt;/td>
+&lt;td>HTTP、FTP&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>表示层&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>会话层&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>传输层&lt;/td>
+&lt;td>传输层（端口）&lt;/td>
+&lt;td>TCP、UDP&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>网络层&lt;/td>
+&lt;td>网络层&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>网络接口层&lt;/td>
+&lt;td>数据链接层&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>物理层&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="gfw工作原理">GFW工作原理&lt;/h2>
+&lt;p>底层原因：能看到我们的数据内容&lt;/p>
+&lt;h3 id="dns污染劫持">DNS污染/劫持&lt;/h3>
+&lt;p>访问Google，先检查本机有无缓存Google的ip，查看hosts文件里有没有对google.com添加IP域名映射关系，都没有 ➡️ 向本机配置的DNS服务器发DNS请求，请求Google的ip，这个请求的数据包来到GFW（五层设备）时会被看到内容（假设未被拦截），来到real internet，到达DNS服务器并发回数据包，被GFW解包，篡改数据（ip地址）后发给本机，找不到假ip对应的服务器所以访问不了&lt;/p>
+&lt;p>解决：&lt;/p>
+&lt;p>不发送DNS请求，在host文件添加域名IP映射关系。因为HTTP协议是基于TCP、要先用TCP和服务器建立连接才能用HTTP访问，所以接下来向服务器发送 TCP 请求⬇️&lt;/p>
+&lt;h3 id="tcp重置攻击">TCP重置攻击&lt;/h3>
+&lt;p>这个请求来到 GFW，被解包到网络层发现了目标ip，在它的黑名单里，它会拒绝或伪造数据（回程阻断，出去的数据包不拦截，服务器返回的包才拦截，这会导致第2次握手无法完成，被阻断的服务器会不停的重传，客户端会一直等待超时）&lt;/p>
+&lt;h3 id="域名被ban">域名被ban&lt;/h3>
+&lt;p>谷歌有很多服务器，其中一个没在黑名单上，GFW放行了。返回的数据包也被放行来到本机。现在开始发数据，来到 GFW，网络层ip没问题，应用层发现要google.com的数据，google.com 域名在黑名单里，数据包被干掉&lt;/p>
+&lt;h3 id="重放攻击">重放攻击&lt;/h3>
+&lt;p>防火墙用本机发送的数据包探测目标VPS，有没有运行特定服务，比如SS&lt;/p>
+&lt;h2 id="对策">对策&lt;/h2>
+&lt;p>加密数据：&lt;/p>
+&lt;p>传统vpn能加密，但是特征太明显&lt;/p>
+&lt;p>shadowsocks协议：vps上搭建ss服务端，监听端口1111，本机运行ss客户端并监听端口1080，浏览器设置代理端口&lt;/p>
+&lt;p>vmess协议&lt;/p>
+&lt;h2 id="搭建-shadowsocks-节点没有实操">搭建 Shadowsocks 节点(没有实操)&lt;/h2>
+&lt;p>伪装成http&lt;/p>
+&lt;p>购买VPS，SSH连接&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt install shadowsocks-libev &lt;span class="c1"># 安装&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl status shadowsocks-libev.service &lt;span class="c1"># 查看状态&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/shadowsocks-libev/config.json &lt;span class="c1"># 修改配置文件，ip改为0.0.0.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl restart shadowsocks-libev.service &lt;span class="c1"># 重启&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">journalctl -u shadowsocks-libev.service -f &lt;span class="c1"># 查看日志&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>防火墙设置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">ufw status &lt;span class="c1"># 查看状态&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow &lt;span class="m">8388&lt;/span> &lt;span class="c1"># 开放端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw deny &lt;span class="m">8388&lt;/span> &lt;span class="c1"># 拒绝端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw delete allow &lt;span class="m">8388&lt;/span> &lt;span class="c1"># 删除规则&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw disable &lt;span class="c1"># 关闭防火墙&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw &lt;span class="nb">enable&lt;/span> &lt;span class="c1">#启动防火墙&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
+&lt;p>最近的心得：防火墙白名单+抗封锁snap版shadowsocks-libev+OutlineVPN客户端 非常抗揍，真香！（关键SS比基于tls的如trojan,v2ray速度要快）&lt;/p>
+&lt;p>我也是看了网上各路文章才有了这思路的，目前用得很好。1、防火墙100%阻断中间人，因为只有你设置好白名单的IP才能连接服务器 。2、抗封锁snap最新版（edge版不是stable版）可能在防主动识别部分针对性改动了一下，听说去了重放过滤器。3、outlineVPN客户端听说可以合并部分流量，以减少被动识别拉清单（玄学）&lt;/p>
+&lt;/blockquote>
+&lt;p>裸奔的ss服务容易被重放攻击探测到，用plugin伪装数据流量&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/shadowsocks/v2ray-plugin" target="_blank" rel="noopener"
+>https://github.com/shadowsocks/v2ray-plugin&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt install shadowsocks-v2ray-plugin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dpkg -L
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ss-v2ray-plugin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/shadowsocks-libev/config.json
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">+ &lt;span class="s2">&amp;#34;plugin&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;ss-v2ray-plugin&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">+ &lt;span class="s2">&amp;#34;plugin_opts&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;server&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl restart shadowsocks-libev.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="trojan-原理和搭建">Trojan 原理和搭建&lt;/h2>
+&lt;p>伪装成https&lt;/p>
+&lt;p>http的问题：明文、可被篡改&lt;/p>
+&lt;p>https: http + tls&lt;/p>
+&lt;h3 id="tls">TLS&lt;/h3>
+&lt;p>非对称加密：公钥、私钥&lt;/p>
+&lt;p>服务器向CA机构请求SSL证书，CA机构要求证明域名所有权后颁发证明（包含公钥和有效期），之后才能进行https访问&lt;/p>
+&lt;p>http数据交给tls进行加密，先要跟网站建立tls连接，用对方的公钥加密数据（实际上是握手后协商出对称加密算法的密钥）后发送，服务器用私钥解密&lt;/p>
+&lt;blockquote>
+&lt;p>所以 tls 协议概括一下就是，客户端和服务端使用非对称加密算法协商出对称加密算法的主密钥（使用非对称加密算法保护主密钥不被中间人窃取），然后切换到使用对称加密算法（使用对应的主密钥）进行双向通讯。&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="trojan">Trojan&lt;/h3>
+&lt;p>不耐烦了，直奔主题，下次再来！&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=gw2Vl1h89Wo&amp;amp;list=PL5TbbtexT8T3d_7UX2aSFhoMYk-cl4kf4&amp;amp;index=4" target="_blank" rel="noopener"
+>https://www.youtube.com/watch?v=gw2Vl1h89Wo&amp;list=PL5TbbtexT8T3d_7UX2aSFhoMYk-cl4kf4&amp;index=4&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;h2 id="vmess--tcp-tls">Vmess + TCP +TLS&lt;/h2>
+&lt;h3 id="服务器端">服务器端&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!!!重要！x-ui不要把xray版本升级到1.7.5以上，否则无法搭建vless节点！
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="c1">#更新软件源&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#启用 BBR TCP 拥塞控制算法&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;net.core.default_qdisc=fq&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/sysctl.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;net.ipv4.tcp_congestion_control=bbr&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/sysctl.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sysctl -p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#安装x-ui：&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bash &amp;lt;&lt;span class="o">(&lt;/span>curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>(安装Nginx、申请SSL证书)&lt;/p>
+&lt;blockquote>
+&lt;p>http站点优先，个人网盘符合单节点大流量特征&lt;/p>
+&lt;/blockquote>
+&lt;p>在浏览器搜索 &lt;code>intext:登录 Cloudreve&lt;/code>，找到一个可访问的网站作为伪装站&lt;/p>
+&lt;p>配置 Nginx&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">touch /etc/nginx/sites-available/vmess.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 进入修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/nginx/sites-available/vmess.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>配置文件内容&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> server &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> listen &lt;span class="m">443&lt;/span> ssl&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> server_name joy.ponderduck.cc&lt;span class="p">;&lt;/span> &lt;span class="c1">#你的域名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_certificate /etc/letsencrypt/live/ponderduck.cc/fullchain.pem&lt;span class="p">;&lt;/span> &lt;span class="c1">#证书位置&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_certificate_key /etc/letsencrypt/live/ponderduck.cc/privkey.pem&lt;span class="p">;&lt;/span> &lt;span class="c1">#私钥位置&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_session_timeout 1d&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_session_cache shared:MozSSL:10m&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_session_tickets off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_protocols TLSv1.2 TLSv1.3&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_prefer_server_ciphers off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location / &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_pass http://pan.qdovo.com/&lt;span class="p">;&lt;/span> &lt;span class="c1">#伪装网址&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_redirect off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_ssl_server_name on&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sub_filter_once off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sub_filter &lt;span class="s2">&amp;#34;pan.qdovo.com&amp;#34;&lt;/span> &lt;span class="nv">$server_name&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Host &lt;span class="s2">&amp;#34;pan.qdovo.com&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Referer &lt;span class="nv">$http_referer&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Real-IP &lt;span class="nv">$remote_addr&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header User-Agent &lt;span class="nv">$http_user_agent&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-For &lt;span class="nv">$proxy_add_x_forwarded_for&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-Proto https&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Accept-Encoding &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Accept-Language &lt;span class="s2">&amp;#34;zh-CN&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location /ray &lt;span class="o">{&lt;/span> &lt;span class="c1">#分流路径&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_redirect off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_pass http://127.0.0.1:10000&lt;span class="p">;&lt;/span> &lt;span class="c1">#Xray端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_http_version 1.1&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Upgrade &lt;span class="nv">$http_upgrade&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Connection &lt;span class="s2">&amp;#34;upgrade&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Host &lt;span class="nv">$host&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Real-IP &lt;span class="nv">$remote_addr&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-For &lt;span class="nv">$proxy_add_x_forwarded_for&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location /xui &lt;span class="o">{&lt;/span> &lt;span class="c1">#xui路径&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_redirect off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_pass http://127.0.0.1:9999&lt;span class="p">;&lt;/span> &lt;span class="c1">#xui监听端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_http_version 1.1&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Host &lt;span class="nv">$host&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> server &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> listen 80&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location /.well-known/ &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> root /var/www/html&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location / &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rewrite ^&lt;span class="o">(&lt;/span>.*&lt;span class="o">)&lt;/span>$ https://&lt;span class="nv">$host$1&lt;/span> permanent&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>测试、建立软链接、重启&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">nginx -t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s /etc/nginx/sites-available/vmess.conf /etc/nginx/sites-enabled/vmess.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start nginx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx -s reload
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://v2xtls.org/clashx%E9%85%8D%E7%BD%AEv2ray%E6%95%99%E7%A8%8B/" target="_blank" rel="noopener"
+>ClashX配置V2ray教程&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>[编译、配置nginx,使V2ray,Xray,Trojan,博客网站等共用443端口](&lt;/p></description></item><item><title>Migrate to Akkoma</title><link>https://falasool.github.io/2023/migrate-to-akkoma/</link><pubDate>Sat, 15 Jul 2023 22:59:59 +0800</pubDate><guid>https://falasool.github.io/2023/migrate-to-akkoma/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=040d4a09" alt="Featured image of post Migrate to Akkoma" /></description></item><item><title>Weekly ｜ To the very best of times, John.</title><link>https://falasool.github.io/weekly-july3-july16/</link><pubDate>Wed, 12 Jul 2023 10:48:00 +0800</pubDate><guid>https://falasool.github.io/weekly-july3-july16/</guid><description>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307170048659.webp" alt="Featured image of post Weekly ｜ To the very best of times, John." />&lt;h2 id="my-weekly-must-sees">My Weekly Must-Sees&lt;/h2>
+&lt;h3 id="media">Media&lt;/h3>
+&lt;p>&lt;strong>绝望的主妇S01：&lt;/strong>&lt;/p>
+&lt;p>好多美女，可惜都是直女，好吧至少Mike腿长奶子大。脸和声音（沙沙的，哦……）加起来的话我最喜欢 Susan，哎这样岂不是他们夫妻都是我的菜了嘿嘿嘿&lt;/p>
+&lt;p>Lynette吃她小孩的adhd药来榨取精力这段有点微妙的好笑，那个橙色的塑料药盒现在还在用，看北美网友吐槽医生一次给开一大罐（好像是60粒还是多少，反正很多）也不怕患者滥用，羡慕。她担心药物会把孩子的多动和可爱之处一起抹掉也是一种典型的担忧，不只是家长，患者本人（我）也曾闪过这样的想法，进而怀疑塑造自己整个人格的是什么东西，再发展到「我」到底是什么&lt;/p>
+&lt;p>我看了十几集吧，这剧又出现了美剧常见的问题：太drama了！停下缓缓。记用词和说法是挺好的，中产生活剧嘛哈哈&lt;/p>
+&lt;p>&lt;strong>神探夏洛克：&lt;/strong>&lt;/p>
+&lt;p>这是我高中看过的剧，带我入坑的前朋友现在粉到中国红，其实他一直是那样没变过啦。就像我说的，我对真实生活一方面敏锐到过载，一方面很漠然和钝感，所以很久之后当我意识到和正视这件事时非常震惊，现在想起来其实就像流水一样自然啊&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307170048659.webp"
+loading="lazy"
+alt="image"
+>&lt;/p>
+&lt;p>S01E01：他们认识几个小时之后，华生就为夏洛克杀了人，即使是连环杀手。当夏洛克披着毯子描述枪手画像的时候，看到警戒线外他的short friend，笔直的站在那里，那么坚毅和忠诚。此时接连响起钢琴单音，这是心脏沉重跳动的声音&lt;/p>
+&lt;p>S02E01：福在废弃大楼偷听艾琳和华生对峙。大概是说她的取向不包括男人但是……就像华生的取向本来也不是男人一样。&lt;/p>
+&lt;p>华生在有第三人的场合总是会立刻否认，比如对房东太太的名台词 I’m NOT gay。这次他却什么也没说，为什么？&lt;/p>
+&lt;p>夏洛克被两人发现后他没有露面，而是立刻离开。按照圣诞节聚会上他残酷的对待Molly之后能坦然道歉并立刻转移注意力到案子上的表现来看，他并不是察觉到他人爱慕自己之后会回避的类型，什么阻止了他从藏身处走到华生和艾琳面前？&lt;/p>
+&lt;p>现在我明白了他为什么会恍惚的走回贝克街221b。一个敏锐的人不能因为他主观上蔑视情感而卸载这个功能，相反因为他的敏锐，浪潮来临得会比迟钝的普通人更加汹涌&lt;/p>
+&lt;p>这一段看得我头晕目眩，最后附上我喜欢的BGM&lt;/p>
+&lt;iframe src="https://open.spotify.com/embed/track/4284hvrarcUW5g0nGnOtS1"
+width="100%"
+height="80px"
+frameborder="0"
+allowtransparency="true"
+allow="encrypted-media">&lt;/iframe>
+&lt;p>&lt;strong>咒术回战S02：&lt;/strong>&lt;/p>
+&lt;p>更新了两集，OP和ED做的真好，ED因为五条悟和夏油杰画得细长细长的、在微博看到的时候我还以为是哪个画风清新的日本画师制作的同人手书，反复看了两遍之后，几年前对他们那种汹涌的情感复活了，叹气，「人生最骄傲的时候，唯一的朋友自己孤独的决定了死期。」，还有这歌词&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>一条道走到黑的恶人有他独有的魅力，但夏油杰显然不是，他成为反派的领袖之后仍在咀嚼痛苦和后悔，你知道人绝不能有什么想法吗，人绝不能在屠杀自己的同类、背叛自己的信条之后想：假如当时……&lt;/p>
+&lt;p>叛逃之后他还有机会做一个快活的反派角色，当他开始后悔，黑暗真的降临了。这就像和魔鬼做交易，魔鬼许以梦想的一切，并且什么都不收取，只是他闻到后悔的味道，就会来收割灵魂&lt;/p>
+&lt;h3 id="game">Game&lt;/h3>
+&lt;p>&lt;strong>有氧拳击2：&lt;/strong>&lt;/p>
+&lt;p>玩了三次，可能是很多动作还没解锁的缘故，强度不太高，需要另外看视频教程学习动作细节避免受伤。出拳是很爽的&lt;/p>
+&lt;h3 id="blogs">Blogs&lt;/h3>
 &lt;p>&lt;a class="link" href="https://blog.southfox.me/2023/06/%E5%A6%82%E4%BD%95%E6%9D%80%E6%AD%BB%E4%B8%80%E4%B8%AA%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E7%BD%91%E7%BB%9C%EF%BC%9F/" target="_blank" rel="noopener"
 >如何杀死一个去中心化网络？&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
@@ -13,7 +267,61 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
-&lt;/p></description></item><item><title>Weekly ｜ New Beginning</title><link>https://falasool.github.io/weekly-june25-july2/</link><pubDate>Mon, 03 Jul 2023 00:18:07 +0800</pubDate><guid>https://falasool.github.io/weekly-june25-july2/</guid><description>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307030112643.webp" alt="Featured image of post Weekly ｜ New Beginning" />&lt;p>过了端午节，今年发现冷的素粽子顺着喉咙沉甸甸的滑下去感觉很清凉&lt;/p>
+&lt;/p>
+&lt;ul>
+&lt;li>结果 Meta 就没接入 Fedi 😂&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a class="link" href="https://blog.fivest.one/archives/6357" target="_blank" rel="noopener"
+>Fediverse: 是否要自建实例？&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;ul>
+&lt;li>如果个人实例成为主流，会造成巨大的服务器压力这一点我以前不知道&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=_618At72evs&amp;amp;list=PL5TbbtexT8T3d_7UX2aSFhoMYk-cl4kf4" target="_blank" rel="noopener"
+>网络通信的基本过程，访问网站到底发生了什么事情？详细解析DNS原理&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;ul>
+&lt;li>看完有对每天都在用的互联网多了一点点了解的奇妙感觉，对网络安全知识生出了兴趣&lt;/li>
+&lt;li>看这方面内容的起因是用了好几年的梯子挂了，想要不自己搭个用吧，当然还是要尽快肉身翻墙&lt;/li>
+&lt;/ul>
+&lt;h2 id="notes">Notes&lt;/h2>
+&lt;h3 id="实例维护">实例维护&lt;/h3>
+&lt;p>两周前，因为数据库狂涨，我打算清理一下。尝试了数据库管理工具，在GUI的帮助下终于理解了它的结构，发现站长确实能看到很多东西哎……还能看到谁block了谁，谁又mute了谁。大概学习了一下SQL语法之后，我就让chatGPT坐在副驾驶上路了！&lt;/p>
+&lt;p>开始我操作的比较谨慎，先删除了user表里很多除了uid字段其他都为空的用户（这些用户所在实例为真，uid为假，删了10k行哎），黛黛说这是什么漫游机制，我其实没听懂（挠头）。然后删除了几个新闻镜像账号的数据，到这里为止一切OK。我的最终目的是保留我发布的、和我有互动（favorite、reply、repeat、reaction、bookmark）的post，此外的嘟文只保留x月x日之后的&lt;/p>
+&lt;p>接下来我咨询chatGPT，让它写SQL命令然后修改了几次。SELECT 大概看了一眼我就执行了，数据库从700MB一下回到了100MB，很好。问题是我把x月x日之前自己的post删了……哭 &lt;!-- raw HTML omitted --> 。不过我有备份啦，等我搞懂了pg会把它们导入回去的。具体请看：&lt;a class="link" href="https://ponder.lol/2023/postgresql/" target="_blank" rel="noopener"
+>和 PostgreSQL &lt;del>搏斗&lt;/del>被殴打的记录&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;h3 id="驾照">驾照&lt;/h3>
+&lt;p>上周开始去科三考场练车 + 考试，没有通过，回到终点的时候压线了55，下周再约考试。我还以为这次会换安全员，结果还是那个人！他第一天像个疯狗一样，驾校教练什么脾气大家都有印象，在我预先下调标准的情况下这人还是傻逼得太突出了。我的视角是这老哥有很多怨气，试图发泄在无辜的我们身上。&lt;/p>
+&lt;p>他在暴怒和阴阳怪气中无缝切换。上一秒「我让你做了没！」下一秒「你等着我来做是吧！」，一边吃什么味道很大的东西、可能是槟榔，一边含混地说话，他说的方言他们本地人都说听不懂，表达能力都这样了还给自己上debuff。嘴里都是“女的女的女的”，外边走过一个戴头戴式耳机的驾校学员，他说人家戴个什么装逼（本来是方言，我翻译了一下)，看起来是个 incel&lt;/p>
+&lt;p>和我一起练车的同伴实在忍受不了要换教练，被驾校拒绝了，直说因为分到他车上的学员通过了他可以拿提成，如果我们用了他的车和气却要求换人会被使绊子。可能是我们投诉的缘故，后面他态度好了一点，不再爆骂，换成反问句和阴阳怪气，举例：&lt;/p>
+&lt;p>我按照记住的项目顺序和动作要领操作，他要骂我让你动了吗！我等他给指令然后再操作，他要骂你等着我给你做呢！&lt;/p>
+&lt;p>我开到路口，该踩刹车了，他说别踩，那我就听他的不踩啊？接着他又重复了一遍别踩，我：好的👌然后他生气的大喊你等着我给你踩刹车呢！&lt;/p>
+&lt;p>😯 教练作为老师的一个变种，应该训练自己的表达能力至少到普通水平吧？而不是用否定陈述句，让一个刚摸方向盘的新手一边开车一边揣摩他在说正话反话。&lt;/p>
+&lt;p>吐槽完毕，总结一下：这人是个垃圾&lt;/p>
+&lt;h3 id="whv">WHV&lt;/h3>
+&lt;p>7月澳大利亚whv开始预申请时我没有想要申请的想法，我总是这样，会漠视真实生活中的很多东西（敲敲脑壳）。那天晚上和A聊天，她提到想通过whv攒college的学费之后我才有了兴趣，去官方申请了。然后在小红书上看帖子，提到有车会有更多工作机会 -&amp;gt; 香港驾照可以换澳大利亚驾照 -&amp;gt; 中国大陆驾照实习期满可以换香港护照（这一连串……），所以早点拿到护照的意愿大增。还有很多提到最好有体力工作的技能，所以冒出了去攒收银和做咖啡的工作经验的想法，半个月过去了还没行动呢=。=&lt;/p>
+&lt;p>另外不管怎么说都要学英语了呀，英语和日语。我决定了，不要东摸摸外刊精读西摸摸各种英文网站泛读了，直接在雅思哥刷题吧！日语在看阅读课，背词汇，加油&lt;/p>
+&lt;h3 id="others">Others&lt;/h3>
+&lt;p>测 MBTI，心想好久好久没测，最近我有很多改变，哼哼让我看看变～成～了什么——还是INTP！我一直很向往ISTJ人，我求而不得的计划性。然后发现就像ENTP x INFJ，INTP x ISTJ 居然也是经典搭配，那我做法我的ISTJ女友快点来到我身边&lt;/p></description></item><item><title>Weekly ｜ New Beginning</title><link>https://falasool.github.io/weekly-june25-july2/</link><pubDate>Mon, 03 Jul 2023 00:18:07 +0800</pubDate><guid>https://falasool.github.io/weekly-june25-july2/</guid><description>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307030112643.webp" alt="Featured image of post Weekly ｜ New Beginning" />&lt;p>过了端午节，今年发现冷的素粽子顺着喉咙沉甸甸的滑下去感觉很清凉&lt;/p>
 &lt;p>关于同人文化：我一个比较新的前坑，出合志，因为文手是无差属性，所以作品是ab也不行，主催像干什么了似的道歉，世界上很多机构和公司的道歉声明有他一半惶恐和郑重那蓝星就会祥和很多。这个主催本身是文手，平时也洁癖来洁癖去，内涵这个那个。文化管制和这些人谁是罪魁祸首已经是个鸡生蛋蛋生鸡的问题了，权力的手在坡道上推了一把这个粪球，然后它俩一起越滚越大越滚越快，把路过的人吸进去，或者碾过去。乏味，真的好乏味&lt;/p>
 &lt;p>发现在 Switch 二手卡带商那里买卡带也在他家卖的话一个游戏可能就花三四十块，我想玩有氧拳击2。先把旷野之息玩完吧，还好早呢&lt;/p>
 &lt;p>解决了博客的搜索功能因为跨域不生效的问题；看了一下 SQL 的基础语法，现在再看黛黛教我的那些命令没有那么怵了，在看别人的微博时发现对方链接了我的博客，因为是第一次发现，所以很开心；我半年前申请然后秒冻结的 Paypal 账户在我提交材料后半年才解封……&lt;/p>
@@ -570,7 +878,7 @@ alt="image"
 &lt;h3 id="css">CSS&lt;/h3>
 &lt;details>
 &lt;summary>安装和配置 TailwindCSS&lt;/summary>
-&lt;p>在vue的根目录下，安装 Tailwind 及其依赖项（PostCSS &amp;amp; auto-prefixer）&lt;/p>
+&lt;p>在Vue的根目录下，安装 Tailwind 及其依赖项（PostCSS &amp;amp; auto-prefixer）&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">npm install -D tailwindcss postcss autoprefixer
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>生成配置文件并添加所有模板文件的路径&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">npx tailwindcss init -p
@@ -586,7 +894,7 @@ alt="image"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>,
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> plugins: &lt;span class="o">[]&lt;/span>,
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建一个&lt;code>tailwindcss.css&lt;/code>样式文件，用于初始化并引入&lt;code>tailwindcss&lt;/code>的基础样式&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建一个&lt;code>tailwind.css&lt;/code>样式文件，用于初始化并引入&lt;code>tailwindcss&lt;/code>的基础样式&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">复制代码&lt;/span>&lt;span class="c">/* /src/tailwindcss.css*/&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">tailwind&lt;/span> &lt;span class="nt">base&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">tailwind&lt;/span> &lt;span class="nt">components&lt;/span>&lt;span class="p">;&lt;/span>
@@ -595,7 +903,7 @@ alt="image"
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl">// src/main.js
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">import { createApp } from &amp;#39;vue&amp;#39;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">import App from &amp;#39;./App.vue&amp;#39;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ import &amp;#34;./tailwindcss.css&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ import &amp;#34;./tailwind.css&amp;#34;
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">createApp(App).mount(&amp;#39;#app&amp;#39;)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
@@ -669,7 +977,9 @@ allow="encrypted-media">&lt;/iframe>
 &lt;p>倒是 &lt;strong>ABO 世界&lt;/strong>，他劝安莉不要逃亡，发展到和原住民一起追捕安莉那里，我觉得有点疲惫，幻视那些对精神已经很紧张的受害者不阴不阳的男人：你太敏感了，不会吧？看似站在天平中间，实际上在拉偏架。我边看边想，要扭转他理中客立场的方法很简单：让他长个 pussy 出来，先趟趟路人、民兵、军人的雷，看看他们是不是真的「友好、尊重个人意愿、都可以商量」，哈哈&lt;/p>
 &lt;p>还有这篇章的女 Alpha 的刻画让我有些震动（震动了好多次了！）想到三次元一些男人都消失社会就会成为全女乌托邦的观点，我不赞同这个观点，但是嘴笨。老师好厉害，用讲故事的方式很平实的反驳了，女人是一种处境，没有女人就会有男人承担女人的角色被压迫，性别为女的人在这个制度里得到迫害别人的权力之后也不会手软，依靠幻想中的女性天生的道德约束就……没有约束力&lt;/p>
 &lt;p>这一篇里我最喜欢杰西，喜欢她们的逃亡之路，冲向悬崖就像塞尔玛和路易斯踩下油门飞向蓝天🥹&lt;/p>
-&lt;p>Last week, I went to the theatre, i had a very good set, the play is very interesting. i did not enjoy it. the young man and a young woman is sitting behind me. They were talking loudly. i got very angry. i could not heat the actors. i turned around, i looked at the man and the woman angrily, they did not pay any attention, in the end, i could not bared, i turned around again,i can&amp;rsquo;t hear the word, i said angrily. Its not your business, the young man said rudely, this is a private conversation.&lt;/p></description></item><item><title>Language learning | dictate NCE II</title><link>https://falasool.github.io/2023/language-learning-dictate-nce-ii/</link><pubDate>Sun, 11 Jun 2023 23:17:00 +0800</pubDate><guid>https://falasool.github.io/2023/language-learning-dictate-nce-ii/</guid><description>&lt;p>Last week, I went to the theatre, i had a very good set, the play is very interesting. i did not enjoy it. the young man and a young woman is sitting behind me. They were talking loudly. i got very angry. i could not heat the actors. i turned around, i looked at the man and the woman angrily, they did not pay any attention, in the end, i could not bared, i turned around again,i can&amp;rsquo;t hear the word, i said angrily. Its not your business, the young man said rudely, this is a private conversation.&lt;/p></description></item><item><title>Pleroma | 在 Debian 上搭建 pleroma 实例</title><link>https://falasool.github.io/2023/new-pleroma-isntance-on-debian11/</link><pubDate>Sat, 03 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/new-pleroma-isntance-on-debian11/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>午夜梦回，安德烈总是想起那条斜坡路，他觉得那条路生生地插在他的脑海里，塑造他的性格，因为他的心里逐渐依靠这条路形成一种理念，那就是，他是个独立的人。那种铺天盖地的孤独感并没有压倒他，反而让他生出一种自由感，没有谁对他来说是必要的，因为，看吧，就算一个人安德烈也可以走这条路，就算这样也可以活下去，这种来自内心的自豪感让安德烈觉得自己的生命也好、意志也好，都分外珍贵。唯有自身没有一技之长的挫败感挡住了他的自豪，因此他总是想多学点，不用太多，只要各样都学一点，将来总有用处，他无论如何要凭自己活下去，他觉得他在和命运战斗，他要躲开一切条条框框，走那条斜坡路，他觉得这有意义。&lt;/p>
+&lt;/blockquote></description></item><item><title>Language learning | dictate NCE II</title><link>https://falasool.github.io/2023/language-learning-dictate-nce-ii/</link><pubDate>Sun, 11 Jun 2023 23:17:00 +0800</pubDate><guid>https://falasool.github.io/2023/language-learning-dictate-nce-ii/</guid><description>&lt;p>Last week, I went to the theatre, i had a very good set, the play is very interesting. i did not enjoy it. the young man and a young woman is sitting behind me. They were talking loudly. i got very angry. i could not heat the actors. i turned around, i looked at the man and the woman angrily, they did not pay any attention, in the end, i could not bared, i turned around again,i can&amp;rsquo;t hear the word, i said angrily. Its not your business, the young man said rudely, this is a private conversation.&lt;/p></description></item><item><title>Pleroma | 在 Debian 上搭建 pleroma 实例</title><link>https://falasool.github.io/2023/new-pleroma-isntance-on-debian11/</link><pubDate>Sat, 03 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/new-pleroma-isntance-on-debian11/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="前置步骤">前置步骤&lt;/h2>
 &lt;h3 id="安装依赖">安装依赖&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新&lt;/span>
@@ -941,13 +1251,22 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;h2 id="防火墙">防火墙&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ufw allow OpenSSH
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw enable
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">ufw allow OpenSSH
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw &lt;span class="nb">enable&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow http
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow https
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 80/tcp
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 443/tcp
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw status
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw default deny incoming
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw default allow outgoing
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow ssh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow http
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow https
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw &lt;span class="nb">enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw status numbered
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw reload
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://einverne.github.io/post/2015/12/things-to-do-after-buying-vps.html#change-default-shell" target="_blank" rel="noopener"
 >购买 VPS 之后需要做的事情&lt;/a>
@@ -1384,10 +1703,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 访问 Pleroma，比如
 curl -v http://127.0.0.1:4000/api/v1/instance&lt;/p>
-&lt;p>NginX负责把外部的连接请求转发到 127.0.0.1:4000，得到响应后转发回去 &lt;img src="https://bucket.alive.bar/cache/custom_emojis/images/000/163/820/original/7ffe1103db94842e.png"
-loading="lazy"
-alt=":ablobpanic:"
->&lt;/p>
+&lt;p>NginX负责把外部的连接请求转发到 127.0.0.1:4000，得到响应后转发回去 &lt;!-- raw HTML omitted -->&lt;/p>
 &lt;p>如果你用 netstat 没发现 4000 端口的程序，说明 Pleroma 挂了，该去检查 Pleroma 的错误日志 &lt;img src="https://bucket.alive.bar/cache/custom_emojis/images/000/047/971/original/c7b0bea715cd48c1.png"
 loading="lazy"
 alt=":ablobsweats:"
@@ -2090,9 +2406,15 @@ fill="currentColor">
 &lt;/ul>
 &lt;h4 id="服务器配置">服务器配置&lt;/h4>
 &lt;ul>
-&lt;li>&lt;code>/etc/nginx&lt;/code>：Nginx配置文件，修改它配置Nginx全局设置。&lt;/li>
-&lt;li>&lt;code>/etc/nginx/sites-available/&lt;/code>：虚拟主机的目录，可在此创建多个虚拟主机。&lt;/li>
-&lt;li>&lt;code>/etc/nginx/sites-enabled/&lt;/code>：Nginx默认站点目录，nginc.conf 默认包含的文件夹。在此文件夹建立的站点，需要建立软连接到目录/etc/nginx/sites-enabled/里。&lt;/li>
+&lt;li>&lt;code>/etc/nginx/nginx.conf&lt;/code>：Nginx配置文件，修改它配置Nginx全局设置。&lt;/li>
+&lt;li>&lt;code>/etc/nginx/sites-available/&lt;/code>：可用站点配置文件放置目录，可在此创建多个虚拟主机，每一个站点一个配置文件&lt;/li>
+&lt;li>&lt;code>/etc/nginx/sites-enabled/&lt;/code>：已启用站点的软链接目录，Nginx默认站点目录，nginc.conf 默认包含的文件夹。在此文件夹建立的站点，需要建立软连接到目录/etc/nginx/sites-available/里&lt;/li>
+&lt;li>&lt;code>/etc/nginx/conf.d&lt;/code>：用于存放引入的其他配置文件的目录（存放公共配置片段）&lt;/li>
+&lt;li>&lt;code>/etc/nginx/mime.types&lt;/code>: 设置媒体类型映射关系&lt;/li>
+&lt;li>&lt;code>/etc/nginx/fastcgi_params&lt;/code>: 一些默认的参数文件&lt;/li>
+&lt;li>&lt;code>/etc/nginx/modules-available/enabled&lt;/code>: Nginx 模块目录&lt;/li>
+&lt;li>&lt;code>/etc/nginx/snippets&lt;/code>: 代码片段目录&lt;/li>
+&lt;li>&lt;code>/etc/nginx/ko-utf、/etc/nginx/win-utf&lt;/code> 等:一些编码转换映射文件&lt;/li>
 &lt;/ul>
 &lt;h4 id="服务日志">服务日志&lt;/h4>
 &lt;ul>

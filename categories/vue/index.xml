@@ -82,7 +82,7 @@ alt="image"
 &lt;h3 id="css">CSS&lt;/h3>
 &lt;details>
 &lt;summary>安装和配置 TailwindCSS&lt;/summary>
-&lt;p>在vue的根目录下，安装 Tailwind 及其依赖项（PostCSS &amp;amp; auto-prefixer）&lt;/p>
+&lt;p>在Vue的根目录下，安装 Tailwind 及其依赖项（PostCSS &amp;amp; auto-prefixer）&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">npm install -D tailwindcss postcss autoprefixer
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>生成配置文件并添加所有模板文件的路径&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">npx tailwindcss init -p
@@ -98,7 +98,7 @@ alt="image"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>,
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> plugins: &lt;span class="o">[]&lt;/span>,
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建一个&lt;code>tailwindcss.css&lt;/code>样式文件，用于初始化并引入&lt;code>tailwindcss&lt;/code>的基础样式&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建一个&lt;code>tailwind.css&lt;/code>样式文件，用于初始化并引入&lt;code>tailwindcss&lt;/code>的基础样式&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">复制代码&lt;/span>&lt;span class="c">/* /src/tailwindcss.css*/&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">tailwind&lt;/span> &lt;span class="nt">base&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">tailwind&lt;/span> &lt;span class="nt">components&lt;/span>&lt;span class="p">;&lt;/span>
@@ -107,7 +107,7 @@ alt="image"
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl">// src/main.js
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">import { createApp } from &amp;#39;vue&amp;#39;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">import App from &amp;#39;./App.vue&amp;#39;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ import &amp;#34;./tailwindcss.css&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ import &amp;#34;./tailwind.css&amp;#34;
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">createApp(App).mount(&amp;#39;#app&amp;#39;)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>

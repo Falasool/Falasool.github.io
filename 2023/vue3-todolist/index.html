@@ -20,7 +20,7 @@
 </span></span><span class=line><span class=cl>    │   └── Helloworld.vue
 </span></span><span class=line><span class=cl>    ├── index.css
 </span></span><span class=line><span class=cl>    └── main.js <span class=c1># 入口文件，用于初始化vue实例</span>
-</span></span></code></pre></div><h2 id=思路>思路</h2><ol><li><p>先搭建好框架：写死数据看页面效果并调整</p></li><li><p>然后把代码拆分进三个组件：Header、List、Footer（标题和任务输入框、任务列表项、按钮选择项和计数）</p></li><li><p>写JS，并更换模板页面中的数据，用动态的数据代替。在setup()入口函数中写数据源和要实现功能的函数</p></li></ol><h2 id=实现步骤>实现步骤</h2><h3 id=html>HTML</h3><p>这不是最终结构，后面有修改</p><p><img src=https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307121504274.webp loading=lazy alt=image></p><h3 id=css>CSS</h3><details><summary>安装和配置 TailwindCSS</summary><p>在vue的根目录下，安装 Tailwind 及其依赖项（PostCSS & auto-prefixer）</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>npm install -D tailwindcss postcss autoprefixer
+</span></span></code></pre></div><h2 id=思路>思路</h2><ol><li><p>先搭建好框架：写死数据看页面效果并调整</p></li><li><p>然后把代码拆分进三个组件：Header、List、Footer（标题和任务输入框、任务列表项、按钮选择项和计数）</p></li><li><p>写JS，并更换模板页面中的数据，用动态的数据代替。在setup()入口函数中写数据源和要实现功能的函数</p></li></ol><h2 id=实现步骤>实现步骤</h2><h3 id=html>HTML</h3><p>这不是最终结构，后面有修改</p><p><img src=https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307121504274.webp loading=lazy alt=image></p><h3 id=css>CSS</h3><details><summary>安装和配置 TailwindCSS</summary><p>在Vue的根目录下，安装 Tailwind 及其依赖项（PostCSS & auto-prefixer）</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>npm install -D tailwindcss postcss autoprefixer
 </span></span></code></pre></div><p>生成配置文件并添加所有模板文件的路径</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>npx tailwindcss init -p
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>//tailwind.config.js
@@ -34,14 +34,14 @@
 </span></span><span class=line><span class=cl>  <span class=o>}</span>,
 </span></span><span class=line><span class=cl>  plugins: <span class=o>[]</span>,
 </span></span><span class=line><span class=cl><span class=o>}</span>
-</span></span></code></pre></div><p>创建一个<code>tailwindcss.css</code>样式文件，用于初始化并引入<code>tailwindcss</code>的基础样式</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=nt>复制代码</span><span class=c>/* /src/tailwindcss.css*/</span>
+</span></span></code></pre></div><p>创建一个<code>tailwind.css</code>样式文件，用于初始化并引入<code>tailwindcss</code>的基础样式</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=nt>复制代码</span><span class=c>/* /src/tailwindcss.css*/</span>
 </span></span><span class=line><span class=cl><span class=p>@</span><span class=k>tailwind</span> <span class=nt>base</span><span class=p>;</span>
 </span></span><span class=line><span class=cl><span class=p>@</span><span class=k>tailwind</span> <span class=nt>components</span><span class=p>;</span>
 </span></span><span class=line><span class=cl><span class=p>@</span><span class=k>tailwind</span> <span class=nt>utilities</span><span class=p>;</span>
 </span></span></code></pre></div><p>导入<code>css/tailwindcss.css</code>到<code>main.js</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl>// src/main.js
 </span></span><span class=line><span class=cl>import { createApp } from &#39;vue&#39;
 </span></span><span class=line><span class=cl>import App from &#39;./App.vue&#39;
-</span></span><span class=line><span class=cl><span class=gi>+ import &#34;./tailwindcss.css&#34;
+</span></span><span class=line><span class=cl><span class=gi>+ import &#34;./tailwind.css&#34;
 </span></span></span><span class=line><span class=cl><span class=gi></span>
 </span></span><span class=line><span class=cl>createApp(App).mount(&#39;#app&#39;)
 </span></span></code></pre></div></details></section><footer class=article-footer><section class=article-tags><a href=/tags/vue/>Vue</a>

@@ -1,4 +1,232 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/post/</link><description>Recent content in Posts on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 29 Jun 2023 19:13:22 +0800</lastBuildDate><atom:link href="https://falasool.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>SQL 入门</title><link>https://falasool.github.io/2023/sql/</link><pubDate>Thu, 29 Jun 2023 19:13:22 +0800</pubDate><guid>https://falasool.github.io/2023/sql/</guid><description>&lt;h2 id="常用命令">常用命令&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/post/</link><description>Recent content in Posts on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 16 Jul 2023 21:31:10 +0800</lastBuildDate><atom:link href="https://falasool.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>About Dns Principle and Vpn</title><link>https://falasool.github.io/2023/about-dns-principle-and-vpn/</link><pubDate>Sun, 16 Jul 2023 21:31:10 +0800</pubDate><guid>https://falasool.github.io/2023/about-dns-principle-and-vpn/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=20bc46c6" alt="Featured image of post About Dns Principle and Vpn" />&lt;h2 id="网络通信的基本过程">网络通信的基本过程&lt;/h2>
+&lt;blockquote>
+&lt;p>设计出层级结构。出去时不断加码，加信息，加标签，到达时，不断解码，减信息，解包&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="dns-解析">DNS 解析&lt;/h3>
+&lt;p>输入域名/ip &amp;ndash; 检查浏览器/本地缓存，hosts文件 &amp;ndash; 发请求到电脑的DNS服务器（OSI 七层/五层模型） &amp;ndash; DNS 是应用层的协议，用于请求域名/ip，请求一层一层下传，到物理层（网卡接口）&amp;ndash; 请求到的数据给传输层 &amp;ndash; 传输层封装应用层的数据（源端口、目标端口）为数据包 &amp;ndash; 下传 &amp;ndash; 网络层、同样封装（源ip、目标ip）&amp;ndash; 当电脑找不到这个ip（不在范围内）会发请求给网关（路由器）&lt;/p>
+&lt;p>数据顺着物理层到网卡接口 - 网线发出到交换机（二层设备） &amp;ndash; 转发到路由器（三层设备），接收数据包，传到网络层 &amp;ndash; 因为目标ip不在局域网内，所以会转发出去（公网的其他路由器）&amp;ndash; 把内网网段NAT映射为能在公网传输的ip - 发送数据包到DNS服务器（默认端口53），DNS服务器根据OSI层层解析直到应用层，拿到请求的数据（ip），开始回传&lt;/p>
+&lt;p>传输层（+端口） &amp;ndash; 网络层（+ip） &amp;ndash; 数据链路层（+MAC地址）&amp;ndash; 从物理网口出去 &amp;ndash;互联网 &amp;ndash; 到正确的路由器，路由器转换IP、MAC、添加头部 &amp;ndash; 反向重复一遍发出请求的步骤，让电脑收到目标网站的ip&lt;/p>
+&lt;p>OSI 七层模型&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>层&lt;/th>
+&lt;th>层&lt;/th>
+&lt;th>detail&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>应用层&lt;/td>
+&lt;td>应用层&lt;/td>
+&lt;td>HTTP、FTP&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>表示层&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>会话层&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>传输层&lt;/td>
+&lt;td>传输层（端口）&lt;/td>
+&lt;td>TCP、UDP&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>网络层&lt;/td>
+&lt;td>网络层&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>网络接口层&lt;/td>
+&lt;td>数据链接层&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>物理层&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="gfw工作原理">GFW工作原理&lt;/h2>
+&lt;p>底层原因：能看到我们的数据内容&lt;/p>
+&lt;h3 id="dns污染劫持">DNS污染/劫持&lt;/h3>
+&lt;p>访问Google，先检查本机有无缓存Google的ip，查看hosts文件里有没有对google.com添加IP域名映射关系，都没有 ➡️ 向本机配置的DNS服务器发DNS请求，请求Google的ip，这个请求的数据包来到GFW（五层设备）时会被看到内容（假设未被拦截），来到real internet，到达DNS服务器并发回数据包，被GFW解包，篡改数据（ip地址）后发给本机，找不到假ip对应的服务器所以访问不了&lt;/p>
+&lt;p>解决：&lt;/p>
+&lt;p>不发送DNS请求，在host文件添加域名IP映射关系。因为HTTP协议是基于TCP、要先用TCP和服务器建立连接才能用HTTP访问，所以接下来向服务器发送 TCP 请求⬇️&lt;/p>
+&lt;h3 id="tcp重置攻击">TCP重置攻击&lt;/h3>
+&lt;p>这个请求来到 GFW，被解包到网络层发现了目标ip，在它的黑名单里，它会拒绝或伪造数据（回程阻断，出去的数据包不拦截，服务器返回的包才拦截，这会导致第2次握手无法完成，被阻断的服务器会不停的重传，客户端会一直等待超时）&lt;/p>
+&lt;h3 id="域名被ban">域名被ban&lt;/h3>
+&lt;p>谷歌有很多服务器，其中一个没在黑名单上，GFW放行了。返回的数据包也被放行来到本机。现在开始发数据，来到 GFW，网络层ip没问题，应用层发现要google.com的数据，google.com 域名在黑名单里，数据包被干掉&lt;/p>
+&lt;h3 id="重放攻击">重放攻击&lt;/h3>
+&lt;p>防火墙用本机发送的数据包探测目标VPS，有没有运行特定服务，比如SS&lt;/p>
+&lt;h2 id="对策">对策&lt;/h2>
+&lt;p>加密数据：&lt;/p>
+&lt;p>传统vpn能加密，但是特征太明显&lt;/p>
+&lt;p>shadowsocks协议：vps上搭建ss服务端，监听端口1111，本机运行ss客户端并监听端口1080，浏览器设置代理端口&lt;/p>
+&lt;p>vmess协议&lt;/p>
+&lt;h2 id="搭建-shadowsocks-节点没有实操">搭建 Shadowsocks 节点(没有实操)&lt;/h2>
+&lt;p>伪装成http&lt;/p>
+&lt;p>购买VPS，SSH连接&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt install shadowsocks-libev &lt;span class="c1"># 安装&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl status shadowsocks-libev.service &lt;span class="c1"># 查看状态&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/shadowsocks-libev/config.json &lt;span class="c1"># 修改配置文件，ip改为0.0.0.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl restart shadowsocks-libev.service &lt;span class="c1"># 重启&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">journalctl -u shadowsocks-libev.service -f &lt;span class="c1"># 查看日志&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>防火墙设置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">ufw status &lt;span class="c1"># 查看状态&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow &lt;span class="m">8388&lt;/span> &lt;span class="c1"># 开放端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw deny &lt;span class="m">8388&lt;/span> &lt;span class="c1"># 拒绝端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw delete allow &lt;span class="m">8388&lt;/span> &lt;span class="c1"># 删除规则&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw disable &lt;span class="c1"># 关闭防火墙&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw &lt;span class="nb">enable&lt;/span> &lt;span class="c1">#启动防火墙&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
+&lt;p>最近的心得：防火墙白名单+抗封锁snap版shadowsocks-libev+OutlineVPN客户端 非常抗揍，真香！（关键SS比基于tls的如trojan,v2ray速度要快）&lt;/p>
+&lt;p>我也是看了网上各路文章才有了这思路的，目前用得很好。1、防火墙100%阻断中间人，因为只有你设置好白名单的IP才能连接服务器 。2、抗封锁snap最新版（edge版不是stable版）可能在防主动识别部分针对性改动了一下，听说去了重放过滤器。3、outlineVPN客户端听说可以合并部分流量，以减少被动识别拉清单（玄学）&lt;/p>
+&lt;/blockquote>
+&lt;p>裸奔的ss服务容易被重放攻击探测到，用plugin伪装数据流量&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/shadowsocks/v2ray-plugin" target="_blank" rel="noopener"
+>https://github.com/shadowsocks/v2ray-plugin&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt install shadowsocks-v2ray-plugin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dpkg -L
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ss-v2ray-plugin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/shadowsocks-libev/config.json
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">+ &lt;span class="s2">&amp;#34;plugin&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;ss-v2ray-plugin&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">+ &lt;span class="s2">&amp;#34;plugin_opts&amp;#34;&lt;/span>: &lt;span class="s2">&amp;#34;server&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl restart shadowsocks-libev.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="trojan-原理和搭建">Trojan 原理和搭建&lt;/h2>
+&lt;p>伪装成https&lt;/p>
+&lt;p>http的问题：明文、可被篡改&lt;/p>
+&lt;p>https: http + tls&lt;/p>
+&lt;h3 id="tls">TLS&lt;/h3>
+&lt;p>非对称加密：公钥、私钥&lt;/p>
+&lt;p>服务器向CA机构请求SSL证书，CA机构要求证明域名所有权后颁发证明（包含公钥和有效期），之后才能进行https访问&lt;/p>
+&lt;p>http数据交给tls进行加密，先要跟网站建立tls连接，用对方的公钥加密数据（实际上是握手后协商出对称加密算法的密钥）后发送，服务器用私钥解密&lt;/p>
+&lt;blockquote>
+&lt;p>所以 tls 协议概括一下就是，客户端和服务端使用非对称加密算法协商出对称加密算法的主密钥（使用非对称加密算法保护主密钥不被中间人窃取），然后切换到使用对称加密算法（使用对应的主密钥）进行双向通讯。&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="trojan">Trojan&lt;/h3>
+&lt;p>不耐烦了，直奔主题，下次再来！&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=gw2Vl1h89Wo&amp;amp;list=PL5TbbtexT8T3d_7UX2aSFhoMYk-cl4kf4&amp;amp;index=4" target="_blank" rel="noopener"
+>https://www.youtube.com/watch?v=gw2Vl1h89Wo&amp;list=PL5TbbtexT8T3d_7UX2aSFhoMYk-cl4kf4&amp;index=4&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;h2 id="vmess--tcp-tls">Vmess + TCP +TLS&lt;/h2>
+&lt;h3 id="服务器端">服务器端&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!!!重要！x-ui不要把xray版本升级到1.7.5以上，否则无法搭建vless节点！
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="c1">#更新软件源&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#启用 BBR TCP 拥塞控制算法&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;net.core.default_qdisc=fq&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/sysctl.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;net.ipv4.tcp_congestion_control=bbr&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/sysctl.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sysctl -p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#安装x-ui：&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bash &amp;lt;&lt;span class="o">(&lt;/span>curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>(安装Nginx、申请SSL证书)&lt;/p>
+&lt;blockquote>
+&lt;p>http站点优先，个人网盘符合单节点大流量特征&lt;/p>
+&lt;/blockquote>
+&lt;p>在浏览器搜索 &lt;code>intext:登录 Cloudreve&lt;/code>，找到一个可访问的网站作为伪装站&lt;/p>
+&lt;p>配置 Nginx&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">touch /etc/nginx/sites-available/vmess.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 进入修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/nginx/sites-available/vmess.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>配置文件内容&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> server &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> listen &lt;span class="m">443&lt;/span> ssl&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> server_name joy.ponderduck.cc&lt;span class="p">;&lt;/span> &lt;span class="c1">#你的域名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_certificate /etc/letsencrypt/live/ponderduck.cc/fullchain.pem&lt;span class="p">;&lt;/span> &lt;span class="c1">#证书位置&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_certificate_key /etc/letsencrypt/live/ponderduck.cc/privkey.pem&lt;span class="p">;&lt;/span> &lt;span class="c1">#私钥位置&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_session_timeout 1d&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_session_cache shared:MozSSL:10m&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_session_tickets off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_protocols TLSv1.2 TLSv1.3&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssl_prefer_server_ciphers off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location / &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_pass http://pan.qdovo.com/&lt;span class="p">;&lt;/span> &lt;span class="c1">#伪装网址&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_redirect off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_ssl_server_name on&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sub_filter_once off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sub_filter &lt;span class="s2">&amp;#34;pan.qdovo.com&amp;#34;&lt;/span> &lt;span class="nv">$server_name&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Host &lt;span class="s2">&amp;#34;pan.qdovo.com&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Referer &lt;span class="nv">$http_referer&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Real-IP &lt;span class="nv">$remote_addr&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header User-Agent &lt;span class="nv">$http_user_agent&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-For &lt;span class="nv">$proxy_add_x_forwarded_for&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-Proto https&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Accept-Encoding &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Accept-Language &lt;span class="s2">&amp;#34;zh-CN&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location /ray &lt;span class="o">{&lt;/span> &lt;span class="c1">#分流路径&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_redirect off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_pass http://127.0.0.1:10000&lt;span class="p">;&lt;/span> &lt;span class="c1">#Xray端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_http_version 1.1&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Upgrade &lt;span class="nv">$http_upgrade&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Connection &lt;span class="s2">&amp;#34;upgrade&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Host &lt;span class="nv">$host&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Real-IP &lt;span class="nv">$remote_addr&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-For &lt;span class="nv">$proxy_add_x_forwarded_for&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location /xui &lt;span class="o">{&lt;/span> &lt;span class="c1">#xui路径&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_redirect off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_pass http://127.0.0.1:9999&lt;span class="p">;&lt;/span> &lt;span class="c1">#xui监听端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_http_version 1.1&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Host &lt;span class="nv">$host&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> server &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> listen 80&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location /.well-known/ &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> root /var/www/html&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location / &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rewrite ^&lt;span class="o">(&lt;/span>.*&lt;span class="o">)&lt;/span>$ https://&lt;span class="nv">$host$1&lt;/span> permanent&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>测试、建立软链接、重启&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">nginx -t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s /etc/nginx/sites-available/vmess.conf /etc/nginx/sites-enabled/vmess.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start nginx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx -s reload
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://v2xtls.org/clashx%E9%85%8D%E7%BD%AEv2ray%E6%95%99%E7%A8%8B/" target="_blank" rel="noopener"
+>ClashX配置V2ray教程&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>[编译、配置nginx,使V2ray,Xray,Trojan,博客网站等共用443端口](&lt;/p></description></item><item><title>Migrate to Akkoma</title><link>https://falasool.github.io/2023/migrate-to-akkoma/</link><pubDate>Sat, 15 Jul 2023 22:59:59 +0800</pubDate><guid>https://falasool.github.io/2023/migrate-to-akkoma/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=040d4a09" alt="Featured image of post Migrate to Akkoma" /></description></item><item><title>SQL 入门</title><link>https://falasool.github.io/2023/sql/</link><pubDate>Thu, 29 Jun 2023 19:13:22 +0800</pubDate><guid>https://falasool.github.io/2023/sql/</guid><description>&lt;h2 id="常用命令">常用命令&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">CREATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DATABASE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">创建数据库&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">CREATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">TABLE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">t1&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">body&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">创建表&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">记得使用\&lt;/span>&lt;span class="n">c命令切换数据库&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">CREATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">USER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">WITH&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">PASSWORD&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;Test#1357&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">创建用户&lt;/span>&lt;span class="w">
@@ -538,7 +766,7 @@ alt="image"
 &lt;h3 id="css">CSS&lt;/h3>
 &lt;details>
 &lt;summary>安装和配置 TailwindCSS&lt;/summary>
-&lt;p>在vue的根目录下，安装 Tailwind 及其依赖项（PostCSS &amp;amp; auto-prefixer）&lt;/p>
+&lt;p>在Vue的根目录下，安装 Tailwind 及其依赖项（PostCSS &amp;amp; auto-prefixer）&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">npm install -D tailwindcss postcss autoprefixer
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>生成配置文件并添加所有模板文件的路径&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">npx tailwindcss init -p
@@ -554,7 +782,7 @@ alt="image"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>,
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> plugins: &lt;span class="o">[]&lt;/span>,
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建一个&lt;code>tailwindcss.css&lt;/code>样式文件，用于初始化并引入&lt;code>tailwindcss&lt;/code>的基础样式&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建一个&lt;code>tailwind.css&lt;/code>样式文件，用于初始化并引入&lt;code>tailwindcss&lt;/code>的基础样式&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">复制代码&lt;/span>&lt;span class="c">/* /src/tailwindcss.css*/&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">tailwind&lt;/span> &lt;span class="nt">base&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">tailwind&lt;/span> &lt;span class="nt">components&lt;/span>&lt;span class="p">;&lt;/span>
@@ -563,7 +791,7 @@ alt="image"
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl">// src/main.js
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">import { createApp } from &amp;#39;vue&amp;#39;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">import App from &amp;#39;./App.vue&amp;#39;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ import &amp;#34;./tailwindcss.css&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ import &amp;#34;./tailwind.css&amp;#34;
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">createApp(App).mount(&amp;#39;#app&amp;#39;)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
@@ -839,13 +1067,22 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;h2 id="防火墙">防火墙&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ufw allow OpenSSH
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw enable
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">ufw allow OpenSSH
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw &lt;span class="nb">enable&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow http
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow https
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 80/tcp
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 443/tcp
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw status
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw default deny incoming
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw default allow outgoing
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow ssh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow http
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow https
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw &lt;span class="nb">enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw status numbered
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw reload
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://einverne.github.io/post/2015/12/things-to-do-after-buying-vps.html#change-default-shell" target="_blank" rel="noopener"
 >购买 VPS 之后需要做的事情&lt;/a>
@@ -1257,10 +1494,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 访问 Pleroma，比如
 curl -v http://127.0.0.1:4000/api/v1/instance&lt;/p>
-&lt;p>NginX负责把外部的连接请求转发到 127.0.0.1:4000，得到响应后转发回去 &lt;img src="https://bucket.alive.bar/cache/custom_emojis/images/000/163/820/original/7ffe1103db94842e.png"
-loading="lazy"
-alt=":ablobpanic:"
->&lt;/p>
+&lt;p>NginX负责把外部的连接请求转发到 127.0.0.1:4000，得到响应后转发回去 &lt;!-- raw HTML omitted -->&lt;/p>
 &lt;p>如果你用 netstat 没发现 4000 端口的程序，说明 Pleroma 挂了，该去检查 Pleroma 的错误日志 &lt;img src="https://bucket.alive.bar/cache/custom_emojis/images/000/047/971/original/c7b0bea715cd48c1.png"
 loading="lazy"
 alt=":ablobsweats:"
@@ -1963,9 +2197,15 @@ fill="currentColor">
 &lt;/ul>
 &lt;h4 id="服务器配置">服务器配置&lt;/h4>
 &lt;ul>
-&lt;li>&lt;code>/etc/nginx&lt;/code>：Nginx配置文件，修改它配置Nginx全局设置。&lt;/li>
-&lt;li>&lt;code>/etc/nginx/sites-available/&lt;/code>：虚拟主机的目录，可在此创建多个虚拟主机。&lt;/li>
-&lt;li>&lt;code>/etc/nginx/sites-enabled/&lt;/code>：Nginx默认站点目录，nginc.conf 默认包含的文件夹。在此文件夹建立的站点，需要建立软连接到目录/etc/nginx/sites-enabled/里。&lt;/li>
+&lt;li>&lt;code>/etc/nginx/nginx.conf&lt;/code>：Nginx配置文件，修改它配置Nginx全局设置。&lt;/li>
+&lt;li>&lt;code>/etc/nginx/sites-available/&lt;/code>：可用站点配置文件放置目录，可在此创建多个虚拟主机，每一个站点一个配置文件&lt;/li>
+&lt;li>&lt;code>/etc/nginx/sites-enabled/&lt;/code>：已启用站点的软链接目录，Nginx默认站点目录，nginc.conf 默认包含的文件夹。在此文件夹建立的站点，需要建立软连接到目录/etc/nginx/sites-available/里&lt;/li>
+&lt;li>&lt;code>/etc/nginx/conf.d&lt;/code>：用于存放引入的其他配置文件的目录（存放公共配置片段）&lt;/li>
+&lt;li>&lt;code>/etc/nginx/mime.types&lt;/code>: 设置媒体类型映射关系&lt;/li>
+&lt;li>&lt;code>/etc/nginx/fastcgi_params&lt;/code>: 一些默认的参数文件&lt;/li>
+&lt;li>&lt;code>/etc/nginx/modules-available/enabled&lt;/code>: Nginx 模块目录&lt;/li>
+&lt;li>&lt;code>/etc/nginx/snippets&lt;/code>: 代码片段目录&lt;/li>
+&lt;li>&lt;code>/etc/nginx/ko-utf、/etc/nginx/win-utf&lt;/code> 等:一些编码转换映射文件&lt;/li>
 &lt;/ul>
 &lt;h4 id="服务日志">服务日志&lt;/h4>
 &lt;ul>
