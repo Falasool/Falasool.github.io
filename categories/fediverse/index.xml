@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fediverse on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/fediverse/</link><description>Recent content in Fediverse on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 26 Jun 2023 11:21:32 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/fediverse/index.xml" rel="self" type="application/rss+xml"/><item><title>初遇 PostgreSQL</title><link>https://falasool.github.io/2023/postgresql/</link><pubDate>Mon, 26 Jun 2023 11:21:32 +0800</pubDate><guid>https://falasool.github.io/2023/postgresql/</guid><description>&lt;p>以现有 Pleroma 数据库为基础学习 postgreSQL&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fediverse on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/fediverse/</link><description>Recent content in Fediverse on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 15 Jul 2023 22:59:59 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/fediverse/index.xml" rel="self" type="application/rss+xml"/><item><title>Migrate to Akkoma</title><link>https://falasool.github.io/2023/migrate-to-akkoma/</link><pubDate>Sat, 15 Jul 2023 22:59:59 +0800</pubDate><guid>https://falasool.github.io/2023/migrate-to-akkoma/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=040d4a09" alt="Featured image of post Migrate to Akkoma" />&lt;p>Update system&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt full-upgrade
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装依赖&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt install git build-essential postgresql postgresql-contrib cmake libmagic-dev
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install elixir erlang-dev erlang-nox
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install imagemagick ffmpeg libimage-exiftool-perl
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>🕙：elixir 要求1.14版本，查看版本，不对的话升级&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">elixir --version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;. &lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/.asdf/asdf.sh&amp;#34;&lt;/span> &amp;gt;&amp;gt; ~/.bashrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;. &lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/.asdf/completions/asdf.bash&amp;#34;&lt;/span> &amp;gt;&amp;gt; ~/.bashrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> ~/.bashrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">asdf plugin-add elixir
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">asdf global elixir 1.14.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">elixir --version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建一个系统用户&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">useradd -r -s /bin/false -m -d /var/lib/akkoma -U akkoma
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>-r&lt;/code>：创建一个系统用户，通常用于运行系统服务而不是登录&lt;/li>
+&lt;li>&lt;code>-s /bin/false&lt;/code>：将用户的登录 Shell 设置为 &lt;code>/bin/false&lt;/code>，这意味着该用户无法登录系统&lt;/li>
+&lt;li>&lt;code>-m&lt;/code>：在用户的主目录中创建文件夹（如果不存在）&lt;/li>
+&lt;li>&lt;code>-d /var/lib/akkoma&lt;/code>：指定用户的主目录为 &lt;code>/var/lib/akkoma&lt;/code>&lt;/li>
+&lt;li>&lt;code>-U&lt;/code>：同时创建一个与用户名相同的用户组&lt;/li>
+&lt;/ul>
+&lt;p>📒Note:&lt;/p>
+&lt;p>以 Akkoma 系统用户身份执行单个命令: &lt;code>sudo -Hu akkoma command&lt;/code> 或 &lt;code>sudo -Hu akkoma $SHELL&lt;/code> 切换到该用户的 Shell&lt;/p>
+&lt;p>如果没有安装 &lt;code>sudo&lt;/code>，可以使用 &lt;code>su&lt;/code> 命令作为 root 用户（UID 0）执行单个命令，例如 &lt;code>su -l akkoma -s $SHELL -c 'command'&lt;/code>，或使用 &lt;code>su -l akkoma -s $SHELL&lt;/code> 启动一个 Shell&lt;/p>
+&lt;p>安装 Akkoma 本体&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">mkdir -p /opt/akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R akkoma:akkoma /opt/akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -Hu akkoma git clone https://akkoma.dev/AkkomaGang/akkoma.git -b stable /opt/akkoma
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>继续安装，询问是否要安装Hex的时候选yes&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo -Hu akkoma mix deps.get
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建配置，询问是否安装rebar3选yes&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo -Hu akkoma &lt;span class="nv">MIX_ENV&lt;/span>&lt;span class="o">=&lt;/span>prod mix pleroma.instance gen
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>编译需要较长时间，等待&lt;/p></description></item><item><title>初遇 PostgreSQL</title><link>https://falasool.github.io/2023/postgresql/</link><pubDate>Mon, 26 Jun 2023 11:21:32 +0800</pubDate><guid>https://falasool.github.io/2023/postgresql/</guid><description>&lt;p>以现有 Pleroma 数据库为基础学习 postgreSQL&lt;/p>
 &lt;h2 id="本地安装-pg">本地安装 PG&lt;/h2>
 &lt;h3 id="用-homebrew-安装">用 Homebrew 安装&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew install postgresql@13
@@ -546,7 +585,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# date
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Fri 02 Jun 2023 01:27:14 PM CST
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装常用工具">安装常用工具&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">apt-get install curl wget screen tree git htop bash-completion fail2ban -y
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">apt update &amp;amp;&amp;amp; apt install curl wget screen tree git htop bash-completion fail2ban vim -y
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>
 &lt;p>curl：请求 web 服务器&lt;/p>
@@ -567,31 +606,30 @@ fill="currentColor">
 &lt;p>bash-completion：命令自动补全工具，按 [Tab][Tab]&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 定位 bash-completion 配置文件
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# find / -name &amp;#34;bash_completion.d&amp;#34;
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 定位 bash-completion 配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">find / -name &lt;span class="s2">&amp;#34;bash_completion.d&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/bash_completion.d
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 添加 docker 的自动补全，重启 bash
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# cd /etc/bash_completion.d
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# curl -L -O https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加 docker 的自动补全，重启 bash&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /etc/bash_completion.d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">curl -L -O https://raw.githubusercontent.com/docker/compose/&lt;span class="k">$(&lt;/span>docker-compose version --short&lt;span class="k">)&lt;/span>/contrib/completion/bash/docker-compose
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>fail2ban：防止暴力破解攻击，在 &lt;code>/etc/fail2ban/jail.conf&lt;/code> 修改配置，然后激活&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 检验有没有正确启动
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 检验有没有正确启动&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client ping
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看目前启用的规则
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看目前启用的规则&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client status
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看某个规则下被封禁的次数、ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看某个规则下被封禁的次数、ip&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client status sshd
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="更改终端颜色">更改终端颜色&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 进入 /etc/profile 文件
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/profile
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 增加这一行
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PS1=&amp;#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &amp;#39;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 更新文件
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">source /etc/profile
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="添加-swap">添加 SWAP&lt;/h2>
+&lt;p>进入 /etc/profile 文件，&lt;code>vim /etc/profile&lt;/code>，修改命令行提示符的颜色设置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">PS1&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/profile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解释：PS1变量代表&amp;lt;用户名+主机名+路径名（长路径）+ $&amp;gt;&lt;/p>
+&lt;h2 id="添加-swap">添加 SWAP&lt;/h2>
 &lt;p>确认是否已存在 SWAP&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">free -m
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">free -m
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>有 Swap 项而且 total 列不为零，说明 Swap 已存在，可以自行修改分区容量，参考：为 &lt;a class="link" href="https://www.vvave.net/archives/add-swap-and-repartition-swap-for-linux.html" target="_blank" rel="noopener"
 >Linux 添加 swap 分区或修改 swap 分区容量&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
@@ -630,6 +668,15 @@ fill="currentColor">
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://einverne.github.io/post/2021/07/vps-benchmark.html" target="_blank" rel="noopener"
 >VPS 性能测试&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>&lt;a class="link" href="https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html" target="_blank" rel="noopener"
+>如何利用Docker搭建Mastodon实例（一）：基础搭建篇&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />

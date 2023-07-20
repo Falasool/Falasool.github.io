@@ -39,7 +39,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# date
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Fri 02 Jun 2023 01:27:14 PM CST
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装常用工具">安装常用工具&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">apt-get install curl wget screen tree git htop bash-completion fail2ban -y
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">apt update &amp;amp;&amp;amp; apt install curl wget screen tree git htop bash-completion fail2ban vim -y
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>
 &lt;p>curl：请求 web 服务器&lt;/p>
@@ -60,31 +60,30 @@ fill="currentColor">
 &lt;p>bash-completion：命令自动补全工具，按 [Tab][Tab]&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 定位 bash-completion 配置文件
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# find / -name &amp;#34;bash_completion.d&amp;#34;
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 定位 bash-completion 配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">find / -name &lt;span class="s2">&amp;#34;bash_completion.d&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/bash_completion.d
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 添加 docker 的自动补全，重启 bash
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# cd /etc/bash_completion.d
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# curl -L -O https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加 docker 的自动补全，重启 bash&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /etc/bash_completion.d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">curl -L -O https://raw.githubusercontent.com/docker/compose/&lt;span class="k">$(&lt;/span>docker-compose version --short&lt;span class="k">)&lt;/span>/contrib/completion/bash/docker-compose
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>fail2ban：防止暴力破解攻击，在 &lt;code>/etc/fail2ban/jail.conf&lt;/code> 修改配置，然后激活&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 检验有没有正确启动
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 检验有没有正确启动&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client ping
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看目前启用的规则
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看目前启用的规则&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client status
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看某个规则下被封禁的次数、ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看某个规则下被封禁的次数、ip&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client status sshd
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="更改终端颜色">更改终端颜色&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 进入 /etc/profile 文件
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/profile
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 增加这一行
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PS1=&amp;#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &amp;#39;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 更新文件
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">source /etc/profile
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="添加-swap">添加 SWAP&lt;/h2>
+&lt;p>进入 /etc/profile 文件，&lt;code>vim /etc/profile&lt;/code>，修改命令行提示符的颜色设置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">PS1&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/profile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解释：PS1变量代表&amp;lt;用户名+主机名+路径名（长路径）+ $&amp;gt;&lt;/p>
+&lt;h2 id="添加-swap">添加 SWAP&lt;/h2>
 &lt;p>确认是否已存在 SWAP&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">free -m
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">free -m
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>有 Swap 项而且 total 列不为零，说明 Swap 已存在，可以自行修改分区容量，参考：为 &lt;a class="link" href="https://www.vvave.net/archives/add-swap-and-repartition-swap-for-linux.html" target="_blank" rel="noopener"
 >Linux 添加 swap 分区或修改 swap 分区容量&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
@@ -123,6 +122,15 @@ fill="currentColor">
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://einverne.github.io/post/2021/07/vps-benchmark.html" target="_blank" rel="noopener"
 >VPS 性能测试&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>&lt;a class="link" href="https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html" target="_blank" rel="noopener"
+>如何利用Docker搭建Mastodon实例（一）：基础搭建篇&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />

@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/</link><description>Recent content on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 16 Jul 2023 21:31:10 +0800</lastBuildDate><atom:link href="https://falasool.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>About Dns Principle and Vpn</title><link>https://falasool.github.io/2023/about-dns-principle-and-vpn/</link><pubDate>Sun, 16 Jul 2023 21:31:10 +0800</pubDate><guid>https://falasool.github.io/2023/about-dns-principle-and-vpn/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=20bc46c6" alt="Featured image of post About Dns Principle and Vpn" />&lt;h2 id="网络通信的基本过程">网络通信的基本过程&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/</link><description>Recent content on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 18 Jul 2023 18:41:59 +0800</lastBuildDate><atom:link href="https://falasool.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>iTerm2 配置</title><link>https://falasool.github.io/2023/iterm2/</link><pubDate>Tue, 18 Jul 2023 18:41:59 +0800</pubDate><guid>https://falasool.github.io/2023/iterm2/</guid><description>&lt;p>SSH 远程连接配置&lt;/p>
+&lt;p>创建登录脚本 &lt;code>/.ssh/remote-login-vps.sh&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/expect
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="nb">set&lt;/span> timeout &lt;span class="m">30&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">spawn ssh -p &lt;span class="o">[&lt;/span>lindex &lt;span class="nv">$argv&lt;/span> 0&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>lindex &lt;span class="nv">$argv&lt;/span> 1&lt;span class="o">]&lt;/span>@&lt;span class="o">[&lt;/span>lindex &lt;span class="nv">$argv&lt;/span> 2&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">expect &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;(yes/no)?&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">{&lt;/span>send &lt;span class="s2">&amp;#34;yes\n&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>exp_continue&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;password:&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">{&lt;/span>send &lt;span class="s2">&amp;#34;[lindex &lt;/span>&lt;span class="nv">$argv&lt;/span>&lt;span class="s2"> 3]\n&amp;#34;&lt;/span>&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interact
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>授予执行权限 &lt;code>chmod +x remote-login-vps.sh&lt;/code>&lt;/p>
+&lt;p>进入iTerm2 -&amp;gt; preference -&amp;gt; Profiles，创建一个Profile，在 General - Command - Send text at start 输入&lt;code>~/.ssh/remote-login-vps.sh 22 用户 ip 密码&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307181916887.webp"
+loading="lazy"
+alt="image (1)"
+>&lt;/p></description></item><item><title>网络通信过程 + Vmess搭建</title><link>https://falasool.github.io/2023/about-dns-principle-and-vpn/</link><pubDate>Sun, 16 Jul 2023 21:31:10 +0800</pubDate><guid>https://falasool.github.io/2023/about-dns-principle-and-vpn/</guid><description>&lt;h2 id="网络通信的基本过程">网络通信的基本过程&lt;/h2>
 &lt;blockquote>
 &lt;p>设计出层级结构。出去时不断加码，加信息，加标签，到达时，不断解码，减信息，解包&lt;/p>
 &lt;/blockquote>
@@ -226,7 +243,46 @@ xmlns="http://www.w3.org/2000/svg">
 fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
-&lt;p>[编译、配置nginx,使V2ray,Xray,Trojan,博客网站等共用443端口](&lt;/p></description></item><item><title>Migrate to Akkoma</title><link>https://falasool.github.io/2023/migrate-to-akkoma/</link><pubDate>Sat, 15 Jul 2023 22:59:59 +0800</pubDate><guid>https://falasool.github.io/2023/migrate-to-akkoma/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=040d4a09" alt="Featured image of post Migrate to Akkoma" /></description></item><item><title>Weekly ｜ To the very best of times, John.</title><link>https://falasool.github.io/weekly-july3-july16/</link><pubDate>Wed, 12 Jul 2023 10:48:00 +0800</pubDate><guid>https://falasool.github.io/weekly-july3-july16/</guid><description>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307171704026.webp" alt="Featured image of post Weekly ｜ To the very best of times, John." />&lt;h2 id="my-weekly-must-sees">My Weekly Must-Sees&lt;/h2>
+&lt;p>[编译、配置nginx,使V2ray,Xray,Trojan,博客网站等共用443端口](&lt;/p></description></item><item><title>Migrate to Akkoma</title><link>https://falasool.github.io/2023/migrate-to-akkoma/</link><pubDate>Sat, 15 Jul 2023 22:59:59 +0800</pubDate><guid>https://falasool.github.io/2023/migrate-to-akkoma/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=040d4a09" alt="Featured image of post Migrate to Akkoma" />&lt;p>Update system&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt full-upgrade
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装依赖&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt install git build-essential postgresql postgresql-contrib cmake libmagic-dev
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install elixir erlang-dev erlang-nox
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install imagemagick ffmpeg libimage-exiftool-perl
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>🕙：elixir 要求1.14版本，查看版本，不对的话升级&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">elixir --version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;. &lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/.asdf/asdf.sh&amp;#34;&lt;/span> &amp;gt;&amp;gt; ~/.bashrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;. &lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/.asdf/completions/asdf.bash&amp;#34;&lt;/span> &amp;gt;&amp;gt; ~/.bashrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> ~/.bashrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">asdf plugin-add elixir
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">asdf global elixir 1.14.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">elixir --version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建一个系统用户&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">useradd -r -s /bin/false -m -d /var/lib/akkoma -U akkoma
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>-r&lt;/code>：创建一个系统用户，通常用于运行系统服务而不是登录&lt;/li>
+&lt;li>&lt;code>-s /bin/false&lt;/code>：将用户的登录 Shell 设置为 &lt;code>/bin/false&lt;/code>，这意味着该用户无法登录系统&lt;/li>
+&lt;li>&lt;code>-m&lt;/code>：在用户的主目录中创建文件夹（如果不存在）&lt;/li>
+&lt;li>&lt;code>-d /var/lib/akkoma&lt;/code>：指定用户的主目录为 &lt;code>/var/lib/akkoma&lt;/code>&lt;/li>
+&lt;li>&lt;code>-U&lt;/code>：同时创建一个与用户名相同的用户组&lt;/li>
+&lt;/ul>
+&lt;p>📒Note:&lt;/p>
+&lt;p>以 Akkoma 系统用户身份执行单个命令: &lt;code>sudo -Hu akkoma command&lt;/code> 或 &lt;code>sudo -Hu akkoma $SHELL&lt;/code> 切换到该用户的 Shell&lt;/p>
+&lt;p>如果没有安装 &lt;code>sudo&lt;/code>，可以使用 &lt;code>su&lt;/code> 命令作为 root 用户（UID 0）执行单个命令，例如 &lt;code>su -l akkoma -s $SHELL -c 'command'&lt;/code>，或使用 &lt;code>su -l akkoma -s $SHELL&lt;/code> 启动一个 Shell&lt;/p>
+&lt;p>安装 Akkoma 本体&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">mkdir -p /opt/akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R akkoma:akkoma /opt/akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -Hu akkoma git clone https://akkoma.dev/AkkomaGang/akkoma.git -b stable /opt/akkoma
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>继续安装，询问是否要安装Hex的时候选yes&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo -Hu akkoma mix deps.get
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建配置，询问是否安装rebar3选yes&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo -Hu akkoma &lt;span class="nv">MIX_ENV&lt;/span>&lt;span class="o">=&lt;/span>prod mix pleroma.instance gen
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>编译需要较长时间，等待&lt;/p></description></item><item><title>Weekly ｜ To the very best of times, John.</title><link>https://falasool.github.io/weekly-july3-july16/</link><pubDate>Wed, 12 Jul 2023 10:48:00 +0800</pubDate><guid>https://falasool.github.io/weekly-july3-july16/</guid><description>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307171704026.webp" alt="Featured image of post Weekly ｜ To the very best of times, John." />&lt;h2 id="my-weekly-must-sees">My Weekly Must-Sees&lt;/h2>
 &lt;h3 id="media">Media&lt;/h3>
 &lt;p>&lt;strong>绝望的主妇S01：&lt;/strong>&lt;/p>
 &lt;p>好多美女，可惜都是直女，好吧至少Mike腿长奶子大。脸和声音（沙沙的，哦……）加起来的话我最喜欢 Susan，哎这样岂不是他们夫妻都是我的菜了嘿嘿嘿&lt;/p>
@@ -1195,7 +1251,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# date
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Fri 02 Jun 2023 01:27:14 PM CST
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装常用工具">安装常用工具&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">apt-get install curl wget screen tree git htop bash-completion fail2ban -y
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">apt update &amp;amp;&amp;amp; apt install curl wget screen tree git htop bash-completion fail2ban vim -y
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>
 &lt;p>curl：请求 web 服务器&lt;/p>
@@ -1216,31 +1272,30 @@ fill="currentColor">
 &lt;p>bash-completion：命令自动补全工具，按 [Tab][Tab]&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 定位 bash-completion 配置文件
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# find / -name &amp;#34;bash_completion.d&amp;#34;
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 定位 bash-completion 配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">find / -name &lt;span class="s2">&amp;#34;bash_completion.d&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/bash_completion.d
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 添加 docker 的自动补全，重启 bash
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# cd /etc/bash_completion.d
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">admin@xxx:~# curl -L -O https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加 docker 的自动补全，重启 bash&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /etc/bash_completion.d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">curl -L -O https://raw.githubusercontent.com/docker/compose/&lt;span class="k">$(&lt;/span>docker-compose version --short&lt;span class="k">)&lt;/span>/contrib/completion/bash/docker-compose
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>fail2ban：防止暴力破解攻击，在 &lt;code>/etc/fail2ban/jail.conf&lt;/code> 修改配置，然后激活&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 检验有没有正确启动
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 检验有没有正确启动&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client ping
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看目前启用的规则
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看目前启用的规则&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client status
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看某个规则下被封禁的次数、ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看某个规则下被封禁的次数、ip&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fail2ban-client status sshd
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="更改终端颜色">更改终端颜色&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 进入 /etc/profile 文件
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/profile
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 增加这一行
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PS1=&amp;#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &amp;#39;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 更新文件
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">source /etc/profile
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="添加-swap">添加 SWAP&lt;/h2>
+&lt;p>进入 /etc/profile 文件，&lt;code>vim /etc/profile&lt;/code>，修改命令行提示符的颜色设置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">PS1&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/profile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解释：PS1变量代表&amp;lt;用户名+主机名+路径名（长路径）+ $&amp;gt;&lt;/p>
+&lt;h2 id="添加-swap">添加 SWAP&lt;/h2>
 &lt;p>确认是否已存在 SWAP&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">free -m
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">free -m
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>有 Swap 项而且 total 列不为零，说明 Swap 已存在，可以自行修改分区容量，参考：为 &lt;a class="link" href="https://www.vvave.net/archives/add-swap-and-repartition-swap-for-linux.html" target="_blank" rel="noopener"
 >Linux 添加 swap 分区或修改 swap 分区容量&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
@@ -1279,6 +1334,15 @@ fill="currentColor">
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://einverne.github.io/post/2021/07/vps-benchmark.html" target="_blank" rel="noopener"
 >VPS 性能测试&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>&lt;a class="link" href="https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html" target="_blank" rel="noopener"
+>如何利用Docker搭建Mastodon实例（一）：基础搭建篇&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -2392,6 +2456,83 @@ fill="currentColor">
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://thirdshire.com/post/hugo-stack-renovation/" target="_blank" rel="noopener"
 >Hugo Stack主题装修笔记&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p></description></item><item><title>Nginx</title><link>https://falasool.github.io/nginx-memos/</link><pubDate>Tue, 11 Apr 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/nginx-memos/</guid><description>&lt;p>买服务器，系统为 Ubuntu 22.04 - x86_64&lt;/p>
+&lt;p>买域名，托管到 CloudFlare（开DNS only），指向服务器IP&lt;/p>
+&lt;p>插播：Flarum论坛也好看，还轻量&lt;/p>
+&lt;h2 id="chore">Chore&lt;/h2>
+&lt;p>SSH终端颜色&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 进入 /etc/profile 文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/profile
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 增加这一行&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">PS1&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/profile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装常用工具&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt-get install curl wget screen tree git htop bash-completion fail2ban ufw -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>开放端口&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">ufw allow OpenSSH
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw &lt;span class="nb">enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow http
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow https
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 80/tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 443/tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw status
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>检查 80 端口有无被占用&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">netstat -tuln &lt;span class="p">|&lt;/span> grep 80# 返回为空说明没有
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">service nginx stop &lt;span class="c1"># nginx占了，停止nginx&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>SMTP 配置&lt;/p>
+&lt;p>刚开始用的 Mailjet，什么都配置好了，服务已经跑起来了，发不了邮件导致连管理员也注册不了 😅 原来是要发工单人工审核，还被拒了&lt;/p>
+&lt;p>测试配置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">./launcher enter app
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">x86_64 arch detected.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rake emails:test&lt;span class="o">[&lt;/span>your-email@gmail.com&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="本体">本体&lt;/h2>
+&lt;p>Docker&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">curl -fsSL https://get.docker.com -o get-docker.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sh get-docker.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Discourse&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">git clone https://github.com/discourse/discourse_docker.git /var/discourse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /var/discourse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod &lt;span class="m">700&lt;/span> containers
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启动容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./discourse-setup
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>#报错：输入 &lt;code>Hostname for your Discourse? [discourse.example.com]:&lt;/code> 后：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">Checking your domain name . . .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WARNING: Port &lt;span class="m">443&lt;/span> of computer does not appear to be accessible using hostname: xxx.com.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WARNING: Connection to http://xxx.com &lt;span class="o">(&lt;/span>port 80&lt;span class="o">)&lt;/span> also fails.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This suggests that xxx.com resolves to some IP address that does not reach this
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">machine where you are installing discourse.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The first thing to &lt;span class="k">do&lt;/span> is confirm that xxx.com resolves to the IP address of this server.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">You usually &lt;span class="k">do&lt;/span> this at the same place you purchased the domain.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">If you are sure that the IP address resolves correctly, it could be a firewall issue.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">A web search &lt;span class="k">for&lt;/span> &lt;span class="s2">&amp;#34;open ports YOUR CLOUD SERVICE&amp;#34;&lt;/span> might help.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This tool is designed only &lt;span class="k">for&lt;/span> the most standard installations. If you cannot resolve
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">the issue above, you will need to edit containers/app.yml yourself and &lt;span class="k">then&lt;/span> &lt;span class="nb">type&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./launcher rebuild app
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解决：cloudflare里开启 DNS only&lt;/p>
+&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://meta.discourse.org/t/howto-use-mailjet-as-a-free-smtp-service-for-discourse/206262" target="_blank" rel="noopener"
+>Howto use Mailjet as a free SMTP service for Discourse&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.orgleaf.com/3098.html" target="_blank" rel="noopener"
+>让Discourse和其它网站跑在同一台主机上&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
