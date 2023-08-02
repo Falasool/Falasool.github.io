@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/docker/</link><description>Recent content in Docker on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 11 Apr 2023 21:28:27 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>Nginx</title><link>https://falasool.github.io/nginx-memos/</link><pubDate>Tue, 11 Apr 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/nginx-memos/</guid><description>&lt;p>买服务器，系统为 Ubuntu 22.04 - x86_64&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/docker/</link><description>Recent content in Docker on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 22 Jul 2023 21:28:27 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>在 Ubuntu22.04 上搭建 Discourse 论坛</title><link>https://falasool.github.io/2023/build-discourse-site-on-ubuntu22/</link><pubDate>Sat, 22 Jul 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/build-discourse-site-on-ubuntu22/</guid><description>&lt;p>买服务器，系统为 Ubuntu 22.04 - x86_64&lt;/p>
 &lt;p>买域名，托管到 CloudFlare（开DNS only），指向服务器IP&lt;/p>
 &lt;p>插播：Flarum论坛也好看，还轻量&lt;/p>
 &lt;h2 id="chore">Chore&lt;/h2>
@@ -23,8 +23,8 @@
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">netstat -tuln &lt;span class="p">|&lt;/span> grep 80# 返回为空说明没有
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">service nginx stop &lt;span class="c1"># nginx占了，停止nginx&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>SMTP 配置&lt;/p>
-&lt;p>刚开始用的 Mailjet，什么都配置好了，服务已经跑起来了，发不了邮件导致连管理员也注册不了 😅 原来是要发工单人工审核，还被拒了&lt;/p>
-&lt;p>测试配置&lt;/p>
+&lt;p>刚开始用的 Mailjet，什么都配置好了，服务已经跑起来了，发不了邮件导致连管理员也注册不了 😅 原来是要发工单人工审核，还被拒了。转Mailgun&lt;/p>
+&lt;p>[测试SMTP配置]&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">./launcher enter app
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">x86_64 arch detected.
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rake emails:test&lt;span class="o">[&lt;/span>your-email@gmail.com&lt;span class="o">]&lt;/span>
@@ -57,16 +57,8 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./launcher rebuild app
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解决：cloudflare里开启 DNS only&lt;/p>
+&lt;p>成功启动容器后访问域名，注册管理员账户 🎉&lt;/p>
 &lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
-&lt;p>&lt;a class="link" href="https://meta.discourse.org/t/howto-use-mailjet-as-a-free-smtp-service-for-discourse/206262" target="_blank" rel="noopener"
->Howto use Mailjet as a free SMTP service for Discourse&lt;/a>
-&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
-xmlns="http://www.w3.org/2000/svg">
-&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
-&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
-fill="currentColor">
-&lt;/svg>&lt;/span>
-&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.orgleaf.com/3098.html" target="_blank" rel="noopener"
 >让Discourse和其它网站跑在同一台主机上&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
@@ -75,4 +67,11 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
-&lt;/p></description></item></channel></rss>
+&lt;/p>
+&lt;p>安装依赖：php_serialize、miro、mysql2&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt-get install build-essential ruby-dev libmysqlclient-dev
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt-get install rubygems
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gem install php_serialize
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gem install miro
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gem install mysql2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

@@ -79,6 +79,7 @@
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">su pleroma -s $SHELL -lc &amp;#34;./bin/pleroma stop&amp;#34;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="通配符-ssl-证书自动续期">通配符 SSL 证书自动续期&lt;/h2>
+&lt;p>如果预装了certbot要先删掉 &lt;code>apt-get remove certbot&lt;/code>&lt;/p>
 &lt;p>安装 certbot&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">snap install core
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">snap refresh core
@@ -840,7 +841,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://dasgelobteland.github.io/posts/23pleroma/" target="_blank" rel="noopener"
->https://dasgelobteland.github.io/posts/23pleroma/&lt;/a>
+>我的pleroma检修笔记1&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />

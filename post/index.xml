@@ -1,4 +1,228 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/post/</link><description>Recent content in Posts on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 18 Jul 2023 18:41:59 +0800</lastBuildDate><atom:link href="https://falasool.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>iTerm2 配置</title><link>https://falasool.github.io/2023/iterm2/</link><pubDate>Tue, 18 Jul 2023 18:41:59 +0800</pubDate><guid>https://falasool.github.io/2023/iterm2/</guid><description>&lt;p>SSH 远程连接配置&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/post/</link><description>Recent content in Posts on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 31 Jul 2023 16:22:45 +0800</lastBuildDate><atom:link href="https://falasool.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Migrant ot Akkoma</title><link>https://falasool.github.io/2023/migrant-oto-akkoma/</link><pubDate>Mon, 31 Jul 2023 16:22:45 +0800</pubDate><guid>https://falasool.github.io/2023/migrant-oto-akkoma/</guid><description>&lt;h2 id="准备">准备&lt;/h2>
+&lt;p>🌟备份&lt;/p>
+&lt;p>➡️账号： Settings &amp;ndash; Data import/export，全部导出&lt;/p>
+&lt;p>以下文件夹用 FTP 客户端（FileZilla）备份到电脑&lt;/p>
+&lt;p>➡️数据库：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">mkdir -p /pleromabackup
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod &lt;span class="m">777&lt;/span> /pleromabackup
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>登入数据库&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-postgresql" data-lang="postgresql">&lt;span class="line">&lt;span class="cl">&lt;span class="n">su&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">postgres&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">psql&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">U&lt;/span> &lt;span class="n">postgres&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">postgres&lt;/span>&lt;span class="o">=#&lt;/span> &lt;span class="err">\&lt;/span>&lt;span class="o">!&lt;/span> &lt;span class="n">pg_dump&lt;/span> &lt;span class="n">pleroma&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">f&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="n">pleromabackup&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pleroma&lt;/span>&lt;span class="mf">.&lt;/span>&lt;span class="n">pgdump&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>➡️Pleroma 配置：/etc/pleroma/&lt;/p>
+&lt;p>➡️Pleroma 静态文件：/var/lib/pleroma&lt;/p>
+&lt;p>🌟把域名的IP指向新服务器&lt;/p>
+&lt;h2 id="搭建过程">搭建过程&lt;/h2>
+&lt;p>安装依赖&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt upgrade
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install curl unzip libncurses5 postgresql postgresql-contrib nginx libmagic-dev
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install imagemagick ffmpeg libimage-exiftool-perl
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装本体：注意 Ubuntu22 的FLAVOUR变量是amd64-ubuntu-jammy&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">adduser --system --shell /bin/false --home /opt/akkoma akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">FLAVOUR&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;amd64-ubuntu-jammy&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">su akkoma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">curl &amp;#39;https://akkoma-updates.s3-website.fr-par.scw.cloud/stable/akkoma-&lt;/span>&lt;span class="nv">$FLAVOUR&lt;/span>&lt;span class="s2">.zip&amp;#39; -o /tmp/akkoma.zip
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">unzip /tmp/akkoma.zip -d /tmp/
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">su akkoma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">mv /tmp/release/* /opt/akkoma
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">rmdir /tmp/release
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">rm /tmp/akkoma.zip
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /var/lib/akkoma/uploads
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R akkoma /var/lib/akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /var/lib/akkoma/static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R akkoma /var/lib/akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /etc/akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R akkoma /etc/akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">su akkoma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;./bin/pleroma_ctl instance gen --output /etc/akkoma/config.exs --output-psql /tmp/setup_db.psql&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">su postgres -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;psql -f /tmp/setup_db.psql&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">su akkoma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;./bin/pleroma_ctl migrate&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">su akkoma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;./bin/pleroma daemon&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sleep &lt;span class="m">20&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> curl http://localhost:4000/api/v1/instance
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">su akkoma -s &lt;span class="nv">$SHELL&lt;/span> -lc &lt;span class="s2">&amp;#34;./bin/pleroma stop&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>申请SSL证书：参考&lt;a class="link" href="https://ponder.lol/2023/new-pleroma-isntance-on-debian11/#%E9%80%9A%E9%85%8D%E7%AC%A6-ssl-%E8%AF%81%E4%B9%A6%E8%87%AA%E5%8A%A8%E7%BB%AD%E6%9C%9F" target="_blank" rel="noopener"
+>通配符 SSL 证书自动续期&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>Nginx：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cp /opt/akkoma/installation/akkoma.nginx /etc/nginx/sites-available/akkoma.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>修改所有 example.tld 为准备好的域名&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">vim /etc/nginx/sites-available/akkoma.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx -t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl restart nginx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp /opt/akkoma/installation/akkoma.service /etc/systemd/system/akkoma.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> akkoma
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建管理员账户、安装前端&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd /opt/akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">su akkoma -s $SHELL -lc &amp;#34;./bin/pleroma_ctl user new admin cyouike@duck.com --admin&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./bin/pleroma_ctl frontend install pleroma-fe --ref stable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./bin/pleroma_ctl frontend install admin-fe --ref stable
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="本地定时备份">本地定时备份&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">mkdir /opt/local_backup
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /opt/local_backup
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim backup.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>脚本内容：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/bin/sh
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/profile
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;————————————backup to local directory——————————&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> tee -a /opt/local_backup/backuplog.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="sb">`&lt;/span>date +&lt;span class="s2">&amp;#34;%Y-%m-%d %H:%M:%S&amp;#34;&lt;/span>&lt;span class="sb">`&lt;/span> &lt;span class="s2">&amp;#34;now starting backup&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> tee -a /opt/local_backup/backuplog.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;stop akkoma&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> tee -a /opt/local_backup/backuplog.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo systemctl stop akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;0.create a backup day directory&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> tee -a /opt/local_backup/backuplog.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="o">[&lt;/span> -d /opt/local_backup/&lt;span class="sb">`&lt;/span>date +%Y%m%d&lt;span class="sb">``&lt;/span>date +%Y%m%d&lt;span class="sb">`&lt;/span> &lt;span class="o">]&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="k">then&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Floder&amp;#34;&lt;/span> &lt;span class="sb">`&lt;/span>date +%Y%m%d&lt;span class="sb">`&lt;/span> &lt;span class="s2">&amp;#34;already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">else&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mkdir /opt/local_backup/&lt;span class="sb">`&lt;/span>date +%Y%m%d&lt;span class="sb">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;New floder&amp;#34;&lt;/span> &lt;span class="sb">`&lt;/span>date +%Y%m%d&lt;span class="sb">`&lt;/span> &lt;span class="p">|&lt;/span> tee -a /opt/local_backup/backuplog.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">fi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod +777 /opt/local_backup/&lt;span class="sb">`&lt;/span>date +%Y%m%d&lt;span class="sb">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /opt/local_backup/&lt;span class="sb">`&lt;/span>date +%Y%m%d&lt;span class="sb">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;1.dump database&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> tee -a /opt/local_backup/backuplog.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -Hu postgres pg_dump -d akkoma --format&lt;span class="o">=&lt;/span>custom -f /opt/local_backup/&lt;span class="sb">`&lt;/span>date +%Y%m%d&lt;span class="sb">`&lt;/span>/akkoma.pgdump
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;2. copy upload &amp;amp; static folder&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> tee -a /opt/local_backup/backuplog.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp -r /var/lib/akkoma/static /opt/local_backup/&lt;span class="sb">`&lt;/span>date +%Y%m%d&lt;span class="sb">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp -r /var/lib/akkoma/uploads /opt/local_backup/&lt;span class="sb">`&lt;/span>date +%Y%m%d&lt;span class="sb">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;3. copy config file&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> tee -a /opt/local_backup/backuplog.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp /etc/akkoma/config.exs /opt/local_backup/&lt;span class="sb">`&lt;/span>date +%Y%m%d&lt;span class="sb">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;restart akkoma&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> tee -a /opt/local_backup/backuplog.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo systemctl start akkoma
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="sb">`&lt;/span>date +&lt;span class="s2">&amp;#34;%Y-%m-%d %H:%M:%S&amp;#34;&lt;/span>&lt;span class="sb">`&lt;/span> &lt;span class="s2">&amp;#34;finished&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> tee -a /opt/local_backup/backuplog.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Backup for&amp;#34;&lt;/span> &lt;span class="sb">`&lt;/span>date +%Y%m%d&lt;span class="sb">`&lt;/span> &lt;span class="s2">&amp;#34;done!&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> tee -a /opt/local_backup/backuplog.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>删除超过15天的备份&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">vim clear.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">find /opt/local_backup/ -type d -mtime +15 -exec rm -rf &lt;span class="o">{}&lt;/span> &lt;span class="se">\;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>设置定时任务&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">crontab -e
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">00&lt;/span> &lt;span class="m">04&lt;/span> * * &lt;span class="m">6&lt;/span> root /bin/bash /opt/local_backup/backup.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">00&lt;/span> &lt;span class="m">23&lt;/span> &lt;span class="m">1&lt;/span> * * root /bin/bash /opt/local_backup/clear.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://docs.akkoma.dev/stable/installation/otp_en/#detecting-flavour" target="_blank" rel="noopener"
+>Installing on Linux using OTP releases&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>&lt;a class="link" href="https://im.happytoo.cyou/posts/2301%E5%A4%87%E4%BB%BDpleroma/#%E6%9C%AC%E5%9C%B0%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BD" target="_blank" rel="noopener"
+>备份pleroma记录&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>&lt;a class="link" href="https://docs.akkoma.dev/stable/administration/CLI_tasks/instance/#managing-instance-configuration" target="_blank" rel="noopener"
+>Managing instance configuration&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p></description></item><item><title>在 Ubuntu22.04 上搭建 Discourse 论坛</title><link>https://falasool.github.io/2023/build-discourse-site-on-ubuntu22/</link><pubDate>Sat, 22 Jul 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/build-discourse-site-on-ubuntu22/</guid><description>&lt;p>买服务器，系统为 Ubuntu 22.04 - x86_64&lt;/p>
+&lt;p>买域名，托管到 CloudFlare（开DNS only），指向服务器IP&lt;/p>
+&lt;p>插播：Flarum论坛也好看，还轻量&lt;/p>
+&lt;h2 id="chore">Chore&lt;/h2>
+&lt;p>SSH终端颜色&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 进入 /etc/profile 文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /etc/profile
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 增加这一行&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">PS1&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/profile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装常用工具&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt-get install curl wget screen tree git htop bash-completion fail2ban ufw -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>开放端口&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">ufw allow OpenSSH
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw &lt;span class="nb">enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow http
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow https
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 80/tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw allow 443/tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ufw status
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>检查 80 端口有无被占用&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">netstat -tuln &lt;span class="p">|&lt;/span> grep 80# 返回为空说明没有
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">service nginx stop &lt;span class="c1"># nginx占了，停止nginx&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>SMTP 配置&lt;/p>
+&lt;p>刚开始用的 Mailjet，什么都配置好了，服务已经跑起来了，发不了邮件导致连管理员也注册不了 😅 原来是要发工单人工审核，还被拒了。转Mailgun&lt;/p>
+&lt;p>[测试SMTP配置]&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">./launcher enter app
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">x86_64 arch detected.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rake emails:test&lt;span class="o">[&lt;/span>your-email@gmail.com&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="本体">本体&lt;/h2>
+&lt;p>Docker&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">curl -fsSL https://get.docker.com -o get-docker.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sh get-docker.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Discourse&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">git clone https://github.com/discourse/discourse_docker.git /var/discourse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /var/discourse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod &lt;span class="m">700&lt;/span> containers
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启动容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./discourse-setup
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>#报错：输入 &lt;code>Hostname for your Discourse? [discourse.example.com]:&lt;/code> 后：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">Checking your domain name . . .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WARNING: Port &lt;span class="m">443&lt;/span> of computer does not appear to be accessible using hostname: xxx.com.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WARNING: Connection to http://xxx.com &lt;span class="o">(&lt;/span>port 80&lt;span class="o">)&lt;/span> also fails.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This suggests that xxx.com resolves to some IP address that does not reach this
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">machine where you are installing discourse.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The first thing to &lt;span class="k">do&lt;/span> is confirm that xxx.com resolves to the IP address of this server.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">You usually &lt;span class="k">do&lt;/span> this at the same place you purchased the domain.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">If you are sure that the IP address resolves correctly, it could be a firewall issue.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">A web search &lt;span class="k">for&lt;/span> &lt;span class="s2">&amp;#34;open ports YOUR CLOUD SERVICE&amp;#34;&lt;/span> might help.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This tool is designed only &lt;span class="k">for&lt;/span> the most standard installations. If you cannot resolve
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">the issue above, you will need to edit containers/app.yml yourself and &lt;span class="k">then&lt;/span> &lt;span class="nb">type&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./launcher rebuild app
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解决：cloudflare里开启 DNS only&lt;/p>
+&lt;p>成功启动容器后访问域名，注册管理员账户 🎉&lt;/p>
+&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://www.orgleaf.com/3098.html" target="_blank" rel="noopener"
+>让Discourse和其它网站跑在同一台主机上&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>安装依赖：php_serialize、miro、mysql2&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt-get install build-essential ruby-dev libmysqlclient-dev
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt-get install rubygems
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gem install php_serialize
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gem install miro
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gem install mysql2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>iTerm2 配置</title><link>https://falasool.github.io/2023/iterm2/</link><pubDate>Tue, 18 Jul 2023 18:41:59 +0800</pubDate><guid>https://falasool.github.io/2023/iterm2/</guid><description>&lt;p>SSH 远程连接配置&lt;/p>
 &lt;p>创建登录脚本 &lt;code>/.ssh/remote-login-vps.sh&lt;/code>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/expect
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="nb">set&lt;/span> timeout &lt;span class="m">30&lt;/span>
@@ -243,46 +467,7 @@ xmlns="http://www.w3.org/2000/svg">
 fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
-&lt;p>[编译、配置nginx,使V2ray,Xray,Trojan,博客网站等共用443端口](&lt;/p></description></item><item><title>Migrate to Akkoma</title><link>https://falasool.github.io/2023/migrate-to-akkoma/</link><pubDate>Sat, 15 Jul 2023 22:59:59 +0800</pubDate><guid>https://falasool.github.io/2023/migrate-to-akkoma/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=040d4a09" alt="Featured image of post Migrate to Akkoma" />&lt;p>Update system&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt update
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt full-upgrade
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装依赖&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt install git build-essential postgresql postgresql-contrib cmake libmagic-dev
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install elixir erlang-dev erlang-nox
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt install imagemagick ffmpeg libimage-exiftool-perl
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>🕙：elixir 要求1.14版本，查看版本，不对的话升级&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">elixir --version
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;. &lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/.asdf/asdf.sh&amp;#34;&lt;/span> &amp;gt;&amp;gt; ~/.bashrc
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;. &lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/.asdf/completions/asdf.bash&amp;#34;&lt;/span> &amp;gt;&amp;gt; ~/.bashrc
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> ~/.bashrc
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">asdf plugin-add elixir
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">asdf global elixir 1.14.0
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">elixir --version
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建一个系统用户&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">useradd -r -s /bin/false -m -d /var/lib/akkoma -U akkoma
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>&lt;code>-r&lt;/code>：创建一个系统用户，通常用于运行系统服务而不是登录&lt;/li>
-&lt;li>&lt;code>-s /bin/false&lt;/code>：将用户的登录 Shell 设置为 &lt;code>/bin/false&lt;/code>，这意味着该用户无法登录系统&lt;/li>
-&lt;li>&lt;code>-m&lt;/code>：在用户的主目录中创建文件夹（如果不存在）&lt;/li>
-&lt;li>&lt;code>-d /var/lib/akkoma&lt;/code>：指定用户的主目录为 &lt;code>/var/lib/akkoma&lt;/code>&lt;/li>
-&lt;li>&lt;code>-U&lt;/code>：同时创建一个与用户名相同的用户组&lt;/li>
-&lt;/ul>
-&lt;p>📒Note:&lt;/p>
-&lt;p>以 Akkoma 系统用户身份执行单个命令: &lt;code>sudo -Hu akkoma command&lt;/code> 或 &lt;code>sudo -Hu akkoma $SHELL&lt;/code> 切换到该用户的 Shell&lt;/p>
-&lt;p>如果没有安装 &lt;code>sudo&lt;/code>，可以使用 &lt;code>su&lt;/code> 命令作为 root 用户（UID 0）执行单个命令，例如 &lt;code>su -l akkoma -s $SHELL -c 'command'&lt;/code>，或使用 &lt;code>su -l akkoma -s $SHELL&lt;/code> 启动一个 Shell&lt;/p>
-&lt;p>安装 Akkoma 本体&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">mkdir -p /opt/akkoma
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R akkoma:akkoma /opt/akkoma
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo -Hu akkoma git clone https://akkoma.dev/AkkomaGang/akkoma.git -b stable /opt/akkoma
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>继续安装，询问是否要安装Hex的时候选yes&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo -Hu akkoma mix deps.get
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建配置，询问是否安装rebar3选yes&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo -Hu akkoma &lt;span class="nv">MIX_ENV&lt;/span>&lt;span class="o">=&lt;/span>prod mix pleroma.instance gen
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>编译需要较长时间，等待&lt;/p></description></item><item><title>SQL 入门</title><link>https://falasool.github.io/2023/sql/</link><pubDate>Thu, 29 Jun 2023 19:13:22 +0800</pubDate><guid>https://falasool.github.io/2023/sql/</guid><description>&lt;h2 id="常用命令">常用命令&lt;/h2>
+&lt;p>[编译、配置nginx,使V2ray,Xray,Trojan,博客网站等共用443端口](&lt;/p></description></item><item><title>SQL 入门</title><link>https://falasool.github.io/2023/sql/</link><pubDate>Thu, 29 Jun 2023 19:13:22 +0800</pubDate><guid>https://falasool.github.io/2023/sql/</guid><description>&lt;h2 id="常用命令">常用命令&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">CREATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DATABASE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">创建数据库&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">CREATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">TABLE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">t1&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">body&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">创建表&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">记得使用\&lt;/span>&lt;span class="n">c命令切换数据库&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">CREATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">USER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">test&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">WITH&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">PASSWORD&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;Test#1357&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">创建用户&lt;/span>&lt;span class="w">
@@ -932,6 +1117,7 @@ alt="image"
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">su pleroma -s $SHELL -lc &amp;#34;./bin/pleroma stop&amp;#34;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="通配符-ssl-证书自动续期">通配符 SSL 证书自动续期&lt;/h2>
+&lt;p>如果预装了certbot要先删掉 &lt;code>apt-get remove certbot&lt;/code>&lt;/p>
 &lt;p>安装 certbot&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">snap install core
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">snap refresh core
@@ -1693,7 +1879,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://dasgelobteland.github.io/posts/23pleroma/" target="_blank" rel="noopener"
->https://dasgelobteland.github.io/posts/23pleroma/&lt;/a>
+>我的pleroma检修笔记1&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
