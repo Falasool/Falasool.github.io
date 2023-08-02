@@ -489,7 +489,7 @@ alt="image"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="postgresql-性能调优">&lt;del>PostgreSQL 性能调优&lt;/del>&lt;/h3>
 &lt;p>&lt;del>根据 pgTune 修改配置文件&lt;/del>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">vim /etc/postgresql/13/main/postgresql.conf
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我把 .conf 改得出错了，所以这一步没做&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;!-- raw HTML omitted -->
 &lt;p>重启 PostgreSQL&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">systemctl restart postgresql
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装-pleroma">安装 Pleroma&lt;/h2>
@@ -595,11 +595,6 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> --dns-cloudflare-credentials ~/.secrets/cloudflare.ini &lt;span class="se">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> -d example.com
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -d *.example.com
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-stylus" data-lang="stylus">&lt;span class="line">&lt;span class="cl">&lt;span class="err">certbot&lt;/span> &lt;span class="err">certonly&lt;/span> &lt;span class="err">\&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="err">dns&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="err">cloudflare&lt;/span> &lt;span class="err">\&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="err">dns&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="err">cloudflare&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="err">credentials&lt;/span> &lt;span class="o">~/&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">secrets&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="err">cloudflare&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">ini&lt;/span> &lt;span class="err">\&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span>&lt;span class="err">d&lt;/span> &lt;span class="err">ponderduck&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">cc&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span>&lt;span class="err">d&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">ponderduck&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">cc&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>测试自动延期&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">certbot renew --dry-run
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="nginx">Nginx&lt;/h2>
@@ -625,8 +620,6 @@ fill="currentColor">
 &lt;h2 id="创建管理员账户">创建管理员账户&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-perl" data-lang="perl">&lt;span class="line">&lt;span class="cl">&lt;span class="n">cd&lt;/span> &lt;span class="sr">/opt/&lt;/span>&lt;span class="n">pleroma&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">bin&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">su&lt;/span> &lt;span class="n">pleroma&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">s&lt;/span> &lt;span class="nv">$SHELL&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="nb">lc&lt;/span> &lt;span class="s">&amp;#34;./bin/pleroma_ctl user new &amp;lt;joeuser&amp;gt; &amp;lt;joeuser@sld.tld&amp;gt; --admin&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-perl" data-lang="perl">&lt;span class="line">&lt;span class="cl">&lt;span class="n">cd&lt;/span> &lt;span class="sr">/opt/&lt;/span>&lt;span class="n">pleroma&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">bin&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">su&lt;/span> &lt;span class="n">pleroma&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">s&lt;/span> &lt;span class="nv">$SHELL&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="nb">lc&lt;/span> &lt;span class="s">&amp;#34;./bin/pleroma_ctl user new admin admin@ponderduck.cc --admin&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://suicablog.cobaltkiss.blue/posts/pleroma-installation-on-linux-using-otp-releases/" target="_blank" rel="noopener"
 >在 Debian 10 / Ubuntu 20.04 上安装 Pleroma &lt;/a>
