@@ -4,7 +4,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="创建-github-图床仓库">创建 GitHub 图床仓库&lt;/h2>
 &lt;p>名称无所谓，记得勾选 README&lt;/p>
 &lt;h2 id="生成令牌token">生成令牌（Token）&lt;/h2>
-&lt;p>在 Account-Settings-Developer Settings-Personal Access Tokens 下生成（勾选 repo）并保存，我的Token：&lt;/p>
+&lt;p>在 Account-Settings-Developer Settings-Personal Access Tokens 下生成（勾选 repo）并保存，我的Token：（隐藏）&lt;/p>
 &lt;!-- raw HTML omitted -->
 &lt;h2 id="配置-picgo">配置 PicGo&lt;/h2>
 &lt;p>自定义域名是：&lt;code>https://cdn.jsdelivr.net/gh/&amp;lt;github用户名&amp;gt;/&amp;lt;图床仓库名&amp;gt;@&amp;lt;仓库版本号&amp;gt;/&lt;/code>&lt;/p>
@@ -12,12 +12,30 @@
 loading="lazy"
 alt="image-20230530234507042"
 >&lt;/p>
+&lt;h3 id="插件">插件&lt;/h3>
+&lt;p>Update：使用图片压缩插件 compress&lt;/p>
+&lt;p>参考 PicGo插件开发指南&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup> 和 issue#2&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup> 安装插件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">[^2]:https://github.com/JuZiSang/picgo-plugin-compress/issues/2#issuecomment-1008007350
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /Users/username/Library/Application&lt;span class="se">\ &lt;/span>Support/picgo/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew install libtool automake autoconf nasm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm cache clean --force
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除node_modules文件夹&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm install picgo-plugin-compress --save --ignore-scripts --registry&lt;span class="o">=&lt;/span>https://registry.npm.taobao.org
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm install --registry&lt;span class="o">=&lt;/span>https://registry.npm.taobao.org
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>重启 PicGo，在插件设置里点击⚙️，配置plugin - picgo-plugin-compress，选择压缩方式&amp;ndash; imagemin&lt;/p>
+&lt;p>最后点击⚙️，启用transformer-compress&lt;/p>
 &lt;h2 id="测试图床">测试图床&lt;/h2>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202305312359868.png"
 loading="lazy"
 alt="image-20230531235959820"
 >&lt;/p>
-&lt;p>[可选] 用 &lt;a class="link" href="https://squoosh.app/" target="_blank" rel="noopener"
+&lt;p>这张图片使用compress插件上传：&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202308021452438.png"
+loading="lazy"
+alt="image-20230802145252226"
+>&lt;/p>
+&lt;p>*****&lt;/p>
+&lt;p>[可选] 手动用 &lt;a class="link" href="https://squoosh.app/" target="_blank" rel="noopener"
 >Squoosh&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
@@ -49,4 +67,31 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
-&lt;/p></description></item></channel></rss>
+&lt;/p>
+&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>&lt;a class="link" href="https://picgo.github.io/PicGo-Core-Doc/zh/dev-guide/deploy.html#gui%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener"
+>https://picgo.github.io/PicGo-Core-Doc/zh/dev-guide/deploy.html#gui%E6%8F%92%E4%BB%B6&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2">
+&lt;p>&lt;a class="link" href="https://picgo.github.io/PicGo-Core-Doc/zh/dev-guide/deploy.html#gui%E6%8F%92%E4%BB%B6" target="_blank" rel="noopener"
+>https://picgo.github.io/PicGo-Core-Doc/zh/dev-guide/deploy.html#gui%E6%8F%92%E4%BB%B6&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div></description></item></channel></rss>
