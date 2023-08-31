@@ -1,5 +1,14 @@
 [
   {
+    "title": "Monster Slayer",
+    "subtitle": "",
+    "description": "玩家选择昵称后进入游戏扮演骑士、通过普攻/治疗/特殊攻击等手段击败怪兽。",
+    "images": [
+      "https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202308312125644.webp",
+      "https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202308312125289.webp"
+    ]
+  },
+  {
     "title": "Omnifood",
     "subtitle": "",
     "description": "Omnifood 是一款食品订餐应用，提供健康、美味的餐点。采用高质量食材，食用方便省时，让客户能随时享受营养均衡的美食。",
@@ -7,24 +16,6 @@
       "https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202308312003038.webp",
       "https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202308312116743.webp",
       "https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202308312117026.webp"
-    ]
-  },
-  {
-    "title": "Card 2",
-    "subtitle": "Subtitle for Card 2",
-    "description": "Description for Card 2",
-    "images": [
-      "https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307030112643.webp",
-      "https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307171704026.webp"
-    ]
-  },
-  {
-    "title": "Card 3",
-    "subtitle": "Subtitle for Card 3",
-    "description": "Description for Card 3",
-    "images": [
-      "https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307171704026.webp",
-      "https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202307030112643.webp"
     ]
   }
 ]
