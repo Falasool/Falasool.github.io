@@ -1,4 +1,121 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vue on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/vue/</link><description>Recent content in Vue on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 21 Jun 2023 01:29:15 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/vue/index.xml" rel="self" type="application/rss+xml"/><item><title>Vue3 | ToDoList</title><link>https://falasool.github.io/2023/vue3-todolist/</link><pubDate>Wed, 21 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/vue3-todolist/</guid><description>&lt;h2 id="实现功能">实现功能&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vue on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/vue/</link><description>Recent content in Vue on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 31 Aug 2023 15:25:38 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/vue/index.xml" rel="self" type="application/rss+xml"/><item><title>Vue | Note | Monster Slayer Game</title><link>https://falasool.github.io/2023/vuejs-monster-slayer/</link><pubDate>Thu, 31 Aug 2023 15:25:38 +0800</pubDate><guid>https://falasool.github.io/2023/vuejs-monster-slayer/</guid><description>&lt;ul>
+&lt;li>&lt;a class="link" href="https://monster-slayer.ponder.lol/" target="_blank" rel="noopener"
+>Live Deploy&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/Falasool/vuejs-monster-slayer" target="_blank" rel="noopener"
+>Github 仓库&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="写静态页面">写静态页面&lt;/h2>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202308290007098.webp"
+loading="lazy"
+alt="image"
+>&lt;/p>
+&lt;h2 id="实现功能">实现功能&lt;/h2>
+&lt;h3 id="点击-attack-怪兽血量下降随机数值">点击 ATTACK 怪兽血量下降随机数值&lt;/h3>
+&lt;p>⭐️ 最关键的：随机数值。
+所以 &lt;code>Math.floor(Math.random() * (15 - 10) + 10)&lt;/code>，即『生成 [10,15) 范围内的随机浮点数并向下取整』。因为有好几种类型的攻击都要用到这个方法，所以把它提出来:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">getRandomValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">n&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">m&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nb">Math&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">floor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">Math&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">random&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">m&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="nx">n&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">n&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>⭐️ 设定初始健康值 monsterHealth 为 100&lt;/p>
+&lt;p>⭐️ 绑定点击事件 &lt;code>@click=“attackMonster”&lt;/code>，每次点击摇出一个随机伤害值&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">attackMonster&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">const&lt;/span> &lt;span class="nx">attackValue&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">getRandomValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">12&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">monsterHealth&lt;/span> &lt;span class="o">-=&lt;/span> &lt;span class="nx">attackValue&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>⭐️ 给 health process 动态绑定属性 &lt;code>:style=&amp;quot;monsterBarStyle&amp;quot;&lt;/code>，写计算属性 monsterBarStyle&lt;/p>
+&lt;p>⭐️ 注意：1️⃣this2️⃣ 模板字符串,可以内嵌变量和表达式 3️⃣${damage} 是模板字符串中嵌入的一个变量 4️⃣scaleX() 是 CSS transform 的一个方法,用于缩放元素的宽度&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">monsterBarStyle&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">const&lt;/span> &lt;span class="nx">damage&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">monsterHealth&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="mi">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">transform&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="sb">`scaleX(&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">damage&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">)`&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="攻击怪兽后被反击">攻击怪兽后被反击&lt;/h3>
+&lt;p>⭐️ 『攻击降血条』的逻辑一样。在 attackMonster() 里调用 attackKnight()&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">attackMonster&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// ……………… //
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// 怪兽反击
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">attackKnight&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="特殊攻击">特殊攻击&lt;/h3>
+&lt;p>⭐️ 每三次普通攻击/治疗攒够一个蓝条，这时 special attack 才能用。其它时间按扭灰色不起作用 ==&amp;gt; 用 css 伪类 &lt;code>:disabled&lt;/code> 实现&lt;/p>
+&lt;p>⭐️ 每次调用普攻和治疗时 currentRound + 1（default = 0），当 currentRound 积累到 3 时 &lt;code>:disabled&lt;/code> 失效&lt;/p>
+&lt;p>⭐️ 设置一个 computed，用于控制 &lt;code>:disabled&lt;/code>，攒够蓝条但不用大招也没关系, btn 会保持 active&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">mayUseSpecialAttack&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">currentRound&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="mi">3&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>⭐️ 通过 v-bind 动态绑定给 btn: &lt;code>：style=&amp;quot;mayUseSpecialAttack&amp;quot;&lt;/code>&lt;/p>
+&lt;p>⭐️ 使用大招后蓝条清空重新开始计数&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">specialAttackMonster&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 使用大招后蓝条清空，重新积累
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">target&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">disabled&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">currentRound&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="点击-heal-治疗自己随机数值怪兽发起攻击">点击 HEAL 治疗自己随机数值，怪兽发起攻击&lt;/h3>
+&lt;p>⭐️ 和普通攻击的逻辑一致，只不过变成 +=&lt;/p>
+&lt;p>⭐️ knightHealth 不能超过上限 100&lt;/p>
+&lt;h3 id="投降">投降&lt;/h3>
+&lt;p>给 knightHealth 赋值为 0&lt;/p>
+&lt;h3 id="玩家输入昵称">玩家输入昵称&lt;/h3>
+&lt;p>⭐️ 输入昵称前隐藏 input 以下的结构 v-if&lt;/p>
+&lt;p>⭐️ 用 v-model 双向绑定 input 和 value&lt;/p>
+&lt;h3 id="监视比赛结果">监视比赛结果&lt;/h3>
+&lt;p>⭐️ watch 属性用于监视 data()里的数据&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Vue" data-lang="Vue">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">knightHealth&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">value&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">value&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">monsterHealth&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">winner&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;draw&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">value&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">winner&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;monster&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="显示比赛结果">显示比赛结果&lt;/h3>
+&lt;ul>
+&lt;li>v-if&lt;/li>
+&lt;li>v-else-if&lt;/li>
+&lt;li>v-else&lt;/li>
+&lt;/ul>
+&lt;p>联合使用显示对应的比赛结果&lt;/p>
+&lt;h3 id="battle-log">battle log&lt;/h3>
+&lt;p>⭐️ 设置 &lt;code>data(){logs:[]}&lt;/code>&lt;/p>
+&lt;p>⭐️ 设置 methods addLogs(){}&lt;/p>
+&lt;p>⭐️ 每次攻击 / 治愈时调用 addLogs(),这样战斗数据就传入 logs array 了&lt;/p>
+&lt;p>⭐️ 用 v-for 遍历把 log 排列出来，用 currentTime() 作为索引&lt;/p>
+&lt;p>⭐️ 时间戳转换为可读的时间格式&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">currentTime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">date&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span> &lt;span class="nx">date&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nb">Date&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">date&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">1000&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">//如果date为13位不需要乘1000
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">Y&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getFullYear&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">&amp;#39;-&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span> &lt;span class="nx">M&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getMonth&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getMonth&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">:&lt;/span> &lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getMonth&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">&amp;#39;-&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span> &lt;span class="nx">D&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getDate&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">10&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getDate&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getDate&lt;/span>&lt;span class="p">())&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">&amp;#39; &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span> &lt;span class="nx">h&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getHours&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">10&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getHours&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getHours&lt;/span>&lt;span class="p">())&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">&amp;#39;:&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span> &lt;span class="nx">m&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getMinutes&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">10&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getMinutes&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getMinutes&lt;/span>&lt;span class="p">())&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">&amp;#39;:&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span> &lt;span class="nx">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getSeconds&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">10&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getSeconds&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="nx">date&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getSeconds&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">Y&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">M&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">D&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">h&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">m&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="restart-按扭">restart 按扭&lt;/h3>
+&lt;p>把 data(){} 里的各项数据重置&lt;/p>
+&lt;h3 id="适应小屏幕">适应小屏幕&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="line">&lt;span class="cl">&lt;span class="p">@&lt;/span>&lt;span class="k">media&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="nt">max-width&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nt">393px&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Vue3 | ToDoList</title><link>https://falasool.github.io/2023/vue3-todolist/</link><pubDate>Wed, 21 Jun 2023 01:29:15 +0800</pubDate><guid>https://falasool.github.io/2023/vue3-todolist/</guid><description>&lt;h2 id="实现功能">实现功能&lt;/h2>
 &lt;ul>
 &lt;li>
 &lt;p>展示任务的列表&lt;/p>
@@ -111,4 +228,8 @@ alt="image"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">createApp(App).mount(&amp;#39;#app&amp;#39;)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/details></description></item></channel></rss>
+&lt;/details>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202308290007098.webp"
+loading="lazy"
+alt="image"
+>&lt;/p></description></item></channel></rss>
