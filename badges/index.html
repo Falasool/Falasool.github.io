@@ -23,7 +23,8 @@
           </div>
 
           <ul class="tag-wrapper">
-            <li class="tag">Vue.js</li>
+            ${t.tags.map((t)=>`<li class="tag-${e}">${t}</li>`).join("")}
+            
           </ul>
           
           <h2>${t.title}</h2>
