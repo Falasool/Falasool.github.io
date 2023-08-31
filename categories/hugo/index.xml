@@ -611,6 +611,14 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
+&lt;a class="link" href="https://shishuochen.gitee.io/2020/uffick8u1/" target="_blank" rel="noopener"
+>Hugo 博客自定义优化&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
 &lt;/p></description></item><item><title>博客域名设置</title><link>https://falasool.github.io/2022/domain/</link><pubDate>Sat, 22 Oct 2022 22:27:40 +0800</pubDate><guid>https://falasool.github.io/2022/domain/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="设置步骤">设置步骤&lt;/h2>
 &lt;ul>
