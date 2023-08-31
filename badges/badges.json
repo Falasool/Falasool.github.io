@@ -1,6 +1,7 @@
 [
   {
     "title": "Monster Slayer",
+    "link": "https://monster-slayer.ponder.lol",
     "subtitle": "",
     "description": "玩家选择昵称后进入游戏扮演骑士、通过普攻/治疗/特殊攻击等手段击败怪兽。",
     "images": [
@@ -10,6 +11,7 @@
   },
   {
     "title": "Omnifood",
+    "link": "https://omnifood.ponder.lol",
     "subtitle": "",
     "description": "Omnifood 是一款食品订餐应用，提供健康、美味的餐点。采用高质量食材，食用方便省时，让客户能随时享受营养均衡的美食。",
     "images": [
