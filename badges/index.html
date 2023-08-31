@@ -8,17 +8,20 @@
               <div class="swiper-wrapper">
                 ${t.images.map((n)=>`
                   <div class="swiper-slide">
-                    <a class="badge-image-link" href="${n}" data-fancybox="group-${e}" data-caption="${t.title}">
-                      
-                      <img src="${n}" class="badge-image" loading="lazy" alt="Image">
-                    </a>
+                    <object>
+                      <a class="badge-image-link" href="${n}" data-fancybox="group-${e}" data-caption="${t.title}">
+                        
+                        <img src="${n}" class="badge-image" loading="lazy" alt="Image">
+                      </a> 
+                    </object>
+                    
                   </div>
                 `).join("")}
               </div>
               <div class="swiper-pagination"></div>
             </div>
           </div>
-          
+          // 修改：h3 => h3
           <h2>${t.title}</h2>
           <h3>${t.subtitle}</h3>
           <p class="description">${t.description.replace(/\n/g,"<br>")}</p>
