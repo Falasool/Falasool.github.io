@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Figma on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/figma/</link><description>Recent content in Figma on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 05 Nov 2023 23:55:30 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/figma/index.xml" rel="self" type="application/rss+xml"/><item><title>Figma</title><link>https://falasool.github.io/2023/figma/</link><pubDate>Sun, 05 Nov 2023 23:55:30 +0800</pubDate><guid>https://falasool.github.io/2023/figma/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=c3ef22bd" alt="Featured image of post Figma" />&lt;h2 id="cheat-sheet">cheat sheet&lt;/h2>
+&lt;p>space 移动画布&lt;/p>
+&lt;p>control + 中键滚轮 缩放画布&lt;/p>
+&lt;p>右上角显示当前画布百分比&lt;/p>
+&lt;p>百分百显示 shift + 0&lt;/p>
+&lt;p>显示全部内容 shift + 1&lt;/p>
+&lt;p>只显示画布 command + \&lt;/p>
+&lt;p>右下角 help and resources 》keyboard shortcuts 显示键盘快捷键&lt;/p>
+&lt;h2 id="工具栏">工具栏&lt;/h2>
+&lt;h3 id="移动工具缩放工具">移动工具&amp;amp;缩放工具&lt;/h3>
+&lt;p>复制 option 拖动，拖动时 shift 保持水平/垂直&lt;/p>
+&lt;p>连续复制 option 复制第一次之后按 cmd +D&lt;/p>
+&lt;p>按 option 单独控制圆角&lt;/p>
+&lt;p>整理功能&lt;/p>
+&lt;p>缩放：缩放不会变形&lt;/p>
+&lt;h2 id="frame-与组">Frame 与组&lt;/h2>
+&lt;p>编组 control + G&lt;/p>
+&lt;p>取消编组 control + shift +G&lt;/p>
+&lt;p>加选/减选 shift&lt;/p>
+&lt;p>强制嵌套 control&lt;/p>
+&lt;p>避免嵌套 space&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>group&lt;/th>
+&lt;th>Frame&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>调整组的大小影响子集的大小&lt;/td>
+&lt;td>需要弹性布局、子适应&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>多个 Frame 嵌套&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>想移动多个元素 超出部分需要裁切&lt;/p>
+&lt;p>​&lt;/p>
+&lt;h2 id="形状工具">形状工具&lt;/h2>
+&lt;p>学会绘制、编辑常见造型&lt;/p>
+&lt;p>option 以矩形中心为基准&lt;/p>
+&lt;p>shift 画正方形&lt;/p>
+&lt;h2 id="蒙板">蒙板&lt;/h2>
+&lt;p>把图层重叠-选中-在顶部居中的位置点击 Use as mask&lt;/p></description></item></channel></rss>

@@ -911,10 +911,10 @@ fill="currentColor">
 &lt;!-- raw HTML omitted -->
 &lt;p>在 &lt;code>.ssh&lt;/code> 文件夹里找到生成的 SSH&lt;/p>
 &lt;ul>
-&lt;li>添加公钥：把 public key &lt;code>id_rsa_hugo_deploy.pub&lt;/code> 添加到 .github.io 仓库:&lt;/li>
+&lt;li>添加公钥：把 public key &lt;code>id_rsa_hugo_deploy.pub&lt;/code> 添加到 uname.github.io 仓库（repo settings &amp;gt; deploy keys &amp;gt; add deploy key，需要勾选 &lt;code>Allow write access&lt;/code>）:&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd .ssh
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat id_rsa_hugo_deploy.pub # 显示文件内容
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> .ssh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat id_rsa_hugo_deploy.pub &lt;span class="c1"># 显示文件内容&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;!-- raw HTML omitted -->
 &lt;ul>
 &lt;li>添加私钥：Private Key 添加到 private仓库：
@@ -975,7 +975,7 @@ fill="currentColor">
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-v" data-lang="v">&lt;span class="line">&lt;span class="cl">&lt;span class="o">#&lt;/span> &lt;span class="nv">在hugo&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nv">sources目录下&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">git&lt;/span> &lt;span class="nv">init&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">git&lt;/span> &lt;span class="nv">submodule&lt;/span> &lt;span class="nv">add&lt;/span> &lt;span class="nv">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">//github.com/Falasool/hugo-theme-stack themes/hugo-theme-stack
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">git&lt;/span> &lt;span class="nv">submodule&lt;/span> &lt;span class="nv">add&lt;/span> &lt;span class="nv">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">//github.com/&amp;lt;Uname&amp;gt;/hugo-theme-stack themes/hugo-theme-stack
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>更新主题：&lt;/li>
 &lt;/ul>
