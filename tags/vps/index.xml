@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vps on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/vps/</link><description>Recent content in vps on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 01 Jun 2023 23:29:38 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/vps/index.xml" rel="self" type="application/rss+xml"/><item><title>Pleroma | 购买服务器及之后要做什么</title><link>https://falasool.github.io/2023/buy-and-set-ups/</link><pubDate>Thu, 01 Jun 2023 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2023/buy-and-set-ups/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vps on Falasool</title><link>https://falasool.github.io/tags/vps/</link><description>Recent content in vps on Falasool</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 01 Jun 2023 23:29:38 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/vps/index.xml" rel="self" type="application/rss+xml"/><item><title>Pleroma | 购买服务器及之后要做什么</title><link>https://falasool.github.io/2023/buy-and-set-ups/</link><pubDate>Thu, 01 Jun 2023 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2023/buy-and-set-ups/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="购买服务器">购买服务器&lt;/h2>
 &lt;p>选 intel - 美西机房 - Debian11 - 1C1G 25G SSD 1TB&lt;/p>
 &lt;p>添加 SSH，生成密钥&lt;/p>
@@ -81,7 +81,15 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新文件&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/profile
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解释：PS1变量代表&amp;lt;用户名+主机名+路径名（长路径）+ $&amp;gt;&lt;/p>
-&lt;h2 id="添加-swap">添加 SWAP&lt;/h2>
+&lt;p>🤔❓问题：每次登录都要重新 &lt;code>source /etc/profile&lt;/code> 让环境变量生效&lt;/p>
+&lt;p>💡解决：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">vim ~/.bashrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加如下代码&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="o">[&lt;/span> -f /etc/profile &lt;span class="o">]&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">then&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">. /etc/profile
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">fi&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="添加-swap">添加 SWAP&lt;/h2>
 &lt;p>确认是否已存在 SWAP&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">free -m
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>有 Swap 项而且 total 列不为零，说明 Swap 已存在，可以自行修改分区容量，参考：为 &lt;a class="link" href="https://www.vvave.net/archives/add-swap-and-repartition-swap-for-linux.html" target="_blank" rel="noopener"

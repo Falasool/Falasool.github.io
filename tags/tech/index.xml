@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tech on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/tech/</link><description>Recent content in tech on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 05 Nov 2023 23:55:30 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>Figma</title><link>https://falasool.github.io/2023/figma/</link><pubDate>Sun, 05 Nov 2023 23:55:30 +0800</pubDate><guid>https://falasool.github.io/2023/figma/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=c3ef22bd" alt="Featured image of post Figma" />&lt;h2 id="cheat-sheet">cheat sheet&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tech on Falasool</title><link>https://falasool.github.io/tags/tech/</link><description>Recent content in tech on Falasool</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 05 Nov 2023 23:55:30 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>Figma</title><link>https://falasool.github.io/2023/figma/</link><pubDate>Sun, 05 Nov 2023 23:55:30 +0800</pubDate><guid>https://falasool.github.io/2023/figma/</guid><description>&lt;h2 id="cheat-sheet">cheat sheet&lt;/h2>
 &lt;p>space 移动画布&lt;/p>
 &lt;p>control + 中键滚轮 缩放画布&lt;/p>
 &lt;p>右上角显示当前画布百分比&lt;/p>
@@ -38,7 +38,6 @@
 &lt;/tbody>
 &lt;/table>
 &lt;p>想移动多个元素 超出部分需要裁切&lt;/p>
-&lt;p>​&lt;/p>
 &lt;h2 id="形状工具">形状工具&lt;/h2>
 &lt;p>学会绘制、编辑常见造型&lt;/p>
 &lt;p>option 以矩形中心为基准&lt;/p>
@@ -279,6 +278,9 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start nginx
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx -s reload
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="trojan-go">Trojan-Go&lt;/h2>
+&lt;p>一键部署 Trojan-Go&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">bash &amp;lt;&lt;span class="o">(&lt;/span>curl -sSL &lt;span class="s2">&amp;#34;https://raw.githubusercontent.com/veip007/hj/main/trojan-go.sh&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://v2xtls.org/clashx%E9%85%8D%E7%BD%AEv2ray%E6%95%99%E7%A8%8B/" target="_blank" rel="noopener"
 >ClashX 配置 V2ray 教程&lt;/a>
@@ -808,7 +810,7 @@ fill="currentColor">
 &lt;ul>
 &lt;li>检查 IP 是否和刚刚 ping 出来的一致（不一致的话改掉），然后点 Continue&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/check-ip.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/check-ip.png"
 loading="lazy"
 alt="check-ip"
 >&lt;/p>
@@ -858,8 +860,8 @@ fill="currentColor">
 &lt;!-- raw HTML omitted -->
 &lt;p>还是不行，一旦 push 就打回原形&lt;/p>
 &lt;p>解决方法：查阅资料发现问题在于 源码仓库 hugo-sources 的Actions 配置文件，deploy 时会自动覆盖CNAME 😭，所以在原配置文件添加：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cname: anodicseal.xyz
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解决！🎉🎉🎉&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">cname&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">anodicseal.xyz&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解决！🎉🎉🎉&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://oldtang.com/2420.html" target="_blank" rel="noopener"
 >Dynadot 网站注册账户、购买域名、支付宝付款、解析域名教程&lt;/a>
@@ -880,7 +882,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://ruanyifeng.com/blog/2016/06/dns.html" target="_blank" rel="noopener"
-> DNS 原理入门&lt;/a>
+>DNS 原理入门&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -898,12 +900,11 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p></description></item><item><title>Hugo | 给博客配置图床</title><link>https://falasool.github.io/2022/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2022/picture-bed/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="安装-picgo">安装 PicGo&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">brew install picgo --cask
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">brew install picgo --cask
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="创建-github-图床仓库">创建 GitHub 图床仓库&lt;/h2>
 &lt;p>名称无所谓，记得勾选 README&lt;/p>
 &lt;h2 id="生成令牌token">生成令牌（Token）&lt;/h2>
-&lt;p>在 Account-Settings-Developer Settings-Personal Access Tokens 下生成（勾选 repo）并保存，我的Token：（隐藏）&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>在 Account-Settings-Developer Settings-Personal Access Tokens 下生成（勾选 repo）并保存&lt;/p>
 &lt;h2 id="配置-picgo">配置 PicGo&lt;/h2>
 &lt;p>自定义域名是：&lt;code>https://cdn.jsdelivr.net/gh/&amp;lt;github用户名&amp;gt;/&amp;lt;图床仓库名&amp;gt;@&amp;lt;仓库版本号&amp;gt;/&lt;/code>&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogimage-20230530234507042.png"
@@ -946,6 +947,15 @@ fill="currentColor">
 loading="lazy"
 alt="image"
 >&lt;/p>
+&lt;p>进阶：&lt;a class="link" href="https://zhuanlan.zhihu.com/p/626135137" target="_blank" rel="noopener"
+>使用github私有仓库和Cloudflare Workers搭建个人图床&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+，优点：反向代理作为图床的仓库，开启缓存避免重复请求&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://picgo.github.io/PicGo-Doc/" target="_blank" rel="noopener"
 >PicGo&lt;/a>
@@ -1011,16 +1021,17 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="vercel-部署">Vercel 部署&lt;/h3>
 &lt;p>按照文档的一键部署，等待&amp;hellip;&lt;/p>
 &lt;p>在控制台 - settings - Environment Variables，添加环境变量 &lt;code>MONGODB_URI&lt;/code>，值为之前的数据库连接字符串&lt;/p>
-&lt;p>进入 Deployments , 然后在任意一项后面点击更多（三个点） , 然后点击Redeploy , 最后点击下面的Redeploy&lt;/p>
+&lt;p>进入 Deployments , 然后在任意一项后面点击更多（三个点） , 然后点击 Redeploy , 最后点击下面的 Redeploy&lt;/p>
 &lt;p>访问 Vercel 分配的域名，如果环境配置正确，可以看到 “Twikoo 云函数运行正常” 的提示&lt;/p>
+&lt;p>因为 vercel.app 域名已经被中国政府屏蔽，大陆用户无法评论。不过没关系，在 twikoo-api &amp;gt; settings &amp;gt; domains 添加自定义域名可解决&lt;/p>
 &lt;h3 id="配置到博客">配置到博客&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">comments&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">enabled&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">provider&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">twikoo&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">twikoo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">envId&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://twikoo.vercel.app/&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>部署成功后点右下角↘️的齿轮⚙️图标，设置管理密码&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">envId&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">&amp;lt;你的域名或vercel分配的域名&amp;gt;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>部署成功后点右下角 ↘️ 的齿轮 ⚙️ 图标，设置管理密码&lt;/p>
 &lt;h3 id="更新">更新&lt;/h3>
 &lt;p>管理页面提示：Client version: 1.5.11， Server version: 1.6.16， 请参考 &lt;a class="link" href="https://twikoo.js.org/quick-start.html#%e7%89%88%e6%9c%ac%e6%9b%b4%e6%96%b0" target="_blank" rel="noopener"
 >版本更新&lt;/a>
@@ -1031,7 +1042,28 @@ xmlns="http://www.w3.org/2000/svg">
 fill="currentColor">
 &lt;/svg>&lt;/span>
 进行升级&lt;/p>
-&lt;p>在 twikoo.html 里把引入的js文件版本修改到1.6.16&lt;/p>
+&lt;p>在 twikoo.html 里把引入的 js 文件版本修改到 1.6.16&lt;/p>
+&lt;h3 id="进阶">进阶&lt;/h3>
+&lt;ul>
+&lt;li>多个页面共用评论区&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>参考 &lt;a class="link" href="https://www.imaegoo.com/2021/twikoo-path/" target="_blank" rel="noopener"
+>Twikoo 多个页面共用一个评论区&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+实现 About &amp;amp;&amp;amp; Friends 页面共用评论区&lt;/p>
+&lt;/blockquote>
+&lt;p>设置主题的 Twikoo path 配置为&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># config.yaml&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">twikoo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">window.TWIKOO_MAGIC_PATH||window.location.pathname&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在两个页面的 &lt;code>.md&lt;/code> 正文部分添加 &lt;code>&amp;lt;script&amp;gt;window.TWIKOO_MAGIC_PATH=&amp;quot;xxx&amp;quot;&amp;lt;/script&amp;gt;&lt;/code>&lt;/p>
+&lt;p>经测试生效 🎉&lt;/p>
 &lt;h2 id="disqus">Disqus&lt;/h2>
 &lt;p>选择 Disqus 是因为 Hugo 内置了它的模板，同时它对迁移的支持较好，本身功能非常齐全，比较遗憾的是从 2015 年开始被墙了&lt;/p>
 &lt;p>参考 &lt;a class="link" href="https://gohugo.io/content-management/comments/" target="_blank" rel="noopener"
@@ -1052,7 +1084,7 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
-注册并登录账号，添加站点（选择I want to install Disqus on my site）&lt;/p>
+注册并登录账号，添加站点（选择 I want to install Disqus on my site）&lt;/p>
 &lt;p>输入你想要的 Website Name，用作插入 config 文件的名字，后期可以在 Disqus -&amp;gt; Setting -&amp;gt; General 下查看和修改&lt;/p>
 &lt;p>在 Configure Disqus for Your Site 页面输入 Website URL，要输入完整的地址，比如如果像我一样使用的是 GitHub Pages ，就要加上 &lt;code>https://&lt;/code> 的协议名；&lt;/p>
 &lt;p>选择 Category，点击 Create Site 完成注册&lt;/p>
@@ -1077,7 +1109,7 @@ fill="currentColor">
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;!-- raw HTML omitted -->感谢前人的耕耘和分享，希望本文也能给你带来一些帮助 ❤️&lt;!-- raw HTML omitted -->&lt;/p>
 &lt;p>&lt;a class="link" href="https://thirdshire.com/post/twikoo-tutorial/" target="_blank" rel="noopener"
->在静态博客里添加Twikoo评论系统，并配置邮箱和TG通知&lt;/a>
+>在静态博客里添加 Twikoo 评论系统，并配置邮箱和 TG 通知&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -1095,7 +1127,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://juejin.cn/post/6844903905910849550" target="_blank" rel="noopener"
->Disqus评论框改造工程-实现 Disqus 代理的 Serverless 服务&lt;/a>
+>Disqus 评论框改造工程-实现 Disqus 代理的 Serverless 服务&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -1145,7 +1177,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">date: {{ .Date }}
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">draft: false
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 随机匹配一张图片
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">image: https://picsum.photos/800/600.webp?random={{ substr (md5 (.Date)) 4 8 }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">image: https://picsum.photos/seed/picsum/800/600.webp?random={{ substr (md5 (.Date)) 4 8 }}
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">categories: [&amp;#34;Tutorials&amp;#34;]
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tags: [&amp;#34;Hugo&amp;#34;,&amp;#34;tech&amp;#34;]
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">keywords: [&amp;#34;tutorials&amp;#34;, &amp;#34;Hugo&amp;#34;, &amp;#34;mac&amp;#34;,&amp;#34;tech&amp;#34;]

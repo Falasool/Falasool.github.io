@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DNS on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/dns/</link><description>Recent content in DNS on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 16 Jul 2023 21:31:10 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/dns/index.xml" rel="self" type="application/rss+xml"/><item><title>网络通信过程 + Vmess搭建</title><link>https://falasool.github.io/2023/about-dns-principle-and-vpn/</link><pubDate>Sun, 16 Jul 2023 21:31:10 +0800</pubDate><guid>https://falasool.github.io/2023/about-dns-principle-and-vpn/</guid><description>&lt;h2 id="网络通信的基本过程">网络通信的基本过程&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DNS on Falasool</title><link>https://falasool.github.io/tags/dns/</link><description>Recent content in DNS on Falasool</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 16 Jul 2023 21:31:10 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/dns/index.xml" rel="self" type="application/rss+xml"/><item><title>网络通信过程 + Vmess搭建</title><link>https://falasool.github.io/2023/about-dns-principle-and-vpn/</link><pubDate>Sun, 16 Jul 2023 21:31:10 +0800</pubDate><guid>https://falasool.github.io/2023/about-dns-principle-and-vpn/</guid><description>&lt;h2 id="网络通信的基本过程">网络通信的基本过程&lt;/h2>
 &lt;blockquote>
 &lt;p>设计出层级结构。出去时不断加码，加信息，加标签，到达时，不断解码，减信息，解包&lt;/p>
 &lt;/blockquote>
@@ -216,6 +216,9 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start nginx
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx -s reload
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="trojan-go">Trojan-Go&lt;/h2>
+&lt;p>一键部署 Trojan-Go&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">bash &amp;lt;&lt;span class="o">(&lt;/span>curl -sSL &lt;span class="s2">&amp;#34;https://raw.githubusercontent.com/veip007/hj/main/trojan-go.sh&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://v2xtls.org/clashx%E9%85%8D%E7%BD%AEv2ray%E6%95%99%E7%A8%8B/" target="_blank" rel="noopener"
 >ClashX 配置 V2ray 教程&lt;/a>

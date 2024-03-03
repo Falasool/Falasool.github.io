@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Typora on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/tags/typora/</link><description>Recent content in Typora on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 21 Oct 2022 23:29:38 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/typora/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo | 给博客配置图床</title><link>https://falasool.github.io/2022/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2022/picture-bed/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Typora on Falasool</title><link>https://falasool.github.io/tags/typora/</link><description>Recent content in Typora on Falasool</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 21 Oct 2022 23:29:38 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/typora/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo | 给博客配置图床</title><link>https://falasool.github.io/2022/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2022/picture-bed/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="安装-picgo">安装 PicGo&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">brew install picgo --cask
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">brew install picgo --cask
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="创建-github-图床仓库">创建 GitHub 图床仓库&lt;/h2>
 &lt;p>名称无所谓，记得勾选 README&lt;/p>
 &lt;h2 id="生成令牌token">生成令牌（Token）&lt;/h2>
-&lt;p>在 Account-Settings-Developer Settings-Personal Access Tokens 下生成（勾选 repo）并保存，我的Token：（隐藏）&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>在 Account-Settings-Developer Settings-Personal Access Tokens 下生成（勾选 repo）并保存&lt;/p>
 &lt;h2 id="配置-picgo">配置 PicGo&lt;/h2>
 &lt;p>自定义域名是：&lt;code>https://cdn.jsdelivr.net/gh/&amp;lt;github用户名&amp;gt;/&amp;lt;图床仓库名&amp;gt;@&amp;lt;仓库版本号&amp;gt;/&lt;/code>&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogimage-20230530234507042.png"
@@ -48,6 +47,15 @@ fill="currentColor">
 loading="lazy"
 alt="image"
 >&lt;/p>
+&lt;p>进阶：&lt;a class="link" href="https://zhuanlan.zhihu.com/p/626135137" target="_blank" rel="noopener"
+>使用github私有仓库和Cloudflare Workers搭建个人图床&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+，优点：反向代理作为图床的仓库，开启缓存避免重复请求&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://picgo.github.io/PicGo-Doc/" target="_blank" rel="noopener"
 >PicGo&lt;/a>

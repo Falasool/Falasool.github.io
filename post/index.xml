@@ -1,4 +1,1107 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/post/</link><description>Recent content in Posts on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 05 Nov 2023 23:55:30 +0800</lastBuildDate><atom:link href="https://falasool.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Figma</title><link>https://falasool.github.io/2023/figma/</link><pubDate>Sun, 05 Nov 2023 23:55:30 +0800</pubDate><guid>https://falasool.github.io/2023/figma/</guid><description>&lt;img src="https://picsum.photos/800/600.webp?random=c3ef22bd" alt="Featured image of post Figma" />&lt;h2 id="cheat-sheet">cheat sheet&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Falasool</title><link>https://falasool.github.io/post/</link><description>Recent content in Posts on Falasool</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 01 Dec 2023 20:19:15 +0800</lastBuildDate><atom:link href="https://falasool.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Miniflux 搭建 + RSSHub 使用</title><link>https://falasool.github.io/2023/miniflux/</link><pubDate>Fri, 01 Dec 2023 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2023/miniflux/</guid><description>&lt;p>其实docker 搭miniflux 很简单，搬迁服务器后记录一下2nd搭，留个记录&lt;/p>
+&lt;h2 id="miniflux">Miniflux&lt;/h2>
+&lt;p>创建 miniflux 文件夹&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mkdir miniflux
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> miniflux
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>创建 &lt;code>docker-compose.yml&lt;/code> 文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">vim docker-compose.yml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>写入以下内容并保存&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">version: &lt;span class="s1">&amp;#39;3.4&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">services:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> miniflux:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> image: miniflux/miniflux:latest
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ports:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &lt;span class="s2">&amp;#34;8080:8080&amp;#34;&lt;/span> &lt;span class="c1">#容器外部端口:内部端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> depends_on:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> environment:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &lt;span class="nv">DATABASE_URL&lt;/span>&lt;span class="o">=&lt;/span>postgres://miniflux:secret@db/miniflux?sslmode&lt;span class="o">=&lt;/span>disable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &lt;span class="nv">RUN_MIGRATIONS&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &lt;span class="nv">CREATE_ADMIN&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &lt;span class="nv">ADMIN_USERNAME&lt;/span>&lt;span class="o">=&lt;/span>admin &lt;span class="c1"># 登录Miniflux的用户名，可自定义&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &lt;span class="nv">ADMIN_PASSWORD&lt;/span>&lt;span class="o">=&lt;/span>password &lt;span class="c1"># 登录Miniflux的密码，可自定义，至少6位&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &lt;span class="s2">&amp;#34;BASE_URL=https://enter.your.url&amp;#34;&lt;/span> &lt;span class="c1"># 调整二：输入想用来访问Miniflux的域名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> healthcheck:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> test: &lt;span class="o">[&lt;/span>&lt;span class="s2">&amp;#34;CMD&amp;#34;&lt;/span>, &lt;span class="s2">&amp;#34;/usr/bin/miniflux&amp;#34;&lt;/span>, &lt;span class="s2">&amp;#34;-healthcheck&amp;#34;&lt;/span>, &lt;span class="s2">&amp;#34;auto&amp;#34;&lt;/span>&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> db:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> image: postgres:latest
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> environment:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &lt;span class="nv">POSTGRES_USER&lt;/span>&lt;span class="o">=&lt;/span>miniflux
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &lt;span class="nv">POSTGRES_PASSWORD&lt;/span>&lt;span class="o">=&lt;/span>secret
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> volumes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - miniflux-db:/var/lib/postgresql/data
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> healthcheck:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> test: &lt;span class="o">[&lt;/span>&lt;span class="s2">&amp;#34;CMD&amp;#34;&lt;/span>, &lt;span class="s2">&amp;#34;pg_isready&amp;#34;&lt;/span>, &lt;span class="s2">&amp;#34;-U&amp;#34;&lt;/span>, &lt;span class="s2">&amp;#34;miniflux&amp;#34;&lt;/span>&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> interval: 10s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> start_period: 30s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">volumes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> miniflux-db:
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>启动服务&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">docker-compose up -d
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>此时访问&lt;code>ip:8080&lt;/code> 可以看到登录界面，在settings - Custom CSS 修改主题&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="line">&lt;span class="cl">&lt;span class="p">:&lt;/span>&lt;span class="nd">root&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--font-family&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">system-ui&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">apple-system&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;Segoe UI&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Roboto&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;Helvetica Neue&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Arial&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;Noto Sans&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kc">sans-serif&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;Apple Color Emoji&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;Segoe UI Emoji&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;Segoe UI Symbol&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;Noto Color Emoji&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--body-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">rgba&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">255&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">255&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">0.7&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--body-background&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#282c34&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--header-link-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#9b9494&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--header-active-link-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#d19a66&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--input-border&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="kt">px&lt;/span> &lt;span class="kc">solid&lt;/span> &lt;span class="mh">#2c384e&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--input-background&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#2c384e&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--input-placeholder-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#888&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--input-focus-border-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#d19a66&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--input-focus-box-shadow&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">none&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--category-background-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#2c384e&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--category-border-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#2c384e&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--item-border-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">rgba&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">.3&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--item-padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="kt">em&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--item-title-link-font-weight&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">600&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--item-status-read-title-link-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">rgba&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">209&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">154&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">102&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">0.5&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--entry-header-title-link-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#d19a66&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--entry-content-code-background&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#2c384e&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--entry-content-code-border-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#2c384e&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--entry-content-font-weight&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">300&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--entry-content-font-family&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;Literata&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Libre Baskerville&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Georgia&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Times New Roman&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Times&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kc">serif&lt;/span> &lt;span class="cp">!important&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">--entry-content-quote-font-family&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nf">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="n">entry&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">content&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">font&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">family&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">*&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nd">focus&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">outline&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="cp">!important&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">input&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="nt">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;search&amp;#34;&lt;/span>&lt;span class="o">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">input&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="nt">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;url&amp;#34;&lt;/span>&lt;span class="o">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">input&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="nt">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;password&amp;#34;&lt;/span>&lt;span class="o">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">input&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="nt">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;text&amp;#34;&lt;/span>&lt;span class="o">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">input&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="nt">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;number&amp;#34;&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">.25&lt;/span>&lt;span class="kt">em&lt;/span> &lt;span class="mf">.5&lt;/span>&lt;span class="kt">em&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">box-shadow&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">none&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">border-radius&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry&lt;/span> &lt;span class="nt">header&lt;/span> &lt;span class="nt">h1&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">margin&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="kt">em&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">16&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-actions&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">opacity&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">.5&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-meta&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#98be65&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-website&lt;/span> &lt;span class="nt">a&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#c678dd&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-date&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">font-size&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">.75&lt;/span>&lt;span class="kt">em&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">rgba&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">255&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">255&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">0.4&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-actions&lt;/span> &lt;span class="nt">li&lt;/span> &lt;span class="nt">a&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">font-weight&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">bold&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#9b9494&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-actions&lt;/span> &lt;span class="nt">li&lt;/span> &lt;span class="nt">a&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nd">hover&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">font-weight&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">bold&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">white&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry&lt;/span> &lt;span class="nt">header&lt;/span> &lt;span class="nt">h1&lt;/span> &lt;span class="nt">a&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nd">hover&lt;/span>&lt;span class="o">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry&lt;/span> &lt;span class="nt">header&lt;/span> &lt;span class="nt">h1&lt;/span> &lt;span class="nt">a&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nd">focus&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#d19a66&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">text-decoration&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">underline&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">pagination-top&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">display&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">none&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-content&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">line-height&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">padding-top&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="kt">em&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-content&lt;/span> &lt;span class="nt">p&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">margin-top&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">margin-bottom&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="kt">em&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-content&lt;/span> &lt;span class="nt">a&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#c678dd&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-content&lt;/span> &lt;span class="nt">a&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nd">visited&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#dd7890&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-content&lt;/span> &lt;span class="nt">img&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">%&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">margin&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="kc">auto&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-content&lt;/span> &lt;span class="nt">figcaption&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#c678dd&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">background-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">rgba&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">.3&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">margin-top&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">-7&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">border-radius&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="kt">px&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">0.25&lt;/span>&lt;span class="kt">rem&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="kt">rem&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">text-transform&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">unset&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-content&lt;/span> &lt;span class="nt">pre&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">.5&lt;/span>&lt;span class="kt">rem&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="kt">rem&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">border-radius&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">margin&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="kt">em&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-content&lt;/span> &lt;span class="nt">code&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">border-radius&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">item&lt;/span>&lt;span class="o">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">alert&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">border&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="kt">px&lt;/span> &lt;span class="kc">solid&lt;/span> &lt;span class="nf">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">border&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="kc">color&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">margin-bottom&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">background&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">rgba&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">.3&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">border-radius&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">item-title&lt;/span> &lt;span class="nt">a&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#d19a66&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">item-meta-info&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">padding-top&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">item-meta-info&lt;/span> &lt;span class="nt">li&lt;/span> &lt;span class="nt">a&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#c678dd&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">item-meta-info&lt;/span> &lt;span class="nt">li&lt;/span> &lt;span class="nt">time&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#98be65&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">item-meta-info&lt;/span> &lt;span class="nt">li&lt;/span> &lt;span class="nt">span&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#61afef&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">entry-content&lt;/span> &lt;span class="nt">li&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">margin&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">.75&lt;/span>&lt;span class="kt">em&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="nginx">Nginx&lt;/h2>
+&lt;p>创建 Nginx 配置文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">vim /etc/nginx/sites-available/miniflux.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>写入以下内容&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">server &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> listen 80&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> server_name enter.your.url&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> location / &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_pass http://127.0.0.1:8080&lt;span class="p">;&lt;/span> &lt;span class="c1">#8080改为miniflux对外开放的端口，默认为8080&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_redirect off&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header Host &lt;span class="nv">$host&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Real-IP &lt;span class="nv">$remote_addr&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-For &lt;span class="nv">$proxy_add_x_forwarded_for&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> proxy_set_header X-Forwarded-Proto &lt;span class="nv">$scheme&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>测试Nginx配置文件有没有问题&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>admin@vps&lt;span class="o">]&lt;/span> nginx -t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx: configuration file /etc/nginx/nginx.conf &lt;span class="nb">test&lt;/span> is successful
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>建立软连接&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ln -s /etc/nginx/sites-available/miniflux.conf /etc/nginx/sites-enabled/miniflux.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>运行&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">nginx -s reload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start nginx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> nginx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装 certbot&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo apt install certbot
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apt-get install python3-certbot-nginx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>输入&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">certbot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>按步骤操作直到&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Deploying certificate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Successfully deployed certificate for miniflux.ponderduck.cc to /etc/nginx/sites-enabled/miniflux.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Congratulations! You have successfully enabled HTTPS on https://miniflux.XXXX.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>现在可以通过域名访问miniflux了&lt;/p>
+&lt;h2 id="rsshub">RSSHub&lt;/h2>
+&lt;p>借助 Vercel 部署 RSSHub，配合插件 &lt;a class="link" href="chrome-extension://kefjpfngnndepjbopdmoebkipbgkggaa/options.html#/setting" >RSSHub Radar&lt;/a>
+可以探测到大部分订阅源，此外补充一些订阅方式：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://greasyfork.org/en/scripts/373252-rss-show-site-all-rss" target="_blank" rel="noopener"
+>油猴 - RSS+ : Show Site All RSS by Wizos&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/li>
+&lt;li>&lt;a class="link" href="https://feedx.net/" target="_blank" rel="noopener"
+>FeedX&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/li>
+&lt;li>&lt;a class="link" href="https://plink.anyfeeder.com/" target="_blank" rel="noopener"
+>https://plink.anyfeeder.com/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/li>
+&lt;li>&lt;a class="link" href="https://rss-bridge.org/bridge01/" target="_blank" rel="noopener"
+>https://rss-bridge.org/bridge01/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/li>
+&lt;li>微信公众号转RSS服务 &lt;a class="link" href="https://wechat2rss.xlab.app/" target="_blank" rel="noopener"
+>https://wechat2rss.xlab.app/&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/li>
+&lt;/ul>
+&lt;p>效果：&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main/blog202312051412551.webp"
+loading="lazy"
+alt="image"
+>&lt;/p></description></item><item><title>Hugo｜ShortCuts 短代码</title><link>https://falasool.github.io/2023/hugo-shortcuts/</link><pubDate>Tue, 07 Nov 2023 21:28:27 +0800</pubDate><guid>https://falasool.github.io/2023/hugo-shortcuts/</guid><description>&lt;p>最花里胡哨的一集，也许需要 ⚠️光敏性癫痫预警&lt;/p>
+&lt;h2 id="效果">效果&lt;/h2>
+&lt;details>
+&lt;summary>点我展开&lt;/summary>
+(〃`𓎟´〃) 天才ですから！
+&lt;/details>
+&lt;p>&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;iframe src="https://open.spotify.com/embed/track/7ofV2J7Ndzo2s5NBEgfpxl"
+width="100%"
+height="80px"
+frameborder="0"
+allowtransparency="true"
+allow="encrypted-media">&lt;/iframe>
+&lt;p>&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;div class="db-card">
+&lt;div class="db-card-subject">
+&lt;div class="db-card-post">
+&lt;img
+loading="lazy"
+decoding="async"
+referrerpolicy="no-referrer"
+src="https://neodb.social/m/book/2022/11/26ca863604-212b-4499-b616-cb57740e2386.jpg"
+/>
+&lt;/div>
+&lt;div class="db-card-content">
+&lt;div class="db-card-title">
+&lt;a href="https://neodb.social/book/6Wn7wIf31mFcrGN4js0SeY%28%e6%9d%a1%e7%9b%ae%e9%93%be%e6%8e%a5%29" class="cute" target="_blank" rel="noreferrer"
+>如果我们无法以光速前行&lt;/a
+>
+&lt;/div>
+&lt;div class="db-orig_title">
+&lt;a href="https://neodb.social/book/6Wn7wIf31mFcrGN4js0SeY%28%e6%9d%a1%e7%9b%ae%e9%93%be%e6%8e%a5%29" class="cute" target="_blank" rel="noreferrer"
+>우리가 빛의 속도로 갈 수 없다면&lt;/a
+>
+&lt;/div>
+&lt;div class="db-card-author-translator">
+[[韩] 金草叶]&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 译者：[春喜]
+&lt;/div>
+&lt;div class="db-card-isbn">ISBN:&amp;nbsp;&amp;nbsp;9787572704864&lt;/div>
+&lt;div class="rating">
+&lt;span class="allstardark"
+>&lt;span
+class="allstarlight"
+style="width:81%"
+>&lt;/span>&lt;/span
+>&lt;span class="rating_nums">8.1&lt;/span>
+&lt;/div>
+&lt;div class="db-card-abstract">当死亡不再代表永别，人生将如何？
+《如果我们无法以光速前行》是金草叶的第一部短篇小说集，也是她写作生涯的耀眼开幕。这部科幻小说集在韩国一共累计了25万册销量，被《朝鲜日报》《东亚日报》《文化日报》《京乡新闻》等多家权威媒体选为2019年年度图书，获韩国文化艺术委员会、韩国出版文化协会推荐，并入选韩国文学评论家协会评出的“我们时代的小说50部”。金草叶以一己之力，打破了“韩国科幻小说是否存在读者”的...&lt;/div>
+&lt;/div>
+&lt;div class="db-card-cate">book&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.db-card {
+margin: 2.5rem 3rem;
+background: var(--card-background);
+border-radius: 7px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.db-card-subject {
+display: flex;
+align-items: flex-start;
+line-height: 1.6;
+padding: 12px;
+position: relative;
+}
+.dark .db-card {
+background: var(--card-background);
+}
+.db-card-content {
+flex: 1 1 auto;
+}
+.db-card-post {
+width: 9.6rem;
+margin-right: 15px;
+display: flex;
+flex: 0 0 auto;
+}
+.db-card-title {
+font-size: 14px;
+color: var(--card-text-color-main);
+}
+.db-orig_title,
+.db-card-author-translator,
+.db-card-publish,
+.db-card-isbn {
+font-size: 12px;
+color: var(--card-text-color-main);
+}
+.db-card-isbn {
+margin-bottom: 10px;
+}
+.db-card-title a {
+text-decoration: none !important;
+}
+.db-card-abstract,
+.db-card-comment {
+font-size: 10px;
+overflow: scroll;
+max-height: 10rem;
+color: var(--card-text-color-main);
+}
+.db-card-cate {
+position: absolute;
+top: 0;
+right: 0;
+background: #f99b01;
+padding: 1px 8px;
+font-size: small;
+font-style: italic;
+border-radius: 0 8px 0 8px;
+text-transform: capitalize;
+}
+.db-card-post img {
+width: 9.6rem !important;
+border-radius: 4px;
+-o-object-fit: cover;
+object-fit: cover;
+}
+.rating {
+margin: 0 0 5px;
+font-size: 13px;
+line-height: 1;
+display: flex;
+align-items: center;
+}
+.rating .allstardark {
+position: relative;
+color: #f99b01;
+height: 16px;
+width: 80px;
+background-size: auto 100%;
+margin-right: 8px;
+background-repeat: repeat;
+background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxwYXRoIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjMtMTIuMyAxMi43LTEyLjEgMzIuOS42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWMtMS4yIDYuOS0uMSAxNC4xIDMuMiAyMC4zIDguMiAxNS42IDI3LjYgMjEuNyA0My4yIDEzLjRMNTEyIDc1NGwyMjcuMSAxMTkuNGM2LjIgMy4zIDEzLjQgNC40IDIwLjMgMy4yIDE3LjQtMyAyOS4xLTE5LjUgMjYuMS0zNi45bC00My40LTI1Mi45IDE4My43LTE3OS4xYzUtNC45IDguMy0xMS4zIDkuMy0xOC4zIDIuNy0xNy41LTkuNS0zMy43LTI3LTM2LjN6TTY2NC44IDU2MS42bDM2LjEgMjEwLjNMNTEyIDY3Mi43IDMyMy4xIDc3MmwzNi4xLTIxMC4zLTE1Mi44LTE0OUw0MTcuNiAzODIgNTEyIDE5MC43IDYwNi40IDM4MmwyMTEuMiAzMC43LTE1Mi44IDE0OC45eiIgZmlsbD0iI2Y5OWIwMSIvPjwvc3ZnPg==);
+}
+.rating .allstarlight {
+position: absolute;
+left: 0;
+color: #f99b01;
+height: 16px;
+overflow: hidden;
+background-size: auto 100%;
+background-repeat: repeat;
+background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxwYXRoIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjMtMTIuMyAxMi43LTEyLjEgMzIuOS42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWMtMS4yIDYuOS0uMSAxNC4xIDMuMiAyMC4zIDguMiAxNS42IDI3LjYgMjEuNyA0My4yIDEzLjRMNTEyIDc1NGwyMjcuMSAxMTkuNGM2LjIgMy4zIDEzLjQgNC40IDIwLjMgMy4yIDE3LjQtMyAyOS4xLTE5LjUgMjYuMS0zNi45bC00My40LTI1Mi45IDE4My43LTE3OS4xYzUtNC45IDguMy0xMS4zIDkuMy0xOC4zIDIuNy0xNy41LTkuNS0zMy43LTI3LTM2LjN6IiBmaWxsPSIjZjk5YjAxIi8+PC9zdmc+);
+}
+@media (max-width: 550px) {
+.db-card {
+margin: 0.8rem 1rem;
+}
+.db-card-comment {
+display: none;
+}
+.db-card-cate {
+font-size: 10px;
+}
+}
+&lt;/style>
+&lt;p>&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;div class="video-wrapper">
+&lt;iframe src="https://player.bilibili.com/player.html?as_wide=1&amp;amp;high_quality=1&amp;amp;page=1&amp;bvid=BV1cw411c7Zi"
+scrolling="no"
+frameborder="no"
+framespacing="0"
+allowfullscreen="true"
+>
+&lt;/iframe>
+&lt;/div>
+&lt;p>&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;div class="notice notice-warning" >
+&lt;div class="notice-title">&lt;svg xmlns="http://www.w3.org/2000/svg" class="icon notice-icon" viewBox="0 0 576 512" fill="hsl(0, 65%, 65%)">&lt;path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6.0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6.0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"/>&lt;/svg>&lt;/div>&lt;p>Warning：需要双括号。&lt;/p>&lt;/div>
+&lt;style>
+.notice {
+position: relative;
+padding: 1em 1em 1em 2.5em;
+margin-bottom: 1em;
+border-radius: 4px;
+p:last-child {
+margin-bottom: 0;
+}
+.notice-title {
+position: absolute;
+left: 0.8em;
+.notice-icon {
+width: 1.2em;
+height: 1.2em;
+}
+}
+&amp;.notice-warning {
+background: hsla(0, 65%, 65%, 0.15);
+border-left: 5px solid hsl(0, 65%, 65%);
+.notice-title {
+color: hsl(0, 65%, 65%);
+}
+}
+&amp;.notice-info {
+background: hsla(30, 80%, 70%, 0.15);
+border-left: 5px solid hsl(30, 80%, 70%);
+.notice-title {
+color: hsl(30, 80%, 70%);
+}
+}
+&amp;.notice-note {
+background: hsla(200, 65%, 65%, 0.15);
+border-left: 5px solid hsl(200, 65%, 65%);
+.notice-title {
+color: hsl(200, 65%, 65%);
+}
+}
+&amp;.notice-tip {
+background: hsla(140, 65%, 65%, 0.15);
+border-left: 5px solid hsl(140, 65%, 65%);
+.notice-title {
+color: hsl(140, 65%, 65%);
+}
+}
+}
+[data-theme='dark'] .notice {
+&amp;.notice-warning {
+background: hsla(0, 25%, 35%, 0.15);
+border-left: 5px solid hsl(0, 25%, 35%);
+.notice-title {
+color: rgba(224, 108, 108, 0.5);
+}
+}
+&amp;.notice-info {
+background: hsla(30, 25%, 35%, 0.15);
+border-left: 5px solid hsl(30, 25%, 35%);
+.notice-title {
+color: rgba(240, 178, 117, 0.5);
+}
+}
+&amp;.notice-note {
+background: hsla(200, 25%, 35%, 0.15);
+border-left: 5px solid hsl(200, 25%, 35%);
+.notice-title {
+color: rgba(108, 185, 224, 0.5);
+}
+}
+&amp;.notice-tip {
+background: hsla(140, 25%, 35%, 0.15);
+border-left: 5px solid hsl(140, 25%, 35%);
+.notice-title {
+color: rgba(108, 224, 147, 0.5);
+}
+}
+}
+&lt;/style>
+&lt;div class="notice notice-info" >
+&lt;div class="notice-title">&lt;svg xmlns="http://www.w3.org/2000/svg" class="icon notice-icon" viewBox="0 0 512 512" fill="hsl(30, 80%, 70%)">&lt;path d="M256 8a248 248 0 100 496 248 248 0 000-496zm0 110a42 42 0 110 84 42 42 0 010-84zm56 254c0 7-5 12-12 12h-88c-7 0-12-5-12-12v-24c0-7 5-12 12-12h12v-64h-12c-7 0-12-5-12-12v-24c0-7 5-12 12-12h64c7 0 12 5 12 12v100h12c7 0 12 5 12 12v24z"/>&lt;/svg>&lt;/div>&lt;p>info：这是一条信息。&lt;/p>&lt;/div>
+&lt;style>
+.notice {
+position: relative;
+padding: 1em 1em 1em 2.5em;
+margin-bottom: 1em;
+border-radius: 4px;
+p:last-child {
+margin-bottom: 0;
+}
+.notice-title {
+position: absolute;
+left: 0.8em;
+.notice-icon {
+width: 1.2em;
+height: 1.2em;
+}
+}
+&amp;.notice-warning {
+background: hsla(0, 65%, 65%, 0.15);
+border-left: 5px solid hsl(0, 65%, 65%);
+.notice-title {
+color: hsl(0, 65%, 65%);
+}
+}
+&amp;.notice-info {
+background: hsla(30, 80%, 70%, 0.15);
+border-left: 5px solid hsl(30, 80%, 70%);
+.notice-title {
+color: hsl(30, 80%, 70%);
+}
+}
+&amp;.notice-note {
+background: hsla(200, 65%, 65%, 0.15);
+border-left: 5px solid hsl(200, 65%, 65%);
+.notice-title {
+color: hsl(200, 65%, 65%);
+}
+}
+&amp;.notice-tip {
+background: hsla(140, 65%, 65%, 0.15);
+border-left: 5px solid hsl(140, 65%, 65%);
+.notice-title {
+color: hsl(140, 65%, 65%);
+}
+}
+}
+[data-theme='dark'] .notice {
+&amp;.notice-warning {
+background: hsla(0, 25%, 35%, 0.15);
+border-left: 5px solid hsl(0, 25%, 35%);
+.notice-title {
+color: rgba(224, 108, 108, 0.5);
+}
+}
+&amp;.notice-info {
+background: hsla(30, 25%, 35%, 0.15);
+border-left: 5px solid hsl(30, 25%, 35%);
+.notice-title {
+color: rgba(240, 178, 117, 0.5);
+}
+}
+&amp;.notice-note {
+background: hsla(200, 25%, 35%, 0.15);
+border-left: 5px solid hsl(200, 25%, 35%);
+.notice-title {
+color: rgba(108, 185, 224, 0.5);
+}
+}
+&amp;.notice-tip {
+background: hsla(140, 25%, 35%, 0.15);
+border-left: 5px solid hsl(140, 25%, 35%);
+.notice-title {
+color: rgba(108, 224, 147, 0.5);
+}
+}
+}
+&lt;/style>
+&lt;div class="notice notice-note" >
+&lt;div class="notice-title">&lt;svg xmlns="http://www.w3.org/2000/svg" class="icon notice-icon" viewBox="0 0 512 512" fill="hsl(200, 65%, 65%)">&lt;path d="M504 256a248 248 0 11-496 0 248 248 0 01496 0zm-248 50a46 46 0 100 92 46 46 0 000-92zm-44-165l8 136c0 6 5 11 12 11h48c7 0 12-5 12-11l8-136c0-7-5-13-12-13h-64c-7 0-12 6-12 13z"/>&lt;/svg>&lt;/div>&lt;p>note：可以标注一下，但是没必要。&lt;/p>&lt;/div>
+&lt;style>
+.notice {
+position: relative;
+padding: 1em 1em 1em 2.5em;
+margin-bottom: 1em;
+border-radius: 4px;
+p:last-child {
+margin-bottom: 0;
+}
+.notice-title {
+position: absolute;
+left: 0.8em;
+.notice-icon {
+width: 1.2em;
+height: 1.2em;
+}
+}
+&amp;.notice-warning {
+background: hsla(0, 65%, 65%, 0.15);
+border-left: 5px solid hsl(0, 65%, 65%);
+.notice-title {
+color: hsl(0, 65%, 65%);
+}
+}
+&amp;.notice-info {
+background: hsla(30, 80%, 70%, 0.15);
+border-left: 5px solid hsl(30, 80%, 70%);
+.notice-title {
+color: hsl(30, 80%, 70%);
+}
+}
+&amp;.notice-note {
+background: hsla(200, 65%, 65%, 0.15);
+border-left: 5px solid hsl(200, 65%, 65%);
+.notice-title {
+color: hsl(200, 65%, 65%);
+}
+}
+&amp;.notice-tip {
+background: hsla(140, 65%, 65%, 0.15);
+border-left: 5px solid hsl(140, 65%, 65%);
+.notice-title {
+color: hsl(140, 65%, 65%);
+}
+}
+}
+[data-theme='dark'] .notice {
+&amp;.notice-warning {
+background: hsla(0, 25%, 35%, 0.15);
+border-left: 5px solid hsl(0, 25%, 35%);
+.notice-title {
+color: rgba(224, 108, 108, 0.5);
+}
+}
+&amp;.notice-info {
+background: hsla(30, 25%, 35%, 0.15);
+border-left: 5px solid hsl(30, 25%, 35%);
+.notice-title {
+color: rgba(240, 178, 117, 0.5);
+}
+}
+&amp;.notice-note {
+background: hsla(200, 25%, 35%, 0.15);
+border-left: 5px solid hsl(200, 25%, 35%);
+.notice-title {
+color: rgba(108, 185, 224, 0.5);
+}
+}
+&amp;.notice-tip {
+background: hsla(140, 25%, 35%, 0.15);
+border-left: 5px solid hsl(140, 25%, 35%);
+.notice-title {
+color: rgba(108, 224, 147, 0.5);
+}
+}
+}
+&lt;/style>
+&lt;div class="notice notice-tip" >
+&lt;div class="notice-title">&lt;svg xmlns="http://www.w3.org/2000/svg" class="icon notice-icon" viewBox="0 0 512 512" fill="hsl(140, 65%, 65%)">&lt;path d="M504 256a248 248 0 11-496 0 248 248 0 01496 0zM227 387l184-184c7-6 7-16 0-22l-22-23c-7-6-17-6-23 0L216 308l-70-70c-6-6-16-6-23 0l-22 23c-7 6-7 16 0 22l104 104c6 7 16 7 22 0z"/>&lt;/svg>&lt;/div>&lt;p>tip：在示例里胡说八道会使观看者会心一笑。&lt;/p>&lt;/div>
+&lt;style>
+.notice {
+position: relative;
+padding: 1em 1em 1em 2.5em;
+margin-bottom: 1em;
+border-radius: 4px;
+p:last-child {
+margin-bottom: 0;
+}
+.notice-title {
+position: absolute;
+left: 0.8em;
+.notice-icon {
+width: 1.2em;
+height: 1.2em;
+}
+}
+&amp;.notice-warning {
+background: hsla(0, 65%, 65%, 0.15);
+border-left: 5px solid hsl(0, 65%, 65%);
+.notice-title {
+color: hsl(0, 65%, 65%);
+}
+}
+&amp;.notice-info {
+background: hsla(30, 80%, 70%, 0.15);
+border-left: 5px solid hsl(30, 80%, 70%);
+.notice-title {
+color: hsl(30, 80%, 70%);
+}
+}
+&amp;.notice-note {
+background: hsla(200, 65%, 65%, 0.15);
+border-left: 5px solid hsl(200, 65%, 65%);
+.notice-title {
+color: hsl(200, 65%, 65%);
+}
+}
+&amp;.notice-tip {
+background: hsla(140, 65%, 65%, 0.15);
+border-left: 5px solid hsl(140, 65%, 65%);
+.notice-title {
+color: hsl(140, 65%, 65%);
+}
+}
+}
+[data-theme='dark'] .notice {
+&amp;.notice-warning {
+background: hsla(0, 25%, 35%, 0.15);
+border-left: 5px solid hsl(0, 25%, 35%);
+.notice-title {
+color: rgba(224, 108, 108, 0.5);
+}
+}
+&amp;.notice-info {
+background: hsla(30, 25%, 35%, 0.15);
+border-left: 5px solid hsl(30, 25%, 35%);
+.notice-title {
+color: rgba(240, 178, 117, 0.5);
+}
+}
+&amp;.notice-note {
+background: hsla(200, 25%, 35%, 0.15);
+border-left: 5px solid hsl(200, 25%, 35%);
+.notice-title {
+color: rgba(108, 185, 224, 0.5);
+}
+}
+&amp;.notice-tip {
+background: hsla(140, 25%, 35%, 0.15);
+border-left: 5px solid hsl(140, 25%, 35%);
+.notice-title {
+color: rgba(108, 224, 147, 0.5);
+}
+}
+}
+&lt;/style>
+&lt;p>&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;div class="video-wrapper">
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/EF8C4v7JIbA"
+allowfullscreen
+title="YouTube Video"
+>
+&lt;/iframe>
+&lt;/div>
+&lt;p>&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;blockquote>
+&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&lt;/p>&lt;span class="cite">&lt;span>― &lt;/span>&lt;span>A famous person, &lt;/span>&lt;a href="https://en.wikipedia.org/wiki/Book">&lt;cite>The book they wrote&lt;/cite>&lt;/a>&lt;/span>&lt;/blockquote>
+&lt;p>&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;div class="timeline__row">
+&lt;div class="timeline__time">
+&lt;div class="timeline__time">2023-09-10&lt;/div>
+&lt;div class="timeline__split-line">&lt;/div>
+&lt;/div>
+&lt;div class="timeline__content">
+&lt;div class="timeline__tags">
+&lt;span class="timeline__tag">&lt;/span>
+&lt;/div>
+&lt;a href="">
+&lt;div class="timeline__title">&lt;/div>
+&lt;/a>
+&lt;div class="timeline__description">&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.timeline {
+display: flex;
+flex-direction: column;
+}
+.timeline__row {
+display: flex;
+padding-left: 4%;
+height: 90px;
+}
+.timeline__time {
+flex: 0 0 110px;
+color: #5d5d5d;
+font-size: 17px;
+text-transform: uppercase;
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0.5rem 0;
+}
+.timeline__time-text {
+margin: 0;
+}
+.timeline__split-line {
+position: absolute;
+top: 0.5rem;
+right: -20px;
+height: 100%;
+width: 2px;
+background-color: #84c4e240;
+z-index: 0;
+}
+.timeline__split-line:before {
+content: '';
+position: absolute;
+top: 24%;
+right: -4px;
+transform: translateY(-50%);
+width: 10px;
+height: 10px;
+background-color: #c9e5f2;
+box-shadow: 0 0 0 4px var(--theme);
+border-radius: 50%;
+border: 0px solid #84c4e2;
+z-index: -1;
+}
+.timeline__content {
+flex: 1;
+margin-left: 4.5rem;
+padding: 0.5rem 0 1.2rem 0;
+}
+.timeline__title {
+margin: 0;
+margin-bottom: 2px;
+padding-top: 3px;
+margin-left: 0.5rem;
+color: var(--content);
+font-family: var(--font-family-teshu);
+font-size: var(--article-font-size);
+font-weight: 600;
+width: fit-content;
+display: inline-block;
+vertical-align: middle;
+}
+.timeline__tags {
+display: inline-block;
+padding: 0;
+margin-left: 0.3rem;
+align-items: center;
+gap: 0.3rem;
+}
+.timeline__tag {
+display: inline-block;
+color: var(--secondary);
+background-color: #84c4e230;
+border: 1.5px solid #84c4e230;
+border-radius: 999px;
+padding: 0rem 0.5rem;
+font-size: 12px;
+white-space: nowrap;
+line-height: 1.4rem;
+opacity: 0.8;
+vertical-align: middle;
+}
+.timeline__description {
+font-size: 15px;
+line-height: 1.6;
+color: #5d5d5d;
+overflow: hidden;
+text-overflow: ellipsis;
+margin: 0.5rem 0 0.4rem 1.5rem;
+}
+.timeline__tag-style {
+background-color: #c581da;
+border-color: #c581da;
+color: #ffffff;
+}
+.timeline__tag-article {
+background-color: #92d392;
+border-color: #92d392;
+color: #000000;
+}
+.timeline__tag-page {
+background-color: #707070;
+border-color: #707070;
+color: #ffffff;
+}
+@media screen and (max-width: 768px) {
+.timeline__time {
+font-size: 14px;
+}
+.timeline__title {
+font-size: var(--article-font-size);
+}
+.timeline__description {
+font-size: 14px;
+}
+}
+&lt;/style>
+&lt;div class="timeline__row">
+&lt;div class="timeline__time">
+&lt;div class="timeline__time">2023-09-10&lt;/div>
+&lt;div class="timeline__split-line">&lt;/div>
+&lt;/div>
+&lt;div class="timeline__content">
+&lt;div class="timeline__tags">
+&lt;span class="timeline__tag">&lt;/span>
+&lt;/div>
+&lt;a href="">
+&lt;div class="timeline__title">&lt;/div>
+&lt;/a>
+&lt;div class="timeline__description">&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.timeline {
+display: flex;
+flex-direction: column;
+}
+.timeline__row {
+display: flex;
+padding-left: 4%;
+height: 90px;
+}
+.timeline__time {
+flex: 0 0 110px;
+color: #5d5d5d;
+font-size: 17px;
+text-transform: uppercase;
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0.5rem 0;
+}
+.timeline__time-text {
+margin: 0;
+}
+.timeline__split-line {
+position: absolute;
+top: 0.5rem;
+right: -20px;
+height: 100%;
+width: 2px;
+background-color: #84c4e240;
+z-index: 0;
+}
+.timeline__split-line:before {
+content: '';
+position: absolute;
+top: 24%;
+right: -4px;
+transform: translateY(-50%);
+width: 10px;
+height: 10px;
+background-color: #c9e5f2;
+box-shadow: 0 0 0 4px var(--theme);
+border-radius: 50%;
+border: 0px solid #84c4e2;
+z-index: -1;
+}
+.timeline__content {
+flex: 1;
+margin-left: 4.5rem;
+padding: 0.5rem 0 1.2rem 0;
+}
+.timeline__title {
+margin: 0;
+margin-bottom: 2px;
+padding-top: 3px;
+margin-left: 0.5rem;
+color: var(--content);
+font-family: var(--font-family-teshu);
+font-size: var(--article-font-size);
+font-weight: 600;
+width: fit-content;
+display: inline-block;
+vertical-align: middle;
+}
+.timeline__tags {
+display: inline-block;
+padding: 0;
+margin-left: 0.3rem;
+align-items: center;
+gap: 0.3rem;
+}
+.timeline__tag {
+display: inline-block;
+color: var(--secondary);
+background-color: #84c4e230;
+border: 1.5px solid #84c4e230;
+border-radius: 999px;
+padding: 0rem 0.5rem;
+font-size: 12px;
+white-space: nowrap;
+line-height: 1.4rem;
+opacity: 0.8;
+vertical-align: middle;
+}
+.timeline__description {
+font-size: 15px;
+line-height: 1.6;
+color: #5d5d5d;
+overflow: hidden;
+text-overflow: ellipsis;
+margin: 0.5rem 0 0.4rem 1.5rem;
+}
+.timeline__tag-style {
+background-color: #c581da;
+border-color: #c581da;
+color: #ffffff;
+}
+.timeline__tag-article {
+background-color: #92d392;
+border-color: #92d392;
+color: #000000;
+}
+.timeline__tag-page {
+background-color: #707070;
+border-color: #707070;
+color: #ffffff;
+}
+@media screen and (max-width: 768px) {
+.timeline__time {
+font-size: 14px;
+}
+.timeline__title {
+font-size: var(--article-font-size);
+}
+.timeline__description {
+font-size: 14px;
+}
+}
+&lt;/style>
+&lt;h2 id="使用方法">使用方法&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{\{&amp;lt; detail &amp;#34;生效了&amp;#34; &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(〃`𓎟´〃) 天才ですから！
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; /detail &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; spotify type=&amp;#34;track&amp;#34; id=&amp;#34;7ofV2J7Ndzo2s5NBEgfpxl&amp;#34; height=&amp;#34;80px&amp;#34;&amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; neodb &amp;#34;https://neodb.social/book/6Wn7wIf31mFcrGN4js0SeY(条目链接)&amp;#34; &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; bilibili BV1cw411c7Zi 1 &amp;gt;}\} //BV号，分p数；使用记得双括号
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; notice notice-warning &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Warning：需要双括号。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; /notice &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; notice notice-info &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">info：这是一条信息。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; /notice &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; notice notice-note &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">note：可以标注一下，但是没必要。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; /notice &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; notice notice-tip &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tip：在示例里胡说八道会使观看者会心一笑。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; /notice &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; youtube EF8C4v7JIbA&amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; quote author=&amp;#34;A famous person&amp;#34; source=&amp;#34;The book they wrote&amp;#34; url=&amp;#34;https://en.wikipedia.org/wiki/Book&amp;#34;&amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; /quote &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{\{&amp;lt; timeline date=&amp;#34;2023-09-10&amp;#34; title=&amp;#34;&amp;#34; description=&amp;#34;&amp;#34; tags=&amp;#34;&amp;#34; url=&amp;#34;&amp;#34; &amp;gt;}\}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://www.sleepymoon.cyou/2023/hugo-shortcodes/" target="_blank" rel="noopener"
+>Hugo | 在 Stack 主题上可行的短代码们&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>&lt;a class="link" href="https://stack.jimmycai.com/writing/shortcodes" target="_blank" rel="noopener"
+>https://stack.jimmycai.com/writing/shortcodes&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p></description></item><item><title>Figma</title><link>https://falasool.github.io/2023/figma/</link><pubDate>Sun, 05 Nov 2023 23:55:30 +0800</pubDate><guid>https://falasool.github.io/2023/figma/</guid><description>&lt;h2 id="cheat-sheet">cheat sheet&lt;/h2>
 &lt;p>space 移动画布&lt;/p>
 &lt;p>control + 中键滚轮 缩放画布&lt;/p>
 &lt;p>右上角显示当前画布百分比&lt;/p>
@@ -38,7 +1141,6 @@
 &lt;/tbody>
 &lt;/table>
 &lt;p>想移动多个元素 超出部分需要裁切&lt;/p>
-&lt;p>​&lt;/p>
 &lt;h2 id="形状工具">形状工具&lt;/h2>
 &lt;p>学会绘制、编辑常见造型&lt;/p>
 &lt;p>option 以矩形中心为基准&lt;/p>
@@ -620,6 +1722,9 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start nginx
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># or&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx -s reload
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="trojan-go">Trojan-Go&lt;/h2>
+&lt;p>一键部署 Trojan-Go&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">bash &amp;lt;&lt;span class="o">(&lt;/span>curl -sSL &lt;span class="s2">&amp;#34;https://raw.githubusercontent.com/veip007/hj/main/trojan-go.sh&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
 &lt;p>&lt;a class="link" href="https://v2xtls.org/clashx%E9%85%8D%E7%BD%AEv2ray%E6%95%99%E7%A8%8B/" target="_blank" rel="noopener"
 >ClashX 配置 V2ray 教程&lt;/a>
@@ -1455,7 +2560,15 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新文件&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/profile
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解释：PS1变量代表&amp;lt;用户名+主机名+路径名（长路径）+ $&amp;gt;&lt;/p>
-&lt;h2 id="添加-swap">添加 SWAP&lt;/h2>
+&lt;p>🤔❓问题：每次登录都要重新 &lt;code>source /etc/profile&lt;/code> 让环境变量生效&lt;/p>
+&lt;p>💡解决：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">vim ~/.bashrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加如下代码&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="o">[&lt;/span> -f /etc/profile &lt;span class="o">]&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">then&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">. /etc/profile
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">fi&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="添加-swap">添加 SWAP&lt;/h2>
 &lt;p>确认是否已存在 SWAP&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">free -m
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>有 Swap 项而且 total 列不为零，说明 Swap 已存在，可以自行修改分区容量，参考：为 &lt;a class="link" href="https://www.vvave.net/archives/add-swap-and-repartition-swap-for-linux.html" target="_blank" rel="noopener"
@@ -2478,55 +3591,20 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="shortcodes">ShortCodes&lt;/h2>
-&lt;h3 id="折叠内容">折叠内容&lt;/h3>
-&lt;p>通过 details 标签实现：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl"># layouts/shortcodes/detail.html
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">details&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">summary&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>{{ (.Get 0) }}&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">summary&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ .Inner | markdownify }}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">details&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{{/*&amp;lt; detail &amp;#34;生效了&amp;#34; &amp;gt;*/}}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(〃`𓎟´〃) 天才ですから！
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{/*&amp;lt;/detail&amp;gt;*/}}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;details>
-&lt;summary>生效了&lt;/summary>
-(〃`𓎟´〃) 天才ですから！
-&lt;/details>
-&lt;h3 id="spotify">Spotify&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">// layouts/shortcodes/spotify.html
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&amp;lt;!--
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">Parameters:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> type - (Required) album / track / playlist / artist
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> id - (Required) Target ID
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> width - (Optional) width
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c"> height - (Optional) height
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">--&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{ if .IsNamedParams }}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">iframe&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;https://open.spotify.com/embed/{{ .Get &amp;#34;&lt;/span>&lt;span class="na">type&lt;/span>&lt;span class="err">&amp;#34;&lt;/span> &lt;span class="err">}}/{{&lt;/span> &lt;span class="err">.&lt;/span>&lt;span class="na">Get&lt;/span> &lt;span class="err">&amp;#34;&lt;/span>&lt;span class="na">id&lt;/span>&lt;span class="err">&amp;#34;&lt;/span> &lt;span class="err">}}&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">width&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;{{ default &amp;#34;&lt;/span>&lt;span class="na">100&lt;/span>&lt;span class="err">%&amp;#34;&lt;/span> &lt;span class="err">(.&lt;/span>&lt;span class="na">Get&lt;/span> &lt;span class="err">&amp;#34;&lt;/span>&lt;span class="na">width&lt;/span>&lt;span class="err">&amp;#34;)&lt;/span> &lt;span class="err">}}&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">height&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;{{ default &amp;#34;&lt;/span>&lt;span class="na">380&lt;/span>&lt;span class="err">&amp;#34;&lt;/span> &lt;span class="err">(.&lt;/span>&lt;span class="na">Get&lt;/span> &lt;span class="err">&amp;#34;&lt;/span>&lt;span class="na">height&lt;/span>&lt;span class="err">&amp;#34;)&lt;/span> &lt;span class="err">}}&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">frameborder&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;0&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">allowtransparency&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;true&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">allow&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;encrypted-media&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">iframe&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{ else }}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">iframe&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;https://open.spotify.com/embed/{{ .Get 0 }}/{{ .Get 1 }}&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">width&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;{{ default &amp;#34;&lt;/span>&lt;span class="na">100&lt;/span>&lt;span class="err">%&amp;#34;&lt;/span> &lt;span class="err">(.&lt;/span>&lt;span class="na">Get&lt;/span> &lt;span class="na">2&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">}}&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">height&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;{{ default &amp;#34;&lt;/span>&lt;span class="na">380&lt;/span>&lt;span class="err">&amp;#34;&lt;/span> &lt;span class="err">(.&lt;/span>&lt;span class="na">Get&lt;/span> &lt;span class="na">3&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">}}&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">frameborder&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;0&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">allowtransparency&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;true&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">allow&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;encrypted-media&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">iframe&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{ end }}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{{/*&amp;lt; spotify type=&amp;#34;track&amp;#34; id=&amp;#34;2D3gvohUyOfXIVX6Mvhqae&amp;#34; height=&amp;#34;80px&amp;#34;&amp;gt;*/}}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;iframe src="https://open.spotify.com/embed/track/7ofV2J7Ndzo2s5NBEgfpxl"
-width="100%"
-height="80px"
-frameborder="0"
-allowtransparency="true"
-allow="encrypted-media">&lt;/iframe>
+&lt;p>内容太长，内容分开存放&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://falasool.github.io/2023/hugo-shortcuts/" >Hugo Shortcuts&lt;/a>
+效果和使用方法&lt;/li>
+&lt;li>&lt;a class="link" href="https://github.com/0livia99/hugo-stack-shortcuts/tree/main" target="_blank" rel="noopener"
+>代码仓库&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/li>
+&lt;/ul>
 &lt;h2 id="添加-apple-touch-icon">添加 apple-touch-icon&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl"># /layouts/_default/baseof.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
@@ -2638,8 +3716,8 @@ allow="encrypted-media">&lt;/iframe>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">})()&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="有兴趣了做做">有兴趣了做做&lt;/h2>
+&lt;p>✅ 博客时间轴&lt;/p>
 &lt;ul>
-&lt;li>博客时间轴&lt;/li>
 &lt;li>导航页&lt;/li>
 &lt;/ul>
 &lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
@@ -2728,17 +3806,17 @@ fill="currentColor">
 &lt;li>&lt;code>/var/log/nginx/error.log&lt;/code>：Nginx错误请求记录文件。&lt;/li>
 &lt;/ul></description></item><item><title>Misskey 实例搭建教程</title><link>https://falasool.github.io/2022/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
 &lt;h2 id="购买-vps">购买 VPS&lt;/h2>
-&lt;p>⚠️不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
+&lt;p>⚠️ 不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
 &lt;p>在备案通过之前 80 和 443 端口是封禁的 -&amp;gt; 无法申请 SSL 证书 -&amp;gt; Misskey 需要 SSL 才能访问，GG&lt;/p>
 &lt;p>（即使没有这个问题，买大陆节点的服务建站也是一种自杀行为）&lt;/p>
 &lt;h3 id="注册">注册&lt;/h3>
-&lt;p>注册Vultr 账号，充值&lt;/p>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey1.png"
+&lt;p>注册 Vultr 账号，充值&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey1.png"
 loading="lazy"
 alt="image-20221120012614543"
 >&lt;/p>
 &lt;h3 id="创建-vps">创建 VPS&lt;/h3>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221120012203832.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/image-20221120012203832.png"
 loading="lazy"
 alt="image-20221120012203832"
 >&lt;/p>
@@ -2772,10 +3850,10 @@ alt="image-20221120012203832"
 &lt;p>打开命令行，输入&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ssh-keygen -t rsa -b &lt;span class="m">4096&lt;/span> -C &lt;span class="s2">&amp;#34;Example comment&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在这行提示后面输入你想要保存密钥的路径&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Generating public/private rsa key pair.
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">Generating public/private rsa key pair.
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter file in which to save the key (/home/example_user/.ssh/id_rsa):
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我输入（uu是我的电脑用户名）&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">/home/uu/.ssh/id_rsa_vultr
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我输入（uu 是我的电脑用户名）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/home/uu/.ssh/id_rsa_vultr
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>所以在 &lt;code>/.ssh&lt;/code> 目录下可以找到 &lt;code>id_rsa_vultr&lt;/code> 和 &lt;code>id_rsa_vultr.pub&lt;/code> 文件，它们分别是私钥和公钥&lt;/p>
 &lt;p>接下来要把公钥内容添加到 vultr 去&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 进入.ssh 目录&lt;/span>
@@ -2786,13 +3864,13 @@ alt="image-20221120012203832"
 &lt;ul>
 &lt;li>这时底部付款栏应该显示 &lt;code>$5.00/month&lt;/code> ，点击 &lt;code>Deploy Now&lt;/code> 确认创建服务器，等待一会，等 Status 变成 Running 就好了&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey2-1.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey2-1.png"
 loading="lazy"
 alt="image-20221120012909994"
 >&lt;/p>
 &lt;p>点击刚刚创建的 VPS，看到如下界面。&lt;/p>
 &lt;p>左下角的 IP Address、Username、Password 是待会连接服务器的时候，要用到的 SSH 连接信息&lt;/p>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey3.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey3.png"
 loading="lazy"
 alt="image-20221120013010174"
 >&lt;/p>
@@ -2807,7 +3885,7 @@ alt="image-20221120013010174"
 &lt;p>服务器创建完成&lt;/p>
 &lt;h3 id="检查-ip">检查 IP&lt;/h3>
 &lt;p>Ping 一下 IP&lt;/p>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey4.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey4.png"
 loading="lazy"
 alt="image-20221120013147886"
 >&lt;/p>
@@ -2820,7 +3898,7 @@ xmlns="http://www.w3.org/2000/svg">
 fill="currentColor">
 &lt;/svg>&lt;/span>
 检查 IP，此 IP 可用&lt;/p>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey5.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey5.png"
 loading="lazy"
 alt="image-20221120013305544"
 >&lt;/p>
@@ -2861,7 +3939,7 @@ fill="currentColor">
 loading="lazy"
 alt="image-20221120013439245"
 >&lt;/p>
-&lt;p>暂停⏸️&lt;/p>
+&lt;p>暂停 ⏸️&lt;/p>
 &lt;p>去 &lt;a class="link" href="https://dash.cloudflare.com/" target="_blank" rel="noopener"
 >CloudFlare&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
@@ -2914,7 +3992,7 @@ fill="currentColor">
 loading="lazy"
 alt="image-20221121185003309"
 >&lt;/p>
-&lt;p>✅域名解析完成&lt;/p>
+&lt;p>✅ 域名解析完成&lt;/p>
 &lt;h2 id="服务器基础配置">服务器基础配置&lt;/h2>
 &lt;p>&lt;strong>对哪一步不自信，可以在开始做之前先去服务器管理面板创建一个快照（snapshots），快照就是存档点&lt;/strong>&lt;/p>
 &lt;h3 id="远程连接">远程连接&lt;/h3>
@@ -2950,7 +4028,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo ls -al /root
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>返回类似内容（展示 &lt;code>/root&lt;/code> 目录下的资料）就表示成功了&lt;/p>
 &lt;!-- raw HTML omitted -->
-&lt;h4 id="可选ssh免密登录">[可选]SSH免密登录&lt;/h4>
+&lt;h4 id="可选ssh-免密登录">[可选]SSH 免密登录&lt;/h4>
 &lt;p>每次登录 vpsadmin 都要手动输密码很麻烦，设置一下免密登录&lt;/p>
 &lt;p>在 Tabby 设置 - Profiles &amp;amp; connections - &lt;code>+ New profile&lt;/code> - SSH connection&lt;/p>
 &lt;!-- raw HTML omitted -->
@@ -2966,7 +4044,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo /etc/init.d/ssh restart
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>打开一个新窗口&lt;/strong>，尝试用 root 登录，返回 Permission denied&amp;hellip;&lt;/p>
 &lt;!-- raw HTML omitted -->
-&lt;p>✅成功禁止 root 登录&lt;/p>
+&lt;p>✅ 成功禁止 root 登录&lt;/p>
 &lt;p>从现在开始，用「vpsadmin」这个账户远程连接 VPS 吧&lt;/p>
 &lt;h3 id="搭建环境">搭建环境&lt;/h3>
 &lt;h4 id="修改服务器时间">修改服务器时间&lt;/h4>
@@ -2976,14 +4054,14 @@ fill="currentColor">
 &lt;p>列出所有时区&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">timedatectl list-timezones
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;!-- raw HTML omitted -->
-&lt;p>改成香港🇭🇰&lt;/p>
+&lt;p>改成香港 🇭🇰&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo timedatectl set-timezone Asia/Hong_Kong
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="安装常用命令">安装常用命令&lt;/h4>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo apt-get install curl wget screen tree -y
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>*curl用于请求 Web 服务器&lt;/p>
-&lt;p>*wget用来下载软件包&lt;/p>
-&lt;p>*screen用于命令行终端的窗口切换&lt;/p>
-&lt;p>*tree用于显示当前文件夹的目录结构&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>*curl 用于请求 Web 服务器&lt;/p>
+&lt;p>*wget 用来下载软件包&lt;/p>
+&lt;p>*screen 用于命令行终端的窗口切换&lt;/p>
+&lt;p>*tree 用于显示当前文件夹的目录结构&lt;/p>
 &lt;p>（如果你有其它要用的也一起加进来，或者要用了再用这个命令单独安装也可以）&lt;/p>
 &lt;h4 id="添加-swap">添加 SWAP&lt;/h4>
 &lt;p>swap 是 Linux 中的虚拟内存，用于在物理内存不足的情况下储存临时数据，可以提升小内存 VPS 的运行效率&lt;/p>
@@ -3061,8 +4139,8 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;ipv6&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;fixed-cidr-v6&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;fd00:dead:beef:c0::/80&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;experimental&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;ip6tables&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;experimental&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;ip6tables&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">true&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>⚠️ vim 和普通键入略有不用&lt;/p>
 &lt;ul>
@@ -3114,7 +4192,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo vim docker-compose.yml
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>按 &lt;code>I&lt;/code>，切换到编辑模式，把以下内容粘贴进去&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># Misskey minimal deploy config&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;3&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;3&amp;#39;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">services&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">web&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
@@ -3125,7 +4203,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">db&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">redis&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">ports&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;3001:3001&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s1">&amp;#39;3001:3001&amp;#39;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">networks&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">internal_network&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">external_network&lt;/span>&lt;span class="w">
@@ -3171,7 +4249,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c">#───┘ URL └─────────────────────────────────────────────────────&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># Final accessible URL seen by a user.&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">url&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://ponderduck.cc/ &lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 注意改成自己最后反向代理想要的网址&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">url&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://ponderduck.cc/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 注意改成自己最后反向代理想要的网址&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># ONCE YOU HAVE STARTED THE INSTANCE, DO NOT CHANGE THE&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># URL SETTINGS AFTER THAT!&lt;/span>&lt;span class="w">
@@ -3234,8 +4312,8 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># host: localhost&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># port: 9200&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># ssl: false&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># user: &lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># pass: &lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># user:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># pass:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># ┌───────────────┐&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c">#───┘ ID generation └───────────────────────────────────────────&lt;/span>&lt;span class="w">
@@ -3254,7 +4332,6 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># ID SETTINGS AFTER THAT!&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">id&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;aid&amp;#39;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># ┌─────────────────────┐&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c">#───┘ Other configuration └─────────────────────────────────────&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
@@ -3323,7 +4400,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="部署">部署&lt;/h3>
 &lt;p>还记得我说「创建并编辑 yml 文件，让它去部署」吗？&lt;/p>
 &lt;p>现在文件已经配置完毕了，是时候让它跑起来了！&lt;/p>
-&lt;p>双手合十🙏&lt;/p>
+&lt;p>双手合十 🙏&lt;/p>
 &lt;p>切换到上一级目录&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ..
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>初始化数据库&lt;/p>
@@ -3371,7 +4448,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo chmod -R &lt;span class="m">755&lt;/span> /var/www/ponderduck.cc
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>编辑&lt;code>index.html&lt;/code>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo vim /var/www/ponderduck.cc/html/index.html
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>添加以下示例HTML&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>添加以下示例 HTML&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Welcome to ponderduck.cc!&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
@@ -3379,6 +4456,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Success! The ponderduck.cc server block is working!&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>为 Nginx 创建一个服务器块&lt;/p>
 &lt;p>创建一个新文件&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo vim /etc/nginx/sites-available/ponderduck.conf
@@ -3450,7 +4528,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Let&amp;rsquo;s Encrypt 的 SSL 证书会在 90 天后过期，但是 Certbot 会自动续订&lt;/p>
 &lt;p>测试证书自动续订是否生效&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo certbot renew --dry-run
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>返回⬇️说明已生效&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>返回 ⬇️ 说明已生效&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Simulating renewal of an existing certificate for www.ponderduck.cc
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>找到存放站点证书的目录&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo ls /etc/letsencrypt/live
@@ -3534,7 +4612,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo systemctl restart nginx
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>现在 SSL 证书和反向代理都生效了，尝试用域名访问站点&lt;/p>
 &lt;!-- raw HTML omitted -->
-&lt;p>完成🎉&lt;/p>
+&lt;p>完成 🎉&lt;/p>
 &lt;p>注册一个账号，回到命令行工具把它设置为管理员&lt;/p>
 &lt;h2 id="日常维护">日常维护&lt;/h2>
 &lt;h3 id="更新">更新&lt;/h3>
@@ -3566,7 +4644,7 @@ fill="currentColor">
 &lt;p>内容主要来源：https://www.cnblogs.com/jing99/p/10487174.html&lt;/p>
 &lt;p>有时候要用 &lt;code>sudo&lt;/code>&lt;/p>
 &lt;h4 id="df-命令">df 命令&lt;/h4>
-&lt;p>可以查看一级文件夹大小、使用比例、档案系统和挂入dian&lt;/p>
+&lt;p>可以查看一级文件夹大小、使用比例、档案系统和挂入 dian&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@oms ~]# df -Th
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Filesystem Type Size Used Avail Use% Mounted on
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/vda1 ext4 40G 35G 3.1G 92% /
@@ -3576,7 +4654,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tmpfs tmpfs 1.9G 0 1.9G 0% /sys/fs/cgroup
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tmpfs tmpfs 379M 0 379M 0% /run/user/0
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>七个字段分别为档案系统、类型、该分割区的容量、已使用的大小、剩下的大小、使用的百分比和挂入点&lt;/p>
-&lt;h4 id="du命令">du命令&lt;/h4>
+&lt;h4 id="du-命令">du 命令&lt;/h4>
 &lt;p>用来查看目录或文件所占用磁盘空间的大小。常用选项组合为：&lt;code>du -sh [目录]&lt;/code>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">du -s 目录 | sort -rn #这是按字节排序
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">du -sh 目录 | sort -rn #这是按兆（M）来排序
@@ -3625,7 +4703,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo docker container stats
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="其它参考">其它参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://blog.laoda.de/archives/getting-started-with-linux" target="_blank" rel="noopener"
->mjj版的linux入门教程&lt;/a>
+>mjj 版的 linux 入门教程&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -3652,7 +4730,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://blog.laoda.de/archives/docker-compose-install-misskey#5.3-%E5%AE%89%E8%A3%85nginxproxymanager" target="_blank" rel="noopener"
->【好玩儿的Docker项目】10分钟搭建一个去中心化微博平台——Misskey ｜二次元风格、联邦宇宙&lt;/a>
+>【好玩儿的 Docker 项目】10 分钟搭建一个去中心化微博平台——Misskey ｜二次元风格、联邦宇宙&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -3661,7 +4739,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://candinya.com/posts/minimal-misskey-docker-deploy/" target="_blank" rel="noopener"
->使用Docker最小化部署Misskey&lt;/a>
+>使用 Docker 最小化部署 Misskey&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -3697,7 +4775,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://www.myfreax.com/secure-nginx-with-let-s-encrypt-on-ubuntu-20-04/" target="_blank" rel="noopener"
->如何在Ubuntu 20.04 Nginx配置Let&amp;rsquo;s Encrypt SSL证书&lt;/a>
+>如何在 Ubuntu 20.04 Nginx 配置 Let&amp;rsquo;s Encrypt SSL 证书&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -3745,7 +4823,7 @@ fill="currentColor">
 &lt;ul>
 &lt;li>检查 IP 是否和刚刚 ping 出来的一致（不一致的话改掉），然后点 Continue&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/check-ip.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/check-ip.png"
 loading="lazy"
 alt="check-ip"
 >&lt;/p>
@@ -3795,8 +4873,8 @@ fill="currentColor">
 &lt;!-- raw HTML omitted -->
 &lt;p>还是不行，一旦 push 就打回原形&lt;/p>
 &lt;p>解决方法：查阅资料发现问题在于 源码仓库 hugo-sources 的Actions 配置文件，deploy 时会自动覆盖CNAME 😭，所以在原配置文件添加：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cname: anodicseal.xyz
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解决！🎉🎉🎉&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">cname&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">anodicseal.xyz&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解决！🎉🎉🎉&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://oldtang.com/2420.html" target="_blank" rel="noopener"
 >Dynadot 网站注册账户、购买域名、支付宝付款、解析域名教程&lt;/a>
@@ -3817,7 +4895,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://ruanyifeng.com/blog/2016/06/dns.html" target="_blank" rel="noopener"
-> DNS 原理入门&lt;/a>
+>DNS 原理入门&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -3835,12 +4913,11 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p></description></item><item><title>Hugo | 给博客配置图床</title><link>https://falasool.github.io/2022/picture-bed/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2022/picture-bed/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;h2 id="安装-picgo">安装 PicGo&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">brew install picgo --cask
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">brew install picgo --cask
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="创建-github-图床仓库">创建 GitHub 图床仓库&lt;/h2>
 &lt;p>名称无所谓，记得勾选 README&lt;/p>
 &lt;h2 id="生成令牌token">生成令牌（Token）&lt;/h2>
-&lt;p>在 Account-Settings-Developer Settings-Personal Access Tokens 下生成（勾选 repo）并保存，我的Token：（隐藏）&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>在 Account-Settings-Developer Settings-Personal Access Tokens 下生成（勾选 repo）并保存&lt;/p>
 &lt;h2 id="配置-picgo">配置 PicGo&lt;/h2>
 &lt;p>自定义域名是：&lt;code>https://cdn.jsdelivr.net/gh/&amp;lt;github用户名&amp;gt;/&amp;lt;图床仓库名&amp;gt;@&amp;lt;仓库版本号&amp;gt;/&lt;/code>&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogimage-20230530234507042.png"
@@ -3883,6 +4960,15 @@ fill="currentColor">
 loading="lazy"
 alt="image"
 >&lt;/p>
+&lt;p>进阶：&lt;a class="link" href="https://zhuanlan.zhihu.com/p/626135137" target="_blank" rel="noopener"
+>使用github私有仓库和Cloudflare Workers搭建个人图床&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+，优点：反向代理作为图床的仓库，开启缓存避免重复请求&lt;/p>
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://picgo.github.io/PicGo-Doc/" target="_blank" rel="noopener"
 >PicGo&lt;/a>
@@ -3929,7 +5015,8 @@ fill="currentColor">
 &lt;/li>
 &lt;/ol>
 &lt;/div></description></item><item><title>Pleroma | 开启邮件服务（ZOHO）</title><link>https://falasool.github.io/2022/zoho-mail-services/</link><pubDate>Fri, 21 Oct 2022 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2022/zoho-mail-services/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;p>在 zoho.com 注册账号，选择 Free Plan，Add an existing domain，接着去验证域名&lt;/p>
+&lt;p>改用 MailGun了，待更新&lt;/p>
+&lt;p>&lt;del>在 zoho.com 注册账号，选择 Free Plan，Add an existing domain，接着去验证域名&lt;/del>&lt;/p>
 &lt;p>在域名托管商（比如 Cloudflare）添加一条 TXT 记录然后验证&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blog202306020051407.png"
 loading="lazy"
@@ -3979,8 +5066,8 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global user.name &amp;#34;&amp;lt;username&amp;gt;&amp;#34;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global user.email user@example.com
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="github">GitHub&lt;/h3>
-&lt;p>&lt;a class="link" href="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/new-public-repo-1.png" target="_blank" rel="noopener"
->https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/new-public-repo-1.png&lt;/a>
+&lt;p>&lt;a class="link" href="https://raw.githubusercontent.com/%7buser%7d/%7brepo%7d/master/%7bfolderpath%7d/%7bfilename%7d" target="_blank" rel="noopener"
+>https://raw.githubusercontent.com/{user}/{repo}/master/{folderpath}/{filename}&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -3988,8 +5075,8 @@ xmlns="http://www.w3.org/2000/svg">
 fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
-&lt;p>&lt;a class="link" href="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221115113949496.png" target="_blank" rel="noopener"
->https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221115113949496.png&lt;/a>
+&lt;p>&lt;a class="link" href="https://cdn.jsdelivr.net/gh/%7buser%7d/%7brepo%7d/%7bfolderpath%7d/%7bfilename%7d" target="_blank" rel="noopener"
+>https://cdn.jsdelivr.net/gh/{user}/{repo}/{folderpath}/{filename}&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -4004,29 +5091,37 @@ fill="currentColor">
 &lt;h4 id="创建私密仓库">创建私密仓库&lt;/h4>
 &lt;p>存放源码&lt;/p>
 &lt;!-- raw HTML omitted -->
-&lt;h4 id="绑定-token">绑定 Token&lt;/h4>
-&lt;blockquote>
-&lt;p>因为我们需要从博客仓库推送到外部 GitHub Pages 仓库，需要特定权限，要在 GitHub 账户下 Setting - Developer setting - Personal access tokens 下创建一个 Token
-&lt;a class="link" href="https://www.pseudoyu.com/zh/2022/05/29/deploy_your_blog_using_hugo_and_github_action/" target="_blank" rel="noopener"
->Hugo + GitHub Action，搭建你的博客自动发布系统&lt;/a>
-&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
-xmlns="http://www.w3.org/2000/svg">
-&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
-&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
-fill="currentColor">
-&lt;/svg>&lt;/span>
-&lt;/p>
-&lt;/blockquote>
+&lt;h4 id="给两个仓库绑定-ssh-key">给两个仓库绑定 SSH key&lt;/h4>
 &lt;ul>
-&lt;li>在 Account- Settings- Developer Settings- Personal access tokens-Tokens(classic) 里创建 Token，勾选 repo 和 workflow，并复制保存&lt;/li>
+&lt;li>生成 SSH key&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ssh-keygen -t rsa -b 4096 -C &amp;#34;user@example.com&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这行命令 means：生成 SSH 密钥文件 - 密钥类型（rsa）- 密钥长度（4096） - 注释（user@example.com）&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>在 &lt;code>.ssh&lt;/code> 文件夹里找到生成的 SSH&lt;/p>
+&lt;ul>
+&lt;li>添加公钥：把 public key &lt;code>id_rsa_hugo_deploy.pub&lt;/code> 添加到 uname.github.io 仓库（repo settings &amp;gt; deploy keys &amp;gt; add deploy key，需要勾选 &lt;code>Allow write access&lt;/code>）:&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> .ssh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat id_rsa_hugo_deploy.pub &lt;span class="c1"># 显示文件内容&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;!-- raw HTML omitted -->
+&lt;ul>
+&lt;li>添加私钥：Private Key 添加到 private仓库：
+这里 Secrets 变量名要一定是： ACTIONS_DEPLOY_KEY&lt;/li>
 &lt;/ul>
 &lt;!-- raw HTML omitted -->
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/new-token-2.png"
+&lt;h4 id="绑定-token">绑定 Token&lt;/h4>
+&lt;ul>
+&lt;li>在 Account- Settings- Developer Settings- Personal access tokens-Tokens(classic) 里创建 Token，记得勾选 repo 和 workflow，并复制保存。我的 Token: （隐藏）&lt;/li>
+&lt;/ul>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/new-token-2.png"
 loading="lazy"
 alt="博客发布-设置token2"
 >&lt;/p>
 &lt;ul>
-&lt;li>在私有仓库 hugo-scources-settings-secrets-Actions 创建 Secret，名为 PERSONAL_TOKEN，值为刚才的 Token，这样就完成了 Token 的设置&lt;/li>
+&lt;li>在私有仓库 hugo-scources-settings-secrets-Actions 创建名为PERSONAL_TOKEN，值为刚才的 Token 的Secret，这样就完成了 Token 的设置&lt;/li>
 &lt;/ul>
 &lt;h2 id="搭建步骤">搭建步骤&lt;/h2>
 &lt;h3 id="克隆-private-仓库到本地">克隆 private 仓库到本地&lt;/h3>
@@ -4034,16 +5129,16 @@ alt="博客发布-设置token2"
 &lt;!-- raw HTML omitted -->
 &lt;h3 id="新建-hugo-站点">新建 Hugo 站点&lt;/h3>
 &lt;p>在本地 hugo-sources 文件夹中执行 ⬇️，在当前目录生成 Hugo 源码&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">hugo new site . --force
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">hugo new site . --force
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>找到 blog 文件夹，打开会发现结构如下&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">blog
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── archetypes &lt;span class="c1"># 配置文件，决定创建新博文时的自带格式&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">blog
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── archetypes # 配置文件，决定创建新博文时的自带格式
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── default.md
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── config.toml &lt;span class="c1"># 网站配置文件&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── content &lt;span class="c1"># 网站内容，全部是 markdown 格式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── config.toml # 网站配置文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── content # 网站内容，全部是 markdown 格式
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── data
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── layouts &lt;span class="c1"># 网站模板，优先于 themes/&amp;lt;THEME&amp;gt;/layouts&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── static &lt;span class="c1"># 静态资源（css/js/fonts/media等）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── layouts # 网站模板，优先于 themes/&amp;lt;THEME&amp;gt;/layouts
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── static # 静态资源（css/js/fonts/media等）
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└── themes
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="hugo-主题">Hugo 主题&lt;/h3>
 &lt;p>有了主题，内容才会渲染出来&lt;/p>
@@ -4063,23 +5158,23 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
-，功能丰富，支持多种评论系统，使用人数多 bug 好解决&lt;/p>
+，功能丰富，支持多种评论系统，使用人数多bug好解决&lt;/p>
 &lt;ul>
 &lt;li>fork 主题仓库，并使用 &lt;code>git submodule&lt;/code> 方式添加到 themes 里，这样方便后续对主题的修改进行单独维护&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 在hugo-sources目录下&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git init
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git submodule add https://github.com/&amp;lt;Uname&amp;gt;/hugo-theme-stack themes/hugo-theme-stack
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-v" data-lang="v">&lt;span class="line">&lt;span class="cl">&lt;span class="o">#&lt;/span> &lt;span class="nv">在hugo&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nv">sources目录下&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">git&lt;/span> &lt;span class="nv">init&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">git&lt;/span> &lt;span class="nv">submodule&lt;/span> &lt;span class="nv">add&lt;/span> &lt;span class="nv">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">//github.com/&amp;lt;Uname&amp;gt;/hugo-theme-stack themes/hugo-theme-stack
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>更新主题：&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 初始化&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git submodule update --init --recursive
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 同步主题仓库的最新修改&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git submodule update --remote
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-v" data-lang="v">&lt;span class="line">&lt;span class="cl">&lt;span class="o">#&lt;/span> &lt;span class="nv">初始化&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">git&lt;/span> &lt;span class="nv">submodule&lt;/span> &lt;span class="nv">update&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="nv">init&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="nv">recursive&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">#&lt;/span> &lt;span class="nv">同步主题仓库的最新修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">git&lt;/span> &lt;span class="nv">submodule&lt;/span> &lt;span class="nv">update&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="nv">remote&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>删除根目录下的 config.toml 文件，把 &lt;code>./themes/hugo-theme-stack/exampleSite/&lt;/code> 里的 config.yaml 和 content 转移到根目录下，在 config.yaml 中进行站点细节配置&lt;/li>
-&lt;li>删掉 &lt;code>examplesite/content/post/rich-content/index.md&lt;/code>，因为 Twitter 等等被墙应用的 API 中国大陆无法访问 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/issues/191" target="_blank" rel="noopener"
+&lt;li>删除根目录下的config.toml 文件，把 &lt;code>./themes/hugo-theme-stack/exampleSite/&lt;/code> 里的 config.yaml 和 content 转移到根目录下，在 config.yaml 中进行站点细节配置&lt;/li>
+&lt;li>删掉 &lt;code>examplesite/content/post/rich-content/index.md&lt;/code>，因为Twitter 等等被墙应用的API 中国大陆无法访问 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/issues/191" target="_blank" rel="noopener"
 >Issus #191@CaiJimmy/hugo-theme-stack&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
@@ -4090,20 +5185,20 @@ fill="currentColor">
 &lt;/li>
 &lt;li>本地预览&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">hugo server -D
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 在浏览器打开localhost:1313&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">hugo server -D
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在浏览器打开localhost:1313
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>预览满意了 &lt;!-- raw HTML omitted -->Control&lt;!-- raw HTML omitted -->+&lt;!-- raw HTML omitted -->C&lt;!-- raw HTML omitted --> 终止预览&lt;/li>
 &lt;/ul>
 &lt;h3 id="推送到-github">推送到 GitHub&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">git add .
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &lt;span class="s2">&amp;#34;first commit&amp;#34;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git add .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &amp;#34;first commit&amp;#34;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push -u origin main
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="github-actions-配置">GitHub Actions 配置&lt;/h3>
 &lt;ul>
 &lt;li>在 GitHub 的 Private 仓库页面，切换到 Actions tab，点击&lt;code>set up a workflow yourself&lt;/code>，粘贴以下文件，并 commit&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/configyml.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/configyml.png"
 loading="lazy"
 alt="配置yml"
 >&lt;/p>
@@ -4116,14 +5211,14 @@ alt="配置yml"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">workflow_dispatch&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">schedule&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># Runs everyday at 8:00 AM&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">cron&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;0 0 * * *&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">cron&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;0 0 * * *&amp;#34;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">jobs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">build-deploy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-latest&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Checkout&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/checkout@v3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/checkout@v2&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">submodules&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">fetch-depth&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">0&lt;/span>&lt;span class="w">
@@ -4141,17 +5236,17 @@ alt="配置yml"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">peaceiris/actions-gh-pages@v3&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">PERSONAL_TOKEN&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.PERSONAL_TOKEN }}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 这里的 ACTIONS_DEPLOY_KEY 则是上面设置 Private Key的变量名&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">external_repository&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">uname/uname.github.io&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Pages 远程仓库&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">publish_dir&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;./public&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">external_repository&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">0livia99/0livia99.github.io&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Pages 远程仓库 &lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">publish_dir&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;./public&amp;#34;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">keep_files&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># remove existing files&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">publish_branch&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">main&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># deploying branch&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">publish_branch&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">main &lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># deploying branch&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">commit_message&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ github.event.head_commit.message }}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">cname&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">anodicseal.xyz&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 这里要改成你的个人域名，没有就把这行注释掉&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>在本地 hugo-sources 目录下执行 &lt;code>git pull origin main&lt;/code>，查看本地文件夹，出现了 &lt;code>.github/workflows/main.yml&lt;/code> 文件&lt;/li>
 &lt;li>检查流水线是否被正常触发（查看流水线日志）&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/test-autodeploy-system.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/test-autodeploy-system.png"
 loading="lazy"
 alt="测试自动发布系统"
 >&lt;/p>
@@ -4160,14 +5255,14 @@ alt="测试自动发布系统"
 &lt;p>输入关键词后页面空白，在控制台 Network 看到是 search.json 的跨域问题。&lt;/p>
 &lt;p>原因是博客使用 xx.github.io 域名后 用 CNAME 指向个人域名。模版的 &lt;code>{{ .Permalink }}&lt;/code> 拿到的是配置文件里的 baseURL，所以就跨域了。最粗暴的办法，把模版写死，搜索功能就好了&lt;/p>
 &lt;h2 id="使用步骤">使用步骤&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 新建文章&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 新建文章
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hugo new post/&amp;lt;title&amp;gt;.md
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 打开&amp;lt;title.md&amp;gt;，编辑并保存&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 本地预览&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 打开&amp;lt;title.md&amp;gt;，编辑并保存
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 本地预览
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hugo server -D
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 没问题了就push到远程仓库，Actions会自动部署&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 没问题了就push到远程仓库，Actions会自动部署
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add .
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &lt;span class="s2">&amp;#34;test&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &amp;#34;test&amp;#34;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin main
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="拓展">拓展&lt;/h3>
 &lt;p>Github Actions 实现的三种方案：&lt;/p>
@@ -4233,7 +5328,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://www.wingwill.com.tw/zh-tw/%e9%83%a8%e8%90%bd%e6%a0%bc/%e9%9b%b2%e5%9c%b0%e6%b7%b7%e5%90%88%e6%87%89%e7%94%a8/cicd%e5%b7%a5%e5%85%b7/" target="_blank" rel="noopener"
->CI/CD 是什麼？一篇認識 CI/CD 工具及優勢，將日常瑣事自動化&lt;/a>
+>CI/CD是什麼？一篇認識CI/CD工具及優勢，將日常瑣事自動化&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -4260,7 +5355,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://lucumt.info/post/hugo/using-github-action-to-auto-build-deploy/" target="_blank" rel="noopener"
->利用 GitHub Action 实现 Hugo 博客在 GitHub Pages 自动部署&lt;/a>
+>利用GitHub Action实现Hugo博客在GitHub Pages自动部署&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -4288,7 +5383,7 @@ fill="currentColor">
 &lt;/p>
 &lt;p>***&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.jianshu.com/p/5394cf204fad" target="_blank" rel="noopener"
->折腾 Hugo | GitHub Pages | Github Actions 自动构建发布免费个人网站&lt;/a>
+>折腾Hugo | GitHub Pages | Github Actions自动构建发布免费个人网站&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -4297,7 +5392,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://simumis.com/posts/deploy-to-github/" target="_blank" rel="noopener"
->将 Hugo 静态网站部署到 Github Pages&lt;/a>
+>将Hugo静态网站部署到Github Pages&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -4333,16 +5428,17 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="vercel-部署">Vercel 部署&lt;/h3>
 &lt;p>按照文档的一键部署，等待&amp;hellip;&lt;/p>
 &lt;p>在控制台 - settings - Environment Variables，添加环境变量 &lt;code>MONGODB_URI&lt;/code>，值为之前的数据库连接字符串&lt;/p>
-&lt;p>进入 Deployments , 然后在任意一项后面点击更多（三个点） , 然后点击Redeploy , 最后点击下面的Redeploy&lt;/p>
+&lt;p>进入 Deployments , 然后在任意一项后面点击更多（三个点） , 然后点击 Redeploy , 最后点击下面的 Redeploy&lt;/p>
 &lt;p>访问 Vercel 分配的域名，如果环境配置正确，可以看到 “Twikoo 云函数运行正常” 的提示&lt;/p>
+&lt;p>因为 vercel.app 域名已经被中国政府屏蔽，大陆用户无法评论。不过没关系，在 twikoo-api &amp;gt; settings &amp;gt; domains 添加自定义域名可解决&lt;/p>
 &lt;h3 id="配置到博客">配置到博客&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">comments&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">enabled&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">provider&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">twikoo&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">twikoo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">envId&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://twikoo.vercel.app/&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>部署成功后点右下角↘️的齿轮⚙️图标，设置管理密码&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">envId&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">&amp;lt;你的域名或vercel分配的域名&amp;gt;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>部署成功后点右下角 ↘️ 的齿轮 ⚙️ 图标，设置管理密码&lt;/p>
 &lt;h3 id="更新">更新&lt;/h3>
 &lt;p>管理页面提示：Client version: 1.5.11， Server version: 1.6.16， 请参考 &lt;a class="link" href="https://twikoo.js.org/quick-start.html#%e7%89%88%e6%9c%ac%e6%9b%b4%e6%96%b0" target="_blank" rel="noopener"
 >版本更新&lt;/a>
@@ -4353,7 +5449,28 @@ xmlns="http://www.w3.org/2000/svg">
 fill="currentColor">
 &lt;/svg>&lt;/span>
 进行升级&lt;/p>
-&lt;p>在 twikoo.html 里把引入的js文件版本修改到1.6.16&lt;/p>
+&lt;p>在 twikoo.html 里把引入的 js 文件版本修改到 1.6.16&lt;/p>
+&lt;h3 id="进阶">进阶&lt;/h3>
+&lt;ul>
+&lt;li>多个页面共用评论区&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>参考 &lt;a class="link" href="https://www.imaegoo.com/2021/twikoo-path/" target="_blank" rel="noopener"
+>Twikoo 多个页面共用一个评论区&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+实现 About &amp;amp;&amp;amp; Friends 页面共用评论区&lt;/p>
+&lt;/blockquote>
+&lt;p>设置主题的 Twikoo path 配置为&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># config.yaml&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">twikoo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">window.TWIKOO_MAGIC_PATH||window.location.pathname&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在两个页面的 &lt;code>.md&lt;/code> 正文部分添加 &lt;code>&amp;lt;script&amp;gt;window.TWIKOO_MAGIC_PATH=&amp;quot;xxx&amp;quot;&amp;lt;/script&amp;gt;&lt;/code>&lt;/p>
+&lt;p>经测试生效 🎉&lt;/p>
 &lt;h2 id="disqus">Disqus&lt;/h2>
 &lt;p>选择 Disqus 是因为 Hugo 内置了它的模板，同时它对迁移的支持较好，本身功能非常齐全，比较遗憾的是从 2015 年开始被墙了&lt;/p>
 &lt;p>参考 &lt;a class="link" href="https://gohugo.io/content-management/comments/" target="_blank" rel="noopener"
@@ -4374,7 +5491,7 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
-注册并登录账号，添加站点（选择I want to install Disqus on my site）&lt;/p>
+注册并登录账号，添加站点（选择 I want to install Disqus on my site）&lt;/p>
 &lt;p>输入你想要的 Website Name，用作插入 config 文件的名字，后期可以在 Disqus -&amp;gt; Setting -&amp;gt; General 下查看和修改&lt;/p>
 &lt;p>在 Configure Disqus for Your Site 页面输入 Website URL，要输入完整的地址，比如如果像我一样使用的是 GitHub Pages ，就要加上 &lt;code>https://&lt;/code> 的协议名；&lt;/p>
 &lt;p>选择 Category，点击 Create Site 完成注册&lt;/p>
@@ -4399,7 +5516,7 @@ fill="currentColor">
 &lt;h2 id="相关参考">相关参考&lt;/h2>
 &lt;p>&lt;!-- raw HTML omitted -->感谢前人的耕耘和分享，希望本文也能给你带来一些帮助 ❤️&lt;!-- raw HTML omitted -->&lt;/p>
 &lt;p>&lt;a class="link" href="https://thirdshire.com/post/twikoo-tutorial/" target="_blank" rel="noopener"
->在静态博客里添加Twikoo评论系统，并配置邮箱和TG通知&lt;/a>
+>在静态博客里添加 Twikoo 评论系统，并配置邮箱和 TG 通知&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -4417,7 +5534,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://juejin.cn/post/6844903905910849550" target="_blank" rel="noopener"
->Disqus评论框改造工程-实现 Disqus 代理的 Serverless 服务&lt;/a>
+>Disqus 评论框改造工程-实现 Disqus 代理的 Serverless 服务&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -4467,7 +5584,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">date: {{ .Date }}
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">draft: false
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 随机匹配一张图片
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">image: https://picsum.photos/800/600.webp?random={{ substr (md5 (.Date)) 4 8 }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">image: https://picsum.photos/seed/picsum/800/600.webp?random={{ substr (md5 (.Date)) 4 8 }}
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">categories: [&amp;#34;Tutorials&amp;#34;]
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tags: [&amp;#34;Hugo&amp;#34;,&amp;#34;tech&amp;#34;]
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">keywords: [&amp;#34;tutorials&amp;#34;, &amp;#34;Hugo&amp;#34;, &amp;#34;mac&amp;#34;,&amp;#34;tech&amp;#34;]

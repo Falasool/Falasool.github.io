@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Misskey on Rubber Duck's Bizarre Adventure</title><link>https://falasool.github.io/categories/misskey/</link><description>Recent content in Misskey on Rubber Duck's Bizarre Adventure</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 19 Nov 2022 20:19:15 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/misskey/index.xml" rel="self" type="application/rss+xml"/><item><title>Misskey 实例搭建教程</title><link>https://falasool.github.io/2022/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Misskey on Falasool</title><link>https://falasool.github.io/categories/misskey/</link><description>Recent content in Misskey on Falasool</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 19 Nov 2022 20:19:15 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/misskey/index.xml" rel="self" type="application/rss+xml"/><item><title>Misskey 实例搭建教程</title><link>https://falasool.github.io/2022/misskey/</link><pubDate>Sat, 19 Nov 2022 20:19:15 +0800</pubDate><guid>https://falasool.github.io/2022/misskey/</guid><description>&lt;p>本次搭建使用 Ubuntu 22.10 系统&lt;/p>
 &lt;h2 id="购买-vps">购买 VPS&lt;/h2>
-&lt;p>⚠️不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
+&lt;p>⚠️ 不要买机房在大陆的服务商 VPS ⚠️&lt;/p>
 &lt;p>在备案通过之前 80 和 443 端口是封禁的 -&amp;gt; 无法申请 SSL 证书 -&amp;gt; Misskey 需要 SSL 才能访问，GG&lt;/p>
 &lt;p>（即使没有这个问题，买大陆节点的服务建站也是一种自杀行为）&lt;/p>
 &lt;h3 id="注册">注册&lt;/h3>
-&lt;p>注册Vultr 账号，充值&lt;/p>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey1.png"
+&lt;p>注册 Vultr 账号，充值&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey1.png"
 loading="lazy"
 alt="image-20221120012614543"
 >&lt;/p>
 &lt;h3 id="创建-vps">创建 VPS&lt;/h3>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/image-20221120012203832.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/image-20221120012203832.png"
 loading="lazy"
 alt="image-20221120012203832"
 >&lt;/p>
@@ -44,10 +44,10 @@ alt="image-20221120012203832"
 &lt;p>打开命令行，输入&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ssh-keygen -t rsa -b &lt;span class="m">4096&lt;/span> -C &lt;span class="s2">&amp;#34;Example comment&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在这行提示后面输入你想要保存密钥的路径&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Generating public/private rsa key pair.
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">Generating public/private rsa key pair.
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter file in which to save the key (/home/example_user/.ssh/id_rsa):
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我输入（uu是我的电脑用户名）&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">/home/uu/.ssh/id_rsa_vultr
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我输入（uu 是我的电脑用户名）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">/home/uu/.ssh/id_rsa_vultr
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>所以在 &lt;code>/.ssh&lt;/code> 目录下可以找到 &lt;code>id_rsa_vultr&lt;/code> 和 &lt;code>id_rsa_vultr.pub&lt;/code> 文件，它们分别是私钥和公钥&lt;/p>
 &lt;p>接下来要把公钥内容添加到 vultr 去&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 进入.ssh 目录&lt;/span>
@@ -58,13 +58,13 @@ alt="image-20221120012203832"
 &lt;ul>
 &lt;li>这时底部付款栏应该显示 &lt;code>$5.00/month&lt;/code> ，点击 &lt;code>Deploy Now&lt;/code> 确认创建服务器，等待一会，等 Status 变成 Running 就好了&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey2-1.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey2-1.png"
 loading="lazy"
 alt="image-20221120012909994"
 >&lt;/p>
 &lt;p>点击刚刚创建的 VPS，看到如下界面。&lt;/p>
 &lt;p>左下角的 IP Address、Username、Password 是待会连接服务器的时候，要用到的 SSH 连接信息&lt;/p>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey3.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey3.png"
 loading="lazy"
 alt="image-20221120013010174"
 >&lt;/p>
@@ -79,7 +79,7 @@ alt="image-20221120013010174"
 &lt;p>服务器创建完成&lt;/p>
 &lt;h3 id="检查-ip">检查 IP&lt;/h3>
 &lt;p>Ping 一下 IP&lt;/p>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey4.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey4.png"
 loading="lazy"
 alt="image-20221120013147886"
 >&lt;/p>
@@ -92,7 +92,7 @@ xmlns="http://www.w3.org/2000/svg">
 fill="currentColor">
 &lt;/svg>&lt;/span>
 检查 IP，此 IP 可用&lt;/p>
-&lt;p>&lt;img src="https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey5.png"
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey5.png"
 loading="lazy"
 alt="image-20221120013305544"
 >&lt;/p>
@@ -133,7 +133,7 @@ fill="currentColor">
 loading="lazy"
 alt="image-20221120013439245"
 >&lt;/p>
-&lt;p>暂停⏸️&lt;/p>
+&lt;p>暂停 ⏸️&lt;/p>
 &lt;p>去 &lt;a class="link" href="https://dash.cloudflare.com/" target="_blank" rel="noopener"
 >CloudFlare&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
@@ -186,7 +186,7 @@ fill="currentColor">
 loading="lazy"
 alt="image-20221121185003309"
 >&lt;/p>
-&lt;p>✅域名解析完成&lt;/p>
+&lt;p>✅ 域名解析完成&lt;/p>
 &lt;h2 id="服务器基础配置">服务器基础配置&lt;/h2>
 &lt;p>&lt;strong>对哪一步不自信，可以在开始做之前先去服务器管理面板创建一个快照（snapshots），快照就是存档点&lt;/strong>&lt;/p>
 &lt;h3 id="远程连接">远程连接&lt;/h3>
@@ -222,7 +222,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo ls -al /root
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>返回类似内容（展示 &lt;code>/root&lt;/code> 目录下的资料）就表示成功了&lt;/p>
 &lt;!-- raw HTML omitted -->
-&lt;h4 id="可选ssh免密登录">[可选]SSH免密登录&lt;/h4>
+&lt;h4 id="可选ssh-免密登录">[可选]SSH 免密登录&lt;/h4>
 &lt;p>每次登录 vpsadmin 都要手动输密码很麻烦，设置一下免密登录&lt;/p>
 &lt;p>在 Tabby 设置 - Profiles &amp;amp; connections - &lt;code>+ New profile&lt;/code> - SSH connection&lt;/p>
 &lt;!-- raw HTML omitted -->
@@ -238,7 +238,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo /etc/init.d/ssh restart
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>打开一个新窗口&lt;/strong>，尝试用 root 登录，返回 Permission denied&amp;hellip;&lt;/p>
 &lt;!-- raw HTML omitted -->
-&lt;p>✅成功禁止 root 登录&lt;/p>
+&lt;p>✅ 成功禁止 root 登录&lt;/p>
 &lt;p>从现在开始，用「vpsadmin」这个账户远程连接 VPS 吧&lt;/p>
 &lt;h3 id="搭建环境">搭建环境&lt;/h3>
 &lt;h4 id="修改服务器时间">修改服务器时间&lt;/h4>
@@ -248,14 +248,14 @@ fill="currentColor">
 &lt;p>列出所有时区&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">timedatectl list-timezones
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;!-- raw HTML omitted -->
-&lt;p>改成香港🇭🇰&lt;/p>
+&lt;p>改成香港 🇭🇰&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo timedatectl set-timezone Asia/Hong_Kong
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="安装常用命令">安装常用命令&lt;/h4>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo apt-get install curl wget screen tree -y
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>*curl用于请求 Web 服务器&lt;/p>
-&lt;p>*wget用来下载软件包&lt;/p>
-&lt;p>*screen用于命令行终端的窗口切换&lt;/p>
-&lt;p>*tree用于显示当前文件夹的目录结构&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>*curl 用于请求 Web 服务器&lt;/p>
+&lt;p>*wget 用来下载软件包&lt;/p>
+&lt;p>*screen 用于命令行终端的窗口切换&lt;/p>
+&lt;p>*tree 用于显示当前文件夹的目录结构&lt;/p>
 &lt;p>（如果你有其它要用的也一起加进来，或者要用了再用这个命令单独安装也可以）&lt;/p>
 &lt;h4 id="添加-swap">添加 SWAP&lt;/h4>
 &lt;p>swap 是 Linux 中的虚拟内存，用于在物理内存不足的情况下储存临时数据，可以提升小内存 VPS 的运行效率&lt;/p>
@@ -333,8 +333,8 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;ipv6&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;fixed-cidr-v6&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;fd00:dead:beef:c0::/80&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;experimental&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;ip6tables&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;experimental&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;ip6tables&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">true&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>⚠️ vim 和普通键入略有不用&lt;/p>
 &lt;ul>
@@ -386,7 +386,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo vim docker-compose.yml
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>按 &lt;code>I&lt;/code>，切换到编辑模式，把以下内容粘贴进去&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># Misskey minimal deploy config&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;3&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;3&amp;#39;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">services&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">web&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
@@ -397,7 +397,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">db&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">redis&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">ports&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;3001:3001&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s1">&amp;#39;3001:3001&amp;#39;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">networks&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">internal_network&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">external_network&lt;/span>&lt;span class="w">
@@ -443,7 +443,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c">#───┘ URL └─────────────────────────────────────────────────────&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># Final accessible URL seen by a user.&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">url&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://ponderduck.cc/ &lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 注意改成自己最后反向代理想要的网址&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">url&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://ponderduck.cc/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 注意改成自己最后反向代理想要的网址&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># ONCE YOU HAVE STARTED THE INSTANCE, DO NOT CHANGE THE&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># URL SETTINGS AFTER THAT!&lt;/span>&lt;span class="w">
@@ -506,8 +506,8 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># host: localhost&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># port: 9200&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># ssl: false&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># user: &lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># pass: &lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># user:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># pass:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># ┌───────────────┐&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c">#───┘ ID generation └───────────────────────────────────────────&lt;/span>&lt;span class="w">
@@ -526,7 +526,6 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># ID SETTINGS AFTER THAT!&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">id&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;aid&amp;#39;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># ┌─────────────────────┐&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c">#───┘ Other configuration └─────────────────────────────────────&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
@@ -595,7 +594,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="部署">部署&lt;/h3>
 &lt;p>还记得我说「创建并编辑 yml 文件，让它去部署」吗？&lt;/p>
 &lt;p>现在文件已经配置完毕了，是时候让它跑起来了！&lt;/p>
-&lt;p>双手合十🙏&lt;/p>
+&lt;p>双手合十 🙏&lt;/p>
 &lt;p>切换到上一级目录&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ..
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>初始化数据库&lt;/p>
@@ -643,7 +642,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo chmod -R &lt;span class="m">755&lt;/span> /var/www/ponderduck.cc
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>编辑&lt;code>index.html&lt;/code>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo vim /var/www/ponderduck.cc/html/index.html
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>添加以下示例HTML&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>添加以下示例 HTML&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Welcome to ponderduck.cc!&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
@@ -651,6 +650,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Success! The ponderduck.cc server block is working!&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>为 Nginx 创建一个服务器块&lt;/p>
 &lt;p>创建一个新文件&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo vim /etc/nginx/sites-available/ponderduck.conf
@@ -722,7 +722,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Let&amp;rsquo;s Encrypt 的 SSL 证书会在 90 天后过期，但是 Certbot 会自动续订&lt;/p>
 &lt;p>测试证书自动续订是否生效&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo certbot renew --dry-run
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>返回⬇️说明已生效&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>返回 ⬇️ 说明已生效&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Simulating renewal of an existing certificate for www.ponderduck.cc
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>找到存放站点证书的目录&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo ls /etc/letsencrypt/live
@@ -806,7 +806,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo systemctl restart nginx
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>现在 SSL 证书和反向代理都生效了，尝试用域名访问站点&lt;/p>
 &lt;!-- raw HTML omitted -->
-&lt;p>完成🎉&lt;/p>
+&lt;p>完成 🎉&lt;/p>
 &lt;p>注册一个账号，回到命令行工具把它设置为管理员&lt;/p>
 &lt;h2 id="日常维护">日常维护&lt;/h2>
 &lt;h3 id="更新">更新&lt;/h3>
@@ -838,7 +838,7 @@ fill="currentColor">
 &lt;p>内容主要来源：https://www.cnblogs.com/jing99/p/10487174.html&lt;/p>
 &lt;p>有时候要用 &lt;code>sudo&lt;/code>&lt;/p>
 &lt;h4 id="df-命令">df 命令&lt;/h4>
-&lt;p>可以查看一级文件夹大小、使用比例、档案系统和挂入dian&lt;/p>
+&lt;p>可以查看一级文件夹大小、使用比例、档案系统和挂入 dian&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@oms ~]# df -Th
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Filesystem Type Size Used Avail Use% Mounted on
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/vda1 ext4 40G 35G 3.1G 92% /
@@ -848,7 +848,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tmpfs tmpfs 1.9G 0 1.9G 0% /sys/fs/cgroup
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tmpfs tmpfs 379M 0 379M 0% /run/user/0
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>七个字段分别为档案系统、类型、该分割区的容量、已使用的大小、剩下的大小、使用的百分比和挂入点&lt;/p>
-&lt;h4 id="du命令">du命令&lt;/h4>
+&lt;h4 id="du-命令">du 命令&lt;/h4>
 &lt;p>用来查看目录或文件所占用磁盘空间的大小。常用选项组合为：&lt;code>du -sh [目录]&lt;/code>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">du -s 目录 | sort -rn #这是按字节排序
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">du -sh 目录 | sort -rn #这是按兆（M）来排序
@@ -897,7 +897,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo docker container stats
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="其它参考">其它参考&lt;/h2>
 &lt;p>&lt;a class="link" href="https://blog.laoda.de/archives/getting-started-with-linux" target="_blank" rel="noopener"
->mjj版的linux入门教程&lt;/a>
+>mjj 版的 linux 入门教程&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -924,7 +924,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://blog.laoda.de/archives/docker-compose-install-misskey#5.3-%E5%AE%89%E8%A3%85nginxproxymanager" target="_blank" rel="noopener"
->【好玩儿的Docker项目】10分钟搭建一个去中心化微博平台——Misskey ｜二次元风格、联邦宇宙&lt;/a>
+>【好玩儿的 Docker 项目】10 分钟搭建一个去中心化微博平台——Misskey ｜二次元风格、联邦宇宙&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -933,7 +933,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://candinya.com/posts/minimal-misskey-docker-deploy/" target="_blank" rel="noopener"
->使用Docker最小化部署Misskey&lt;/a>
+>使用 Docker 最小化部署 Misskey&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -969,7 +969,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/p>
 &lt;p>&lt;a class="link" href="https://www.myfreax.com/secure-nginx-with-let-s-encrypt-on-ubuntu-20-04/" target="_blank" rel="noopener"
->如何在Ubuntu 20.04 Nginx配置Let&amp;rsquo;s Encrypt SSL证书&lt;/a>
+>如何在 Ubuntu 20.04 Nginx 配置 Let&amp;rsquo;s Encrypt SSL 证书&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
 xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
