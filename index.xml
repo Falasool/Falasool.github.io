@@ -6112,7 +6112,10 @@ fill="currentColor">
 &lt;p>🎵 Do Re Mi Fa La Soool 🎵&lt;/p>
 &lt;h3 id="学习--工作">学习 &amp;amp;&amp;amp; 工作&lt;/h3>
 &lt;p>前端，想学的东西好多，大叫着融化成史莱姆 🫠&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>&lt;img src="https://www.codewars.com/users/Falasool/badges/small"
+loading="lazy"
+alt="Codewars Badge"
+>&lt;/p>
 &lt;h3 id="娱乐">娱乐&lt;/h3>
 &lt;ul>
 &lt;li>看电影&lt;/li>
