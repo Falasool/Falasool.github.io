@@ -1,4 +1,152 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Frontend on Falasool</title><link>https://falasool.github.io/categories/frontend/</link><description>Recent content in Frontend on Falasool</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 31 Aug 2023 15:25:38 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/frontend/index.xml" rel="self" type="application/rss+xml"/><item><title>Vue | Note | Monster Slayer Game</title><link>https://falasool.github.io/2023/vuejs-monster-slayer/</link><pubDate>Thu, 31 Aug 2023 15:25:38 +0800</pubDate><guid>https://falasool.github.io/2023/vuejs-monster-slayer/</guid><description>&lt;ul>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Frontend on Falasool</title><link>https://falasool.github.io/categories/frontend/</link><description>Recent content in Frontend on Falasool</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 21 Mar 2024 20:28:27 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/frontend/index.xml" rel="self" type="application/rss+xml"/><item><title>无障碍化 Accessibility</title><link>https://falasool.github.io/2024/a11y/</link><pubDate>Thu, 21 Mar 2024 20:28:27 +0800</pubDate><guid>https://falasool.github.io/2024/a11y/</guid><description>&lt;p>什么是 Accessibility？&lt;/p>
+&lt;ul>
+&lt;li>以任何方式访问网络的用户（移动端、电视、手表&amp;hellip;），无论听觉、视觉、身体和认知能力如何（视障、听障、运动功能障碍&amp;hellip;），应用程序都是可以理解和使用的&lt;/li>
+&lt;li>网站不应该造成伤害（诱发光敏性癫痫等）&lt;/li>
+&lt;/ul>
+&lt;p>可以从什么方面作出努力？&lt;/p>
+&lt;h2 id="html">HTML&lt;/h2>
+&lt;p>语义化结构&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>&amp;lt;button&amp;gt; vs &amp;lt;div&amp;gt;&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>提供了默认样式、提供了键盘的无障碍（tab 键更换按钮、enter 键点击按钮）&lt;/p>
+&lt;ol start="2">
+&lt;li>&lt;code>&amp;lt;h1&amp;gt; &amp;lt;h2&amp;gt; &amp;lt;p&amp;gt; vs &amp;lt;font&amp;gt; &amp;lt;br&amp;gt; &amp;lt;hr&amp;gt; &amp;lt;i&amp;gt;&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>便于屏幕阅读器识别标题和段落结构 🆚 没有任何可定位的标记的一大坨&lt;/p>
+&lt;ol start="3">
+&lt;li>替代文本&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>alt=&amp;quot;&amp;quot;&lt;/code> 属性，包含对图像的描述，向无法看到/听到某些内容的用户传达其含义和内容。如果 alt 为空，表示该图像只用于装饰（或 &lt;code>role =“presentation”&lt;/code> 阻止辅助设备读出替代文本）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>title&lt;/code> 属性，屏幕阅读器也会读出 title 的内容&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>&amp;lt;track&amp;gt;&lt;/code> 元素向视频/音频添加文本轨道&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;ol start="4">
+&lt;li>提供元素之间的联系和上下文，例如 &lt;code>&amp;lt;label for=&amp;quot;&amp;quot;&amp;gt;&amp;lt;input&amp;gt;&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;h3 id="wai-aria-属性">WAI-ARIA 属性&lt;/h3>
+&lt;p>当原生 HTML 元素无法满足需求时，考虑 ARIA（Accessible Rich Internet Applications）属性，帮助解读网页结构和交互方式&lt;/p>
+&lt;ul>
+&lt;li>aria-hidden：表示是否对辅助技术隐藏该元素&lt;/li>
+&lt;li>role：制定元素的角色&lt;/li>
+&lt;li>aria-labelledby：父节点设置，会链接到对应 id 的元素，方便把分散在多个 DOM，逻辑上属于一个整体的内容打包阅读&lt;/li>
+&lt;/ul>
+&lt;h2 id="css">CSS&lt;/h2>
+&lt;p>要确保无 css 的情况下，内容可读，顺序有意义&lt;/p>
+&lt;h3 id="颜色及对比度">颜色及对比度&lt;/h3>
+&lt;p>WebAIM 的 &lt;a class="link" href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener"
+>Color Contrast Checker&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+之类的工具来检查方案是否有足够对比度&lt;/p>
+&lt;h3 id="隐藏的内容">隐藏的内容&lt;/h3>
+&lt;p>&lt;code>position: absolute&lt;/code> 好于 &lt;code>visibility: hidden; display: none;&lt;/code> ，前者不阻止屏幕阅读器读取被隐藏的内容&lt;/p>
+&lt;h2 id="javascript">JavaScript&lt;/h2>
+&lt;p>结构交给 HTML，尽量不使用 JS 配合 &lt;code>&amp;lt;div&amp;gt;&lt;/code> 伪造功能（unobtrusive 原则）&lt;/p>
+&lt;h3 id="焦点管理">焦点管理&lt;/h3>
+&lt;p>相比较&lt;code>&amp;lt;button&amp;gt;&amp;lt;a&amp;gt;&lt;/code> 这样自带语义的元素，&lt;code>&amp;lt;div&amp;gt;&lt;/code> 不能用&lt;code>.foucs()&lt;/code> ，需要配合&lt;code>tabindex=&amp;quot;-1&amp;quot;&lt;/code> 属性，和&lt;code>.pop:focus-visible {outline: 0}&lt;/code>&lt;/p>
+&lt;ol>
+&lt;li>场景是现在很常见的单页面里，进行路由切换/ajax 更改内容时，进行焦点重置，让辅助阅读设备重头开始读，方便视障人士&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl">&amp;lt;nav&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;a href=&amp;#34;/&amp;#34;&amp;gt;Home&amp;lt;/a&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;a href=&amp;#34;/goods&amp;#34;&amp;gt;goods&amp;lt;/a&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;a href=&amp;#34;/user&amp;#34;&amp;gt;user&amp;lt;/a&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;/nav&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;main&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ // tabindex=&amp;#34;-1&amp;#34;，元素可聚焦，不可通过键盘导航访问
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ &amp;lt;h2 tabindex=&amp;#34;-1&amp;#34;&amp;gt;商城&amp;lt;/h2&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">&lt;/span> &amp;lt;Link /&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;/main&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ &amp;lt;script&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ function routerChange() {
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ const heading = document.querySelector(&amp;#39;h2&amp;#39;)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ heading.focus()
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ document.title = heading.textContent
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gi">+ &amp;lt;/script&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>Dialog 配合 A11y&lt;/li>
+&lt;/ol>
+&lt;p>需求：弹窗打开时聚焦于弹窗上，限制对页面其他元素的访问，退出弹窗时焦点退回到之前的位置&lt;/p>
+&lt;p>给弹窗增加 aria 属性&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">section&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;alert-dialog&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">role&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;dialog&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">aria-modal&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;true&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">aria-label&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;home-dialog&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">tanindex&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;-1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">h2&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>TITLE&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">h2&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">section&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>转移焦点&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">showSelfAlert&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 获取目标元素
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">mask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;.mask&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 显示弹窗
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">mask&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">display&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;block&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 等待DOM更新，在下一个事件循环时
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">setTimeout&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kd">function&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 设置焦点到遮罩层或弹窗的元素上
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">dialog&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getElementById&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;aria-mask-dialog&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">dialog&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">dialog&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">focus&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">section&lt;/span> &lt;span class="nx">aria&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">live&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;polite&amp;#34;&lt;/span>&lt;span class="o">&amp;gt;&amp;lt;&lt;/span>&lt;span class="err">/section&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// aria-live 默认属性为off，
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// polite 在系统空闲时朗读
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// assertive 立刻阅读
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>限制焦点&lt;/p>
+&lt;ul>
+&lt;li>使用 event capturing 监听 focus 事件，处理阶段：捕获-目标-冒泡&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;focus&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">const&lt;/span> &lt;span class="nx">dialog&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getElementById&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;dialog&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">dialogOpen&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="o">!&lt;/span>&lt;span class="nx">dialog&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">contains&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">target&lt;/span>&lt;span class="p">)){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">stopPropagation&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">dialog&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">focus&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">})&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>打开弹窗前记录最后一个焦点元素，结束后把焦点挂回去&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 获取当前聚焦的元素
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kd">let&lt;/span> &lt;span class="nx">lastFouceElement&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">activeElement&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// close dialog
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">lastFouceElement&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">focus&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考致谢">参考&amp;amp;致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://developer.mozilla.org/zh-CN/docs/Learn/Accessibility" target="_blank" rel="noopener"
+>https://developer.mozilla.org/zh-CN/docs/Learn/Accessibility&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>&lt;a class="link" href="https://juejin.cn/post/7133617403748941861" target="_blank" rel="noopener"
+>Web如何适配无障碍？&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p></description></item><item><title>Vue | Note | Monster Slayer Game</title><link>https://falasool.github.io/2023/vuejs-monster-slayer/</link><pubDate>Thu, 31 Aug 2023 15:25:38 +0800</pubDate><guid>https://falasool.github.io/2023/vuejs-monster-slayer/</guid><description>&lt;ul>
 &lt;li>&lt;a class="link" href="https://monster-slayer.ponder.lol/" target="_blank" rel="noopener"
 >Live Deploy&lt;/a>
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"

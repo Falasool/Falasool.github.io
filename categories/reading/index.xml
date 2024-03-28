@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Reading on Falasool</title><link>https://falasool.github.io/categories/reading/</link><description>Recent content in Reading on Falasool</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 07 Mar 2024 19:13:22 +0800</lastBuildDate><atom:link href="https://falasool.github.io/categories/reading/index.xml" rel="self" type="application/rss+xml"/><item><title>阅读｜《图解HTTP》</title><link>https://falasool.github.io/2024/read-understand-http/</link><pubDate>Thu, 07 Mar 2024 19:13:22 +0800</pubDate><guid>https://falasool.github.io/2024/read-understand-http/</guid><description>
+&lt;div class="db-card">
+&lt;div class="db-card-subject">
+&lt;div class="db-card-post">
+&lt;img
+loading="lazy"
+decoding="async"
+referrerpolicy="no-referrer"
+src="https://neodb.social/m/book/2021/09/171bc10d5e-6bb7-459d-b762-b6eb2664a8f1.jpg"
+/>
+&lt;/div>
+&lt;div class="db-card-content">
+&lt;div class="db-card-title">
+&lt;a href="https://neodb.social/book/3BVOzAS5pkNSWDfRT5CMkn" class="cute" target="_blank" rel="noreferrer"
+>图解HTTP&lt;/a
+>
+&lt;/div>
+&lt;div class="db-orig_title">
+&lt;a href="https://neodb.social/book/3BVOzAS5pkNSWDfRT5CMkn" class="cute" target="_blank" rel="noreferrer"
+>HTTPの教科書&lt;/a
+>
+&lt;/div>
+&lt;div class="db-card-author-translator">
+[[日] 上野宣]&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 译者：[于均良]
+&lt;/div>
+&lt;div class="db-card-publish">
+出品方：&amp;nbsp;&amp;nbsp;人民邮电出版社
+&lt;/div>
+&lt;div class="db-card-isbn">ISBN:&amp;nbsp;&amp;nbsp;9787115351531&lt;/div>
+&lt;div class="rating">
+&lt;span class="allstardark"
+>&lt;span
+class="allstarlight"
+style="width:80%"
+>&lt;/span>&lt;/span
+>&lt;span class="rating_nums">8&lt;/span>
+&lt;/div>
+&lt;div class="db-card-abstract">本书对互联网基盘——HTTP协议进行了全面系统的介绍。作者由HTTP协议的发展历史娓娓道来，严谨细致地剖析了HTTP协议的结构，列举诸多常见通信场景及实战案例，最后延伸到Web安全、最新技术动向等方面。本书的特色为在讲解的同时，辅以大量生动形象的通信图例，更好地帮助读者深刻理解HTTP通信过程中客户端与服务器之间的交互情况。读者可通过本书快速了解并掌握HTTP协议的基础，前端工程师分析抓包数据，后...&lt;/div>
+&lt;/div>
+&lt;div class="db-card-cate">book&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.db-card {
+margin: 2.5rem 3rem;
+background: var(--card-background);
+border-radius: 7px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.db-card-subject {
+display: flex;
+align-items: flex-start;
+line-height: 1.6;
+padding: 12px;
+position: relative;
+}
+.dark .db-card {
+background: var(--card-background);
+}
+.db-card-content {
+flex: 1 1 auto;
+}
+.db-card-post {
+width: 9.6rem;
+margin-right: 15px;
+display: flex;
+flex: 0 0 auto;
+}
+.db-card-title {
+font-size: 14px;
+color: var(--card-text-color-main);
+}
+.db-orig_title,
+.db-card-author-translator,
+.db-card-publish,
+.db-card-isbn {
+font-size: 12px;
+color: var(--card-text-color-main);
+}
+.db-card-isbn {
+margin-bottom: 10px;
+}
+.db-card-title a {
+text-decoration: none !important;
+}
+.db-card-abstract,
+.db-card-comment {
+font-size: 10px;
+overflow: scroll;
+max-height: 10rem;
+color: var(--card-text-color-main);
+}
+.db-card-cate {
+position: absolute;
+top: 0;
+right: 0;
+background: #f99b01;
+padding: 1px 8px;
+font-size: small;
+font-style: italic;
+border-radius: 0 8px 0 8px;
+text-transform: capitalize;
+}
+.db-card-post img {
+width: 9.6rem !important;
+border-radius: 4px;
+-o-object-fit: cover;
+object-fit: cover;
+}
+.rating {
+margin: 0 0 5px;
+font-size: 13px;
+line-height: 1;
+display: flex;
+align-items: center;
+}
+.rating .allstardark {
+position: relative;
+color: #f99b01;
+height: 16px;
+width: 80px;
+background-size: auto 100%;
+margin-right: 8px;
+background-repeat: repeat;
+background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxwYXRoIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjMtMTIuMyAxMi43LTEyLjEgMzIuOS42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWMtMS4yIDYuOS0uMSAxNC4xIDMuMiAyMC4zIDguMiAxNS42IDI3LjYgMjEuNyA0My4yIDEzLjRMNTEyIDc1NGwyMjcuMSAxMTkuNGM2LjIgMy4zIDEzLjQgNC40IDIwLjMgMy4yIDE3LjQtMyAyOS4xLTE5LjUgMjYuMS0zNi45bC00My40LTI1Mi45IDE4My43LTE3OS4xYzUtNC45IDguMy0xMS4zIDkuMy0xOC4zIDIuNy0xNy41LTkuNS0zMy43LTI3LTM2LjN6TTY2NC44IDU2MS42bDM2LjEgMjEwLjNMNTEyIDY3Mi43IDMyMy4xIDc3MmwzNi4xLTIxMC4zLTE1Mi44LTE0OUw0MTcuNiAzODIgNTEyIDE5MC43IDYwNi40IDM4MmwyMTEuMiAzMC43LTE1Mi44IDE0OC45eiIgZmlsbD0iI2Y5OWIwMSIvPjwvc3ZnPg==);
+}
+.rating .allstarlight {
+position: absolute;
+left: 0;
+color: #f99b01;
+height: 16px;
+overflow: hidden;
+background-size: auto 100%;
+background-repeat: repeat;
+background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxwYXRoIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjMtMTIuMyAxMi43LTEyLjEgMzIuOS42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWMtMS4yIDYuOS0uMSAxNC4xIDMuMiAyMC4zIDguMiAxNS42IDI3LjYgMjEuNyA0My4yIDEzLjRMNTEyIDc1NGwyMjcuMSAxMTkuNGM2LjIgMy4zIDEzLjQgNC40IDIwLjMgMy4yIDE3LjQtMyAyOS4xLTE5LjUgMjYuMS0zNi45bC00My40LTI1Mi45IDE4My43LTE3OS4xYzUtNC45IDguMy0xMS4zIDkuMy0xOC4zIDIuNy0xNy41LTkuNS0zMy43LTI3LTM2LjN6IiBmaWxsPSIjZjk5YjAxIi8+PC9zdmc+);
+}
+@media (max-width: 550px) {
+.db-card {
+margin: 0.8rem 1rem;
+}
+.db-card-comment {
+display: none;
+}
+.db-card-cate {
+font-size: 10px;
+}
+}
+&lt;/style></description></item></channel></rss>
