@@ -146,6 +146,151 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
+&lt;/p></description></item><item><title>Html5|新特性PushState</title><link>https://falasool.github.io/2024/html5-pushstate/</link><pubDate>Tue, 12 Mar 2024 19:39:03 +0800</pubDate><guid>https://falasool.github.io/2024/html5-pushstate/</guid><description>&lt;h2 id="history">History&lt;/h2>
+&lt;p>&lt;code>history.pushState()&lt;/code> 是什么？简单来说，是目前浏览器已经普遍支持的一种添加浏览历史记录的方法。&lt;/p>
+&lt;p>首先，让我们来看看 &lt;code>history&lt;/code> 对象，它保存了当前窗口访问过的所有页面网址&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Console
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nx">history&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">History&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">length&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">scrollRestoration&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;auto&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">state&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">pushState&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">ƒ&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">replaceState&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">ƒ&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>length &amp;amp; go/forward/back&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">history&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="c1">// 3，当前窗口访问过三个地址（包括当前地址）
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 浏览器的前进/后退按钮的实际操作（从browser cache中加载），以下两者等同
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">history&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">back&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="c1">// history.go(-1)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">history&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">forward&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="c1">// history.go(1)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">history&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">go&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">// default 为 0，刷新当前页面
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>scrollRestoration&lt;/p>
+&lt;p>滚动恢复行为：auto/manual 恢复到用户之前滚动到的地方/不管（&lt;/p>
+&lt;h3 id="pushstate">pushState&lt;/h3>
+&lt;p>向历史中添加一条记录（state对象，新页面标题，新的地址）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">history&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">pushState&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">state&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">title&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>参数：&lt;/p>
+&lt;ul>
+&lt;li>state：popstate事件触发时（back、go、forward前进后退会触发），state对象会传入回调参数，那么popstate的属性state就会包含当前历史记录的state对象的一个copy，储存在磁盘里，当浏览器重启时可以恢复（&amp;lt; 16MiB），更多空间的话建议使用 sessionStorage / localStorage&lt;/li>
+&lt;li>title：新网址title&lt;/li>
+&lt;li>url：新网址url&lt;/li>
+&lt;/ul>
+&lt;p>🙋 那我为什么用 pushState不用 &lt;code>window.location = '#foo'&lt;/code>呢？&lt;/p>
+&lt;p>pushState的优点：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>跳转后页面不会发起新的文档请求&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>新URL可以是和当前URL同源(跨域报错）的任意URL，浏览器添加history记录但是并不真的加载，也就是说假的也没事&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>push的历史记录可以关联任意数据，基于hash值的话，必须将相关数据编码到一个短字符串里&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>等等，&lt;code>popstate&lt;/code> 事件能讲讲吗？&lt;/p>
+&lt;h3 id="popstate事件">popstate事件&lt;/h3>
+&lt;p>处于激活状态的历史记录条目发生变化时（调用go/forward/back），popstate就会在对应的window对象上触发。popstate的对调函数的参数event.state指向pushState的state&lt;/p>
+&lt;p>if 这个历史记录是用 &lt;code>pushState&lt;/code> 或&lt;code>replaceState&lt;/code> 操作过的，不会触发popstate事件&lt;/p>
+&lt;p>⭐️ 应用：用户要离开当前页面时popup做二次确认（beforeunload）&lt;/p>
+&lt;p>监听 popstate事件，一旦被触发，添加1条记录&lt;code>history.pushState(null, null, document.URL)&lt;/code> 留在当前页面&lt;/p>
+&lt;blockquote>
+&lt;p>当popstate被触发时，记录已经回退了。在回退之前再添加一条当前url的记录，以保证回退后url不变&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">history&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">pushState&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;/a&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;popstate&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">alert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;您确认要离开吗？&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">history&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">pushState&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">URL&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>⭐️ 应用：用户想从A页面进入一个无权限查看的地址B，让用户跳转到error.html C，用户返回时直接从C-&amp;gt;A&lt;/p>
+&lt;p>在B向C跳转时，使用&lt;code>history.replace&lt;/code> 把B替换为C，这样记录就从A-B-C变成，A-C。在C页面back直接回到A&lt;/p>
+&lt;h3 id="windowlocation">window.location&lt;/h3>
+&lt;p>&lt;a class="link" href="https://www.w3schools.com/js/js_window_location.asp" target="_blank" rel="noopener"
+>https://www.w3schools.com/js/js_window_location.asp&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;h3 id="replacestate">replaceState&lt;/h3>
+&lt;p>修改当前的历史记录项&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">history&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">replaceState&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">state&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">title&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>🎉 醋来了：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">html&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">head&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">title&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="nx">wait&lt;/span> &lt;span class="mi">10&lt;/span> &lt;span class="nx">sec&lt;/span> &lt;span class="nx">and&lt;/span> &lt;span class="nx">BOOM&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/title&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/head&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">h1&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="err">🚀&lt;/span>&lt;span class="nx">抓紧&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="nx">要上天了&lt;/span>&lt;span class="err">！🚀&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/h1&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">script&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span> &lt;span class="nx">total&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kd">var&lt;/span> &lt;span class="nx">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="nx">i&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="mi">1000000&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="nx">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">total&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">total&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">i&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">toString&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">history&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">pushState&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="nx">total&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/script&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/body&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/html&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>向你的浏览器历史里塞进 1000000 条记录😂 （雾&lt;/p>
+&lt;p>这段代码来自 &lt;a class="link" href="https://twitter.com/fatih_svml/status/689070600653041664" target="_blank" rel="noopener"
+>Fatih Sevimli&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>来都来了复习一下：&lt;/p>
+&lt;h2 id="sessionstorage-vs-localstorage">sessionStorage vs localStorage&lt;/h2>
+&lt;p>while data in localStorage doesn&amp;rsquo;t expire, data in sessionStorage is cleared when the page session ends.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>🍪cookie&lt;/th>
+&lt;th>session&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>储存在客户端&lt;/td>
+&lt;td>服务器端&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ASCII&lt;/td>
+&lt;td>任意&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>实效长&lt;/td>
+&lt;td>短&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>4k&lt;/td>
+&lt;td>高&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;a class="link" href="https://www.cnblogs.com/ityouknow/p/10856177.html" target="_blank" rel="noopener"
+>你真的了解cookie和session吗&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://javascript.ruanyifeng.com/bom/history.html" target="_blank" rel="noopener"
+>https://javascript.ruanyifeng.com/bom/history.html&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p>
+&lt;p>&lt;a class="link" href="https://juejin.cn/post/6948746074504986655" target="_blank" rel="noopener"
+>[高级]深入浅出浏览器的history对象&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
 &lt;/p></description></item><item><title>阅读｜《图解HTTP》</title><link>https://falasool.github.io/2024/read-understand-http/</link><pubDate>Thu, 07 Mar 2024 19:13:22 +0800</pubDate><guid>https://falasool.github.io/2024/read-understand-http/</guid><description>
 &lt;div class="db-card">
 &lt;div class="db-card-subject">
