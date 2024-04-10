@@ -1,4 +1,62 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tech on Falasool</title><link>https://falasool.github.io/tags/tech/</link><description>Recent content in tech on Falasool</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 12 Mar 2024 19:39:03 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>Html5|新特性PushState</title><link>https://falasool.github.io/2024/html5-pushstate/</link><pubDate>Tue, 12 Mar 2024 19:39:03 +0800</pubDate><guid>https://falasool.github.io/2024/html5-pushstate/</guid><description>&lt;h2 id="history">History&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tech on Falasool</title><link>https://falasool.github.io/tags/tech/</link><description>Recent content in tech on Falasool</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 02 Apr 2024 19:41:35 +0800</lastBuildDate><atom:link href="https://falasool.github.io/tags/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>JS|原型链的理解</title><link>https://falasool.github.io/2024/prototype-chain/</link><pubDate>Tue, 02 Apr 2024 19:41:35 +0800</pubDate><guid>https://falasool.github.io/2024/prototype-chain/</guid><description>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main/blog202404101944461.jpg" alt="Featured image of post JS|原型链的理解" />&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main/blog202404101944461.jpg"
+loading="lazy"
+alt="951712748932_.pic_hd"
+>&lt;/p>
+&lt;p>先上图&lt;/p>
+&lt;h2 id="一些概念">一些概念&lt;/h2>
+&lt;p>JS 中万物皆对象，分为普通对象和函数对象。&lt;/p>
+&lt;p>每个对象都有一个私有属性 &lt;code>[[Prototype]]&lt;/code> ，私有属性指向原型 prototype，由于原型 prototype 也是对象，它会重复这一循环层层向上，直到一个对象的原型为 null&lt;/p>
+&lt;p>&lt;code>__proto__&lt;/code> 是 &lt;code>[[Prototype]]&lt;/code> 的 getter/setter&lt;/p>
+&lt;p>&lt;code>__proto__&lt;/code> 的 value 必须是对象/null&lt;/p>
+&lt;p>原型链不能形成闭环&lt;/p>
+&lt;h2 id="普通的原型链">普通的原型链&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">p&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">Parent&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我声明了一个对象 p，p作为Parent的实例，能拿到Parent里预先定义的属性和方法，这就是&lt;!-- raw HTML omitted -->继承&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;p>&lt;code>p.__proto__ === Parent.prototype&lt;/code> ，&lt;code>__proto__&lt;/code> 像指针，指向实例继承的属性&amp;amp;方法&lt;/p>
+&lt;p>&lt;code>Parent.prototype.constructor === Parent&lt;/code>，&lt;code>Parent.prototype&lt;/code>本身是Parent 的一个实例，反过来说， &lt;code>Parent.prototype&lt;/code>的构造器是Parent&lt;/p>
+&lt;p>图中的虚线，p =====&amp;gt; Parent，因为&lt;code>p.constructor&lt;/code>实际上是从&lt;code>Parent.prototype&lt;/code>继承来的⬆️&lt;/p>
+&lt;h2 id="js中的function-和-object">JS中的Function 和 Object&lt;/h2>
+&lt;p>设计思想：高内聚、低耦合&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Function的constructor是Function，所以&lt;code>Function.__proto__&lt;/code> 指向 &lt;code>Function.prototype&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Object的constructor是Function&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="联系">联系&lt;/h2>
+&lt;p>&lt;code>instanceof&lt;/code> 的原理：原型链（遍历目标的原型链，直到找到右边变量的 prototype）&lt;/p>
+&lt;p>特殊情况：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">Function&lt;/span> &lt;span class="k">instanceof&lt;/span> &lt;span class="nb">Object&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">// true
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">Object&lt;/span> &lt;span class="k">instanceof&lt;/span> &lt;span class="nb">Function&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">// true
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Object的构造器是Function，同时JS中万物皆对象💦&lt;/p>
+&lt;h2 id="参考--致谢">参考 &amp;amp; 致谢&lt;/h2>
+&lt;p>&lt;a class="link" href="https://segmentfault.com/a/1190000021232132" target="_blank" rel="noopener"
+>https://segmentfault.com/a/1190000021232132&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;a class="link" href="https://zhuanlan.zhihu.com/p/84876191" target="_blank" rel="noopener"
+>https://zhuanlan.zhihu.com/p/84876191&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;a class="link" href="https://juejin.cn/post/7057544558057357348" target="_blank" rel="noopener"
+>https://juejin.cn/post/7057544558057357348&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/p></description></item><item><title>Html5|新特性PushState</title><link>https://falasool.github.io/2024/html5-pushstate/</link><pubDate>Tue, 12 Mar 2024 19:39:03 +0800</pubDate><guid>https://falasool.github.io/2024/html5-pushstate/</guid><description>&lt;h2 id="history">History&lt;/h2>
 &lt;p>&lt;code>history.pushState()&lt;/code> 是什么？简单来说，是目前浏览器已经普遍支持的一种添加浏览历史记录的方法。&lt;/p>
 &lt;p>首先，让我们来看看 &lt;code>history&lt;/code> 对象，它保存了当前窗口访问过的所有页面网址&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Console
