@@ -25,6 +25,13 @@ alt="951712748932_.pic_hd"
 &lt;p>Object的constructor是Function&lt;/p>
 &lt;/li>
 &lt;/ul>
+&lt;p>盘古开天地：先有 &lt;code>Object.prototype&lt;/code> ，再有 &lt;code>Function.prototype&lt;/code> ，再有 Function 和Object&lt;/p>
+&lt;blockquote>
+&lt;p>当我们说一个对象继承自某个 Constructor 时，其实我们是在说，从这个对象的原型链上找到了 Constructor.prototype。&lt;/p>
+&lt;p>所以，Object.prototype 可以先于 Object 出现，然后用这个 prototype 构造出 Function.prototype，有了 Function.prototype 再构造出 Function ， Object 这几个构造器。然后把 Object.prototype 挂到 Object 上，Function.prototype 挂到Function 上。&lt;/p>
+&lt;p>好比栗子中的 obj 构造自 p ，而 obj 构造出来之后，p 才挂到 A 上，我们说 obj 是 A 类型的，但是 obj 是用 A.prototype(就是 p ) 构造出来的。&lt;/p>
+&lt;p>分析可得：全局下的 Object 构造自 Function.prototype， Function.prototype 构造自 Object.prototype。&lt;/p>
+&lt;/blockquote>
 &lt;h2 id="联系">联系&lt;/h2>
 &lt;p>&lt;code>instanceof&lt;/code> 的原理：原型链（遍历目标的原型链，直到找到右边变量的 prototype）&lt;/p>
 &lt;p>特殊情况：&lt;/p>
