@@ -63,6 +63,14 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
+&lt;a class="link" href="https://segmentfault.com/a/1190000042363833" target="_blank" rel="noopener"
+>https://segmentfault.com/a/1190000042363833&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
 &lt;/p></description></item><item><title>无障碍化 Accessibility</title><link>https://falasool.github.io/2024/a11y/</link><pubDate>Thu, 21 Mar 2024 20:28:27 +0800</pubDate><guid>https://falasool.github.io/2024/a11y/</guid><description>&lt;p>什么是 Accessibility？&lt;/p>
 &lt;ul>
 &lt;li>以任何方式访问网络的用户（移动端、电视、手表&amp;hellip;），无论听觉、视觉、身体和认知能力如何（视障、听障、运动功能障碍&amp;hellip;），应用程序都是可以理解和使用的&lt;/li>
@@ -503,7 +511,175 @@ display: none;
 font-size: 10px;
 }
 }
-&lt;/style></description></item><item><title>Vue|透传 Attrs</title><link>https://falasool.github.io/2024/vue-attrs/</link><pubDate>Fri, 01 Mar 2024 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2024/vue-attrs/</guid><description>&lt;p>⭐️什么是透传 attrs？&lt;/p>
+&lt;/style>
+&lt;p>阅读笔记，讲得比较浅，结构有点散，但还是收获了一些&lt;/p>
+&lt;h2 id="http-协议">HTTP 协议&lt;/h2>
+&lt;p>用于服务端和客户端之间的通信&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 请求报文：
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 请求方法 + uri + 协议版本 + [请求首部字段] + 内容实体
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 请求头 + 请求行 + 请求体，每一部分用换行符区分
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">GET&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="nx">index&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">htm&lt;/span> &lt;span class="nx">HTTP&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">1.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Host&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="nx">hackr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ip&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>HTTP 是一种无状态 stateless 协议，状态交给 cookie etc.&lt;/li>
+&lt;/ul>
+&lt;h3 id="cookie">Cookie&lt;/h3>
+&lt;p>使用 cookie 进行状态管理，通过在请求、响应报文中添加 cookie 信息控制客户端的状态&lt;/p>
+&lt;ul>
+&lt;li>cookie 产生于服务端，包含在发送给客户端的 header 里的 set-cookie 字段&lt;/li>
+&lt;li>客户端根据 set-cookie 保存一段纯文本信息&lt;/li>
+&lt;li>再次向服务端发请求时，请求报文会带上这个cookicookie&lt;/li>
+&lt;li>服务端接收到 cookie 和服务端记录对比，得到之前的状态信息&lt;/li>
+&lt;/ul>
+&lt;p>为 Cookie 服务的头部字段见 [[HTTP#Cookie 相关字段]]&lt;/p>
+&lt;p>用 Cookie 管理 Session（会话）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Set&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">Cookie&lt;/span>&lt;span class="o">:&amp;lt;&lt;/span>&lt;span class="nx">Session&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">ID&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="ajax">Ajax&lt;/h3>
+&lt;p>解决 HTTP 的缺点：&lt;/p>
+&lt;ul>
+&lt;li>1 条链接上只能发一个请求&lt;/li>
+&lt;li>头部未经压缩就发送，头部信息越多延迟越大&lt;/li>
+&lt;li>请求只能从客户端开始，客户端不能接收响应以外的指令&lt;/li>
+&lt;/ul>
+&lt;p>核心 API：&lt;code>XMLHttpRequest&lt;/code> 实现无刷新局部更新&lt;/p>
+&lt;h3 id="http-头部">HTTP 头部&lt;/h3>
+&lt;h4 id="通用头部字段">通用头部字段&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Cache&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">control&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="kr">private&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="nx">max&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">age&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="nx">no&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">cache&lt;/span> &lt;span class="c1">// 控制缓存
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Collection&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="nx">close&lt;/span> &lt;span class="c1">// 断开连接
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="请求头部字段">请求头部字段&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">User&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">Agent&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="nx">Mozilla&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">5.0&lt;/span> &lt;span class="c1">// 将创建请求的浏览器和用户代理名称等信息发给服务端，写爬虫用
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Accept&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">text&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">html&lt;/span> &lt;span class="c1">// 通知服务端，用户代理能处理的数据类型/格式和q权重
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Authorization&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="nx">Basic&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">dWufaslngafaJFljfsl&lt;/span>&lt;span class="o">==&lt;/span> &lt;span class="c1">// 通知服务端，用户代理的认证信息
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// If-xxx 条件请求
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">If&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">Modified&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">Since&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="nx">Thu&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">15&lt;/span> &lt;span class="nx">Apr&lt;/span> &lt;span class="mi">2004&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="mi">00&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="mi">00&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="mi">00&lt;/span> &lt;span class="nx">GMT&lt;/span> &lt;span class="c1">// 如果在指定日期之后，资源发生了更新，服务端才会接受请求，用于确认本地资源的有效性
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Range&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="nx">bytes&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">5000&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">10000&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="响应头部字段">响应头部字段&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Age&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="mi">600&lt;/span> &lt;span class="c1">// 源服务器600s前创建了响应
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Server&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="nx">Apache&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">2.2&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">17&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">Unix&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">// 当前服务器上HTTP服务器的信息
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="实体头部字段">实体头部字段&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Content&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">Language&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="nx">zh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">CN&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Content&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">Length&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="mi">15000&lt;/span> &lt;span class="c1">// 实体主体的大小（字节）
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Content&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">Type&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="nx">text&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">html&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="nx">charset&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nx">UTF&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">8&lt;/span> &lt;span class="c1">// 实体主体内对象的媒体类型
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="cookie-相关字段">Cookie 相关字段&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Set&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">Cookie&lt;/span> &lt;span class="c1">// 响应头部字段
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Cookie&lt;/span> &lt;span class="c1">// 请求头部字段
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="其他头部字段">其他头部字段&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">X&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">Frame&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">Options&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">X&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">XSS&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">Protection&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="http11-中的-7-种方法">HTTP/1.1 中的 7 种方法&lt;/h3>
+&lt;h4 id="get">GET&lt;/h4>
+&lt;p>请求资源&lt;/p>
+&lt;h4 id="post">POST&lt;/h4>
+&lt;p>发送实体的主体 entity body&lt;/p>
+&lt;h4 id="put">PUT&lt;/h4>
+&lt;p>传输文件，类似 POST，但是没有验证机制，几乎不使用&lt;/p>
+&lt;h4 id="head">HEAD&lt;/h4>
+&lt;p>获取报文首部，和 GET 一样，只是不返回报文主体部分&lt;/p>
+&lt;h4 id="delete">DELETE&lt;/h4>
+&lt;p>删除文件，和 PUT 相反，同样的原因不推荐使用&lt;/p>
+&lt;h4 id="options">OPTIONS&lt;/h4>
+&lt;p>查询资源支持什么方法&lt;/p>
+&lt;ul>
+&lt;li>INVITE&lt;/li>
+&lt;li>ACK&lt;/li>
+&lt;li>CANCEL&lt;/li>
+&lt;li>&amp;hellip;&lt;/li>
+&lt;/ul>
+&lt;h4 id="trace">TRACE&lt;/h4>
+&lt;p>服务端把接收到的请求报文再还给客户端，这样可以检查请求有没有/怎么样被加工篡改的&lt;/p>
+&lt;h4 id="connect">CONNECT&lt;/h4>
+&lt;h3 id="http-报文">HTTP 报文&lt;/h3>
+&lt;p>是多行数据构成的字符串文本&lt;/p>
+&lt;ul>
+&lt;li>报文message&lt;/li>
+&lt;li>实体 entity&lt;/li>
+&lt;/ul>
+&lt;h4 id="请求报文">请求报文&lt;/h4>
+&lt;h4 id="响应报文">响应报文&lt;/h4>
+&lt;h4 id="多部分对象集合-multipart">多部分对象集合 Multipart&lt;/h4>
+&lt;p>包含图片、文本、视频等多个不同类型的数据&lt;/p>
+&lt;p>multipart/form-data：上传 web 表单文件
+multipart/byteranges：范围请求，允许服务端只发送 HTTP 消息的一部分到客户端；传输大媒体文件、断点续传时很有用&lt;/p>
+&lt;h3 id="断点续传获取部分内容的范围请求-range-request">断点续传（获取部分内容的范围请求 Range Request）&lt;/h3>
+&lt;ul>
+&lt;li>用首部字段 Range 指定资源的 byte 范围&lt;/li>
+&lt;li>范围请求的对应状态码为 206，如果服务端无法响应范围请求，会返回 200 和完整的实体内容&lt;/li>
+&lt;/ul>
+&lt;p>例如：有一份 10000 字节的资源&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">GET&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="nx">tip&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">jpg&lt;/span> &lt;span class="nx">HTTP&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">1.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Host&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">www&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">usagidesign&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">jp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 返回5001-10000的部分
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Range&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">bytes&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">5001&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">10000&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 返回5001之后的全部
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Range&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">bytes&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">5001&lt;/span>&lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="内容协商-content-negotiationi8n">内容协商 content negotiation==i8n&lt;/h3>
+&lt;p>根据浏览器的默认语言（en），返回一个 uri 的 en 页面&lt;/p>
+&lt;p>依据是请求报文中的一些首部字段：&lt;/p>
+&lt;ul>
+&lt;li>Accept&lt;/li>
+&lt;li>Accept-Charset&lt;/li>
+&lt;li>Accept-Encoding&lt;/li>
+&lt;li>Accept-Language&lt;/li>
+&lt;li>Content-Language&lt;/li>
+&lt;/ul>
+&lt;p>内容协商可以由服务端或客户端完成&lt;/p>
+&lt;h3 id="http状态码">HTTP状态码&lt;/h3>
+&lt;p>1-信息类
+2-成功
+3-重定向
+4-客户端错误
+5-服务端错误&lt;/p>
+&lt;h3 id="web-服务器">Web 服务器&lt;/h3>
+&lt;p>静态 web 服务器Nginx&lt;/p>
+&lt;h3 id="数据转发">数据转发&lt;/h3>
+&lt;ul>
+&lt;li>代理
+&lt;ul>
+&lt;li>缓存代理 CDN&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>网关：网关是一个概念，是协议转换器（把 HTTP 转换为其他协议）&lt;/li>
+&lt;li>隧道&lt;/li>
+&lt;/ul>
+&lt;h2 id="https">HTTPS&lt;/h2>
+&lt;p>http 的缺点：&lt;/p>
+&lt;ul>
+&lt;li>明文传输&lt;/li>
+&lt;li>不验证通信方的身份&lt;/li>
+&lt;li>无法保证完整性（中间人攻击）&lt;/li>
+&lt;/ul>
+&lt;h2 id="tcp">TCP&lt;/h2>
+&lt;p>提供字节流服务（分割数据包）&lt;/p>
+&lt;h3 id="three-way-handshaking">three-way handshaking&lt;/h3>
+&lt;p>TCP 的标志 flag：SYN、ACK&lt;/p>
+&lt;ul>
+&lt;li>SYN 是发送端生成的（请求同步）&lt;/li>
+&lt;li>ACK 是接收端生成的（确认同步）&lt;/li>
+&lt;/ul>
+&lt;p>第一次握手：发送端发送请求（syn=j）
+第二次握手：接收端返回 SYN、ACK 标志，告诉对方发送功能正常，自己的接收功能正常
+第三次握手：发送端告诉接收端，你的收发功能都正常（响应能力），可以开始通信了&lt;/p>
+&lt;ul>
+&lt;li>SYN blood 攻击：接到第 2 次握手后不回应第 3 次握手，服务器会发送 5 次请求然后丢弃请求。解决方法：cookie 记录恶意 ip、缩短服务器的等待时间&lt;/li>
+&lt;/ul>
+&lt;p>为什么不 2 次握手：如果是 2 次握手，客户端发送一次请求后网络中断，一段时间后这个废弃的请求到达服务器，服务器就会正常响应，建立一个无效的链接，增加了网络开销&lt;/p>
+&lt;h2 id="dns">DNS&lt;/h2>
+&lt;p>应用层，把域名解析到 IP（联想：ARP）&lt;/p>
+&lt;h2 id="uriurl">URI/URL&lt;/h2>
+&lt;p>URL 是 URI 的子集，url 一定是 uri，比如网址画 url 就是 uri，同时邮件地址、电话号码也是 uri&lt;/p>
+&lt;h2 id="用户身份认证">用户身份认证&lt;/h2>
+&lt;p>认证方式：&lt;/p>
+&lt;ul>
+&lt;li>BASIC（401）&lt;/li>
+&lt;li>DIGEST&lt;/li>
+&lt;li>SSL 客户端&lt;/li>
+&lt;li>FormBase&lt;/li>
+&lt;/ul></description></item><item><title>Vue|透传 Attrs</title><link>https://falasool.github.io/2024/vue-attrs/</link><pubDate>Fri, 01 Mar 2024 23:29:38 +0800</pubDate><guid>https://falasool.github.io/2024/vue-attrs/</guid><description>&lt;p>⭐️什么是透传 attrs？&lt;/p>
 &lt;ul>
 &lt;li>大小写不敏感&lt;/li>
 &lt;li>维持响应式

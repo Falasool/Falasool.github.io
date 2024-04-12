@@ -63,6 +63,14 @@ xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
+&lt;a class="link" href="https://segmentfault.com/a/1190000042363833" target="_blank" rel="noopener"
+>https://segmentfault.com/a/1190000042363833&lt;/a>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em" height=".7em" viewBox="0 0 21 21"
+xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
 &lt;/p></description></item><item><title>无障碍化 Accessibility</title><link>https://falasool.github.io/2024/a11y/</link><pubDate>Thu, 21 Mar 2024 20:28:27 +0800</pubDate><guid>https://falasool.github.io/2024/a11y/</guid><description>&lt;p>什么是 Accessibility？&lt;/p>
 &lt;ul>
 &lt;li>以任何方式访问网络的用户（移动端、电视、手表&amp;hellip;），无论听觉、视觉、身体和认知能力如何（视障、听障、运动功能障碍&amp;hellip;），应用程序都是可以理解和使用的&lt;/li>
