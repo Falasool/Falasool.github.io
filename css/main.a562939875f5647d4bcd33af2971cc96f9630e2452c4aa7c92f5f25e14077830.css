@@ -1,3 +1,4 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreen.min.css');
 /* Markdown */
 :root {
   /* --maincolor: rgba(210,179,75,.5); */
@@ -10,7 +11,7 @@
 html {
   color: #3d4630;
   background-color: #dde7da;
-  font-family: 'LXGWWenKaiMono-Regular';
+  font-family: 'LXGWWenKaiMono-Regular','LXGW WenKai Screen';
   font-size: 15px;
   line-height: 1.6em;
 }
@@ -28,7 +29,7 @@ body {
 }
 
 p {
-  font-family: 'LXGWWenKaiMono-Light';
+  font-family: 'LXGWWenKaiMono-Light','LXGW WenKai Screen';
   line-height: 1.5;
 }
 
@@ -101,8 +102,7 @@ figure h4::before {
 
 /* Code blocks */
 code {
-  font-family: 'JetBrainsMono-Regular', 'LXGWWenKaiMono-Light';
-  font-family: monospace, monospace;
+  font-family: 'JetBrainsMono-Regular', 'LXGWWenKaiMono-Light','LXGW WenKai Screen';
   background-color: #f1f1f1;
   padding: 0.1em 0.2em;
 }
@@ -238,7 +238,7 @@ article .title {
 }
 
 .callout p {
-  font-family: 'LXGWWenKaiMono-Regular';
+  font-family: 'LXGWWenKaiMono-Regular','LXGW WenKai Screen';
   margin: 0;
 }
 
