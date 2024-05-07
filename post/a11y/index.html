@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html
+  lang="en-us"
+  dir="ltr"
+>
+  <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='什么是 Accessibility？ 以任何方式访问网络的用户（移动端、电视、手表&amp;hellip;），无论听觉、视觉、身体和认知能力如何（视障、'><title>无障碍化 Accessibility</title>
+
+<link rel='canonical' href='https://falasool.github.io/post/a11y/'>
+
+<link rel="stylesheet" href="/scss/style.min.0147dab71443626c251957a4d123df288cfea1f5d5abc428ef3cc283bdafb846.css"><meta property='og:title' content='无障碍化 Accessibility'>
+<meta property='og:description' content='什么是 Accessibility？ 以任何方式访问网络的用户（移动端、电视、手表&amp;hellip;），无论听觉、视觉、身体和认知能力如何（视障、'>
+<meta property='og:url' content='https://falasool.github.io/post/a11y/'>
+<meta property='og:site_name' content='Falasool'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='A11y' /><meta property='article:published_time' content='2024-03-21T20:28:27&#43;08:00'/><meta property='article:modified_time' content='2024-03-21T20:28:27&#43;08:00'/>
+<meta name="twitter:title" content="无障碍化 Accessibility">
+<meta name="twitter:description" content="什么是 Accessibility？ 以任何方式访问网络的用户（移动端、电视、手表&amp;hellip;），无论听觉、视觉、身体和认知能力如何（视障、"><style>
+   
+  :root {
+    --article-font-family: 'Noto Serif HK', var(--base-font-family);
+  }
+</style>
+
+<script>
+  ;(function () {
+    const customFont = document.createElement('link')
+    customFont.href =
+      'https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@300;400;500;600;700&display=swap'
+    customFont.type = 'text/css'
+    customFont.rel = 'stylesheet'
+
+    document.head.appendChild(customFont)
+  })()
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogponder-favicon.png"
+    />
+  </head>
+  <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "auto");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div
+      class="container main-container flex on-phone--column compact"
+    ><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Falasool</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/friends/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Friends</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/badges/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-app-window" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+  <path d="M6 8h.01" />
+  <path d="M9 8h.01" />
+</svg>
+
+
+
+                
+                <span>Projects</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/posts' >
+                
+                
+                
+                <span>All posts</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about' >
+                
+                
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags' >
+                
+                
+                
+                <span>Tags</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+  
+  <header class="article-category">
+    
+    <a
+      href="/categories/frontend/"
+      
+    >
+      Frontend
+    </a>
+    
+  </header>
+  
+
+  <div class="article-title-wrapper">
+    <h2 class="article-title">
+      <a href="/post/a11y/">无障碍化 Accessibility</a>
+    </h2>
+
+    
+  </div>
+
+  
+  
+
+  
+  
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    
+    <p>什么是 Accessibility？</p>
+<ul>
+<li>以任何方式访问网络的用户（移动端、电视、手表&hellip;），无论听觉、视觉、身体和认知能力如何（视障、听障、运动功能障碍&hellip;），应用程序都是可以理解和使用的</li>
+<li>网站不应该造成伤害（诱发光敏性癫痫等）</li>
+</ul>
+<p>可以从什么方面作出努力？</p>
+<h2 id="html">HTML</h2>
+<p>语义化结构</p>
+<ol>
+<li><code>&lt;button&gt; vs &lt;div&gt;</code></li>
+</ol>
+<p>提供了默认样式、提供了键盘的无障碍（tab 键更换按钮、enter 键点击按钮）</p>
+<ol start="2">
+<li><code>&lt;h1&gt; &lt;h2&gt; &lt;p&gt; vs &lt;font&gt; &lt;br&gt; &lt;hr&gt; &lt;i&gt;</code></li>
+</ol>
+<p>便于屏幕阅读器识别标题和段落结构 🆚 没有任何可定位的标记的一大坨</p>
+<ol start="3">
+<li>替代文本</li>
+</ol>
+<ul>
+<li>
+<p><code>alt=&quot;&quot;</code> 属性，包含对图像的描述，向无法看到/听到某些内容的用户传达其含义和内容。如果 alt 为空，表示该图像只用于装饰（或 <code>role =“presentation”</code> 阻止辅助设备读出替代文本）</p>
+</li>
+<li>
+<p><code>title</code> 属性，屏幕阅读器也会读出 title 的内容</p>
+</li>
+<li>
+<p><code>&lt;track&gt;</code> 元素向视频/音频添加文本轨道</p>
+</li>
+</ul>
+<ol start="4">
+<li>提供元素之间的联系和上下文，例如 <code>&lt;label for=&quot;&quot;&gt;&lt;input&gt;</code></li>
+</ol>
+<h3 id="wai-aria-属性">WAI-ARIA 属性</h3>
+<p>当原生 HTML 元素无法满足需求时，考虑 ARIA（Accessible Rich Internet Applications）属性，帮助解读网页结构和交互方式</p>
+<ul>
+<li>aria-hidden：表示是否对辅助技术隐藏该元素</li>
+<li>role：制定元素的角色</li>
+<li>aria-labelledby：父节点设置，会链接到对应 id 的元素，方便把分散在多个 DOM，逻辑上属于一个整体的内容打包阅读</li>
+</ul>
+<h2 id="css">CSS</h2>
+<p>要确保无 css 的情况下，内容可读，顺序有意义</p>
+<h3 id="颜色及对比度">颜色及对比度</h3>
+<p>WebAIM 的 <a class="link" href="https://webaim.org/resources/contrastchecker/"  target="_blank" rel="noopener"
+	>Color Contrast Checker</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+ 之类的工具来检查方案是否有足够对比度</p>
+<h3 id="隐藏的内容">隐藏的内容</h3>
+<p><code>position: absolute</code> 好于 <code>visibility: hidden; display: none;</code> ，前者不阻止屏幕阅读器读取被隐藏的内容</p>
+<h2 id="javascript">JavaScript</h2>
+<p>结构交给 HTML，尽量不使用 JS 配合 <code>&lt;div&gt;</code> 伪造功能（unobtrusive 原则）</p>
+<h3 id="焦点管理">焦点管理</h3>
+<p>相比较<code>&lt;button&gt;&lt;a&gt;</code> 这样自带语义的元素，<code>&lt;div&gt;</code> 不能用<code>.foucs()</code> ，需要配合<code>tabindex=&quot;-1&quot;</code> 属性，和<code>.pop:focus-visible {outline: 0}</code></p>
+<ol>
+<li>场景是现在很常见的单页面里，进行路由切换/ajax 更改内容时，进行焦点重置，让辅助阅读设备重头开始读，方便视障人士</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>&lt;nav&gt;
+</span></span><span style="display:flex;"><span>  &lt;a href=&#34;/&#34;&gt;Home&lt;/a&gt;
+</span></span><span style="display:flex;"><span>  &lt;a href=&#34;/goods&#34;&gt;goods&lt;/a&gt;
+</span></span><span style="display:flex;"><span>  &lt;a href=&#34;/user&#34;&gt;user&lt;/a&gt;
+</span></span><span style="display:flex;"><span>&lt;/nav&gt;
+</span></span><span style="display:flex;"><span>&lt;main&gt;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+   // tabindex=&#34;-1&#34;，元素可聚焦，不可通过键盘导航访问
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+	&lt;h2 tabindex=&#34;-1&#34;&gt;商城&lt;/h2&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span>    &lt;Link /&gt;
+</span></span><span style="display:flex;"><span>&lt;/main&gt;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ &lt;script&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+    function routerChange() {
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+        const heading = document.querySelector(&#39;h2&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+        heading.focus()
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+        document.title = heading.textContent
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+   }
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ &lt;/script&gt;
+</span></span></span></code></pre></div><ol start="2">
+<li>Dialog 配合 A11y</li>
+</ol>
+<p>需求：弹窗打开时聚焦于弹窗上，限制对页面其他元素的访问，退出弹窗时焦点退回到之前的位置</p>
+<p>给弹窗增加 aria 属性</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">section</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert-dialog&#34;</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dialog&#34;</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">aria-modal</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;true&#34;</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">aria-label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;home-dialog&#34;</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tanindex</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-1&#34;</span>
+</span></span><span style="display:flex;"><span>  &gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">h2</span>&gt;TITLE&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">button</span>&gt;&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">section</span>&gt;
+</span></span></code></pre></div><p>转移焦点</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">showSelfAlert</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 获取目标元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">mask</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.mask&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 显示弹窗
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mask</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">display</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;block&#39;</span>; 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 等待DOM更新，在下一个事件循环时
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 设置焦点到遮罩层或弹窗的元素上
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">dialog</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;aria-mask-dialog&#39;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">dialog</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">dialog</span>.<span style="color:#a6e22e">focus</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }, <span style="color:#ae81ff">0</span>); 
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">section</span> <span style="color:#a6e22e">aria</span><span style="color:#f92672">-</span><span style="color:#a6e22e">live</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;polite&#34;</span><span style="color:#f92672">&gt;&lt;</span><span style="color:#960050;background-color:#1e0010">/section&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// aria-live 默认属性为off，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// polite 在系统空闲时朗读
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// assertive 立刻阅读
+</span></span></span></code></pre></div><p>限制焦点</p>
+<ul>
+<li>使用 event capturing 监听 focus 事件，处理阶段：捕获-目标-冒泡</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;focus&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dialog</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;dialog&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">dialogOpen</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">dialog</span>.<span style="color:#a6e22e">contains</span>(<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>)){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">stopPropagation</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dialog</span>.<span style="color:#a6e22e">focus</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>打开弹窗前记录最后一个焦点元素，结束后把焦点挂回去</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 获取当前聚焦的元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lastFouceElement</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">activeElement</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// close dialog
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">lastFouceElement</span>.<span style="color:#a6e22e">focus</span>()
+</span></span></code></pre></div><h2 id="参考致谢">参考&amp;致谢</h2>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Learn/Accessibility"  target="_blank" rel="noopener"
+	>https://developer.mozilla.org/zh-CN/docs/Learn/Accessibility</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+<p><a class="link" href="https://juejin.cn/post/7133617403748941861"  target="_blank" rel="noopener"
+	>Web如何适配无障碍？</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+
+    
+</section>
+
+
+    <footer class="article-footer">
+  
+    <section class="article-tags">
+        
+            <a href="/tags/a11y/">A11y</a>
+        
+    </section>
+
+
+  </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+  <section class="copyright">
+    &copy;  2024 Falasool
+  </section>
+
+  <section class="powerby">
+    
+    <br />
+    
+  </section>
+
+  <section class="busuanzi">
+    <span id="busuanzi_container_site_uv" style='display:none'>
+      <span id="busuanzi_value_site_uv"></span> Views
+    </span>
+  </section>
+</footer>
+
+<style>
+  .busuanzi {
+    color: var(--body-text-color);
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+</style>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</main>
+    
+
+    </div>
+    <script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(210, 179, 75, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: rgb(210, 179, 75);
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+</script>
+
+  </body>
+</html>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+
+<script
+  type="text/javascript"
+  src="https://demo.hellozwh.com/source/canvas-nest.min.js"
+></script>
+
+<script>
+  pangu.spacingPage()
+</script>

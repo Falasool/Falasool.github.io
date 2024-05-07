@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html
+  lang="en-us"
+  dir="ltr"
+>
+  <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='实现自己的信息茧房（'><title>Miniflux 搭建 &#43; RSSHub 使用</title>
+
+<link rel='canonical' href='https://falasool.github.io/post/miniflux/'>
+
+<link rel="stylesheet" href="/scss/style.min.0147dab71443626c251957a4d123df288cfea1f5d5abc428ef3cc283bdafb846.css"><meta property='og:title' content='Miniflux 搭建 &#43; RSSHub 使用'>
+<meta property='og:description' content='实现自己的信息茧房（'>
+<meta property='og:url' content='https://falasool.github.io/post/miniflux/'>
+<meta property='og:site_name' content='Falasool'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='tutorial' /><meta property='article:tag' content='miniflux' /><meta property='article:tag' content='CSS' /><meta property='article:published_time' content='2023-12-01T20:19:15&#43;08:00'/><meta property='article:modified_time' content='2023-12-01T20:19:15&#43;08:00'/>
+<meta name="twitter:title" content="Miniflux 搭建 &#43; RSSHub 使用">
+<meta name="twitter:description" content="实现自己的信息茧房（"><style>
+   
+  :root {
+    --article-font-family: 'Noto Serif HK', var(--base-font-family);
+  }
+</style>
+
+<script>
+  ;(function () {
+    const customFont = document.createElement('link')
+    customFont.href =
+      'https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@300;400;500;600;700&display=swap'
+    customFont.type = 'text/css'
+    customFont.rel = 'stylesheet'
+
+    document.head.appendChild(customFont)
+  })()
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogponder-favicon.png"
+    />
+  </head>
+  <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "auto");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div
+      class="container main-container flex on-phone--column compact"
+    ><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Falasool</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/friends/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Friends</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/badges/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-app-window" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+  <path d="M6 8h.01" />
+  <path d="M9 8h.01" />
+</svg>
+
+
+
+                
+                <span>Projects</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/posts' >
+                
+                
+                
+                <span>All posts</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about' >
+                
+                
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags' >
+                
+                
+                
+                <span>Tags</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+  
+  <header class="article-category">
+    
+    <a
+      href="/categories/miniflux/"
+      
+    >
+      Miniflux
+    </a>
+    
+  </header>
+  
+
+  <div class="article-title-wrapper">
+    <h2 class="article-title">
+      <a href="/post/miniflux/">Miniflux 搭建 &#43; RSSHub 使用</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">实现自己的信息茧房（</h3>
+    
+  </div>
+
+  
+  
+
+  
+  
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    
+    <p>其实docker 搭miniflux 很简单，搬迁服务器后记录一下2nd搭，留个记录</p>
+<h2 id="miniflux">Miniflux</h2>
+<p>创建 miniflux 文件夹</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir miniflux
+</span></span><span style="display:flex;"><span>cd miniflux
+</span></span></code></pre></div><p>创建 <code>docker-compose.yml</code> 文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim docker-compose.yml
+</span></span></code></pre></div><p>写入以下内容并保存</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>version: <span style="color:#e6db74">&#39;3.4&#39;</span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  miniflux:
+</span></span><span style="display:flex;"><span>    image: miniflux/miniflux:latest
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;8080:8080&#34;</span>  <span style="color:#75715e">#容器外部端口:内部端口</span>
+</span></span><span style="display:flex;"><span>    depends_on:
+</span></span><span style="display:flex;"><span>      - db
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      - DATABASE_URL<span style="color:#f92672">=</span>postgres://miniflux:secret@db/miniflux?sslmode<span style="color:#f92672">=</span>disable
+</span></span><span style="display:flex;"><span>      - RUN_MIGRATIONS<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>      - CREATE_ADMIN<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>      - ADMIN_USERNAME<span style="color:#f92672">=</span>admin  <span style="color:#75715e"># 登录Miniflux的用户名，可自定义</span>
+</span></span><span style="display:flex;"><span>      - ADMIN_PASSWORD<span style="color:#f92672">=</span>password  <span style="color:#75715e"># 登录Miniflux的密码，可自定义，至少6位</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;BASE_URL=https://enter.your.url&#34;</span>  <span style="color:#75715e"># 调整二：输入想用来访问Miniflux的域名</span>
+</span></span><span style="display:flex;"><span>    healthcheck:
+</span></span><span style="display:flex;"><span>      test: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;CMD&#34;</span>, <span style="color:#e6db74">&#34;/usr/bin/miniflux&#34;</span>, <span style="color:#e6db74">&#34;-healthcheck&#34;</span>, <span style="color:#e6db74">&#34;auto&#34;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  db:
+</span></span><span style="display:flex;"><span>    image: postgres:latest
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      - POSTGRES_USER<span style="color:#f92672">=</span>miniflux
+</span></span><span style="display:flex;"><span>      - POSTGRES_PASSWORD<span style="color:#f92672">=</span>secret
+</span></span><span style="display:flex;"><span>    volumes:
+</span></span><span style="display:flex;"><span>      - miniflux-db:/var/lib/postgresql/data
+</span></span><span style="display:flex;"><span>    healthcheck:
+</span></span><span style="display:flex;"><span>      test: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;CMD&#34;</span>, <span style="color:#e6db74">&#34;pg_isready&#34;</span>, <span style="color:#e6db74">&#34;-U&#34;</span>, <span style="color:#e6db74">&#34;miniflux&#34;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>      interval: 10s
+</span></span><span style="display:flex;"><span>      start_period: 30s
+</span></span><span style="display:flex;"><span>volumes:
+</span></span><span style="display:flex;"><span>  miniflux-db:
+</span></span></code></pre></div><p>启动服务</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker-compose up -d
+</span></span></code></pre></div><p>此时访问<code>ip:8080</code> 可以看到登录界面，在settings - Custom CSS 修改主题</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>:<span style="color:#a6e22e">root</span> {
+</span></span><span style="display:flex;"><span>  --font-family: system-ui, <span style="color:#f92672">-</span>apple-system, <span style="color:#e6db74">&#34;Segoe UI&#34;</span>, Roboto, <span style="color:#e6db74">&#34;Helvetica Neue&#34;</span>, Arial, <span style="color:#e6db74">&#34;Noto Sans&#34;</span>, <span style="color:#66d9ef">sans-serif</span>, <span style="color:#e6db74">&#34;Apple Color Emoji&#34;</span>, <span style="color:#e6db74">&#34;Segoe UI Emoji&#34;</span>, <span style="color:#e6db74">&#34;Segoe UI Symbol&#34;</span>, <span style="color:#e6db74">&#34;Noto Color Emoji&#34;</span>;
+</span></span><span style="display:flex;"><span>  --body-color: rgba(<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">0.7</span>);
+</span></span><span style="display:flex;"><span>  --body-background: <span style="color:#ae81ff">#282c34</span>;
+</span></span><span style="display:flex;"><span>  --header-link-color: <span style="color:#ae81ff">#9b9494</span>;
+</span></span><span style="display:flex;"><span>  --header-active-link-color: <span style="color:#ae81ff">#d19a66</span>;
+</span></span><span style="display:flex;"><span>  --input-border: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">#2c384e</span>;
+</span></span><span style="display:flex;"><span>  --input-background: <span style="color:#ae81ff">#2c384e</span>;
+</span></span><span style="display:flex;"><span>  --input-placeholder-color: <span style="color:#ae81ff">#888</span>;
+</span></span><span style="display:flex;"><span>  --input-focus-border-color: <span style="color:#ae81ff">#d19a66</span>;
+</span></span><span style="display:flex;"><span>  --input-focus-box-shadow: <span style="color:#66d9ef">none</span>;
+</span></span><span style="display:flex;"><span>  --category-background-color: <span style="color:#ae81ff">#2c384e</span>;
+</span></span><span style="display:flex;"><span>  --category-border-color: <span style="color:#ae81ff">#2c384e</span>;
+</span></span><span style="display:flex;"><span>  --item-border-color: rgba(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">.3</span>);
+</span></span><span style="display:flex;"><span>  --item-padding: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span>;
+</span></span><span style="display:flex;"><span>  --item-title-link-font-weight: <span style="color:#ae81ff">600</span>;
+</span></span><span style="display:flex;"><span>  --item-status-read-title-link-color: rgba(<span style="color:#ae81ff">209</span>, <span style="color:#ae81ff">154</span>, <span style="color:#ae81ff">102</span>, <span style="color:#ae81ff">0.5</span>);
+</span></span><span style="display:flex;"><span>  --entry-header-title-link-color: <span style="color:#ae81ff">#d19a66</span>;
+</span></span><span style="display:flex;"><span>  --entry-content-code-background: <span style="color:#ae81ff">#2c384e</span>;
+</span></span><span style="display:flex;"><span>  --entry-content-code-border-color: <span style="color:#ae81ff">#2c384e</span>;
+</span></span><span style="display:flex;"><span>  --entry-content-font-weight: <span style="color:#ae81ff">300</span>;
+</span></span><span style="display:flex;"><span>  --entry-content-font-family: <span style="color:#e6db74">&#39;Literata&#39;</span>, <span style="color:#e6db74">&#39;Libre Baskerville&#39;</span>, Georgia, <span style="color:#e6db74">&#39;Times New Roman&#39;</span>, Times, <span style="color:#66d9ef">serif</span> <span style="color:#75715e">!important</span>;
+</span></span><span style="display:flex;"><span>  --entry-content-quote-font-family: <span style="color:#a6e22e">var</span>(<span style="color:#f92672">--</span>entry<span style="color:#f92672">-</span>content<span style="color:#f92672">-</span>font<span style="color:#f92672">-</span>family)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>:<span style="color:#a6e22e">focus</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">outline</span>: <span style="color:#ae81ff">0</span> <span style="color:#75715e">!important</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">input</span><span style="color:#f92672">[</span><span style="color:#f92672">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;search&#34;</span><span style="color:#f92672">],</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">input</span><span style="color:#f92672">[</span><span style="color:#f92672">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">],</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">input</span><span style="color:#f92672">[</span><span style="color:#f92672">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">],</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">input</span><span style="color:#f92672">[</span><span style="color:#f92672">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span><span style="color:#f92672">],</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">input</span><span style="color:#f92672">[</span><span style="color:#f92672">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;number&#34;</span><span style="color:#f92672">]</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">.25</span><span style="color:#66d9ef">em</span> <span style="color:#ae81ff">.5</span><span style="color:#66d9ef">em</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">box-shadow</span>: <span style="color:#66d9ef">none</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">6</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry</span> <span style="color:#f92672">header</span> <span style="color:#f92672">h1</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">16</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-actions</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">.5</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-meta</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#98be65</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-website</span> <span style="color:#f92672">a</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#c678dd</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-date</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">.75</span><span style="color:#66d9ef">em</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: rgba(<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">0.4</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-actions</span> <span style="color:#f92672">li</span> <span style="color:#f92672">a</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">font-weight</span>: <span style="color:#66d9ef">bold</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#9b9494</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-actions</span> <span style="color:#f92672">li</span> <span style="color:#f92672">a</span>:<span style="color:#a6e22e">hover</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">font-weight</span>: <span style="color:#66d9ef">bold</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">white</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry</span> <span style="color:#f92672">header</span> <span style="color:#f92672">h1</span> <span style="color:#f92672">a</span>:<span style="color:#a6e22e">hover</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry</span> <span style="color:#f92672">header</span> <span style="color:#f92672">h1</span> <span style="color:#f92672">a</span>:<span style="color:#a6e22e">focus</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#d19a66</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">text-decoration</span>: <span style="color:#66d9ef">underline</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">pagination-top</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">none</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-content</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">line-height</span>: <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">padding-top</span>: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">em</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-content</span> <span style="color:#f92672">p</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">margin-top</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">margin-bottom</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-content</span> <span style="color:#f92672">a</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#c678dd</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-content</span> <span style="color:#f92672">a</span>:<span style="color:#a6e22e">visited</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#dd7890</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-content</span> <span style="color:#f92672">img</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">auto</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-content</span> <span style="color:#f92672">figcaption</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#c678dd</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-color</span>: rgba(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">.3</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">margin-top</span>: <span style="color:#ae81ff">-7</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">4</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">4</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">0.25</span><span style="color:#66d9ef">rem</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">rem</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">text-transform</span>: <span style="color:#66d9ef">unset</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-content</span> <span style="color:#f92672">pre</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">.5</span><span style="color:#66d9ef">rem</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">rem</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">6</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-content</span> <span style="color:#f92672">code</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">3</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">6</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">item</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">alert</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">border</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span> <span style="color:#a6e22e">var</span>(<span style="color:#f92672">--</span>item<span style="color:#f92672">-</span>border<span style="color:#f92672">-</span><span style="color:#66d9ef">color</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">margin-bottom</span>: <span style="color:#ae81ff">20</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background</span>: rgba(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">.3</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">6</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">item-title</span> <span style="color:#f92672">a</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#d19a66</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">item-meta-info</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">padding-top</span>: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">item-meta-info</span> <span style="color:#f92672">li</span> <span style="color:#f92672">a</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#c678dd</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">item-meta-info</span> <span style="color:#f92672">li</span> <span style="color:#f92672">time</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#98be65</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">item-meta-info</span> <span style="color:#f92672">li</span> <span style="color:#f92672">span</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#61afef</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">entry-content</span> <span style="color:#f92672">li</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">.75</span><span style="color:#66d9ef">em</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="nginx">Nginx</h2>
+<p>创建 Nginx 配置文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim /etc/nginx/sites-available/miniflux.conf
+</span></span></code></pre></div><p>写入以下内容</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>server <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    listen 80;
+</span></span><span style="display:flex;"><span>    server_name enter.your.url;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    location / <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        proxy_pass http://127.0.0.1:8080;    <span style="color:#75715e">#8080改为miniflux对外开放的端口，默认为8080</span>
+</span></span><span style="display:flex;"><span>        proxy_redirect off;
+</span></span><span style="display:flex;"><span>        proxy_set_header Host $host;
+</span></span><span style="display:flex;"><span>        proxy_set_header X-Real-IP $remote_addr;
+</span></span><span style="display:flex;"><span>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>        proxy_set_header X-Forwarded-Proto $scheme;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>测试Nginx配置文件有没有问题</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>admin@vps<span style="color:#f92672">]</span> nginx -t
+</span></span><span style="display:flex;"><span>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+</span></span><span style="display:flex;"><span>nginx: configuration file /etc/nginx/nginx.conf test is successful
+</span></span></code></pre></div><p>建立软连接</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln -s /etc/nginx/sites-available/miniflux.conf /etc/nginx/sites-enabled/miniflux.conf
+</span></span></code></pre></div><p>运行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nginx -s reload
+</span></span><span style="display:flex;"><span>systemctl start nginx
+</span></span><span style="display:flex;"><span>systemctl enable nginx
+</span></span></code></pre></div><p>安装 certbot</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install certbot
+</span></span><span style="display:flex;"><span>apt-get install python3-certbot-nginx
+</span></span></code></pre></div><p>输入</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>certbot
+</span></span></code></pre></div><p>按步骤操作直到</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Deploying certificate
+</span></span><span style="display:flex;"><span>Successfully deployed certificate for miniflux.ponderduck.cc to /etc/nginx/sites-enabled/miniflux.conf
+</span></span><span style="display:flex;"><span>Congratulations! You have successfully enabled HTTPS on https://miniflux.XXXX.com
+</span></span></code></pre></div><p>现在可以通过域名访问miniflux了</p>
+<h2 id="rsshub">RSSHub</h2>
+<p>借助 Vercel 部署 RSSHub，配合插件 <a class="link" href="chrome-extension://kefjpfngnndepjbopdmoebkipbgkggaa/options.html#/setting" >RSSHub Radar</a>
+
+
+ 可以探测到大部分订阅源，此外补充一些订阅方式：</p>
+<ul>
+<li><a class="link" href="https://greasyfork.org/en/scripts/373252-rss-show-site-all-rss"  target="_blank" rel="noopener"
+	>油猴 - RSS+ : Show Site All RSS by Wizos</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</li>
+<li><a class="link" href="https://feedx.net/"  target="_blank" rel="noopener"
+	>FeedX</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</li>
+<li><a class="link" href="https://plink.anyfeeder.com/"  target="_blank" rel="noopener"
+	>https://plink.anyfeeder.com/</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</li>
+<li><a class="link" href="https://rss-bridge.org/bridge01/"  target="_blank" rel="noopener"
+	>https://rss-bridge.org/bridge01/</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</li>
+<li>微信公众号转RSS服务 <a class="link" href="https://wechat2rss.xlab.app/"  target="_blank" rel="noopener"
+	>https://wechat2rss.xlab.app/</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</li>
+</ul>
+<p>效果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main/blog202312051412551.webp"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+></p>
+    
+</section>
+
+
+    <footer class="article-footer">
+  
+    <section class="article-tags">
+        
+            <a href="/tags/tutorial/">tutorial</a>
+        
+            <a href="/tags/miniflux/">miniflux</a>
+        
+            <a href="/tags/css/">CSS</a>
+        
+    </section>
+
+
+  </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title"></h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/post/migrant-oto-akkoma/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Migrant ot Akkoma</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/build-discourse-site-on-ubuntu22/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">在 Ubuntu22.04 上搭建 Discourse 论坛</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/misskey/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Misskey 实例搭建教程</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/iterm2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">iTerm2 配置</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/about-dns-principle-and-vpn/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络通信过程 &#43; Vmess搭建</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+  <section class="copyright">
+    &copy;  2024 Falasool
+  </section>
+
+  <section class="powerby">
+    
+    <br />
+    
+  </section>
+
+  <section class="busuanzi">
+    <span id="busuanzi_container_site_uv" style='display:none'>
+      <span id="busuanzi_value_site_uv"></span> Views
+    </span>
+  </section>
+</footer>
+
+<style>
+  .busuanzi {
+    color: var(--body-text-color);
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+</style>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</main>
+    
+
+    </div>
+    <script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(210, 179, 75, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: rgb(210, 179, 75);
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+</script>
+
+  </body>
+</html>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+
+<script
+  type="text/javascript"
+  src="https://demo.hellozwh.com/source/canvas-nest.min.js"
+></script>
+
+<script>
+  pangu.spacingPage()
+</script>

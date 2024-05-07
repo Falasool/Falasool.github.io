@@ -1,0 +1,416 @@
+<!doctype html><html><head lang=en><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>Misskey 实例搭建教程 - Falasool</title><link rel=icon type=image/png href=static/img/favicon.png><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="偏记录向，所以有的地方很啰嗦，有的地方像发癫的青蛙连击荷叶没有留下任何痕迹"><meta property="og:image" content><meta property="og:title" content="Misskey 实例搭建教程"><meta property="og:description" content="偏记录向，所以有的地方很啰嗦，有的地方像发癫的青蛙连击荷叶没有留下任何痕迹"><meta property="og:type" content="article"><meta property="og:url" content="https://falasool.github.io/posts/misskey/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-11-19T20:19:15+08:00"><meta property="article:modified_time" content="2022-11-19T20:19:15+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Misskey 实例搭建教程"><meta name=twitter:description content="偏记录向，所以有的地方很啰嗦，有的地方像发癫的青蛙连击荷叶没有留下任何痕迹"><script src=https://falasool.github.io/js/feather.min.js></script>
+<link href=https://falasool.github.io/css/fonts.4bacf4386d3f58fdc378d205a903311c80158bf414d25698589b658e0273156d.css rel=stylesheet><link rel=stylesheet type=text/css media=screen href=https://falasool.github.io/css/main.42ea0af34aee3ba499cf9fa3204f9c629e4d0c0434c099da10346cf97e22e0c6.css><link id=darkModeStyle rel=stylesheet type=text/css href=https://falasool.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css media="(prefers-color-scheme: dark)"></head><body><div class=content><header><div class=main><a href=https://falasool.github.io/>Falasool</a></div><nav><a href=/friends/></a>
+<a href=/about>About</a>
+<a href=/friends>Friends</a>
+<a href=/tags>Tags</a></nav></header><main><article><div class=title><h1 class=title>Misskey 实例搭建教程</h1><div class=meta>Posted on Nov 19, 2022</div></div><section class=body><p>本次搭建使用 Ubuntu 22.10 系统</p><h2 id=购买-vps>购买 VPS</h2><p>⚠️ 不要买机房在大陆的服务商 VPS ⚠️</p><p>在备案通过之前 80 和 443 端口是封禁的 -> 无法申请 SSL 证书 -> Misskey 需要 SSL 才能访问，GG</p><p>（即使没有这个问题，买大陆节点的服务建站也是一种自杀行为）</p><h3 id=注册>注册</h3><p>注册 Vultr 账号，充值</p><p><img src=https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey1.png alt=image-20221120012614543></p><h3 id=创建-vps>创建 VPS</h3><p><img src=https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/image-20221120012203832.png alt=image-20221120012203832></p><ul><li><p>选 Cloud Compute</p></li><li><p>CPU 选 AMD 和 Intel 都行</p></li><li><p>机房位置选择日本、新加坡、美西都行，一般不推荐欧洲（对于中国国内）</p></li><li><p>选择操作系统：Ubuntu 22.10 x64</p></li><li><p>选择 Size：$5 的 1C1G1TB 套餐（记得勾选 No Thanks）</p></li><li><p>关闭自动备份，省 $1</p></li><li><p>Additional Features：勾选 Enable IPv6</p></li><li><p>添加 SSH Keys</p></li></ul><p>打开命令行，输入</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ssh-keygen -t rsa -b <span style=color:#ae81ff>4096</span> -C <span style=color:#e6db74>&#34;Example comment&#34;</span>
+</span></span></code></pre></div><p>在这行提示后面输入你想要保存密钥的路径</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>Generating public/private rsa key pair.
+</span></span><span style=display:flex><span>Enter file in which to save the key (/home/example_user/.ssh/id_rsa):
+</span></span></code></pre></div><p>我输入（uu 是我的电脑用户名）</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>/home/uu/.ssh/id_rsa_vultr
+</span></span></code></pre></div><p>所以在 <code>/.ssh</code> 目录下可以找到 <code>id_rsa_vultr</code> 和 <code>id_rsa_vultr.pub</code> 文件，它们分别是私钥和公钥</p><p>接下来要把公钥内容添加到 vultr 去</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 进入.ssh 目录</span>
+</span></span><span style=display:flex><span>cd .ssh
+</span></span><span style=display:flex><span><span style=color:#75715e># 打印文件内容</span>
+</span></span><span style=display:flex><span>cat id_rsa_vultr.pub
+</span></span></code></pre></div><ul><li>这时底部付款栏应该显示 <code>$5.00/month</code> ，点击 <code>Deploy Now</code> 确认创建服务器，等待一会，等 Status 变成 Running 就好了</li></ul><p><img src=https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey2-1.png alt=image-20221120012909994></p><p>点击刚刚创建的 VPS，看到如下界面。</p><p>左下角的 IP Address、Username、Password 是待会连接服务器的时候，要用到的 SSH 连接信息</p><p><img src=https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey3.png alt=image-20221120013010174></p><ol><li>登录 VNC：查看控制台</li><li>关机：就和关电脑一样（关机的时候仍然在计费哦！）</li><li>重启：就和重启电脑一样</li><li>重装系统：把服务器重置成刚创建时的状态</li><li>销毁/删除：销毁了服务器就不计费了，数据丢失，无法找回</li></ol><p>Snapshots：快照，指将当前 VPS 的状态保存下来，对 VPS 进行完整备份</p><p>服务器创建完成</p><h3 id=检查-ip>检查 IP</h3><p>Ping 一下 IP</p><p><img src=https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey4.png alt=image-20221120013147886></p><p>用检查工具比如 <a href=https://ip112.cn/>https://ip112.cn/</a> 检查 IP，此 IP 可用</p><p><img src=https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed/blog/misskey5.png alt=image-20221120013305544></p><p>其它测试工具</p><ul><li><a href=http://ping.pe/>http://ping.pe/</a> — 全球节点 Ping，包括中国的三大运营商</li><li><a href=http://ping.chinaz.com/>http://ping.chinaz.com/</a> — Ping 检测中国大陆的访问情况</li></ul><h2 id=域名>域名</h2><p>在域名商 <a href=https://www.dynadot.com/zh/>Dynadot</a> 注册账号，买一个域名</p><h3 id=解析域名>解析域名</h3><p>依次点击</p><p><img src=https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey6.png alt=image-20221120013439245></p><p>暂停 ⏸️</p><p>去 <a href=https://dash.cloudflare.com/>CloudFlare</a> 注册登录账号，依次操作：</p><p>添加新站点</p><p><img src=https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey7.png alt=image-20221120013614146></p><p>输入你的域名</p><p><img src=https://raw.githubusercontent.com/Falasool/blog-pic-bed/main/blog/misskey8.png alt=image-20221120013635155></p><p>选择免费方案</p><p>添加 DNS 解析记录</p><ul><li><p><code>*</code> 是通配符，意思是我的二级域名，xxx.ponderduck.cc 的 DNS 解析也一起被接管了。不用我一个一个设置</p></li><li><p>第二行是域名本体</p></li><li><p><code>www</code> 让输入 <a href=https://www.ponderduck.cc>www.ponderduck.cc</a> 也能访问</p></li></ul><p>复制 CloudFlare 提供的两个名称服务器，填进 Dynadot 的 DNS 设置，保存</p><p>回到 CloudFlare 点击 <code>Done, check nameservers</code>，等一会</p><p><del>测试，ping 你的域名，返回服务器 IP 说明解析生效</del></p><p>开启完全 SSL，否则访问站点会报「重定向次数过多」的错误</p><p><img src=../../../../Library/Application%20Support/typora-user-images/image-20221121185003309.png alt=image-20221121185003309></p><p>✅ 域名解析完成</p><h2 id=服务器基础配置>服务器基础配置</h2><p><strong>对哪一步不自信，可以在开始做之前先去服务器管理面板创建一个快照（snapshots），快照就是存档点</strong></p><h3 id=远程连接>远程连接</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ssh root@101.113.22.42 <span style=color:#75715e># 换成你的ip地址，回车</span>
+</span></span></code></pre></div><p>然后把密码从 vultr 复制过来回车，会看到类似这样的提示就表示连接服务器成功</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>Welcome to Ubuntu 22.10 <span style=color:#f92672>(</span>GNU/Linux 5.19.0-23-generic x86_64<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> * Documentation:  https://help.ubuntu.com
+</span></span><span style=display:flex><span> * Management:     https://landscape.canonical.com
+</span></span><span style=display:flex><span> * Support:        https://ubuntu.com/advantage
+</span></span><span style=display:flex><span> ...省略一部分内容...
+</span></span><span style=display:flex><span>root@vultr:~#
+</span></span></code></pre></div><h3 id=安全设置>安全设置</h3><p>因为 root 权限太太太强大，为了避免婴儿（我）拿核武器发射按钮的情况出现，创建一个普通用户日常使用</p><h4 id=新建普通用户并设定密码>新建普通用户并设定密码</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>adduser vpsadmin <span style=color:#75715e># vpsadmin是用户名</span>
+</span></span></code></pre></div><p>然后输入密码 - 确认密码（太简单会被拒绝==）</p><h4 id=赋予-vpsadmin-使用-sudo-指令的权限>赋予 「vpsadmin」 使用 sudo 指令的权限</h4><p>什么是 su 和 sudo 请看：<a href=https://blog.gtwang.org/linux/sudo-su-command-tutorial-examples/>Linux 的 su 與 sudo 指令教學與範例</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo adduser vpsadmin sudo
+</span></span></code></pre></div><p>另外开一个终端窗口，登录 vpsadmin 账号</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ssh vpsadmin@185.202.62.49 <span style=color:#75715e># 换成你的IP，回车，然后输入密码</span>
+</span></span></code></pre></div><p>验证是否获得 sudo 权限</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo ls -al /root
+</span></span></code></pre></div><p>返回类似内容（展示 <code>/root</code> 目录下的资料）就表示成功了</p><h4 id=可选ssh-免密登录>[可选]SSH 免密登录</h4><p>每次登录 vpsadmin 都要手动输密码很麻烦，设置一下免密登录</p><p>在 Tabby 设置 - Profiles & connections - <code>+ New profile</code> - SSH connection</p><h4 id=禁止-root-登录>禁止 root 登录</h4><p>（禁用核按钮）</p><p>登录 root 账户，输入</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>nano /etc/ssh/sshd_config
+</span></span></code></pre></div><p>使用 <code>control + W</code> 进入搜索模式，输入 <code>PerimitRootLogin</code> 并回车，找到所在行，改成（记得要取掉注释 <code>#</code>！！）</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>PermitRootLogin: no
+</span></span></code></pre></div><p>*prohibit-password/without-password 意为禁止密码登录</p><p>使用 <code>control + O</code>，保存更改，<code>control + X</code> 退出</p><p>重新启动 SSH 服务</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo /etc/init.d/ssh restart
+</span></span></code></pre></div><p><strong>打开一个新窗口</strong>，尝试用 root 登录，返回 Permission denied&mldr;</p><p>✅ 成功禁止 root 登录</p><p>从现在开始，用「vpsadmin」这个账户远程连接 VPS 吧</p><h3 id=搭建环境>搭建环境</h3><h4 id=修改服务器时间>修改服务器时间</h4><p>查看时间</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>timedatectl
+</span></span></code></pre></div><p>列出所有时区</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>timedatectl list-timezones
+</span></span></code></pre></div><p>改成香港 🇭🇰</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo timedatectl set-timezone Asia/Hong_Kong
+</span></span></code></pre></div><h4 id=安装常用命令>安装常用命令</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get install curl wget screen tree -y
+</span></span></code></pre></div><p>*curl 用于请求 Web 服务器</p><p>*wget 用来下载软件包</p><p>*screen 用于命令行终端的窗口切换</p><p>*tree 用于显示当前文件夹的目录结构</p><p>（如果你有其它要用的也一起加进来，或者要用了再用这个命令单独安装也可以）</p><h4 id=添加-swap>添加 SWAP</h4><p>swap 是 Linux 中的虚拟内存，用于在物理内存不足的情况下储存临时数据，可以提升小内存 VPS 的运行效率</p><p>确认是否已存在 SWAP</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>free -m
+</span></span></code></pre></div><p>有 Swap 项而且 total 列不为零，说明 Swap 已存在，可以自行修改分区容量，参考：为 <a href=https://www.vvave.net/archives/add-swap-and-repartition-swap-for-linux.html>Linux 添加 swap 分区或修改 swap 分区容量</a></p><h4 id=配置防火墙>配置防火墙</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo ufw allow OpenSSH
+</span></span><span style=display:flex><span>sudo ufw enable
+</span></span></code></pre></div><p>打开防火墙</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo ufw allow http
+</span></span><span style=display:flex><span>sudo ufw allow https
+</span></span></code></pre></div><p>打开 80、443 的端口</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo ufw allow 80/tcp
+</span></span><span style=display:flex><span>sudo ufw allow 443/tcp
+</span></span></code></pre></div><p>（其它服务需要的端口也用 <code>sudo ufw allow xx/tcp</code> 开启）</p><p>验证防火墙是否打开，端口是否开启</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo ufw status
+</span></span></code></pre></div><p>和其它服务商不同，Vultr 没有默认防火墙设置，所以要自己开启</p><p>在 Vultr 添加防火墙规则</p><h4 id=安装-docker-和-docker-compose>安装 Docker 和 Docker Compose</h4><p>*Compose 是 Docker 的一个命令行工具，通过 yml 文件定义、创建、管理多容器的 Docker 应用</p><p>跟着 <a href=https://www.51cto.com/article/715086.html>如何在 Ubuntu 22.04 LTS 中安装 Docker 和 Docker Compose</a> 丝滑完成安装</p><p>推荐：<a href=https://ostechnix.com/getting-started-with-docker/>Docker Commands Tutorial | Getting Started With Docker In Linux</a></p><h5 id=修改-docker-配置>修改 Docker 配置</h5><p>Docker 的配置文件路径是 <code>/etc/docker/daemon.json</code>，需要手动创建：</p><p>进入 <code>/etc/docker</code> 目录</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>cd /etc/docker
+</span></span></code></pre></div><p>用 vim 编辑 <code>daemon.json</code> 文件</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo vim daemon.json
+</span></span></code></pre></div><p>进入 vim 后输入如下内容，这段代码会增加一段自定义内网 IPv6 地址，开启容器的 IPv6 功能，限制日志文件的大小（20M），限制日志文件数量，防止 Docker 日志过多占用硬盘</p><p>（代码来自<a href=https://u.sb/debian-install-docker/>烧饼博客</a>）</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;log-driver&#34;</span>: <span style=color:#e6db74>&#34;json-file&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;log-opts&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;max-size&#34;</span>: <span style=color:#e6db74>&#34;20m&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;max-file&#34;</span>: <span style=color:#e6db74>&#34;3&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;ipv6&#34;</span>: <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;fixed-cidr-v6&#34;</span>: <span style=color:#e6db74>&#34;fd00:dead:beef:c0::/80&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;experimental&#34;</span>: <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;ip6tables&#34;</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>⚠️ vim 和普通键入略有不用</p><ul><li><p>首先 <code>I</code> 进入编辑模式，输入内容（注意格式：大括号 <code>{}</code> 里的内容除了最后一行，都必须用英文逗号 <code>,</code> 结尾）</p></li><li><p>完成输入后，按 <code>esc</code> 回到一般模式</p></li><li><p>输入 <code>:wq</code> ，回车（意为保存-离开）</p></li><li><p>不放心可以再次进入 daemon.json 检查是否成功写入，效果类似：</p></li></ul><p>了解：<a href=https://www.runoob.com/linux/linux-vim.html>Linux vi/vim 是什么，怎么使用</a></p><p>重启 Docker 服务</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo systemctl daemon-reload
+</span></span><span style=display:flex><span>sudo systemctl restart docker
+</span></span></code></pre></div><h5 id=检查-docker-是否正在运行>检查 Docker 是否正在运行</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo systemctl status docker
+</span></span></code></pre></div><p>换个方式，再测试一下</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo docker run hello-world
+</span></span></code></pre></div><p>终于成功了 😭</p><h2 id=misskey>Misskey</h2><h3 id=创建安装目录>创建安装目录</h3><p>之前给 Docker 的数据和配置文件新建一个目录 <code>docker_data</code>，这个文件夹就是包住整个 Misskey 的盒子</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo mkdir -p data/docker_data
+</span></span></code></pre></div><p>进入目录</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>cd data/docker_data
+</span></span></code></pre></div><p>创建 misskey 文件夹</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo mkdir misskey
+</span></span></code></pre></div><h3 id=配置安装文件>配置安装文件</h3><p>进入 misskey 文件夹</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>cd misskey
+</span></span></code></pre></div><p>创建并编辑 yml 文件，让它去部署</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo vim docker-compose.yml
+</span></span></code></pre></div><p>按 <code>I</code>，切换到编辑模式，把以下内容粘贴进去</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#75715e># Misskey minimal deploy config</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>services</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>web</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span> <span style=color:#75715e># always意味着自动重启，请注意如果您对您的配置没有信心，请不要开启这个选项，以避免进程崩溃反复重启耗费大量资源！</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>misskey/misskey:latest</span> <span style=color:#75715e># 这里使用了官方镜像，以避免本地构建时资源不足的问题</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>misskey_web</span> <span style=color:#75715e># 容器名，方便管理，您可以自行修改为您觉得合适的内容</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>links</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>db</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#39;3001:3001&#39;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>networks</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>internal_network</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>external_network</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./config:/misskey/.config:ro</span> <span style=color:#75715e># 用于映射配置文件，请根据您的实际配置来决定文件夹名称，设定为只读即可；</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./files:/misskey/files</span> <span style=color:#75715e># 用户上传到本地的文件，如果您一开始就接入外部存储（如wasabi或是AWS S3）您可以忽略这块配置</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>redis</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>redis:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>misskey_redis</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>networks</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>internal_network</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./redis:/data</span> <span style=color:#75715e># redis数据库的数据文件夹映射，创建后默认在 ./redis 文件夹中</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>db</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>postgres:12.2-alpine</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>misskey_db</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>networks</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>internal_network</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>env_file</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./config/docker.env</span> <span style=color:#75715e># 需要使用配置文件中设置的 Docker 环境变量</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./db:/var/lib/postgresql/data</span> <span style=color:#75715e># 主数据库的数据文件夹映射，创建后默认在 ./db 文件夹中</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>networks</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>internal_network</span>: <span style=color:#75715e># 内部网络</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>internal</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>external_network</span>: <span style=color:#75715e># 外部网</span>
+</span></span></code></pre></div><p>按 <code>esc</code> ，按 <code>:wq</code> ，回车（保存-退出）</p><p>创建 <code>config/default.yml</code> 目录并进入 yml 文件中</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo mkdir config
+</span></span><span style=display:flex><span>cd config
+</span></span><span style=display:flex><span>sudo vim default.yml
+</span></span></code></pre></div><p>按 <code>I</code>，切换到编辑模式，填入以下内容</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#75715e>#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Misskey configuration</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   ┌─────┐</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#───┘ URL └─────────────────────────────────────────────────────</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Final accessible URL seen by a user.</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>url</span>: <span style=color:#ae81ff>https://ponderduck.cc/</span> <span style=color:#75715e># 注意改成自己最后反向代理想要的网址</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ONCE YOU HAVE STARTED THE INSTANCE, DO NOT CHANGE THE</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># URL SETTINGS AFTER THAT!</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   ┌───────────────────────┐</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#───┘ Port and TLS settings └───────────────────────────────────</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Misskey requires a reverse proxy to support HTTPS connections.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#                 +----- https://example.tld/ ------------+</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   +------+      |+-------------+      +----------------+|</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   | User | ---&gt; || Proxy (443) | ---&gt; | Misskey (3000) ||</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   +------+      |+-------------+      +----------------+|</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#                 +---------------------------------------+</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   You need to set up a reverse proxy. (e.g. nginx)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   An encrypted connection with HTTPS is highly recommended</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   because tokens may be transferred in GET requests.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># The port that your Misskey server should listen on.</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>port</span>: <span style=color:#ae81ff>3001</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   ┌──────────────────────────┐</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#───┘ PostgreSQL configuration └────────────────────────────────</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>db</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>host</span>: <span style=color:#ae81ff>db</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>port</span>: <span style=color:#ae81ff>5432</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e># Database name</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>db</span>: <span style=color:#ae81ff>misskey</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e># Auth</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>user</span>: <span style=color:#ae81ff>example-misskey-user</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>pass</span>: <span style=color:#ae81ff>example-misskey-pass</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e># Whether disable Caching queries</span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>#disableCache: true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e># Extra Connection options</span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>#extra:</span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>#  ssl: true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   ┌─────────────────────┐</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#───┘ Redis configuration └─────────────────────────────────────</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>redis</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>host</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>port</span>: <span style=color:#ae81ff>6379</span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>#family: 0  # 0=Both, 4=IPv4, 6=IPv6</span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>#pass: example-pass</span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>#prefix: example-prefix</span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>#db: 1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   ┌─────────────────────────────┐</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#───┘ Elasticsearch configuration └─────────────────────────────</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#elasticsearch:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#  host: localhost</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#  port: 9200</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#  ssl: false</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#  user:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#  pass:</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   ┌───────────────┐</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#───┘ ID generation └───────────────────────────────────────────</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># You can select the ID generation method.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># You don&#39;t usually need to change this setting, but you can</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># change it according to your preferences.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Available methods:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># aid ... Short, Millisecond accuracy</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># meid ... Similar to ObjectID, Millisecond accuracy</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ulid ... Millisecond accuracy</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># objectid ... This is left for backward compatibility</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ONCE YOU HAVE STARTED THE INSTANCE, DO NOT CHANGE THE</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ID SETTINGS AFTER THAT!</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>id</span>: <span style=color:#e6db74>&#39;aid&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   ┌─────────────────────┐</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#───┘ Other configuration └─────────────────────────────────────</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Whether disable HSTS</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#disableHsts: true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Number of worker processes</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#clusterLimit: 1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Job concurrency per worker</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># deliverJobConcurrency: 128</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># inboxJobConcurrency: 16</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Job rate limiter</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># deliverJobPerSec: 128</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># inboxJobPerSec: 16</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Job attempts</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># deliverJobMaxAttempts: 12</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># inboxJobMaxAttempts: 8</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># IP address family used for outgoing request (ipv4, ipv6 or dual)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#outgoingAddressFamily: ipv4</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Syslog option</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#syslog:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#  host: localhost</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#  port: 514</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Proxy for HTTP/HTTPS</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#proxy: http://127.0.0.1:3128</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#proxyBypassHosts: [</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#  &#39;example.com&#39;,</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#  &#39;192.0.2.8&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Proxy for SMTP/SMTPS</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#proxySmtp: http://127.0.0.1:3128   # use HTTP/1.1 CONNECT</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#proxySmtp: socks4://127.0.0.1:1080 # use SOCKS4</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#proxySmtp: socks5://127.0.0.1:1080 # use SOCKS5</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Media Proxy</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#mediaProxy: https://example.com/proxy</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Proxy remote files (default: false)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#proxyRemoteFiles: true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Sign to ActivityPub GET request (default: false)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#signToActivityPubGet: true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#allowedPrivateNetworks: [</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#  &#39;127.0.0.1/32&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Upload or download file size limits (bytes)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#maxFileSize: 262144000</span>
+</span></span></code></pre></div><p>按 <code>esc</code> ，按 <code>:wq</code> ，回车（保存-退出）</p><p>进入 env 文件</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo vim docker.env
+</span></span></code></pre></div><p>按 <code>I</code>，切换到编辑模式，填写如下内容</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># db settings</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>POSTGRES_PASSWORD=example-misskey-pass</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>POSTGRES_USER=example-misskey-user</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>POSTGRES_DB=misskey</span>
+</span></span></code></pre></div><h3 id=部署>部署</h3><p>还记得我说「创建并编辑 yml 文件，让它去部署」吗？</p><p>现在文件已经配置完毕了，是时候让它跑起来了！</p><p>双手合十 🙏</p><p>切换到上一级目录</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>cd ..
+</span></span></code></pre></div><p>初始化数据库</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo docker-compose run --rm web yarn run init
+</span></span></code></pre></div><p>后台启动项目容器</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo docker-compose up -d
+</span></span></code></pre></div><h3 id=访问站点>访问站点</h3><p>查看端口状态</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo lsof -i:&lt;port&gt;
+</span></span></code></pre></div><p>假如这个端口不能用，那就换一个。</p><p>新端口要在服务商防火墙、ufw 命令、<code>default.yml</code> 和 <code>docker-compose.yml</code> 里都开启、改过来</p><p>然后重启 Docker</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo docker-compose restart <span style=color:#f92672>[</span>指定服务的容器<span style=color:#f92672>]</span>
+</span></span></code></pre></div><p>完成这一步之后，尝试用 IP 访问站点吧</p><p>在浏览器输入 <code>http://&lt;ip>:&lt;port></code>（IP 可以用 <code>curl ip.sb</code> 返回）</p><p>（；</p><p>还有两个任务</p><ul><li>SSL 证书</li><li>反向代理</li></ul><h3 id=nginx>Nginx</h3><h4 id=安装-nginx>安装 Nginx</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt update
+</span></span><span style=display:flex><span>sudo apt install nginx
+</span></span></code></pre></div><p>调整防火墙，允许 Nginx 服务通过</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo ufw allow <span style=color:#e6db74>&#39;Nginx HTTP&#39;</span>
+</span></span><span style=display:flex><span>sudo ufw allow <span style=color:#e6db74>&#39;Nginx HTTPS&#39;</span>
+</span></span><span style=display:flex><span>sudo ufw allow <span style=color:#e6db74>&#39;Nginx FULL&#39;</span>
+</span></span></code></pre></div><p>查看更改结果</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo ufw status
+</span></span></code></pre></div><p>查看 Nginx 状态（是 active 就行）</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>systemctl status nginx
+</span></span></code></pre></div><p>在浏览器输入 http://your_vps_ip，返回 Nginx 默认页面</p><p>让 Nginx 在系统启动时自动启动</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo systemctl enable nginx
+</span></span></code></pre></div><h4 id=设置服务器块>设置服务器块</h4><p>创建站点对应目录</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>sudo mkdir -p /var/www/ponderduck.cc/html
+</span></span></code></pre></div><p>使用<code>$USER</code>环境变量分配目录的所有权</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>sudo chown -R $USER:$USER /var/www/ponderduck.cc/html
+</span></span></code></pre></div><p>如果我们没有修改自己的<code>umask</code>值，那么 Web 根目录的权限应该正确，我们可以通过输入以下命令来确认：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo chmod -R <span style=color:#ae81ff>755</span> /var/www/ponderduck.cc
+</span></span></code></pre></div><p>编辑<code>index.html</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo vim /var/www/ponderduck.cc/html/index.html
+</span></span></code></pre></div><p>添加以下示例 HTML</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>html</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>head</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>title</span>&gt;Welcome to ponderduck.cc!&lt;/<span style=color:#f92672>title</span>&gt;
+</span></span><span style=display:flex><span>  &lt;/<span style=color:#f92672>head</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>body</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>h1</span>&gt;Success! The ponderduck.cc server block is working!&lt;/<span style=color:#f92672>h1</span>&gt;
+</span></span><span style=display:flex><span>  &lt;/<span style=color:#f92672>body</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>html</span>&gt;
+</span></span></code></pre></div><p>为 Nginx 创建一个服务器块</p><p>创建一个新文件</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo vim /etc/nginx/sites-available/ponderduck.conf
+</span></span></code></pre></div><p>添加以下内容</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>server <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        listen 80;
+</span></span><span style=display:flex><span>        listen <span style=color:#f92672>[</span>::<span style=color:#f92672>]</span>:80;
+</span></span><span style=display:flex><span>        root /var/www/ponderduck.cc/html;
+</span></span><span style=display:flex><span>        index index.html index.htm index.nginx-debian.html;
+</span></span><span style=display:flex><span>        server_name ponderduck.cc www.ponderduck.cc;
+</span></span><span style=display:flex><span>        location / <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>                try_files $uri $uri/ <span style=color:#f92672>=</span>404;
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>通过 ls 命令在<code>sites-enabled</code>目录新建一个链接，好让 Nginx 在启动过程中会读取这个目录：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo ln -s /etc/nginx/sites-available/ponderduck.conf /etc/nginx/sites-enabled/
+</span></span></code></pre></div><p>打开文件：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo vim /etc/nginx/nginx.conf
+</span></span></code></pre></div><p>找到<code>server_names_hash_bucket_size</code>指令并删除<code>#</code>符号：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>...
+</span></span><span style=display:flex><span>http <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    ...
+</span></span><span style=display:flex><span>    server_names_hash_bucket_size 64;
+</span></span><span style=display:flex><span>    ...
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>...
+</span></span></code></pre></div><p>接下来，测试以确保我们在 Nginx 文件中的改动，没有任何问题：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo nginx -t
+</span></span></code></pre></div><p>如果没有任何问题，请重新启动 Nginx：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo systemctl restart nginx
+</span></span></code></pre></div><p>现在通过 <a href=http://ponderduck.cc>http://ponderduck.cc</a> 访问服务器的时候，Nginx 会指向我们刚刚添加的那个 HTML 页面</p><h4 id=ssl>SSL</h4><h5 id=安装-certbot>安装 Certbot</h5><p>我们需要获得被信任的证书授权中心（ CA ）签发的安全证书。Let’s Encrypt 是 ISRG （ Internet Security Research Group ，互联网安全研究小组）的组织推出的免费安全证书计划。</p><p>ISRG 的发起者 EFF （电子前哨基金会）为 Let’s Encrypt 项目发布了一个官方的客户端 Certbot ，利用它可以完全自动化的获取、部署和更新安全证书</p><p>安装 Certbot</p><p>去 <a href=https://certbot.eff.org/>官网</a> 选择我正在使用的 Web 服务器（Nginx）和操作系统（Ubuntu 20），操作对应的安装步骤</p><p>Ubuntu 自带 Snap，用 Snap 安装 Certbot</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>sudo snap install --classic certbot
+</span></span></code></pre></div><p>用 ln 命令创建符号连接，将 Certbot 加入 PATH 环境变量中</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>sudo ln -s /snap/bin/certbot /usr/bin/certbot
+</span></span></code></pre></div><h5 id=生成-ssl-证书>生成 SSL 证书</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>sudo certbot --nginx -d www.ponderduck.cc
+</span></span></code></pre></div><p>输入邮箱地址，用于接收邮件</p><p>输入 <code>Y</code>，同意协议；询问是否接收前哨基金会的邮件，接不接收都行</p><p>返回（注意证书储存位置）</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>Successfully received certificate.
+</span></span><span style=display:flex><span>Certificate is saved at: /etc/letsencrypt/live/www.ponderduck.cc/fullchain.pem
+</span></span><span style=display:flex><span>Key is saved at:         /etc/letsencrypt/live/www.ponderduck.cc/privkey.pem
+</span></span><span style=display:flex><span>This certificate expires on 2023-02-18.
+</span></span><span style=display:flex><span>These files will be updated when the certificate renews.
+</span></span><span style=display:flex><span>Certbot has set up a scheduled task to automatically renew this certificate in the background.
+</span></span></code></pre></div><p>Let&rsquo;s Encrypt 的 SSL 证书会在 90 天后过期，但是 Certbot 会自动续订</p><p>测试证书自动续订是否生效</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>sudo certbot renew --dry-run
+</span></span></code></pre></div><p>返回 ⬇️ 说明已生效</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>Simulating renewal of an existing certificate for www.ponderduck.cc
+</span></span></code></pre></div><p>找到存放站点证书的目录</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>sudo ls /etc/letsencrypt/live
+</span></span></code></pre></div><p>我的是<code>www.ponderduck.cc</code></p><p>查询证书</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>sudo ls /etc/letsencrypt/live/www.ponderduck.cc
+</span></span></code></pre></div><p>返回文件名</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>cert.pem  chain.pem  fullchain.pem  privkey.pem
+</span></span></code></pre></div><p>后两个要添加到 Nginx 配置文件 <code>.conf</code> 里</p><h4 id=反向代理>反向代理</h4><p>修改网站配置文件</p><p>参考 <a href=https://misskey-hub.net/en/docs/admin/nginx.html>官网文档</a>，以下是我的完整文件内容</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span># For WebSocket
+</span></span><span style=display:flex><span>map $http_upgrade $connection_upgrade {
+</span></span><span style=display:flex><span>    default upgrade;
+</span></span><span style=display:flex><span>    &#39;&#39;      close;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>proxy_cache_path /tmp/nginx_cache levels=1:2 keys_zone=cache1:16m max_size=1g inactive=720m use_temp_path=off;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>server {
+</span></span><span style=display:flex><span>       listen 80;
+</span></span><span style=display:flex><span>       listen [::]:80;
+</span></span><span style=display:flex><span>       server_name www.ponderduck.cc ponderduck.cc;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       # For SSL domain validation
+</span></span><span style=display:flex><span>       root /var/www/html;
+</span></span><span style=display:flex><span>       location /.well-known/acme-challenge/ { allow all; }
+</span></span><span style=display:flex><span>       location /.well-known/pki-validation/ { allow all; }
+</span></span><span style=display:flex><span>       location / { return 301 https://$server_name$request_uri; }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>server {
+</span></span><span style=display:flex><span>        listen [::]:443 ssl http2;
+</span></span><span style=display:flex><span>        listen 443 ssl http2;
+</span></span><span style=display:flex><span>        server_name ponderduck.cc www.ponderduck.cc;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        ssl_session_cache shared:ssl_session_cache:10m;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        # ssl
+</span></span><span style=display:flex><span>        ssl_certificate /etc/letsencrypt/live/www.ponderduck.cc/fullchain.pem;
+</span></span><span style=display:flex><span>        ssl_certificate_key /etc/letsencrypt/live/www.ponderduck.cc/privkey.pem;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        include /etc/letsencrypt/options-ssl-nginx.conf;
+</span></span><span style=display:flex><span>        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+</span></span><span style=display:flex><span>        ssl_stapling on;
+</span></span><span style=display:flex><span>        ssl_stapling_verify on;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        # Change to your upload limit
+</span></span><span style=display:flex><span>        client_max_body_size 80m;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        # 对&#34;/&#34;启用反向代理
+</span></span><span style=display:flex><span>        location / {
+</span></span><span style=display:flex><span>                # 指定转发地址
+</span></span><span style=display:flex><span>                proxy_pass http://127.0.0.1:3001;
+</span></span><span style=display:flex><span>                proxy_set_header Host $host;
+</span></span><span style=display:flex><span>                proxy_http_version 1.1;
+</span></span><span style=display:flex><span>                proxy_redirect off;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                proxy_set_header   Upgrade             $http_upgrade;
+</span></span><span style=display:flex><span>                proxy_set_header   Connection          $connection_upgrade;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                proxy_cache cache1;
+</span></span><span style=display:flex><span>                proxy_cache_lock on;
+</span></span><span style=display:flex><span>                proxy_cache_use_stale updating;
+</span></span><span style=display:flex><span>                add_header X-Cache $upstream_cache_status;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>接下来，测试以确保我们在 Nginx 文件中的改动，没有任何问题：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo nginx -t
+</span></span></code></pre></div><p>有问题的话按照提示修改，做完之后，重新启动 Nginx：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo systemctl restart nginx
+</span></span></code></pre></div><p>现在 SSL 证书和反向代理都生效了，尝试用域名访问站点</p><p>完成 🎉</p><p>注册一个账号，回到命令行工具把它设置为管理员</p><h2 id=日常维护>日常维护</h2><h3 id=更新>更新</h3><p>Docker-compose 部署</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>cd data/docker_data/misskey
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>docker-compose down
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cp -r /root/data/docker_data/misskey /root/data/docker_data/misskey.archive  <span style=color:#75715e># 万事先备份，以防万一，其实这边没必要，因为我们没有映射到本地文件夹</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>docker-compose pull
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>docker-compose up -d    <span style=color:#75715e># 请不要使用docker-compose stop来停止容器，因为这么做需要额外的时间等待容器停止；docker-compose up -d直接升级容器时会自动停止并立刻重建新的容器，完全没有必要浪费那些时间。</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>docker image prune  <span style=color:#75715e># prune 命令用来删除不再使用的 docker 对象。删除所有未被 tag 标记和未被容器使用的镜像</span>
+</span></span></code></pre></div><p>提示：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>WARNING! This will remove all dangling images.
+</span></span><span style=display:flex><span>Are you sure you want to continue? [y/N]
+</span></span></code></pre></div><p>输入 <code>y</code></p><h3 id=卸载>卸载</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>cd /root/data/docker_data/misskey
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>docker-compose down
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>rm -rf /root/data/docker_data/misskey  # 完全删除映射到本地的数据
+</span></span></code></pre></div><h3 id=删除旧数据>删除旧数据</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>docker system prune
+</span></span></code></pre></div><h3 id=磁盘空间分析及清理>磁盘空间分析及清理</h3><p>内容主要来源：https://www.cnblogs.com/jing99/p/10487174.html</p><p>有时候要用 <code>sudo</code></p><h4 id=df-命令>df 命令</h4><p>可以查看一级文件夹大小、使用比例、档案系统和挂入 dian</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>[root@oms ~]# df -Th
+</span></span><span style=display:flex><span>Filesystem     Type      Size  Used Avail Use% Mounted on
+</span></span><span style=display:flex><span>/dev/vda1      ext4       40G   35G  3.1G  92% /
+</span></span><span style=display:flex><span>devtmpfs       devtmpfs  1.9G     0  1.9G   0% /dev
+</span></span><span style=display:flex><span>tmpfs          tmpfs     1.9G     0  1.9G   0% /dev/shm
+</span></span><span style=display:flex><span>tmpfs          tmpfs     1.9G  191M  1.7G  11% /run
+</span></span><span style=display:flex><span>tmpfs          tmpfs     1.9G     0  1.9G   0% /sys/fs/cgroup
+</span></span><span style=display:flex><span>tmpfs          tmpfs     379M     0  379M   0% /run/user/0
+</span></span></code></pre></div><p>七个字段分别为档案系统、类型、该分割区的容量、已使用的大小、剩下的大小、使用的百分比和挂入点</p><h4 id=du-命令>du 命令</h4><p>用来查看目录或文件所占用磁盘空间的大小。常用选项组合为：<code>du -sh [目录]</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>du -s 目录 | sort -rn        #这是按字节排序
+</span></span><span style=display:flex><span>du -sh 目录 | sort -rn        #这是按兆（M）来排序
+</span></span><span style=display:flex><span>#由于-sh大小显示看起来是乱的，因此建议使用du -s|sort -nr
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>du -s 目录 | sort -rn | head        #选出排在前面的10个
+</span></span><span style=display:flex><span>du -s 目录 | sort -rn | tail        #选出排在后面的10个
+</span></span></code></pre></div><p>常用选项</p><blockquote><p>-h：以人类可读的方式显示</p><p>-a：显示目录占用的磁盘空间大小，还要显示其下目录和文件占用磁盘空间的大小</p><p>-s：只显示<strong>目录占用的磁盘空间</strong>大小，不显示其子目录和文件占用的磁盘空间大小</p><p>-c：显示几个<strong>目录或文件占用的磁盘</strong>空间大小，还要统计它们的总和</p><p>&ndash;apparent-size：显示目录或文件自身的大小(文件或目录占用磁盘空间的大小与它们自身大小有时候并非完全一致)</p><p>-l ：统计硬链接占用磁盘空间的大小</p><p>-L：统计符号链接所指向的文件占用的磁盘空间大小。</p></blockquote><h4 id=rm-命令>rm 命令</h4><p>慎用</p><p>以下待做：</p><p><a href=https://fediverse.eu.org/discussion/15/%E7%BB%99%E6%96%B0%E7%AB%99%E9%95%BF-%E5%BB%BA%E7%AB%99%E5%90%8E%E5%8F%AF%E5%8F%82%E8%80%83%E7%9A%84%E8%BF%90%E7%BB%B4%E5%8F%8A%E8%A3%85%E4%BF%AE%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C#latest>https://fediverse.eu.org/discussion/15/%E7%BB%99%E6%96%B0%E7%AB%99%E9%95%BF-%E5%BB%BA%E7%AB%99%E5%90%8E%E5%8F%AF%E5%8F%82%E8%80%83%E7%9A%84%E8%BF%90%E7%BB%B4%E5%8F%8A%E8%A3%85%E4%BF%AE%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C#latest</a></p><p><a href=https://pullopen.github.io/tags/#Mastodon>https://pullopen.github.io/tags/#Mastodon</a></p><ul><li>扫描出不属于任何媒体附件的文件并移除他们</li><li>清除缓存存储</li><li>从数据库中删除未被引用的嘟文，例如来自中继的或来自本地用户不再关注的用户的嘟文，同时没有被回复的或以其他方式与之互动的</li></ul><h3 id=常用命令>常用命令</h3><p>查看 docker 容器状态</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>sudo docker container stats
+</span></span></code></pre></div><h2 id=其它参考>其它参考</h2><p><a href=https://blog.laoda.de/archives/getting-started-with-linux>mjj 版的 linux 入门教程</a></p><p><a href=https://weirenxue.github.io/2021/06/17/user_linux_sudo/>[User] Linux 新增使用者並賦予其使用 sudo 的權限</a></p><p><a href=https://blog.laoda.de/archives/how-to-secure-a-linux-server>保护好你的小鸡！保姆级服务器安全教程！</a></p><p><a href=https://blog.laoda.de/archives/docker-compose-install-misskey#5.3-%E5%AE%89%E8%A3%85nginxproxymanager>【好玩儿的 Docker 项目】10 分钟搭建一个去中心化微博平台——Misskey ｜二次元风格、联邦宇宙</a></p><p><a href=https://candinya.com/posts/minimal-misskey-docker-deploy/>使用 Docker 最小化部署 Misskey</a></p><p><a href=https://eri.cx/build-your-own-decentralized-social-platform-misskey/>搭建属于自己的去中心化社交平台 Misskey</a></p><p><a href=https://kalacloud.com/blog/how-to-install-nginx-on-ubuntu-20-04/#%E7%AC%AC5%E6%AD%A5%E8%AE%BE%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9D%97server-block>如何在 Ubuntu 20.04 中安装和配置 Nginx</a></p><p><a href=https://zxuqian.cn/install-nginx-on-ubuntu-20-04/>Nginx 教程：如何在 Ubuntu 20.04 下安装并配置 Nginx</a></p><p><a href=https://www.myfreax.com/secure-nginx-with-let-s-encrypt-on-ubuntu-20-04/>如何在 Ubuntu 20.04 Nginx 配置 Let&rsquo;s Encrypt SSL 证书</a></p></section><div class=post-tags><nav class="nav tags"><ul class=tags><li><a href=/tags/tutorial>tutorial</a></li><li><a href=/tags/misskey>misskey</a></li></ul></nav></div></article></main><footer><div style=display:flex><a class=soc href=https://github.com/falasool/ rel=me title=GitHub><i data-feather=github></i></a></div><div class=footer-info>2024 © Falaool | Built with <a href=https://gohugo.io>Hugo</a> & Theme <a href=https://github.com/athul/archie>Archie</a> design by Athul</div></footer><script>feather.replace()</script></div></body></html>

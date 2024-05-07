@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html
+  lang="en-us"
+  dir="ltr"
+>
+  <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='网络通信的基本过程 设计出层级结构。出去时不断加码，加信息，加标签，到达时，不断解码，减信息，解包 DNS 解析 输入域名/ip &amp;ndash; 检查浏览器/本地缓存，'><title>网络通信过程 &#43; Vmess搭建</title>
+
+<link rel='canonical' href='https://falasool.github.io/post/about-dns-principle-and-vpn/'>
+
+<link rel="stylesheet" href="/scss/style.min.0147dab71443626c251957a4d123df288cfea1f5d5abc428ef3cc283bdafb846.css"><meta property='og:title' content='网络通信过程 &#43; Vmess搭建'>
+<meta property='og:description' content='网络通信的基本过程 设计出层级结构。出去时不断加码，加信息，加标签，到达时，不断解码，减信息，解包 DNS 解析 输入域名/ip &amp;ndash; 检查浏览器/本地缓存，'>
+<meta property='og:url' content='https://falasool.github.io/post/about-dns-principle-and-vpn/'>
+<meta property='og:site_name' content='Falasool'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='DNS' /><meta property='article:tag' content='tech' /><meta property='article:published_time' content='2023-07-17T21:31:10&#43;08:00'/><meta property='article:modified_time' content='2023-07-17T21:31:10&#43;08:00'/>
+<meta name="twitter:title" content="网络通信过程 &#43; Vmess搭建">
+<meta name="twitter:description" content="网络通信的基本过程 设计出层级结构。出去时不断加码，加信息，加标签，到达时，不断解码，减信息，解包 DNS 解析 输入域名/ip &amp;ndash; 检查浏览器/本地缓存，"><style>
+   
+  :root {
+    --article-font-family: 'Noto Serif HK', var(--base-font-family);
+  }
+</style>
+
+<script>
+  ;(function () {
+    const customFont = document.createElement('link')
+    customFont.href =
+      'https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@300;400;500;600;700&display=swap'
+    customFont.type = 'text/css'
+    customFont.rel = 'stylesheet'
+
+    document.head.appendChild(customFont)
+  })()
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogponder-favicon.png"
+    />
+  </head>
+  <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "auto");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div
+      class="container main-container flex on-phone--column compact"
+    ><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Falasool</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/friends/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Friends</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/badges/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-app-window" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+  <path d="M6 8h.01" />
+  <path d="M9 8h.01" />
+</svg>
+
+
+
+                
+                <span>Projects</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/posts' >
+                
+                
+                
+                <span>All posts</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about' >
+                
+                
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags' >
+                
+                
+                
+                <span>Tags</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+  
+  <header class="article-category">
+    
+    <a
+      href="/categories/computernetwork/"
+      
+    >
+      ComputerNetwork
+    </a>
+    
+  </header>
+  
+
+  <div class="article-title-wrapper">
+    <h2 class="article-title">
+      <a href="/post/about-dns-principle-and-vpn/">网络通信过程 &#43; Vmess搭建</a>
+    </h2>
+
+    
+  </div>
+
+  
+  
+
+  
+  
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    
+    <h2 id="网络通信的基本过程">网络通信的基本过程</h2>
+<blockquote>
+<p>设计出层级结构。出去时不断加码，加信息，加标签，到达时，不断解码，减信息，解包</p>
+</blockquote>
+<h3 id="dns-解析">DNS 解析</h3>
+<p>输入域名/ip &ndash; 检查浏览器/本地缓存，hosts 文件 &ndash; 发请求到电脑的 DNS 服务器（OSI 七层/五层模型） &ndash; DNS 是应用层的协议，用于请求域名/ip，请求一层一层下传，到物理层（网卡接口）&ndash; 请求到的数据给传输层 &ndash; 传输层封装应用层的数据（源端口、目标端口）为数据包 &ndash; 下传 &ndash; 网络层、同样封装（源 ip、目标 ip）&ndash; 当电脑找不到这个 ip（不在范围内）会发请求给网关（路由器）</p>
+<p>数据顺着物理层到网卡接口 - 网线发出到交换机（二层设备） &ndash; 转发到路由器（三层设备），接收数据包，传到网络层 &ndash; 因为目标 ip 不在局域网内，所以会转发出去（公网的其他路由器）&ndash; 把内网网段 NAT 映射为能在公网传输的 ip - 发送数据包到 DNS 服务器（默认端口 53），DNS 服务器根据 OSI 层层解析直到应用层，拿到请求的数据（ip），开始回传</p>
+<p>传输层（+端口） &ndash; 网络层（+ip） &ndash; 数据链路层（+MAC 地址）&ndash; 从物理网口出去 &ndash;互联网 &ndash; 到正确的路由器，路由器转换 IP、MAC、添加头部 &ndash; 反向重复一遍发出请求的步骤，让电脑收到目标网站的 ip</p>
+<p>OSI 七层模型</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>层</th>
+<th>层</th>
+<th>detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用层</td>
+<td>应用层</td>
+<td>HTTP、FTP</td>
+</tr>
+<tr>
+<td></td>
+<td>表示层</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>会话层</td>
+<td></td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>传输层（端口）</td>
+<td>TCP、UDP</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>网络层</td>
+<td></td>
+</tr>
+<tr>
+<td>网络接口层</td>
+<td>数据链接层</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>物理层</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="gfw-工作原理">GFW 工作原理</h2>
+<p>底层原因：能看到我们的数据内容</p>
+<h3 id="dns-污染劫持">DNS 污染/劫持</h3>
+<p>访问 Google，先检查本机有无缓存 Google 的 ip，查看 hosts 文件里有没有对 google.com 添加 IP 域名映射关系，都没有 ➡️ 向本机配置的 DNS 服务器发 DNS 请求，请求 Google 的 ip，这个请求的数据包来到 GFW（五层设备）时会被看到内容（假设未被拦截），来到 real internet，到达 DNS 服务器并发回数据包，被 GFW 解包，篡改数据（ip 地址）后发给本机，找不到假 ip 对应的服务器所以访问不了</p>
+<p>解决：</p>
+<p>不发送 DNS 请求，在 host 文件添加域名 IP 映射关系。因为 HTTP 协议是基于 TCP、要先用 TCP 和服务器建立连接才能用 HTTP 访问，所以接下来向服务器发送 TCP 请求 ⬇️</p>
+<h3 id="tcp-重置攻击">TCP 重置攻击</h3>
+<p>这个请求来到 GFW，被解包到网络层发现了目标 ip，在它的黑名单里，它会拒绝或伪造数据（回程阻断，出去的数据包不拦截，服务器返回的包才拦截，这会导致第 2 次握手无法完成，被阻断的服务器会不停的重传，客户端会一直等待超时）</p>
+<h3 id="域名被-ban">域名被 ban</h3>
+<p>谷歌有很多服务器，其中一个没在黑名单上，GFW 放行了。返回的数据包也被放行来到本机。现在开始发数据，来到 GFW，网络层 ip 没问题，应用层发现要 google.com 的数据，google.com 域名在黑名单里，数据包被干掉</p>
+<h3 id="重放攻击">重放攻击</h3>
+<p>防火墙用本机发送的数据包探测目标 VPS，有没有运行特定服务，比如 SS</p>
+<h2 id="对策">对策</h2>
+<p>加密数据：</p>
+<p>传统 vpn 能加密，但是特征太明显</p>
+<p>shadowsocks 协议：vps 上搭建 ss 服务端，监听端口 1111，本机运行 ss 客户端并监听端口 1080，浏览器设置代理端口</p>
+<p>vmess 协议</p>
+<h2 id="搭建-shadowsocks-节点没有实操">搭建 Shadowsocks 节点(没有实操)</h2>
+<p>伪装成 http</p>
+<p>购买 VPS，SSH 连接</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>apt install shadowsocks-libev <span style="color:#75715e"># 安装</span>
+</span></span><span style="display:flex;"><span>systemctl status shadowsocks-libev.service <span style="color:#75715e"># 查看状态</span>
+</span></span><span style="display:flex;"><span>vim /etc/shadowsocks-libev/config.json <span style="color:#75715e"># 修改配置文件，ip改为0.0.0.0</span>
+</span></span><span style="display:flex;"><span>systemctl restart shadowsocks-libev.service <span style="color:#75715e"># 重启</span>
+</span></span><span style="display:flex;"><span>journalctl -u shadowsocks-libev.service -f <span style="color:#75715e"># 查看日志</span>
+</span></span></code></pre></div><p>防火墙设置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ufw status <span style="color:#75715e"># 查看状态</span>
+</span></span><span style="display:flex;"><span>ufw allow <span style="color:#ae81ff">8388</span> <span style="color:#75715e"># 开放端口</span>
+</span></span><span style="display:flex;"><span>ufw deny <span style="color:#ae81ff">8388</span> <span style="color:#75715e"># 拒绝端口</span>
+</span></span><span style="display:flex;"><span>ufw delete allow <span style="color:#ae81ff">8388</span> <span style="color:#75715e"># 删除规则</span>
+</span></span><span style="display:flex;"><span>ufw disable <span style="color:#75715e"># 关闭防火墙</span>
+</span></span><span style="display:flex;"><span>ufw enable <span style="color:#75715e">#启动防火墙</span>
+</span></span></code></pre></div><blockquote>
+<p>最近的心得：防火墙白名单+抗封锁 snap 版 shadowsocks-libev+OutlineVPN 客户端 非常抗揍，真香！（关键 SS 比基于 tls 的如 trojan,v2ray 速度要快）</p>
+<p>我也是看了网上各路文章才有了这思路的，目前用得很好。1、防火墙 100%阻断中间人，因为只有你设置好白名单的 IP 才能连接服务器 。2、抗封锁 snap 最新版（edge 版不是 stable 版）可能在防主动识别部分针对性改动了一下，听说去了重放过滤器。3、outlineVPN 客户端听说可以合并部分流量，以减少被动识别拉清单（玄学）</p>
+</blockquote>
+<p>裸奔的 ss 服务容易被重放攻击探测到，用 plugin 伪装数据流量</p>
+<p><a class="link" href="https://github.com/shadowsocks/v2ray-plugin"  target="_blank" rel="noopener"
+	>https://github.com/shadowsocks/v2ray-plugin</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>apt install shadowsocks-v2ray-plugin
+</span></span><span style="display:flex;"><span>dpkg -L
+</span></span><span style="display:flex;"><span>ss-v2ray-plugin
+</span></span><span style="display:flex;"><span>vim /etc/shadowsocks-libev/config.json
+</span></span><span style="display:flex;"><span>+ <span style="color:#e6db74">&#34;plugin&#34;</span>: <span style="color:#e6db74">&#34;ss-v2ray-plugin&#34;</span>
+</span></span><span style="display:flex;"><span>+ <span style="color:#e6db74">&#34;plugin_opts&#34;</span>: <span style="color:#e6db74">&#34;server&#34;</span>
+</span></span><span style="display:flex;"><span>systemctl restart shadowsocks-libev.service
+</span></span></code></pre></div><h2 id="trojan-原理和搭建">Trojan 原理和搭建</h2>
+<p>伪装成 https</p>
+<p>http 的问题：明文、可被篡改</p>
+<p>https: http + tls</p>
+<h3 id="tls">TLS</h3>
+<p>非对称加密：公钥、私钥</p>
+<p>服务器向 CA 机构请求 SSL 证书，CA 机构要求证明域名所有权后颁发证明（包含公钥和有效期），之后才能进行 https 访问</p>
+<p>http 数据交给 tls 进行加密，先要跟网站建立 tls 连接，用对方的公钥加密数据（实际上是握手后协商出对称加密算法的密钥）后发送，服务器用私钥解密</p>
+<blockquote>
+<p>所以 tls 协议概括一下就是，客户端和服务端使用非对称加密算法协商出对称加密算法的主密钥（使用非对称加密算法保护主密钥不被中间人窃取），然后切换到使用对称加密算法（使用对应的主密钥）进行双向通讯。</p>
+</blockquote>
+<h3 id="trojan">Trojan</h3>
+<p>不耐烦了，直奔主题，下次再来！</p>
+<p><a class="link" href="https://www.youtube.com/watch?v=gw2Vl1h89Wo&amp;list=PL5TbbtexT8T3d_7UX2aSFhoMYk-cl4kf4&amp;index=4"  target="_blank" rel="noopener"
+	>https://www.youtube.com/watch?v=gw2Vl1h89Wo&list=PL5TbbtexT8T3d_7UX2aSFhoMYk-cl4kf4&index=4</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+<h2 id="vmess--tcp-tls">Vmess + TCP +TLS</h2>
+<h3 id="服务器端">服务器端</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e">#!!!重要！x-ui不要把xray版本升级到1.7.5以上，否则无法搭建vless节点！
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#更新软件源</span>
+</span></span><span style="display:flex;"><span>apt update
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#启用 BBR TCP 拥塞控制算法</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;net.core.default_qdisc=fq&#34;</span> &gt;&gt; /etc/sysctl.conf
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;net.ipv4.tcp_congestion_control=bbr&#34;</span> &gt;&gt; /etc/sysctl.conf
+</span></span><span style="display:flex;"><span>sysctl -p
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#安装x-ui：</span>
+</span></span><span style="display:flex;"><span>bash &lt;<span style="color:#f92672">(</span>curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>(安装 Nginx、申请 SSL 证书)</p>
+<blockquote>
+<p>http 站点优先，个人网盘符合单节点大流量特征</p>
+</blockquote>
+<p>在浏览器搜索 <code>intext:登录 Cloudreve</code>，找到一个可访问的网站作为伪装站</p>
+<p>配置 Nginx</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 创建配置文件</span>
+</span></span><span style="display:flex;"><span>touch /etc/nginx/sites-available/vmess.conf
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 进入修改</span>
+</span></span><span style="display:flex;"><span>vim /etc/nginx/sites-available/vmess.conf
+</span></span></code></pre></div><p>配置文件内容</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>    server <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        listen <span style="color:#ae81ff">443</span> ssl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        server_name joy.ponderduck.cc;  <span style="color:#75715e">#你的域名</span>
+</span></span><span style="display:flex;"><span>        ssl_certificate       /etc/letsencrypt/live/ponderduck.cc/fullchain.pem;  <span style="color:#75715e">#证书位置</span>
+</span></span><span style="display:flex;"><span>        ssl_certificate_key   /etc/letsencrypt/live/ponderduck.cc/privkey.pem; <span style="color:#75715e">#私钥位置</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ssl_session_timeout 1d;
+</span></span><span style="display:flex;"><span>        ssl_session_cache shared:MozSSL:10m;
+</span></span><span style="display:flex;"><span>        ssl_session_tickets off;
+</span></span><span style="display:flex;"><span>        ssl_protocols    TLSv1.2 TLSv1.3;
+</span></span><span style="display:flex;"><span>        ssl_prefer_server_ciphers off;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        location / <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            proxy_pass http://pan.qdovo.com/; <span style="color:#75715e">#伪装网址</span>
+</span></span><span style="display:flex;"><span>            proxy_redirect off;
+</span></span><span style="display:flex;"><span>            proxy_ssl_server_name on;
+</span></span><span style="display:flex;"><span>            sub_filter_once off;
+</span></span><span style="display:flex;"><span>            sub_filter <span style="color:#e6db74">&#34;pan.qdovo.com&#34;</span> $server_name;
+</span></span><span style="display:flex;"><span>            proxy_set_header Host <span style="color:#e6db74">&#34;pan.qdovo.com&#34;</span>;
+</span></span><span style="display:flex;"><span>            proxy_set_header Referer $http_referer;
+</span></span><span style="display:flex;"><span>            proxy_set_header X-Real-IP $remote_addr;
+</span></span><span style="display:flex;"><span>            proxy_set_header User-Agent $http_user_agent;
+</span></span><span style="display:flex;"><span>            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>            proxy_set_header X-Forwarded-Proto https;
+</span></span><span style="display:flex;"><span>            proxy_set_header Accept-Encoding <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>            proxy_set_header Accept-Language <span style="color:#e6db74">&#34;zh-CN&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        location /ray <span style="color:#f92672">{</span>   <span style="color:#75715e">#分流路径</span>
+</span></span><span style="display:flex;"><span>            proxy_redirect off;
+</span></span><span style="display:flex;"><span>            proxy_pass http://127.0.0.1:10000; <span style="color:#75715e">#Xray端口</span>
+</span></span><span style="display:flex;"><span>            proxy_http_version 1.1;
+</span></span><span style="display:flex;"><span>            proxy_set_header Upgrade $http_upgrade;
+</span></span><span style="display:flex;"><span>            proxy_set_header Connection <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+</span></span><span style="display:flex;"><span>            proxy_set_header Host $host;
+</span></span><span style="display:flex;"><span>            proxy_set_header X-Real-IP $remote_addr;
+</span></span><span style="display:flex;"><span>            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        location /xui <span style="color:#f92672">{</span>   <span style="color:#75715e">#xui路径</span>
+</span></span><span style="display:flex;"><span>            proxy_redirect off;
+</span></span><span style="display:flex;"><span>            proxy_pass http://127.0.0.1:9999;  <span style="color:#75715e">#xui监听端口</span>
+</span></span><span style="display:flex;"><span>            proxy_http_version 1.1;
+</span></span><span style="display:flex;"><span>            proxy_set_header Host $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    server <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        listen 80;
+</span></span><span style="display:flex;"><span>        location /.well-known/ <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>               root /var/www/html;
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        location / <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                rewrite ^<span style="color:#f92672">(</span>.*<span style="color:#f92672">)</span>$ https://$host$1 permanent;
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>测试、建立软链接、重启</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>nginx -t
+</span></span><span style="display:flex;"><span>ln -s /etc/nginx/sites-available/vmess.conf /etc/nginx/sites-enabled/vmess.conf
+</span></span><span style="display:flex;"><span>systemctl start nginx
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>nginx -s reload
+</span></span></code></pre></div><h2 id="trojan-go">Trojan-Go</h2>
+<p>一键部署 Trojan-Go</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash &lt;<span style="color:#f92672">(</span>curl -sSL <span style="color:#e6db74">&#34;https://raw.githubusercontent.com/veip007/hj/main/trojan-go.sh&#34;</span><span style="color:#f92672">)</span>
+</span></span></code></pre></div><h2 id="参考--致谢">参考 &amp; 致谢</h2>
+<p><a class="link" href="https://v2xtls.org/clashx%E9%85%8D%E7%BD%AEv2ray%E6%95%99%E7%A8%8B/"  target="_blank" rel="noopener"
+	>ClashX 配置 V2ray 教程</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+<p>[编译、配置 nginx,使 V2ray,Xray,Trojan,博客网站等共用 443 端口](</p>
+
+    
+</section>
+
+
+    <footer class="article-footer">
+  
+    <section class="article-tags">
+        
+            <a href="/tags/dns/">DNS</a>
+        
+            <a href="/tags/tech/">tech</a>
+        
+    </section>
+
+
+  </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title"></h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/post/nginx-memos/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Nginx</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/domain/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">博客域名设置</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/picture-bed/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hugo | 给博客配置图床</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/hugo-comment-system-disqusjs/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hugo | 给博客添加评论系统</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/hugo-front-matter/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hugo | Front Matter</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+  <section class="copyright">
+    &copy;  2024 Falasool
+  </section>
+
+  <section class="powerby">
+    
+    <br />
+    
+  </section>
+
+  <section class="busuanzi">
+    <span id="busuanzi_container_site_uv" style='display:none'>
+      <span id="busuanzi_value_site_uv"></span> Views
+    </span>
+  </section>
+</footer>
+
+<style>
+  .busuanzi {
+    color: var(--body-text-color);
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+</style>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</main>
+    
+
+    </div>
+    <script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(210, 179, 75, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: rgb(210, 179, 75);
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+</script>
+
+  </body>
+</html>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+
+<script
+  type="text/javascript"
+  src="https://demo.hellozwh.com/source/canvas-nest.min.js"
+></script>
+
+<script>
+  pangu.spacingPage()
+</script>

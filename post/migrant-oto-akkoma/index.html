@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html
+  lang="en-us"
+  dir="ltr"
+>
+  <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='准备 🌟备份 ➡️账号： Settings &amp;ndash; Data import/export，全部导出 以下文件夹用 FTP 客户端（FileZilla）备份到电脑 ➡️数据库： mkdir -p /pleromabackup chmod 777 /pleromabackup 登'><title>Migrant ot Akkoma</title>
+
+<link rel='canonical' href='https://falasool.github.io/post/migrant-oto-akkoma/'>
+
+<link rel="stylesheet" href="/scss/style.min.0147dab71443626c251957a4d123df288cfea1f5d5abc428ef3cc283bdafb846.css"><meta property='og:title' content='Migrant ot Akkoma'>
+<meta property='og:description' content='准备 🌟备份 ➡️账号： Settings &amp;ndash; Data import/export，全部导出 以下文件夹用 FTP 客户端（FileZilla）备份到电脑 ➡️数据库： mkdir -p /pleromabackup chmod 777 /pleromabackup 登'>
+<meta property='og:url' content='https://falasool.github.io/post/migrant-oto-akkoma/'>
+<meta property='og:site_name' content='Falasool'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='tutorial' /><meta property='article:tag' content='Akkoma' /><meta property='article:published_time' content='2023-07-31T16:22:45&#43;08:00'/><meta property='article:modified_time' content='2023-07-31T16:22:45&#43;08:00'/>
+<meta name="twitter:title" content="Migrant ot Akkoma">
+<meta name="twitter:description" content="准备 🌟备份 ➡️账号： Settings &amp;ndash; Data import/export，全部导出 以下文件夹用 FTP 客户端（FileZilla）备份到电脑 ➡️数据库： mkdir -p /pleromabackup chmod 777 /pleromabackup 登"><style>
+   
+  :root {
+    --article-font-family: 'Noto Serif HK', var(--base-font-family);
+  }
+</style>
+
+<script>
+  ;(function () {
+    const customFont = document.createElement('link')
+    customFont.href =
+      'https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@300;400;500;600;700&display=swap'
+    customFont.type = 'text/css'
+    customFont.rel = 'stylesheet'
+
+    document.head.appendChild(customFont)
+  })()
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogponder-favicon.png"
+    />
+  </head>
+  <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "auto");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div
+      class="container main-container flex on-phone--column compact"
+    ><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Falasool</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/friends/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Friends</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/badges/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-app-window" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+  <path d="M6 8h.01" />
+  <path d="M9 8h.01" />
+</svg>
+
+
+
+                
+                <span>Projects</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/posts' >
+                
+                
+                
+                <span>All posts</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about' >
+                
+                
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags' >
+                
+                
+                
+                <span>Tags</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+  
+  <header class="article-category">
+    
+    <a
+      href="/categories/akkoma/"
+      
+    >
+      Akkoma
+    </a>
+    
+    <a
+      href="/categories/fediverse/"
+      style="background-color: #2a9d8f; color: #fff;"
+      
+    >
+      Fediverse
+    </a>
+    
+    <a
+      href="/categories/todolist/"
+      
+    >
+      ToDoList
+    </a>
+    
+  </header>
+  
+
+  <div class="article-title-wrapper">
+    <h2 class="article-title">
+      <a href="/post/migrant-oto-akkoma/">Migrant ot Akkoma</a>
+    </h2>
+
+    
+  </div>
+
+  
+  
+
+  
+  
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    
+    <h2 id="准备">准备</h2>
+<p>🌟备份</p>
+<p>➡️账号： Settings &ndash; Data import/export，全部导出</p>
+<p>以下文件夹用 FTP 客户端（FileZilla）备份到电脑</p>
+<p>➡️数据库：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mkdir -p /pleromabackup
+</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">777</span> /pleromabackup
+</span></span></code></pre></div><p>登入数据库</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-postgresql" data-lang="postgresql"><span style="display:flex;"><span>su <span style="color:#f92672">-</span> postgres
+</span></span><span style="display:flex;"><span>psql <span style="color:#f92672">-</span>U postgres
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#960050;background-color:#1e0010">\</span><span style="color:#f92672">!</span> pg_dump pleroma <span style="color:#f92672">-</span>f <span style="color:#f92672">/</span>pleromabackup<span style="color:#f92672">/</span>pleroma<span style="color:#ae81ff">.</span>pgdump
+</span></span></code></pre></div><p>➡️Pleroma 配置：/etc/pleroma/</p>
+<p>➡️Pleroma 静态文件：/var/lib/pleroma</p>
+<p>🌟把域名的IP指向新服务器</p>
+<h2 id="搭建过程">搭建过程</h2>
+<p>安装依赖</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>apt update
+</span></span><span style="display:flex;"><span>apt upgrade
+</span></span><span style="display:flex;"><span>apt install curl unzip libncurses5 postgresql postgresql-contrib nginx libmagic-dev
+</span></span><span style="display:flex;"><span>apt install imagemagick ffmpeg libimage-exiftool-perl
+</span></span></code></pre></div><p>安装本体：注意 Ubuntu22 的FLAVOUR变量是amd64-ubuntu-jammy</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>adduser --system --shell  /bin/false --home /opt/akkoma akkoma
+</span></span><span style="display:flex;"><span>export FLAVOUR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;amd64-ubuntu-jammy&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>su akkoma -s $SHELL -lc <span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">curl &#39;https://akkoma-updates.s3-website.fr-par.scw.cloud/stable/akkoma-</span>$FLAVOUR<span style="color:#e6db74">.zip&#39; -o /tmp/akkoma.zip
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">unzip /tmp/akkoma.zip -d /tmp/
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>su akkoma -s $SHELL -lc <span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">mv /tmp/release/* /opt/akkoma
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">rmdir /tmp/release
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">rm /tmp/akkoma.zip
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mkdir -p /var/lib/akkoma/uploads
+</span></span><span style="display:flex;"><span>chown -R akkoma /var/lib/akkoma
+</span></span><span style="display:flex;"><span>mkdir -p /var/lib/akkoma/static
+</span></span><span style="display:flex;"><span>chown -R akkoma /var/lib/akkoma
+</span></span><span style="display:flex;"><span>mkdir -p /etc/akkoma
+</span></span><span style="display:flex;"><span>chown -R akkoma /etc/akkoma
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>su akkoma -s $SHELL -lc <span style="color:#e6db74">&#34;./bin/pleroma_ctl instance gen --output /etc/akkoma/config.exs --output-psql /tmp/setup_db.psql&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>su postgres -s $SHELL -lc <span style="color:#e6db74">&#34;psql -f /tmp/setup_db.psql&#34;</span>
+</span></span><span style="display:flex;"><span>su akkoma -s $SHELL -lc <span style="color:#e6db74">&#34;./bin/pleroma_ctl migrate&#34;</span>
+</span></span><span style="display:flex;"><span>su akkoma -s $SHELL -lc <span style="color:#e6db74">&#34;./bin/pleroma daemon&#34;</span>
+</span></span><span style="display:flex;"><span>sleep <span style="color:#ae81ff">20</span> <span style="color:#f92672">&amp;&amp;</span> curl http://localhost:4000/api/v1/instance
+</span></span><span style="display:flex;"><span>su akkoma -s $SHELL -lc <span style="color:#e6db74">&#34;./bin/pleroma stop&#34;</span>
+</span></span></code></pre></div><p>申请SSL证书：参考<a class="link" href="https://ponder.lol/2023/new-pleroma-isntance-on-debian11/#%E9%80%9A%E9%85%8D%E7%AC%A6-ssl-%E8%AF%81%E4%B9%A6%E8%87%AA%E5%8A%A8%E7%BB%AD%E6%9C%9F"  target="_blank" rel="noopener"
+	>通配符 SSL 证书自动续期</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+<p>Nginx：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cp /opt/akkoma/installation/akkoma.nginx /etc/nginx/sites-available/akkoma.conf
+</span></span></code></pre></div><p>修改所有 example.tld 为准备好的域名</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vim /etc/nginx/sites-available/akkoma.conf 
+</span></span><span style="display:flex;"><span>nginx -t
+</span></span><span style="display:flex;"><span>systemctl restart nginx
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cp /opt/akkoma/installation/akkoma.service /etc/systemd/system/akkoma.service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>systemctl start akkoma
+</span></span><span style="display:flex;"><span>systemctl enable akkoma
+</span></span></code></pre></div><p>创建管理员账户、安装前端</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cd /opt/akkoma
+</span></span><span style="display:flex;"><span>su akkoma -s $SHELL -lc &#34;./bin/pleroma_ctl user new admin cyouike@duck.com --admin&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./bin/pleroma_ctl frontend install pleroma-fe --ref stable
+</span></span><span style="display:flex;"><span>./bin/pleroma_ctl frontend install admin-fe --ref stable
+</span></span></code></pre></div><h2 id="本地定时备份">本地定时备份</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mkdir /opt/local_backup
+</span></span><span style="display:flex;"><span>cd /opt/local_backup
+</span></span><span style="display:flex;"><span>vim backup.sh
+</span></span></code></pre></div><p>脚本内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>source /etc/profile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;————————————backup to local directory——————————&#34;</span> | tee -a /opt/local_backup/backuplog.txt
+</span></span><span style="display:flex;"><span>echo  <span style="color:#e6db74">`</span>date +<span style="color:#e6db74">&#34;%Y-%m-%d %H:%M:%S&#34;</span><span style="color:#e6db74">`</span> <span style="color:#e6db74">&#34;now starting backup&#34;</span> | tee -a /opt/local_backup/backuplog.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;stop akkoma&#39;</span> | tee -a /opt/local_backup/backuplog.txt
+</span></span><span style="display:flex;"><span>sudo systemctl stop akkoma
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;0.create a backup day directory&#34;</span> | tee -a /opt/local_backup/backuplog.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -d /opt/local_backup/<span style="color:#e6db74">`</span>date +%Y%m%d<span style="color:#e6db74">``</span>date +%Y%m%d<span style="color:#e6db74">`</span> <span style="color:#f92672">]</span>;<span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;Floder&#34;</span> <span style="color:#e6db74">`</span>date +%Y%m%d<span style="color:#e6db74">`</span> <span style="color:#e6db74">&#34;already exists.&#34;</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    mkdir /opt/local_backup/<span style="color:#e6db74">`</span>date +%Y%m%d<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;New floder&#34;</span> <span style="color:#e6db74">`</span>date +%Y%m%d<span style="color:#e6db74">`</span>  | tee -a /opt/local_backup/backuplog.txt
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>chmod +777 /opt/local_backup/<span style="color:#e6db74">`</span>date +%Y%m%d<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>cd /opt/local_backup/<span style="color:#e6db74">`</span>date +%Y%m%d<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;1.dump database&#34;</span> | tee -a /opt/local_backup/backuplog.txt
+</span></span><span style="display:flex;"><span>sudo -Hu postgres pg_dump -d akkoma --format<span style="color:#f92672">=</span>custom -f /opt/local_backup/<span style="color:#e6db74">`</span>date +%Y%m%d<span style="color:#e6db74">`</span>/akkoma.pgdump
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;2. copy upload &amp; static folder&#34;</span> | tee -a /opt/local_backup/backuplog.txt
+</span></span><span style="display:flex;"><span>cp -r /var/lib/akkoma/static /opt/local_backup/<span style="color:#e6db74">`</span>date +%Y%m%d<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>cp -r /var/lib/akkoma/uploads /opt/local_backup/<span style="color:#e6db74">`</span>date +%Y%m%d<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;3. copy config file&#34;</span> | tee -a /opt/local_backup/backuplog.txt
+</span></span><span style="display:flex;"><span>cp /etc/akkoma/config.exs /opt/local_backup/<span style="color:#e6db74">`</span>date +%Y%m%d<span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;restart akkoma&#34;</span> | tee -a /opt/local_backup/backuplog.txt
+</span></span><span style="display:flex;"><span>sudo systemctl start akkoma
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">`</span>date +<span style="color:#e6db74">&#34;%Y-%m-%d %H:%M:%S&#34;</span><span style="color:#e6db74">`</span> <span style="color:#e6db74">&#34;finished&#34;</span> | tee -a /opt/local_backup/backuplog.txt
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Backup for&#34;</span> <span style="color:#e6db74">`</span>date +%Y%m%d<span style="color:#e6db74">`</span> <span style="color:#e6db74">&#34;done!&#34;</span> | tee -a /opt/local_backup/backuplog.txt
+</span></span></code></pre></div><p>删除超过15天的备份</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vim clear.sh
+</span></span><span style="display:flex;"><span>find /opt/local_backup/ -type d -mtime +15 -exec rm -rf <span style="color:#f92672">{}</span> <span style="color:#ae81ff">\;</span>
+</span></span></code></pre></div><p>设置定时任务</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>crontab -e
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">00</span> <span style="color:#ae81ff">04</span> * * <span style="color:#ae81ff">6</span> root /bin/bash /opt/local_backup/backup.sh   
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">00</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">1</span> * * root /bin/bash /opt/local_backup/clear.sh
+</span></span></code></pre></div><h2 id="参考--致谢">参考 &amp; 致谢</h2>
+<p><a class="link" href="https://docs.akkoma.dev/stable/installation/otp_en/#detecting-flavour"  target="_blank" rel="noopener"
+	>Installing on Linux using OTP releases</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+<p><a class="link" href="https://im.happytoo.cyou/posts/2301%E5%A4%87%E4%BB%BDpleroma/#%E6%9C%AC%E5%9C%B0%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BD"  target="_blank" rel="noopener"
+	>备份pleroma记录</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+<p><a class="link" href="https://docs.akkoma.dev/stable/administration/CLI_tasks/instance/#managing-instance-configuration"  target="_blank" rel="noopener"
+	>Managing instance configuration</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+
+    
+</section>
+
+
+    <footer class="article-footer">
+  
+    <section class="article-tags">
+        
+            <a href="/tags/tutorial/">tutorial</a>
+        
+            <a href="/tags/akkoma/">Akkoma</a>
+        
+    </section>
+
+
+  </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title"></h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/post/build-discourse-site-on-ubuntu22/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">在 Ubuntu22.04 上搭建 Discourse 论坛</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/misskey/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Misskey 实例搭建教程</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/iterm2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">iTerm2 配置</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/about-dns-principle-and-vpn/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络通信过程 &#43; Vmess搭建</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/pleroma-operation-and-maintenance/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Pleroma | 维护日志(二) </h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+  <section class="copyright">
+    &copy;  2024 Falasool
+  </section>
+
+  <section class="powerby">
+    
+    <br />
+    
+  </section>
+
+  <section class="busuanzi">
+    <span id="busuanzi_container_site_uv" style='display:none'>
+      <span id="busuanzi_value_site_uv"></span> Views
+    </span>
+  </section>
+</footer>
+
+<style>
+  .busuanzi {
+    color: var(--body-text-color);
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+</style>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</main>
+    
+
+    </div>
+    <script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(210, 179, 75, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: rgb(210, 179, 75);
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+</script>
+
+  </body>
+</html>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+
+<script
+  type="text/javascript"
+  src="https://demo.hellozwh.com/source/canvas-nest.min.js"
+></script>
+
+<script>
+  pangu.spacingPage()
+</script>

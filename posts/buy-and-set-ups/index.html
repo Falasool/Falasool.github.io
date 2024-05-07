@@ -1,0 +1,55 @@
+<!doctype html><html><head lang=en><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>Pleroma | 购买服务器及之后要做什么 - Falasool</title><link rel=icon type=image/png href=static/img/favicon.png><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="建站前置准备（二）"><meta property="og:image" content><meta property="og:title" content="Pleroma | 购买服务器及之后要做什么"><meta property="og:description" content="建站前置准备（二）"><meta property="og:type" content="article"><meta property="og:url" content="https://falasool.github.io/posts/buy-and-set-ups/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-06-01T23:29:38+08:00"><meta property="article:modified_time" content="2023-06-01T23:29:38+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Pleroma | 购买服务器及之后要做什么"><meta name=twitter:description content="建站前置准备（二）"><script src=https://falasool.github.io/js/feather.min.js></script>
+<link href=https://falasool.github.io/css/fonts.4bacf4386d3f58fdc378d205a903311c80158bf414d25698589b658e0273156d.css rel=stylesheet><link rel=stylesheet type=text/css media=screen href=https://falasool.github.io/css/main.42ea0af34aee3ba499cf9fa3204f9c629e4d0c0434c099da10346cf97e22e0c6.css><link id=darkModeStyle rel=stylesheet type=text/css href=https://falasool.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css media="(prefers-color-scheme: dark)"></head><body><div class=content><header><div class=main><a href=https://falasool.github.io/>Falasool</a></div><nav><a href=/friends/></a>
+<a href=/about>About</a>
+<a href=/friends>Friends</a>
+<a href=/tags>Tags</a></nav></header><main><article><div class=title><h1 class=title>Pleroma | 购买服务器及之后要做什么</h1><div class=meta>Posted on Jun 1, 2023</div></div><section class=body><h2 id=购买服务器>购买服务器</h2><p>选 intel - 美西机房 - Debian11 - 1C1G 25G SSD 1TB</p><p>添加 SSH，生成密钥</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>ssh-keygen -t rsa -b 4096 -C &#34;example comment&#34;
+</span></span></code></pre></div><p>打印出公钥内容，粘贴进 VPS 服务商的界面去</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>  cat /Users/userName/.ssh/id_rsa.pub
+</span></span></code></pre></div><p>用 SSH 终端远程登录，测试 IP 中国大陆是否可用</p><ul><li><a href=http://ping.pe/>http://ping.pe/</a></li><li><a href=https://ping.chinaz.com/>https://ping.chinaz.com/</a></li></ul><h2 id=修改服务器时区>修改服务器时区</h2><p>查看当前时区</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>admin@xxx:~# date
+</span></span><span style=display:flex><span>Fri 02 Jun 2023 01:25:08 PM UTC
+</span></span></code></pre></div><p>修改时区，然后再次检查当前时区</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span># 删除默认时区
+</span></span><span style=display:flex><span>admin@xxx:~# rm -rf /etc/localtime
+</span></span><span style=display:flex><span># 修改为上海
+</span></span><span style=display:flex><span>admin@xxx:~# ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</span></span><span style=display:flex><span># 检查
+</span></span><span style=display:flex><span>admin@xxx:~# date
+</span></span><span style=display:flex><span>Fri 02 Jun 2023 01:27:14 PM CST
+</span></span></code></pre></div><h2 id=安装常用工具>安装常用工具</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>apt update &amp;&amp; apt install curl wget screen tree git htop bash-completion fail2ban vim -y
+</span></span></code></pre></div><ul><li><p>curl：请求 web 服务器</p></li><li><p>wget：下载软件包</p></li><li><p>screen：终端管理工具，随手 <code>screen -S name</code></p></li><li><p>tree：显示目录结构</p></li><li><p>htop：监控进程</p></li><li><p>bash-completion：命令自动补全工具，按 [Tab][Tab]</p></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#75715e># 定位 bash-completion 配置文件</span>
+</span></span><span style=display:flex><span>find / -name <span style=color:#e6db74>&#34;bash_completion.d&#34;</span>
+</span></span><span style=display:flex><span>/etc/bash_completion.d
+</span></span><span style=display:flex><span><span style=color:#75715e># 添加 docker 的自动补全，重启 bash</span>
+</span></span><span style=display:flex><span>cd /etc/bash_completion.d
+</span></span><span style=display:flex><span>curl -L -O https://raw.githubusercontent.com/docker/compose/<span style=color:#66d9ef>$(</span>docker-compose version --short<span style=color:#66d9ef>)</span>/contrib/completion/bash/docker-compose
+</span></span></code></pre></div><ul><li>fail2ban：防止暴力破解攻击，在 <code>/etc/fail2ban/jail.conf</code> 修改配置，然后激活</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#75715e># 检验有没有正确启动</span>
+</span></span><span style=display:flex><span>fail2ban-client ping
+</span></span><span style=display:flex><span><span style=color:#75715e># 查看目前启用的规则</span>
+</span></span><span style=display:flex><span>fail2ban-client status
+</span></span><span style=display:flex><span><span style=color:#75715e># 查看某个规则下被封禁的次数、ip</span>
+</span></span><span style=display:flex><span>fail2ban-client status sshd
+</span></span></code></pre></div><h2 id=更改终端颜色>更改终端颜色</h2><p>进入 /etc/profile 文件，<code>vim /etc/profile</code>，修改命令行提示符的颜色设置</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>PS1<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 更新文件</span>
+</span></span><span style=display:flex><span>source /etc/profile
+</span></span></code></pre></div><p>解释：PS1变量代表&lt;用户名+主机名+路径名（长路径）+ $></p><p>🤔❓问题：每次登录都要重新 <code>source /etc/profile</code> 让环境变量生效</p><p>💡解决：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vim ~/.bashrc
+</span></span><span style=display:flex><span><span style=color:#75715e># 添加如下代码</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> <span style=color:#f92672>[</span> -f /etc/profile <span style=color:#f92672>]</span>; <span style=color:#66d9ef>then</span>
+</span></span><span style=display:flex><span>. /etc/profile
+</span></span><span style=display:flex><span><span style=color:#66d9ef>fi</span>
+</span></span></code></pre></div><h2 id=添加-swap>添加 SWAP</h2><p>确认是否已存在 SWAP</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>free -m
+</span></span></code></pre></div><p>有 Swap 项而且 total 列不为零，说明 Swap 已存在，可以自行修改分区容量，参考：为 <a href=https://www.vvave.net/archives/add-swap-and-repartition-swap-for-linux.html>Linux 添加 swap 分区或修改 swap 分区容量</a></p><h2 id=防火墙>防火墙</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>ufw allow OpenSSH
+</span></span><span style=display:flex><span>ufw enable
+</span></span><span style=display:flex><span>ufw allow http
+</span></span><span style=display:flex><span>ufw allow https
+</span></span><span style=display:flex><span>ufw allow 80/tcp
+</span></span><span style=display:flex><span>ufw allow 443/tcp
+</span></span><span style=display:flex><span>ufw status
+</span></span><span style=display:flex><span><span style=color:#75715e># or</span>
+</span></span><span style=display:flex><span>ufw default deny incoming
+</span></span><span style=display:flex><span>ufw default allow outgoing
+</span></span><span style=display:flex><span>ufw allow ssh
+</span></span><span style=display:flex><span>ufw allow http
+</span></span><span style=display:flex><span>ufw allow https
+</span></span><span style=display:flex><span>ufw enable
+</span></span><span style=display:flex><span>ufw status numbered
+</span></span><span style=display:flex><span>ufw reload
+</span></span></code></pre></div><h2 id=参考--致谢>参考 & 致谢</h2><p><a href=https://einverne.github.io/post/2015/12/things-to-do-after-buying-vps.html#change-default-shell>购买 VPS 之后需要做的事情</a></p><p><a href=https://einverne.github.io/post/2021/07/vps-benchmark.html>VPS 性能测试</a></p><p><a href=https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html>如何利用Docker搭建Mastodon实例（一）：基础搭建篇</a></p></section><div class=post-tags><nav class="nav tags"><ul class=tags><li><a href=/tags/vps>vps</a></li><li><a href=/tags/pleroma>pleroma</a></li><li><a href=/tags/fediverse>fediverse</a></li></ul></nav></div></article></main><footer><div style=display:flex><a class=soc href=https://github.com/falasool/ rel=me title=GitHub><i data-feather=github></i></a></div><div class=footer-info>2024 © Falaool | Built with <a href=https://gohugo.io>Hugo</a> & Theme <a href=https://github.com/athul/archie>Archie</a> design by Athul</div></footer><script>feather.replace()</script></div></body></html>

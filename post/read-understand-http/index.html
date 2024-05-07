@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html
+  lang="en-us"
+  dir="ltr"
+>
+  <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='远程获取内容失败，请检查 API 有效性。 阅读笔记，讲得比较浅，结构有点散，但还是收获了一些 HTTP 协议 用于服务端和客户端之间的通信 // 请求报文： // 请求方法'><title>阅读｜《图解HTTP》</title>
+
+<link rel='canonical' href='https://falasool.github.io/post/read-understand-http/'>
+
+<link rel="stylesheet" href="/scss/style.min.0147dab71443626c251957a4d123df288cfea1f5d5abc428ef3cc283bdafb846.css"><meta property='og:title' content='阅读｜《图解HTTP》'>
+<meta property='og:description' content='远程获取内容失败，请检查 API 有效性。 阅读笔记，讲得比较浅，结构有点散，但还是收获了一些 HTTP 协议 用于服务端和客户端之间的通信 // 请求报文： // 请求方法'>
+<meta property='og:url' content='https://falasool.github.io/post/read-understand-http/'>
+<meta property='og:site_name' content='Falasool'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='HTTP' /><meta property='article:tag' content='tech' /><meta property='article:published_time' content='2024-03-07T19:13:22&#43;08:00'/><meta property='article:modified_time' content='2024-03-07T19:13:22&#43;08:00'/>
+<meta name="twitter:title" content="阅读｜《图解HTTP》">
+<meta name="twitter:description" content="远程获取内容失败，请检查 API 有效性。 阅读笔记，讲得比较浅，结构有点散，但还是收获了一些 HTTP 协议 用于服务端和客户端之间的通信 // 请求报文： // 请求方法"><style>
+   
+  :root {
+    --article-font-family: 'Noto Serif HK', var(--base-font-family);
+  }
+</style>
+
+<script>
+  ;(function () {
+    const customFont = document.createElement('link')
+    customFont.href =
+      'https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@300;400;500;600;700&display=swap'
+    customFont.type = 'text/css'
+    customFont.rel = 'stylesheet'
+
+    document.head.appendChild(customFont)
+  })()
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogponder-favicon.png"
+    />
+  </head>
+  <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "auto");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div
+      class="container main-container flex on-phone--column compact"
+    ><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Falasool</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/friends/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Friends</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/badges/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-app-window" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+  <path d="M6 8h.01" />
+  <path d="M9 8h.01" />
+</svg>
+
+
+
+                
+                <span>Projects</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/posts' >
+                
+                
+                
+                <span>All posts</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about' >
+                
+                
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags' >
+                
+                
+                
+                <span>Tags</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+  
+  <header class="article-category">
+    
+    <a
+      href="/categories/computernetwork/"
+      
+    >
+      ComputerNetwork
+    </a>
+    
+    <a
+      href="/categories/reading/"
+      
+    >
+      Reading
+    </a>
+    
+    <a
+      href="/categories/interview/"
+      
+    >
+      Interview
+    </a>
+    
+  </header>
+  
+
+  <div class="article-title-wrapper">
+    <h2 class="article-title">
+      <a href="/post/read-understand-http/">阅读｜《图解HTTP》</a>
+    </h2>
+
+    
+  </div>
+
+  
+  
+
+  
+  
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    
+           
+<p style="text-align: center">
+  <small>远程获取内容失败，请检查 API 有效性。</small>
+</p>
+
+
+<style>
+   
+  .db-card {
+    margin: 2.5rem 3rem;
+    background: var(--card-background);
+    border-radius: 7px;
+     
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  .db-card-subject {
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.6;
+    padding: 12px;
+    position: relative;
+  }
+  .dark .db-card {
+    background: var(--card-background);
+  }
+  .db-card-content {
+    flex: 1 1 auto;
+  }
+  .db-card-post {
+    width: 9.6rem;
+    margin-right: 15px;
+    display: flex;
+    flex: 0 0 auto;
+  }
+
+  .db-card-title {
+    font-size: 14px;
+    color: var(--card-text-color-main);
+  }
+
+  .db-orig_title,
+  .db-card-author-translator,
+  .db-card-publish,
+  .db-card-isbn {
+    font-size: 12px;
+    color: var(--card-text-color-main);
+  }
+
+  .db-card-isbn {
+    margin-bottom: 10px;
+  }
+
+  .db-card-title a {
+    text-decoration: none !important;
+  }
+  .db-card-abstract,
+  .db-card-comment {
+    font-size: 10px;
+    overflow: scroll;
+    max-height: 10rem;
+    color: var(--card-text-color-main);
+  }
+  .db-card-cate {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #f99b01;
+    padding: 1px 8px;
+    font-size: small;
+    font-style: italic;
+    border-radius: 0 8px 0 8px;
+    text-transform: capitalize;
+  }
+  .db-card-post img {
+    width: 9.6rem !important;
+     
+    border-radius: 4px;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+  .rating {
+    margin: 0 0 5px;
+    font-size: 13px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+  }
+  .rating .allstardark {
+    position: relative;
+    color: #f99b01;
+    height: 16px;
+    width: 80px;
+    background-size: auto 100%;
+    margin-right: 8px;
+    background-repeat: repeat;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxwYXRoIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjMtMTIuMyAxMi43LTEyLjEgMzIuOS42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWMtMS4yIDYuOS0uMSAxNC4xIDMuMiAyMC4zIDguMiAxNS42IDI3LjYgMjEuNyA0My4yIDEzLjRMNTEyIDc1NGwyMjcuMSAxMTkuNGM2LjIgMy4zIDEzLjQgNC40IDIwLjMgMy4yIDE3LjQtMyAyOS4xLTE5LjUgMjYuMS0zNi45bC00My40LTI1Mi45IDE4My43LTE3OS4xYzUtNC45IDguMy0xMS4zIDkuMy0xOC4zIDIuNy0xNy41LTkuNS0zMy43LTI3LTM2LjN6TTY2NC44IDU2MS42bDM2LjEgMjEwLjNMNTEyIDY3Mi43IDMyMy4xIDc3MmwzNi4xLTIxMC4zLTE1Mi44LTE0OUw0MTcuNiAzODIgNTEyIDE5MC43IDYwNi40IDM4MmwyMTEuMiAzMC43LTE1Mi44IDE0OC45eiIgZmlsbD0iI2Y5OWIwMSIvPjwvc3ZnPg==);
+  }
+  .rating .allstarlight {
+    position: absolute;
+    left: 0;
+    color: #f99b01;
+    height: 16px;
+    overflow: hidden;
+    background-size: auto 100%;
+    background-repeat: repeat;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxwYXRoIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjMtMTIuMyAxMi43LTEyLjEgMzIuOS42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWMtMS4yIDYuOS0uMSAxNC4xIDMuMiAyMC4zIDguMiAxNS42IDI3LjYgMjEuNyA0My4yIDEzLjRMNTEyIDc1NGwyMjcuMSAxMTkuNGM2LjIgMy4zIDEzLjQgNC40IDIwLjMgMy4yIDE3LjQtMyAyOS4xLTE5LjUgMjYuMS0zNi45bC00My40LTI1Mi45IDE4My43LTE3OS4xYzUtNC45IDguMy0xMS4zIDkuMy0xOC4zIDIuNy0xNy41LTkuNS0zMy43LTI3LTM2LjN6IiBmaWxsPSIjZjk5YjAxIi8+PC9zdmc+);
+  }
+  @media (max-width: 550px) {
+    .db-card {
+      margin: 0.8rem 1rem;
+    }
+    .db-card-comment {
+      display: none;
+    }
+    .db-card-cate {
+      font-size: 10px;
+    }
+  }
+   
+</style>
+
+<p>阅读笔记，讲得比较浅，结构有点散，但还是收获了一些</p>
+<h2 id="http-协议">HTTP 协议</h2>
+<p>用于服务端和客户端之间的通信</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 请求报文：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 请求方法 + uri + 协议版本 + [请求首部字段] + 内容实体
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 请求头 + 请求行 + 请求体，每一部分用换行符区分
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">GET</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">index</span>.<span style="color:#a6e22e">htm</span> <span style="color:#a6e22e">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Host</span><span style="color:#f92672">:</span><span style="color:#a6e22e">hackr</span>.<span style="color:#a6e22e">ip</span>
+</span></span></code></pre></div><ul>
+<li>HTTP 是一种无状态 stateless 协议，状态交给 cookie etc.</li>
+</ul>
+<h3 id="cookie">Cookie</h3>
+<p>使用 cookie 进行状态管理，通过在请求、响应报文中添加 cookie 信息控制客户端的状态</p>
+<ul>
+<li>cookie 产生于服务端，包含在发送给客户端的 header 里的 set-cookie 字段</li>
+<li>客户端根据 set-cookie 保存一段纯文本信息</li>
+<li>再次向服务端发请求时，请求报文会带上这个cookicookie</li>
+<li>服务端接收到 cookie 和服务端记录对比，得到之前的状态信息</li>
+</ul>
+<p>为 Cookie 服务的头部字段见 [[HTTP#Cookie 相关字段]]</p>
+<p>用 Cookie 管理 Session（会话）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">Set</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Cookie</span><span style="color:#f92672">:&lt;</span><span style="color:#a6e22e">Session</span><span style="color:#f92672">-</span><span style="color:#a6e22e">ID</span><span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><h3 id="ajax">Ajax</h3>
+<p>解决 HTTP 的缺点：</p>
+<ul>
+<li>1 条链接上只能发一个请求</li>
+<li>头部未经压缩就发送，头部信息越多延迟越大</li>
+<li>请求只能从客户端开始，客户端不能接收响应以外的指令</li>
+</ul>
+<p>核心 API：<code>XMLHttpRequest</code> 实现无刷新局部更新</p>
+<h3 id="http-头部">HTTP 头部</h3>
+<h4 id="通用头部字段">通用头部字段</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">Cache</span><span style="color:#f92672">-</span><span style="color:#a6e22e">control</span><span style="color:#f92672">:</span><span style="color:#66d9ef">private</span>,<span style="color:#a6e22e">max</span><span style="color:#f92672">-</span><span style="color:#a6e22e">age</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>,<span style="color:#a6e22e">no</span><span style="color:#f92672">-</span><span style="color:#a6e22e">cache</span> <span style="color:#75715e">// 控制缓存
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Collection</span><span style="color:#f92672">:</span><span style="color:#a6e22e">close</span> <span style="color:#75715e">// 断开连接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>...
+</span></span></code></pre></div><h4 id="请求头部字段">请求头部字段</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">User</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Agent</span><span style="color:#f92672">:</span><span style="color:#a6e22e">Mozilla</span><span style="color:#f92672">/</span><span style="color:#ae81ff">5.0</span> <span style="color:#75715e">// 将创建请求的浏览器和用户代理名称等信息发给服务端，写爬虫用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Accept</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">text</span><span style="color:#f92672">/</span><span style="color:#a6e22e">html</span> <span style="color:#75715e">// 通知服务端，用户代理能处理的数据类型/格式和q权重
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Authorization</span><span style="color:#f92672">:</span><span style="color:#a6e22e">Basic</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dWufaslngafaJFljfsl</span><span style="color:#f92672">==</span> <span style="color:#75715e">// 通知服务端，用户代理的认证信息
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// If-xxx 条件请求
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">If</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Modified</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Since</span><span style="color:#f92672">:</span><span style="color:#a6e22e">Thu</span>,<span style="color:#ae81ff">15</span> <span style="color:#a6e22e">Apr</span> <span style="color:#ae81ff">2004</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">00</span><span style="color:#f92672">:</span><span style="color:#ae81ff">00</span><span style="color:#f92672">:</span><span style="color:#ae81ff">00</span> <span style="color:#a6e22e">GMT</span> <span style="color:#75715e">// 如果在指定日期之后，资源发生了更新，服务端才会接受请求，用于确认本地资源的有效性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Range</span><span style="color:#f92672">:</span><span style="color:#a6e22e">bytes</span><span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span><span style="color:#f92672">-</span><span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><h4 id="响应头部字段">响应头部字段</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">Age</span><span style="color:#f92672">:</span><span style="color:#ae81ff">600</span> <span style="color:#75715e">// 源服务器600s前创建了响应
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Server</span><span style="color:#f92672">:</span><span style="color:#a6e22e">Apache</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2.2</span>.<span style="color:#ae81ff">17</span>(<span style="color:#a6e22e">Unix</span>) <span style="color:#75715e">// 当前服务器上HTTP服务器的信息
+</span></span></span></code></pre></div><h4 id="实体头部字段">实体头部字段</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">Content</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Language</span><span style="color:#f92672">:</span><span style="color:#a6e22e">zh</span><span style="color:#f92672">-</span><span style="color:#a6e22e">CN</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Content</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Length</span><span style="color:#f92672">:</span><span style="color:#ae81ff">15000</span> <span style="color:#75715e">// 实体主体的大小（字节）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Content</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Type</span><span style="color:#f92672">:</span><span style="color:#a6e22e">text</span><span style="color:#f92672">/</span><span style="color:#a6e22e">html</span>;<span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#a6e22e">UTF</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8</span> <span style="color:#75715e">// 实体主体内对象的媒体类型
+</span></span></span></code></pre></div><h5 id="cookie-相关字段">Cookie 相关字段</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">Set</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Cookie</span> <span style="color:#75715e">// 响应头部字段
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Cookie</span> <span style="color:#75715e">// 请求头部字段
+</span></span></span></code></pre></div><h4 id="其他头部字段">其他头部字段</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">X</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Frame</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Options</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">X</span><span style="color:#f92672">-</span><span style="color:#a6e22e">XSS</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Protection</span>
+</span></span></code></pre></div><h3 id="http11-中的-7-种方法">HTTP/1.1 中的 7 种方法</h3>
+<h4 id="get">GET</h4>
+<p>请求资源</p>
+<h4 id="post">POST</h4>
+<p>发送实体的主体 entity body</p>
+<h4 id="put">PUT</h4>
+<p>传输文件，类似 POST，但是没有验证机制，几乎不使用</p>
+<h4 id="head">HEAD</h4>
+<p>获取报文首部，和 GET 一样，只是不返回报文主体部分</p>
+<h4 id="delete">DELETE</h4>
+<p>删除文件，和 PUT 相反，同样的原因不推荐使用</p>
+<h4 id="options">OPTIONS</h4>
+<p>查询资源支持什么方法</p>
+<ul>
+<li>INVITE</li>
+<li>ACK</li>
+<li>CANCEL</li>
+<li>&hellip;</li>
+</ul>
+<h4 id="trace">TRACE</h4>
+<p>服务端把接收到的请求报文再还给客户端，这样可以检查请求有没有/怎么样被加工篡改的</p>
+<h4 id="connect">CONNECT</h4>
+<h3 id="http-报文">HTTP 报文</h3>
+<p>是多行数据构成的字符串文本</p>
+<ul>
+<li>报文message</li>
+<li>实体 entity</li>
+</ul>
+<h4 id="请求报文">请求报文</h4>
+<h4 id="响应报文">响应报文</h4>
+<h4 id="多部分对象集合-multipart">多部分对象集合 Multipart</h4>
+<p>包含图片、文本、视频等多个不同类型的数据</p>
+<p>multipart/form-data：上传 web 表单文件
+multipart/byteranges：范围请求，允许服务端只发送 HTTP 消息的一部分到客户端；传输大媒体文件、断点续传时很有用</p>
+<h3 id="断点续传获取部分内容的范围请求-range-request">断点续传（获取部分内容的范围请求 Range Request）</h3>
+<ul>
+<li>用首部字段 Range 指定资源的 byte 范围</li>
+<li>范围请求的对应状态码为 206，如果服务端无法响应范围请求，会返回 200 和完整的实体内容</li>
+</ul>
+<p>例如：有一份 10000 字节的资源</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">GET</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">tip</span>.<span style="color:#a6e22e">jpg</span> <span style="color:#a6e22e">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Host</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">www</span>.<span style="color:#a6e22e">usagidesign</span>.<span style="color:#a6e22e">jp</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 返回5001-10000的部分
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Range</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">bytes</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5001</span><span style="color:#f92672">-</span><span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 返回5001之后的全部
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">Range</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">bytes</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5001</span><span style="color:#f92672">-</span>
+</span></span></code></pre></div><h3 id="内容协商-content-negotiationi8n">内容协商 content negotiation==i8n</h3>
+<p>根据浏览器的默认语言（en），返回一个 uri 的 en 页面</p>
+<p>依据是请求报文中的一些首部字段：</p>
+<ul>
+<li>Accept</li>
+<li>Accept-Charset</li>
+<li>Accept-Encoding</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+</ul>
+<p>内容协商可以由服务端或客户端完成</p>
+<h3 id="http状态码">HTTP状态码</h3>
+<p>1-信息类
+2-成功
+3-重定向
+4-客户端错误
+5-服务端错误</p>
+<h3 id="web-服务器">Web 服务器</h3>
+<p>静态 web 服务器Nginx</p>
+<h3 id="数据转发">数据转发</h3>
+<ul>
+<li>代理
+<ul>
+<li>缓存代理 CDN</li>
+</ul>
+</li>
+<li>网关：网关是一个概念，是协议转换器（把 HTTP 转换为其他协议）</li>
+<li>隧道</li>
+</ul>
+<h2 id="https">HTTPS</h2>
+<p>http 的缺点：</p>
+<ul>
+<li>明文传输</li>
+<li>不验证通信方的身份</li>
+<li>无法保证完整性（中间人攻击）</li>
+</ul>
+<h2 id="tcp">TCP</h2>
+<p>提供字节流服务（分割数据包）</p>
+<h3 id="three-way-handshaking">three-way handshaking</h3>
+<p>TCP 的标志 flag：SYN、ACK</p>
+<ul>
+<li>SYN 是发送端生成的（请求同步）</li>
+<li>ACK 是接收端生成的（确认同步）</li>
+</ul>
+<p>第一次握手：发送端发送请求（syn=j）
+第二次握手：接收端返回 SYN、ACK 标志，告诉对方发送功能正常，自己的接收功能正常
+第三次握手：发送端告诉接收端，你的收发功能都正常（响应能力），可以开始通信了</p>
+<ul>
+<li>SYN blood 攻击：接到第 2 次握手后不回应第 3 次握手，服务器会发送 5 次请求然后丢弃请求。解决方法：cookie 记录恶意 ip、缩短服务器的等待时间</li>
+</ul>
+<p>为什么不 2 次握手：如果是 2 次握手，客户端发送一次请求后网络中断，一段时间后这个废弃的请求到达服务器，服务器就会正常响应，建立一个无效的链接，增加了网络开销</p>
+<h2 id="dns">DNS</h2>
+<p>应用层，把域名解析到 IP（联想：ARP）</p>
+<h2 id="uriurl">URI/URL</h2>
+<p>URL 是 URI 的子集，url 一定是 uri，比如网址画 url 就是 uri，同时邮件地址、电话号码也是 uri</p>
+<h2 id="用户身份认证">用户身份认证</h2>
+<p>认证方式：</p>
+<ul>
+<li>BASIC（401）</li>
+<li>DIGEST</li>
+<li>SSL 客户端</li>
+<li>FormBase</li>
+</ul>
+
+    
+</section>
+
+
+    <footer class="article-footer">
+  
+    <section class="article-tags">
+        
+            <a href="/tags/http/">HTTP</a>
+        
+            <a href="/tags/tech/">tech</a>
+        
+    </section>
+
+
+  </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title"></h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/post/nginx-memos/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Nginx</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/figma/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Figma</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/iterm2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">iTerm2 配置</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/about-dns-principle-and-vpn/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络通信过程 &#43; Vmess搭建</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/sql/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SQL 入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+  <section class="copyright">
+    &copy;  2024 Falasool
+  </section>
+
+  <section class="powerby">
+    
+    <br />
+    
+  </section>
+
+  <section class="busuanzi">
+    <span id="busuanzi_container_site_uv" style='display:none'>
+      <span id="busuanzi_value_site_uv"></span> Views
+    </span>
+  </section>
+</footer>
+
+<style>
+  .busuanzi {
+    color: var(--body-text-color);
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+</style>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</main>
+    
+
+    </div>
+    <script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(210, 179, 75, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: rgb(210, 179, 75);
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+</script>
+
+  </body>
+</html>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+
+<script
+  type="text/javascript"
+  src="https://demo.hellozwh.com/source/canvas-nest.min.js"
+></script>
+
+<script>
+  pangu.spacingPage()
+</script>

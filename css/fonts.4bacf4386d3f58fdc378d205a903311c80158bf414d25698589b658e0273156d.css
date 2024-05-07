@@ -1,0 +1,44 @@
+/* LXGWWenKaiMono */
+@font-face {
+  font-display: swap;
+  font-family: 'LXGWWenKaiMono-Bold';
+  font-style: normal;
+  src: url('../fonts/LXGWWenKaiMono-Bold.ttf'); /* Safari, Android, iOS */
+}
+@font-face {
+  font-display: swap;
+  font-family: 'LXGWWenKaiMono-Light';
+  font-style: normal;
+  src: url('../fonts/LXGWWenKaiMono-Light.ttf'); /* Safari, Android, iOS */
+}
+@font-face {
+  font-display: swap;
+  font-family: 'LXGWWenKaiMono-Regular';
+  font-style: normal;
+  src: url('../fonts/LXGWWenKaiMono-Regular.ttf'); /* Safari, Android, iOS */
+}
+/* JetBrainsMono */
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrainsMono-Bold';
+  font-style: normal;
+  src: url('../fonts/JetBrainsMono-Bold.ttf'); /* Safari, Android, iOS */
+}
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrainsMono-Light';
+  font-style: normal;
+  src: url('../fonts/JetBrainsMono-Light.ttf'); /* Safari, Android, iOS */
+}
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrainsMono-Regular';
+  font-style: normal;
+  src: url('../fonts/JetBrainsMono-Regular.ttf'); /* Safari, Android, iOS */
+}
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrainsMono-Italic';
+  font-style: normal;
+  src: url('../fonts/JetBrainsMono-Italic.ttf'); /* Safari, Android, iOS */
+}

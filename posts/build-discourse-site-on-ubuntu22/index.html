@@ -1,0 +1,53 @@
+<!doctype html><html><head lang=en><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>在 Ubuntu22.04 上搭建 Discourse 论坛 - Falasool</title><link rel=icon type=image/png href=static/img/favicon.png><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta property="og:image" content><meta property="og:title" content="在 Ubuntu22.04 上搭建 Discourse 论坛"><meta property="og:description" content><meta property="og:type" content="article"><meta property="og:url" content="https://falasool.github.io/posts/build-discourse-site-on-ubuntu22/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-07-22T21:28:27+08:00"><meta property="article:modified_time" content="2023-07-22T21:28:27+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="在 Ubuntu22.04 上搭建 Discourse 论坛"><meta name=twitter:description content><script src=https://falasool.github.io/js/feather.min.js></script>
+<link href=https://falasool.github.io/css/fonts.4bacf4386d3f58fdc378d205a903311c80158bf414d25698589b658e0273156d.css rel=stylesheet><link rel=stylesheet type=text/css media=screen href=https://falasool.github.io/css/main.42ea0af34aee3ba499cf9fa3204f9c629e4d0c0434c099da10346cf97e22e0c6.css><link id=darkModeStyle rel=stylesheet type=text/css href=https://falasool.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css media="(prefers-color-scheme: dark)"></head><body><div class=content><header><div class=main><a href=https://falasool.github.io/>Falasool</a></div><nav><a href=/friends/></a>
+<a href=/about>About</a>
+<a href=/friends>Friends</a>
+<a href=/tags>Tags</a></nav></header><main><article><div class=title><h1 class=title>在 Ubuntu22.04 上搭建 Discourse 论坛</h1><div class=meta>Posted on Jul 22, 2023</div></div><section class=body><p>买服务器，系统为 Ubuntu 22.04 - x86_64</p><p>买域名，托管到 CloudFlare（开DNS only），指向服务器IP</p><p>插播：Flarum论坛也好看，还轻量</p><h2 id=chore>Chore</h2><p>SSH终端颜色</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#75715e># 进入 /etc/profile 文件</span>
+</span></span><span style=display:flex><span>vim /etc/profile
+</span></span><span style=display:flex><span><span style=color:#75715e># 增加这一行</span>
+</span></span><span style=display:flex><span>PS1<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 更新文件</span>
+</span></span><span style=display:flex><span>source /etc/profile
+</span></span></code></pre></div><p>安装常用工具</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>apt-get install curl wget screen tree git htop bash-completion fail2ban ufw -y
+</span></span></code></pre></div><p>开放端口</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>ufw allow OpenSSH
+</span></span><span style=display:flex><span>ufw enable
+</span></span><span style=display:flex><span>ufw allow http
+</span></span><span style=display:flex><span>ufw allow https
+</span></span><span style=display:flex><span>ufw allow 80/tcp
+</span></span><span style=display:flex><span>ufw allow 443/tcp
+</span></span><span style=display:flex><span>ufw status
+</span></span></code></pre></div><p>检查 80 端口有无被占用</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>netstat -tuln | grep 80# 返回为空说明没有
+</span></span><span style=display:flex><span>service nginx stop <span style=color:#75715e># nginx占了，停止nginx</span>
+</span></span></code></pre></div><p>SMTP 配置</p><p>刚开始用的 Mailjet，什么都配置好了，服务已经跑起来了，发不了邮件导致连管理员也注册不了 😅 原来是要发工单人工审核，还被拒了。转Mailgun</p><p>[测试SMTP配置]</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>./launcher enter app
+</span></span><span style=display:flex><span>x86_64 arch detected.
+</span></span><span style=display:flex><span>rake emails:test<span style=color:#f92672>[</span>your-email@gmail.com<span style=color:#f92672>]</span>
+</span></span></code></pre></div><h2 id=本体>本体</h2><p>Docker</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>curl -fsSL https://get.docker.com -o get-docker.sh
+</span></span><span style=display:flex><span>sh get-docker.sh
+</span></span></code></pre></div><p>Discourse</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>git clone https://github.com/discourse/discourse_docker.git /var/discourse
+</span></span><span style=display:flex><span>cd /var/discourse
+</span></span><span style=display:flex><span>chmod <span style=color:#ae81ff>700</span> containers
+</span></span><span style=display:flex><span><span style=color:#75715e># 启动容器</span>
+</span></span><span style=display:flex><span>./discourse-setup
+</span></span></code></pre></div><p>#报错：输入 <code>Hostname for your Discourse? [discourse.example.com]:</code> 后：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>Checking your domain name . . .
+</span></span><span style=display:flex><span>WARNING: Port <span style=color:#ae81ff>443</span> of computer does not appear to be accessible using hostname:  xxx.com.
+</span></span><span style=display:flex><span>WARNING: Connection to http://xxx.com <span style=color:#f92672>(</span>port 80<span style=color:#f92672>)</span> also fails.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>This suggests that xxx.com resolves to some IP address that does not reach this
+</span></span><span style=display:flex><span>machine where you are installing discourse.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>The first thing to <span style=color:#66d9ef>do</span> is confirm that xxx.com resolves to the IP address of this server.
+</span></span><span style=display:flex><span>You usually <span style=color:#66d9ef>do</span> this at the same place you purchased the domain.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>If you are sure that the IP address resolves correctly, it could be a firewall issue.
+</span></span><span style=display:flex><span>A web search <span style=color:#66d9ef>for</span> <span style=color:#e6db74>&#34;open ports YOUR CLOUD SERVICE&#34;</span> might help.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>This tool is designed only <span style=color:#66d9ef>for</span> the most standard installations. If you cannot resolve
+</span></span><span style=display:flex><span>the issue above, you will need to edit containers/app.yml yourself and <span style=color:#66d9ef>then</span> type
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>./launcher rebuild app
+</span></span></code></pre></div><p>解决：cloudflare里开启 DNS only</p><p>成功启动容器后访问域名，注册管理员账户 🎉</p><h2 id=参考--致谢>参考 & 致谢</h2><p><a href=https://www.orgleaf.com/3098.html>让Discourse和其它网站跑在同一台主机上</a></p><p>安装依赖：php_serialize、miro、mysql2</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>apt-get install build-essential ruby-dev libmysqlclient-dev
+</span></span><span style=display:flex><span>apt-get install rubygems
+</span></span><span style=display:flex><span>gem install php_serialize
+</span></span><span style=display:flex><span>gem install miro
+</span></span><span style=display:flex><span>gem install mysql2
+</span></span></code></pre></div></section><div class=post-tags><nav class="nav tags"><ul class=tags><li><a href=/tags/tutorial>tutorial</a></li><li><a href=/tags/discourse>Discourse</a></li></ul></nav></div></article></main><footer><div style=display:flex><a class=soc href=https://github.com/falasool/ rel=me title=GitHub><i data-feather=github></i></a></div><div class=footer-info>2024 © Falaool | Built with <a href=https://gohugo.io>Hugo</a> & Theme <a href=https://github.com/athul/archie>Archie</a> design by Athul</div></footer><script>feather.replace()</script></div></body></html>

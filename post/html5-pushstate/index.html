@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html
+  lang="en-us"
+  dir="ltr"
+>
+  <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='为一碟醋______，请食'><title>Html5|新特性PushState</title>
+
+<link rel='canonical' href='https://falasool.github.io/post/html5-pushstate/'>
+
+<link rel="stylesheet" href="/scss/style.min.0147dab71443626c251957a4d123df288cfea1f5d5abc428ef3cc283bdafb846.css"><meta property='og:title' content='Html5|新特性PushState'>
+<meta property='og:description' content='为一碟醋______，请食'>
+<meta property='og:url' content='https://falasool.github.io/post/html5-pushstate/'>
+<meta property='og:site_name' content='Falasool'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='HTML' /><meta property='article:tag' content='tech' /><meta property='article:published_time' content='2024-03-12T19:39:03&#43;08:00'/><meta property='article:modified_time' content='2024-03-12T19:39:03&#43;08:00'/>
+<meta name="twitter:title" content="Html5|新特性PushState">
+<meta name="twitter:description" content="为一碟醋______，请食"><style>
+   
+  :root {
+    --article-font-family: 'Noto Serif HK', var(--base-font-family);
+  }
+</style>
+
+<script>
+  ;(function () {
+    const customFont = document.createElement('link')
+    customFont.href =
+      'https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@300;400;500;600;700&display=swap'
+    customFont.type = 'text/css'
+    customFont.rel = 'stylesheet'
+
+    document.head.appendChild(customFont)
+  })()
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogponder-favicon.png"
+    />
+  </head>
+  <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "auto");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div
+      class="container main-container flex on-phone--column compact"
+    ><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Falasool</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/friends/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Friends</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/badges/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-app-window" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+  <path d="M6 8h.01" />
+  <path d="M9 8h.01" />
+</svg>
+
+
+
+                
+                <span>Projects</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/posts' >
+                
+                
+                
+                <span>All posts</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about' >
+                
+                
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags' >
+                
+                
+                
+                <span>Tags</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+  
+  <header class="article-category">
+    
+    <a
+      href="/categories/frontend/"
+      
+    >
+      Frontend
+    </a>
+    
+  </header>
+  
+
+  <div class="article-title-wrapper">
+    <h2 class="article-title">
+      <a href="/post/html5-pushstate/">Html5|新特性PushState</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">为一碟醋______，请食</h3>
+    
+  </div>
+
+  
+  
+
+  
+  
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    
+    <h2 id="history">History</h2>
+<p><code>history.pushState()</code> 是什么？简单来说，是目前浏览器已经普遍支持的一种添加浏览历史记录的方法。</p>
+<p>首先，让我们来看看 <code>history</code> 对象，它保存了当前窗口访问过的所有页面网址</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// Console
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">history</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">History</span> {<span style="color:#a6e22e">length</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>, <span style="color:#a6e22e">scrollRestoration</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;auto&#39;</span>, <span style="color:#a6e22e">state</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>, <span style="color:#a6e22e">pushState</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">ƒ</span>, <span style="color:#a6e22e">replaceState</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">ƒ</span>}
+</span></span></code></pre></div><p>length &amp;  go/forward/back</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>window.<span style="color:#a6e22e">history</span>.<span style="color:#a6e22e">length</span> <span style="color:#75715e">// 3，当前窗口访问过三个地址（包括当前地址）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 浏览器的前进/后退按钮的实际操作（从browser cache中加载），以下两者等同
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">history</span>.<span style="color:#a6e22e">back</span>() <span style="color:#75715e">// history.go(-1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">history</span>.<span style="color:#a6e22e">forward</span>() <span style="color:#75715e">// history.go(1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">history</span>.<span style="color:#a6e22e">go</span>(<span style="color:#ae81ff">0</span>) <span style="color:#75715e">// default 为 0，刷新当前页面
+</span></span></span></code></pre></div><p>scrollRestoration</p>
+<p>滚动恢复行为：auto/manual 恢复到用户之前滚动到的地方/不管（</p>
+<h3 id="pushstate">pushState</h3>
+<p>向历史中添加一条记录（state对象，新页面标题，新的地址）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>window.<span style="color:#a6e22e">history</span>.<span style="color:#a6e22e">pushState</span>(<span style="color:#a6e22e">state</span>, <span style="color:#a6e22e">title</span>, <span style="color:#a6e22e">url</span>)
+</span></span></code></pre></div><p>参数：</p>
+<ul>
+<li>state：popstate事件触发时（back、go、forward前进后退会触发），state对象会传入回调参数，那么popstate的属性state就会包含当前历史记录的state对象的一个copy，储存在磁盘里，当浏览器重启时可以恢复（&lt; 16MiB），更多空间的话建议使用 sessionStorage / localStorage</li>
+<li>title：新网址title</li>
+<li>url：新网址url</li>
+</ul>
+<p>🙋 那我为什么用 pushState不用 <code>window.location = '#foo'</code>呢？</p>
+<p>pushState的优点：</p>
+<ul>
+<li>
+<p>跳转后页面不会发起新的文档请求</p>
+</li>
+<li>
+<p>新URL可以是和当前URL同源(跨域报错）的任意URL，浏览器添加history记录但是并不真的加载，也就是说假的也没事</p>
+</li>
+<li>
+<p>push的历史记录可以关联任意数据，基于hash值的话，必须将相关数据编码到一个短字符串里</p>
+</li>
+</ul>
+<p>等等，<code>popstate</code> 事件能讲讲吗？</p>
+<h3 id="popstate事件">popstate事件</h3>
+<p>处于激活状态的历史记录条目发生变化时（调用go/forward/back），popstate就会在对应的window对象上触发。popstate的对调函数的参数event.state指向pushState的state</p>
+<p>if 这个历史记录是用 <code>pushState</code> 或<code>replaceState</code> 操作过的，不会触发popstate事件</p>
+<p>⭐️ 应用：用户要离开当前页面时popup做二次确认（beforeunload）</p>
+<p>监听 popstate事件，一旦被触发，添加1条记录<code>history.pushState(null, null, document.URL)</code> 留在当前页面</p>
+<blockquote>
+<p>当popstate被触发时，记录已经回退了。在回退之前再添加一条当前url的记录，以保证回退后url不变</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">history</span>.<span style="color:#a6e22e">pushState</span>(<span style="color:#66d9ef">null</span>, <span style="color:#66d9ef">null</span>, <span style="color:#e6db74">&#39;/a&#39;</span>)
+</span></span><span style="display:flex;"><span>window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;popstate&#39;</span>, () =&gt; { <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;您确认要离开吗？&#39;</span>) })
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">history</span>.<span style="color:#a6e22e">pushState</span>(<span style="color:#66d9ef">null</span>, <span style="color:#66d9ef">null</span>, document.<span style="color:#a6e22e">URL</span>)
+</span></span></code></pre></div><p>⭐️ 应用：用户想从A页面进入一个无权限查看的地址B，让用户跳转到error.html C，用户返回时直接从C-&gt;A</p>
+<p>在B向C跳转时，使用<code>history.replace</code> 把B替换为C，这样记录就从A-B-C变成，A-C。在C页面back直接回到A</p>
+<h3 id="windowlocation">window.location</h3>
+<p><a class="link" href="https://www.w3schools.com/js/js_window_location.asp"  target="_blank" rel="noopener"
+	>https://www.w3schools.com/js/js_window_location.asp</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+<h3 id="replacestate">replaceState</h3>
+<p>修改当前的历史记录项</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>window.<span style="color:#a6e22e">history</span>.<span style="color:#a6e22e">replaceState</span>(<span style="color:#a6e22e">state</span>, <span style="color:#a6e22e">title</span>, <span style="color:#a6e22e">url</span>)
+</span></span></code></pre></div><p>🎉 醋来了：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">html</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">head</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">title</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">wait</span> <span style="color:#ae81ff">10</span> <span style="color:#a6e22e">sec</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">BOOM</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/title&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/head&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">body</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">h1</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">🚀</span><span style="color:#a6e22e">抓紧</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">要上天了</span><span style="color:#960050;background-color:#1e0010">！🚀</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/h1&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">total</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1000000</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">total</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">total</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">i</span>.<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">history</span>.<span style="color:#a6e22e">pushState</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#a6e22e">total</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/body&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/html&gt;</span>
+</span></span></code></pre></div><p>向你的浏览器历史里塞进 1000000 条记录😂 （雾</p>
+<p>这段代码来自 <a class="link" href="https://twitter.com/fatih_svml/status/689070600653041664"  target="_blank" rel="noopener"
+	>Fatih Sevimli</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+<p>来都来了复习一下：</p>
+<h2 id="sessionstorage-vs-localstorage">sessionStorage vs localStorage</h2>
+<p>while data in localStorage doesn&rsquo;t expire, data in sessionStorage is cleared when the page session ends.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>🍪cookie</th>
+<th>session</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>储存在客户端</td>
+<td>服务器端</td>
+</tr>
+<tr>
+<td>ASCII</td>
+<td>任意</td>
+</tr>
+<tr>
+<td>实效长</td>
+<td>短</td>
+</tr>
+<tr>
+<td>4k</td>
+<td>高</td>
+</tr>
+</tbody>
+</table></div>
+<p><a class="link" href="https://www.cnblogs.com/ityouknow/p/10856177.html"  target="_blank" rel="noopener"
+	>你真的了解cookie和session吗</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+<h2 id="参考--致谢">参考 &amp; 致谢</h2>
+<p><a class="link" href="https://javascript.ruanyifeng.com/bom/history.html"  target="_blank" rel="noopener"
+	>https://javascript.ruanyifeng.com/bom/history.html</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+<p><a class="link" href="https://juejin.cn/post/6948746074504986655"  target="_blank" rel="noopener"
+	>[高级]深入浅出浏览器的history对象</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+
+    
+</section>
+
+
+    <footer class="article-footer">
+  
+    <section class="article-tags">
+        
+            <a href="/tags/html/">HTML</a>
+        
+            <a href="/tags/tech/">tech</a>
+        
+    </section>
+
+
+  </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title"></h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/post/read-understand-http/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">阅读｜《图解HTTP》</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/figma/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Figma</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/iterm2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">iTerm2 配置</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/about-dns-principle-and-vpn/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络通信过程 &#43; Vmess搭建</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/sql/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SQL 入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+  <section class="copyright">
+    &copy;  2024 Falasool
+  </section>
+
+  <section class="powerby">
+    
+    <br />
+    
+  </section>
+
+  <section class="busuanzi">
+    <span id="busuanzi_container_site_uv" style='display:none'>
+      <span id="busuanzi_value_site_uv"></span> Views
+    </span>
+  </section>
+</footer>
+
+<style>
+  .busuanzi {
+    color: var(--body-text-color);
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+</style>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</main>
+    
+
+    </div>
+    <script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(210, 179, 75, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: rgb(210, 179, 75);
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+</script>
+
+  </body>
+</html>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+
+<script
+  type="text/javascript"
+  src="https://demo.hellozwh.com/source/canvas-nest.min.js"
+></script>
+
+<script>
+  pangu.spacingPage()
+</script>

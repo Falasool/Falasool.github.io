@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html
+  lang="en-us"
+  dir="ltr"
+>
+  <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=''><title>在 Ubuntu22.04 上搭建 Discourse 论坛</title>
+
+<link rel='canonical' href='https://falasool.github.io/post/build-discourse-site-on-ubuntu22/'>
+
+<link rel="stylesheet" href="/scss/style.min.0147dab71443626c251957a4d123df288cfea1f5d5abc428ef3cc283bdafb846.css"><meta property='og:title' content='在 Ubuntu22.04 上搭建 Discourse 论坛'>
+<meta property='og:description' content=''>
+<meta property='og:url' content='https://falasool.github.io/post/build-discourse-site-on-ubuntu22/'>
+<meta property='og:site_name' content='Falasool'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='tutorial' /><meta property='article:tag' content='Discourse' /><meta property='article:published_time' content='2023-07-22T21:28:27&#43;08:00'/><meta property='article:modified_time' content='2023-07-22T21:28:27&#43;08:00'/>
+<meta name="twitter:title" content="在 Ubuntu22.04 上搭建 Discourse 论坛">
+<meta name="twitter:description" content=""><style>
+   
+  :root {
+    --article-font-family: 'Noto Serif HK', var(--base-font-family);
+  }
+</style>
+
+<script>
+  ;(function () {
+    const customFont = document.createElement('link')
+    customFont.href =
+      'https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@300;400;500;600;700&display=swap'
+    customFont.type = 'text/css'
+    customFont.rel = 'stylesheet'
+
+    document.head.appendChild(customFont)
+  })()
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://cdn.jsdelivr.net/gh/Falasool/blog-pic-bed@main//blogponder-favicon.png"
+    />
+  </head>
+  <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "auto");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div
+      class="container main-container flex on-phone--column compact"
+    ><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Falasool</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/page/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/friends/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Friends</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/badges/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-app-window" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+  <path d="M6 8h.01" />
+  <path d="M9 8h.01" />
+</svg>
+
+
+
+                
+                <span>Projects</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/page/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/posts' >
+                
+                
+                
+                <span>All posts</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about' >
+                
+                
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags' >
+                
+                
+                
+                <span>Tags</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+  
+  <header class="article-category">
+    
+    <a
+      href="/categories/discourse/"
+      
+    >
+      Discourse
+    </a>
+    
+    <a
+      href="/categories/docker/"
+      
+    >
+      Docker
+    </a>
+    
+  </header>
+  
+
+  <div class="article-title-wrapper">
+    <h2 class="article-title">
+      <a href="/post/build-discourse-site-on-ubuntu22/">在 Ubuntu22.04 上搭建 Discourse 论坛</a>
+    </h2>
+
+    
+  </div>
+
+  
+  
+
+  
+  
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    
+    <p>买服务器，系统为 Ubuntu 22.04 - x86_64</p>
+<p>买域名，托管到 CloudFlare（开DNS only），指向服务器IP</p>
+<p>插播：Flarum论坛也好看，还轻量</p>
+<h2 id="chore">Chore</h2>
+<p>SSH终端颜色</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 进入 /etc/profile 文件</span>
+</span></span><span style="display:flex;"><span>vim /etc/profile
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 增加这一行</span>
+</span></span><span style="display:flex;"><span>PS1<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;[\[\e[32m\]\u\[\e[0m\]\[\e[35m\]@\[\e[0m\]\[\e[33m\]\h\[\e[0m\]\[\e[36m\] \W\[\e[0m\]]\$ &#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 更新文件</span>
+</span></span><span style="display:flex;"><span>source /etc/profile
+</span></span></code></pre></div><p>安装常用工具</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>apt-get install curl wget screen tree git htop bash-completion fail2ban ufw -y
+</span></span></code></pre></div><p>开放端口</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ufw allow OpenSSH
+</span></span><span style="display:flex;"><span>ufw enable
+</span></span><span style="display:flex;"><span>ufw allow http
+</span></span><span style="display:flex;"><span>ufw allow https
+</span></span><span style="display:flex;"><span>ufw allow 80/tcp
+</span></span><span style="display:flex;"><span>ufw allow 443/tcp
+</span></span><span style="display:flex;"><span>ufw status
+</span></span></code></pre></div><p>检查 80 端口有无被占用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>netstat -tuln | grep 80# 返回为空说明没有
+</span></span><span style="display:flex;"><span>service nginx stop <span style="color:#75715e"># nginx占了，停止nginx</span>
+</span></span></code></pre></div><p>SMTP 配置</p>
+<p>刚开始用的 Mailjet，什么都配置好了，服务已经跑起来了，发不了邮件导致连管理员也注册不了 😅 原来是要发工单人工审核，还被拒了。转Mailgun</p>
+<p>[测试SMTP配置]</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>./launcher enter app
+</span></span><span style="display:flex;"><span>x86_64 arch detected.
+</span></span><span style="display:flex;"><span>rake emails:test<span style="color:#f92672">[</span>your-email@gmail.com<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h2 id="本体">本体</h2>
+<p>Docker</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>curl -fsSL https://get.docker.com -o get-docker.sh
+</span></span><span style="display:flex;"><span>sh get-docker.sh
+</span></span></code></pre></div><p>Discourse</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git clone https://github.com/discourse/discourse_docker.git /var/discourse
+</span></span><span style="display:flex;"><span>cd /var/discourse
+</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">700</span> containers
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动容器</span>
+</span></span><span style="display:flex;"><span>./discourse-setup
+</span></span></code></pre></div><p>#报错：输入 <code>Hostname for your Discourse? [discourse.example.com]:</code> 后：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>Checking your domain name . . .
+</span></span><span style="display:flex;"><span>WARNING: Port <span style="color:#ae81ff">443</span> of computer does not appear to be accessible using hostname:  xxx.com.
+</span></span><span style="display:flex;"><span>WARNING: Connection to http://xxx.com <span style="color:#f92672">(</span>port 80<span style="color:#f92672">)</span> also fails.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>This suggests that xxx.com resolves to some IP address that does not reach this
+</span></span><span style="display:flex;"><span>machine where you are installing discourse.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The first thing to <span style="color:#66d9ef">do</span> is confirm that xxx.com resolves to the IP address of this server.
+</span></span><span style="display:flex;"><span>You usually <span style="color:#66d9ef">do</span> this at the same place you purchased the domain.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>If you are sure that the IP address resolves correctly, it could be a firewall issue.
+</span></span><span style="display:flex;"><span>A web search <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#34;open ports YOUR CLOUD SERVICE&#34;</span> might help.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>This tool is designed only <span style="color:#66d9ef">for</span> the most standard installations. If you cannot resolve
+</span></span><span style="display:flex;"><span>the issue above, you will need to edit containers/app.yml yourself and <span style="color:#66d9ef">then</span> type
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./launcher rebuild app
+</span></span></code></pre></div><p>解决：cloudflare里开启 DNS only</p>
+<p>成功启动容器后访问域名，注册管理员账户 🎉</p>
+<h2 id="参考--致谢">参考 &amp; 致谢</h2>
+<p><a class="link" href="https://www.orgleaf.com/3098.html"  target="_blank" rel="noopener"
+	>让Discourse和其它网站跑在同一台主机上</a>
+
+
+<span style="white-space: nowrap;"><svg width=".7em" height=".7em" viewBox="0 0 21 21"
+		xmlns="http://www.w3.org/2000/svg">
+		<path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+		<path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+			fill="currentColor">
+	</svg></span>
+
+</p>
+<p>安装依赖：php_serialize、miro、mysql2</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>apt-get install build-essential ruby-dev libmysqlclient-dev
+</span></span><span style="display:flex;"><span>apt-get install rubygems
+</span></span><span style="display:flex;"><span>gem install php_serialize
+</span></span><span style="display:flex;"><span>gem install miro
+</span></span><span style="display:flex;"><span>gem install mysql2
+</span></span></code></pre></div>
+    
+</section>
+
+
+    <footer class="article-footer">
+  
+    <section class="article-tags">
+        
+            <a href="/tags/tutorial/">tutorial</a>
+        
+            <a href="/tags/discourse/">Discourse</a>
+        
+    </section>
+
+
+  </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title"></h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/post/misskey/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Misskey 实例搭建教程</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/iterm2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">iTerm2 配置</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/about-dns-principle-and-vpn/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">网络通信过程 &#43; Vmess搭建</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/pleroma-operation-and-maintenance/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Pleroma | 维护日志(二) </h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/post/pleroma-operation-and-maintenance2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Pleroma | 维护日志(一) </h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+  <section class="copyright">
+    &copy;  2024 Falasool
+  </section>
+
+  <section class="powerby">
+    
+    <br />
+    
+  </section>
+
+  <section class="busuanzi">
+    <span id="busuanzi_container_site_uv" style='display:none'>
+      <span id="busuanzi_value_site_uv"></span> Views
+    </span>
+  </section>
+</footer>
+
+<style>
+  .busuanzi {
+    color: var(--body-text-color);
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+</style>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</main>
+    
+
+    </div>
+    <script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(210, 179, 75, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: rgb(210, 179, 75);
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+</script>
+
+  </body>
+</html>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+
+<script
+  type="text/javascript"
+  src="https://demo.hellozwh.com/source/canvas-nest.min.js"
+></script>
+
+<script>
+  pangu.spacingPage()
+</script>
