@@ -11,9 +11,9 @@
 html {
   color: #3d4630;
   background-color: #dde7da;
-  font-family: 'LXGWWenKaiMono-Regular','LXGW WenKai Screen';
+  font-family: 'LXGWWenKaiMono-Regular', 'LXGW WenKai Screen';
   font-size: 15px;
-  line-height: 1.6em;
+  line-height: 1.8;
 }
 body {
   display: block;
@@ -29,7 +29,7 @@ body {
 }
 
 p {
-  font-family: 'LXGWWenKaiMono-Light','LXGW WenKai Screen';
+  font-family: 'LXGWWenKaiMono-Light', 'LXGW WenKai Screen';
   line-height: 1.5;
 }
 
@@ -102,7 +102,8 @@ figure h4::before {
 
 /* Code blocks */
 code {
-  font-family: 'JetBrainsMono-Regular', 'LXGWWenKaiMono-Light','LXGW WenKai Screen';
+  font-family: 'JetBrainsMono-Regular', 'LXGWWenKaiMono-Light',
+    'LXGW WenKai Screen';
   background-color: #f1f1f1;
   padding: 0.1em 0.2em;
 }
@@ -146,7 +147,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 1em 0;
+  margin: 3rem 0;
   line-height: 2.5em;
 }
 
@@ -188,9 +189,25 @@ h6::before {
   content: '###### ';
 }
 
+.post {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+.post > a {
+  border: none;
+}
+.post > a:hover {
+  background-color: transparent;
+  color: rgb(184, 167, 107);
+}
+.posts .post::before {
+  display: none;
+}
+
 .meta {
-  color: #3d4630;
-  letter-spacing: -0.5px;
+  color: #79826c;
+  /* letter-spacing: -0.5px; */
 }
 
 /* Footer */
@@ -238,7 +255,7 @@ article .title {
 }
 
 .callout p {
-  font-family: 'LXGWWenKaiMono-Regular','LXGW WenKai Screen';
+  font-family: 'LXGWWenKaiMono-Regular', 'LXGW WenKai Screen';
   margin: 0;
 }
 
